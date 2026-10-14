@@ -1,5 +1,5 @@
 <script>
-  import { Avatar, Badge, SideNav } from "@lynxgsm/omni-ui/svelte";
+  import { Avatar, Badge, SideNav } from "mitos-ui/svelte";
 
   const sections = {
     "#overview": "Overview",
@@ -13,9 +13,9 @@
 </script>
 
 <div
-  style="display: grid; grid-template-columns: 13rem minmax(0, 1fr); width: 100%; min-height: 20rem; border: 1px solid var(--omni-border); border-radius: var(--omni-radius-xl); overflow: hidden; background: var(--omni-background)"
+  style="display: grid; grid-template-columns: 13rem minmax(0, 1fr); width: 100%; min-height: 20rem; border: 1px solid var(--mitos-border); border-radius: var(--mitos-radius-xl); overflow: hidden; background: var(--mitos-background)"
 >
-  <div style="display: grid; align-content: space-between; gap: 1.5rem; padding: 1rem; border-inline-end: 1px solid var(--omni-border)">
+  <div style="display: grid; align-content: space-between; gap: 1.5rem; padding: 1rem; border-inline-end: 1px solid var(--mitos-border)">
     <SideNav
       label="Workspace"
       currentHref={current}
@@ -36,6 +36,6 @@
       {sections[current]}
       <Badge variant="secondary">Northwind</Badge>
     </h3>
-    <p style="margin: 0.5rem 0 0; color: var(--omni-muted-foreground)">The content of the selected section.</p>
+    <p style="margin: 0.5rem 0 0; color: var(--mitos-muted-foreground)">The content of the selected section.</p>
   </div>
 </div>

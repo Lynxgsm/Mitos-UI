@@ -1,7 +1,7 @@
 <script>
-  import { Button, Card, Input, Switch, Tooltip, toast } from "@lynxgsm/omni-ui/svelte";
+  import { Button, Card, Input, Switch, Tooltip, toast } from "mitos-ui/svelte";
 
-  const link = "https://omni.example/p/northwind-q3";
+  const link = "https://mitos.example/p/northwind-q3";
 </script>
 
 <div style="width: 100%; max-width: 28rem">

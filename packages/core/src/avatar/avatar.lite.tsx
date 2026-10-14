@@ -44,9 +44,9 @@ const styles = stylex.create({
     justifyContent: "center",
     width: "100%",
     height: "100%",
-    backgroundColor: colors["--omni-muted"],
+    backgroundColor: colors["--mitos-muted"],
     // foreground, not muted-foreground: initials are text and need 4.5:1 on the muted background
-    color: colors["--omni-foreground"],
+    color: colors["--mitos-foreground"],
     fontWeight: 500,
     lineHeight: 1,
     userSelect: "none",

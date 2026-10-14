@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Dialog, Input, Select, Switch, Tabs, Textarea, toast } from "@lynxgsm/omni-ui/react";
+import { Button, Dialog, Input, Select, Switch, Tabs, Textarea, toast } from "mitos-ui/react";
 
 export default function AccountSettings() {
   const [confirming, setConfirming] = useState(false);
@@ -46,7 +46,7 @@ export default function AccountSettings() {
             label: "Danger zone",
             content: (
               <div style={{ display: "grid", gap: "0.75rem", justifyItems: "start" }}>
-                <p style={{ margin: 0, color: "var(--omni-muted-foreground)" }}>
+                <p style={{ margin: 0, color: "var(--mitos-muted-foreground)" }}>
                   Deleting your account removes every project and cannot be undone.
                 </p>
                 <Button variant="destructive" onClick={() => setConfirming(true)}>

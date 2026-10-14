@@ -1,4 +1,4 @@
-import { Input } from "@lynxgsm/omni-ui/react";
+import { Input } from "mitos-ui/react";
 
 export default function InputStates() {
   return (

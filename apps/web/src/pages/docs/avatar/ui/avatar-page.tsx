@@ -26,19 +26,19 @@ export function AvatarPage() {
       <ComponentPreview example={AvatarDemo} source={avatarDemoSource} label="Avatar demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@lynxgsm/omni-ui" />
+        <InstallCommand packages="mitos-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Avatar usage"
           react={`
-import { Avatar } from "@lynxgsm/omni-ui/react";
+import { Avatar } from "mitos-ui/react";
 
 <Avatar src={user.avatarUrl} alt={user.name} />`}
           svelte={`
 <script>
-  import { Avatar } from "@lynxgsm/omni-ui/svelte";
+  import { Avatar } from "mitos-ui/svelte";
 
   let { user } = $props();
 </script>

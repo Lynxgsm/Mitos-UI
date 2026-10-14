@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { getRouteApi } from "@tanstack/react-router";
-import { Button } from "@lynxgsm/omni-ui/react";
+import { Button } from "mitos-ui/react";
 import { XIcon } from "@phosphor-icons/react";
 import { CodeBlock } from "@/shared/ui/code-block";
 import { InstallCommand } from "@/shared/ui/install-command";
@@ -122,9 +122,9 @@ export function CreatePage() {
         </div>
         <p className="create-muted">{summary}.</p>
         <h3>1. Install the package</h3>
-        <InstallCommand packages="@lynxgsm/omni-ui" />
+        <InstallCommand packages="mitos-ui" />
         <h3>2. Import the styles</h3>
-        <CodeBlock code={`import "@lynxgsm/omni-ui/react/styles.css";`} />
+        <CodeBlock code={`import "mitos-ui/react/styles.css";`} />
         <h3>3. Add your theme</h3>
         <p className="create-muted">Paste it in any stylesheet. It overrides the defaults whatever the load order.</p>
         <CodeBlock code={themeCss(preset)} label="Theme CSS" language="css" />

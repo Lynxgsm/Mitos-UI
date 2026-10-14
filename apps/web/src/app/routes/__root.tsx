@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
-import { Toaster } from "@lynxgsm/omni-ui/react";
-import omniStylesHref from "@lynxgsm/omni-ui/react/styles.css?url";
+import { Toaster } from "mitos-ui/react";
+import mitosStylesHref from "mitos-ui/react/styles.css?url";
 import baseStylesHref from "../styles/base.css?url";
 import siteStylesHref from "../styles/site.css?url";
 import { SITE_THEME_CSS } from "../styles/site-theme";
@@ -18,10 +18,10 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Omni System UI" },
+      { title: "Mitos UI" },
     ],
     links: [
-      { rel: "stylesheet", href: omniStylesHref },
+      { rel: "stylesheet", href: mitosStylesHref },
       { rel: "stylesheet", href: baseStylesHref },
       { rel: "stylesheet", href: siteStylesHref },
       // UI used on every page (header, shared and entity components): linked once here

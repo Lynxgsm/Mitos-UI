@@ -22,19 +22,19 @@ export function BadgePage() {
       <ComponentPreview example={BadgeDemo} source={badgeDemoSource} label="Badge demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@lynxgsm/omni-ui" />
+        <InstallCommand packages="mitos-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Badge usage"
           react={`
-import { Badge } from "@lynxgsm/omni-ui/react";
+import { Badge } from "mitos-ui/react";
 
 <Badge variant="secondary">Beta</Badge>`}
           svelte={`
 <script>
-  import { Badge } from "@lynxgsm/omni-ui/svelte";
+  import { Badge } from "mitos-ui/svelte";
 </script>
 
 <Badge variant="secondary">Beta</Badge>`}

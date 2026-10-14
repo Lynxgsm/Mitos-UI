@@ -22,19 +22,19 @@ export function CheckboxPage() {
       <ComponentPreview example={CheckboxDemo} source={checkboxDemoSource} label="Checkbox demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@lynxgsm/omni-ui" />
+        <InstallCommand packages="mitos-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Checkbox usage"
           react={`
-import { Checkbox } from "@lynxgsm/omni-ui/react";
+import { Checkbox } from "mitos-ui/react";
 
 <Checkbox label="Remember me" name="remember" />`}
           svelte={`
 <script>
-  import { Checkbox } from "@lynxgsm/omni-ui/svelte";
+  import { Checkbox } from "mitos-ui/svelte";
 </script>
 
 <Checkbox label="Remember me" name="remember" />`}

@@ -2,6 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Introduction } from "@/pages/docs/introduction";
 
 export const Route = createFileRoute("/docs/")({
-  head: () => ({ meta: [{ title: "Introduction · Omni UI" }] }),
+  head: () => ({ meta: [{ title: "Introduction · Mitos UI" }] }),
   component: Introduction,
 });

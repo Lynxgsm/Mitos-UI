@@ -31,7 +31,7 @@ const styles = stylex.create({
     whiteSpace: "nowrap",
     paddingBlock: "0.125rem",
     paddingInline: "0.5rem",
-    borderRadius: radii["--omni-radius-md"],
+    borderRadius: radii["--mitos-radius-md"],
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "transparent",
@@ -43,21 +43,21 @@ const styles = stylex.create({
 
 const variants = stylex.create({
   default: {
-    backgroundColor: colors["--omni-primary"],
-    color: colors["--omni-primary-foreground"],
+    backgroundColor: colors["--mitos-primary"],
+    color: colors["--mitos-primary-foreground"],
   },
   secondary: {
-    backgroundColor: colors["--omni-secondary"],
-    color: colors["--omni-secondary-foreground"],
+    backgroundColor: colors["--mitos-secondary"],
+    color: colors["--mitos-secondary-foreground"],
   },
   outline: {
     backgroundColor: "transparent",
-    color: colors["--omni-foreground"],
-    borderColor: colors["--omni-border"],
+    color: colors["--mitos-foreground"],
+    borderColor: colors["--mitos-border"],
   },
   destructive: {
-    backgroundColor: colors["--omni-destructive"],
-    color: colors["--omni-destructive-foreground"],
+    backgroundColor: colors["--mitos-destructive"],
+    color: colors["--mitos-destructive-foreground"],
   },
 });
 

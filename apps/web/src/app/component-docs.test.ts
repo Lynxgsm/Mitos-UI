@@ -2,7 +2,7 @@
 import { describe, expect, it } from "bun:test";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import * as library from "@lynxgsm/omni-ui/react";
+import * as library from "mitos-ui/react";
 
 const SRC = join(import.meta.dir, "..");
 // docs pages named after the feature rather than the component

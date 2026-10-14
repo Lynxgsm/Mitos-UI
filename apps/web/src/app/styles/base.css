@@ -3,6 +3,6 @@
 body {
   margin: 0;
   font-family: "Outfit Variable", system-ui, sans-serif;
-  background-color: var(--omni-background);
-  color: var(--omni-foreground);
+  background-color: var(--mitos-background);
+  color: var(--mitos-foreground);
 }

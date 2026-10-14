@@ -12,7 +12,7 @@ export function BlocksPage() {
         <header className="blocks-header">
           <h1>Blocks</h1>
           <p>
-            Ready-made sections built only from Omni UI components, for React and Svelte. Copy the code into your
+            Ready-made sections built only from Mitos UI components, for React and Svelte. Copy the code into your
             app: no extra CSS, no extra dependency.
           </p>
           <nav aria-label="Block categories">

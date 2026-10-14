@@ -20,14 +20,14 @@ export function SideNavPage() {
       <ComponentPreview example={SideNavDemo} source={sideNavDemoSource} label="Side nav demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@lynxgsm/omni-ui" />
+        <InstallCommand packages="mitos-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Side nav usage"
           react={`
-import { SideNav } from "@lynxgsm/omni-ui/react";
+import { SideNav } from "mitos-ui/react";
 
 <SideNav
   label="Docs"
@@ -40,7 +40,7 @@ import { SideNav } from "@lynxgsm/omni-ui/react";
           svelte={`
 <script>
   import { page } from "$app/state";
-  import { SideNav } from "@lynxgsm/omni-ui/svelte";
+  import { SideNav } from "mitos-ui/svelte";
 </script>
 
 <SideNav

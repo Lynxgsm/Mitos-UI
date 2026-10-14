@@ -20,7 +20,7 @@ describe("blocks catalog", () => {
     for (const file of files) {
       const source = read(`${file}.tsx`);
       const imports = [...source.matchAll(/from "([^"]+)"/g)].map(([, from]) => from);
-      expect(imports.filter((from) => from !== "@lynxgsm/omni-ui/react" && from !== "react"), file).toEqual([]);
+      expect(imports.filter((from) => from !== "mitos-ui/react" && from !== "react"), file).toEqual([]);
     }
   });
 
@@ -36,6 +36,6 @@ describe("blocks catalog", () => {
       expect(warnings.map((warning) => `${warning.code}: ${warning.message}`)).toEqual([]);
     }
     const imports = [...source.matchAll(/from "([^"]+)"/g)].map(([, from]) => from);
-    expect(imports.filter((from) => from !== "@lynxgsm/omni-ui/svelte" && from !== "svelte")).toEqual([]);
+    expect(imports.filter((from) => from !== "mitos-ui/svelte" && from !== "svelte")).toEqual([]);
   });
 });

@@ -24,14 +24,14 @@ export function AccordionPage() {
       <ComponentPreview example={AccordionDemo} source={accordionDemoSource} label="Accordion demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@lynxgsm/omni-ui" />
+        <InstallCommand packages="mitos-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Accordion usage"
           react={`
-import { Accordion } from "@lynxgsm/omni-ui/react";
+import { Accordion } from "mitos-ui/react";
 
 <Accordion
   aria-label="FAQ"
@@ -42,7 +42,7 @@ import { Accordion } from "@lynxgsm/omni-ui/react";
 />`}
           svelte={`
 <script>
-  import { Accordion } from "@lynxgsm/omni-ui/svelte";
+  import { Accordion } from "mitos-ui/svelte";
 </script>
 
 <Accordion

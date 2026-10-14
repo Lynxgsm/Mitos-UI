@@ -19,14 +19,14 @@ export function MenuPage() {
       <ComponentPreview example={MenuDemo} source={menuDemoSource} label="Menu demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@lynxgsm/omni-ui" />
+        <InstallCommand packages="mitos-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Menu usage"
           react={`
-import { Menu } from "@lynxgsm/omni-ui/react";
+import { Menu } from "mitos-ui/react";
 
 <Menu
   label="Actions"
@@ -37,7 +37,7 @@ import { Menu } from "@lynxgsm/omni-ui/react";
 />`}
           svelte={`
 <script>
-  import { Menu } from "@lynxgsm/omni-ui/svelte";
+  import { Menu } from "mitos-ui/svelte";
 </script>
 
 <Menu

@@ -1,4 +1,4 @@
-import { Avatar } from "@lynxgsm/omni-ui/react";
+import { Avatar } from "mitos-ui/react";
 
 export default function AvatarBroken() {
   // the image fails to load: the initials take its place, with the same accessible name

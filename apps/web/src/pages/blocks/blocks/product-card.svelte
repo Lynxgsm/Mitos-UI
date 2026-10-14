@@ -1,5 +1,5 @@
 <script>
-  import { Badge, Button, ButtonGroup, Card, Select, toast } from "@lynxgsm/omni-ui/svelte";
+  import { Badge, Button, ButtonGroup, Card, Select, toast } from "mitos-ui/svelte";
 </script>
 
 <div style="width: 100%; max-width: 20rem">
@@ -7,7 +7,7 @@
     <div
       role="img"
       aria-label="Linen overshirt in sand color"
-      style="aspect-ratio: 4 / 3; margin-bottom: 1rem; border-radius: var(--omni-radius-lg); background: linear-gradient(135deg, #e8d9c4, #c9b291)"
+      style="aspect-ratio: 4 / 3; margin-bottom: 1rem; border-radius: var(--mitos-radius-lg); background: linear-gradient(135deg, #e8d9c4, #c9b291)"
     ></div>
     <p style="margin: 0 0 1rem; display: flex; align-items: center; gap: 0.5rem">
       <span style="font-size: 1.25rem; font-weight: 700">$89</span>

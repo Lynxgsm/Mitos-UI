@@ -13,7 +13,7 @@ export function Introduction() {
     >
       <Section id="what-it-is" title="What it is">
         <p>
-          Omni UI is a design system authored with <a href="https://mitosis.builder.io/">Mitosis</a> and styled with{" "}
+          Mitos UI is a design system authored with <a href="https://mitosis.builder.io/">Mitosis</a> and styled with{" "}
           <a href="https://stylexjs.com/">StyleX</a>. Each component is written once and compiled to a framework
           package. React and Svelte are available today; Vue will follow.
         </p>
@@ -29,7 +29,7 @@ export function Introduction() {
             contrast checked in CI.
           </li>
           <li>
-            <strong>Themeable with plain CSS.</strong> Every color and radius is a <code>--omni-*</code> variable you
+            <strong>Themeable with plain CSS.</strong> Every color and radius is a <code>--mitos-*</code> variable you
             can override. See <Link to="/docs/theming">Theming</Link>.
           </li>
           <li>

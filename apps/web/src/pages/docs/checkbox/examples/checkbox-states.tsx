@@ -1,4 +1,4 @@
-import { Checkbox } from "@lynxgsm/omni-ui/react";
+import { Checkbox } from "mitos-ui/react";
 
 export default function CheckboxStates() {
   return (

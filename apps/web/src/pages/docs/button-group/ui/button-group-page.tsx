@@ -22,14 +22,14 @@ export function ButtonGroupPage() {
       <ComponentPreview example={ButtonGroupDemo} source={buttonGroupDemoSource} label="Button group demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@lynxgsm/omni-ui" />
+        <InstallCommand packages="mitos-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Button group usage"
           react={`
-import { Button, ButtonGroup } from "@lynxgsm/omni-ui/react";
+import { Button, ButtonGroup } from "mitos-ui/react";
 
 <ButtonGroup aria-label="Text alignment">
   <Button variant="outline">Left</Button>
@@ -37,7 +37,7 @@ import { Button, ButtonGroup } from "@lynxgsm/omni-ui/react";
 </ButtonGroup>`}
           svelte={`
 <script>
-  import { Button, ButtonGroup } from "@lynxgsm/omni-ui/svelte";
+  import { Button, ButtonGroup } from "mitos-ui/svelte";
 </script>
 
 <ButtonGroup aria-label="Text alignment">

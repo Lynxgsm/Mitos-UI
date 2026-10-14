@@ -19,19 +19,19 @@ export function SwitchPage() {
       <ComponentPreview example={SwitchDemo} source={switchDemoSource} label="Switch demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@lynxgsm/omni-ui" />
+        <InstallCommand packages="mitos-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Switch usage"
           react={`
-import { Switch } from "@lynxgsm/omni-ui/react";
+import { Switch } from "mitos-ui/react";
 
 <Switch label="Email notifications" onChange={(event) => save(event.currentTarget.checked)} />`}
           svelte={`
 <script>
-  import { Switch } from "@lynxgsm/omni-ui/svelte";
+  import { Switch } from "mitos-ui/svelte";
 </script>
 
 <Switch label="Email notifications" onchange={(event) => save(event.currentTarget.checked)} />`}

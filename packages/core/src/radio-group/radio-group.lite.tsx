@@ -52,14 +52,14 @@ const styles = stylex.create({
     margin: 0,
     borderWidth: 1,
     borderStyle: "solid",
-    // --omni-input reaches 3:1 against the page: the empty circle stays visible (WCAG 1.4.11)
-    borderColor: { default: colors["--omni-input"], ":checked": colors["--omni-primary"] },
+    // --mitos-input reaches 3:1 against the page: the empty circle stays visible (WCAG 1.4.11)
+    borderColor: { default: colors["--mitos-input"], ":checked": colors["--mitos-primary"] },
     borderRadius: "9999px",
-    backgroundColor: colors["--omni-background"],
+    backgroundColor: colors["--mitos-background"],
     cursor: { default: "pointer", ":disabled": "not-allowed" },
     backgroundImage: {
       default: "none",
-      ":checked": `radial-gradient(circle, ${colors["--omni-primary"]} 0 calc(0.25rem - 0.5px), transparent 0.25rem)`,
+      ":checked": `radial-gradient(circle, ${colors["--mitos-primary"]} 0 calc(0.25rem - 0.5px), transparent 0.25rem)`,
       "@media (forced-colors: active)": "none",
     },
   },
@@ -90,7 +90,7 @@ export default function RadioGroup(props: RadioGroupProps) {
   });
 
   onMount(() => {
-    if (!props.id) state.generatedId = `omni-radio-group-${Math.random().toString(36).slice(2, 10)}`;
+    if (!props.id) state.generatedId = `mitos-radio-group-${Math.random().toString(36).slice(2, 10)}`;
   });
 
   // controlled: the checked radio follows value (the first render already does, through defaultChecked)

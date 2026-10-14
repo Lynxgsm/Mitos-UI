@@ -1,4 +1,4 @@
-import { Switch } from "@lynxgsm/omni-ui/react";
+import { Switch } from "mitos-ui/react";
 
 export default function SwitchDemo() {
   return (

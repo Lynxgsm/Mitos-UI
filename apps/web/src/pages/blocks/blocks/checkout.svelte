@@ -1,9 +1,9 @@
 <script>
-  import { Button, Card, RadioGroup, Select, toast } from "@lynxgsm/omni-ui/svelte";
+  import { Button, Card, RadioGroup, Select, toast } from "mitos-ui/svelte";
 </script>
 
 <div style="width: 100%; max-width: 28rem">
-  <Card title="Order summary" description="Omni UI Pro license">
+  <Card title="Order summary" description="Mitos UI Pro license">
     <div style="display: grid; gap: 1.25rem">
       <Select
         label="Seats"
@@ -24,9 +24,9 @@
         ]}
       />
       <dl style="display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; margin: 0; font-size: 0.875rem">
-        <dt style="color: var(--omni-muted-foreground)">Subtotal</dt>
+        <dt style="color: var(--mitos-muted-foreground)">Subtotal</dt>
         <dd style="margin: 0">$80.00</dd>
-        <dt style="color: var(--omni-muted-foreground)">Tax</dt>
+        <dt style="color: var(--mitos-muted-foreground)">Tax</dt>
         <dd style="margin: 0">$16.00</dd>
         <dt style="font-weight: 600">Total</dt>
         <dd style="margin: 0; font-weight: 600">$96.00</dd>

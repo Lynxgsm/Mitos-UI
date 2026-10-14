@@ -98,7 +98,7 @@ describe("Svelte build: server", async () => {
     expect(renders.RadioGroup).toMatch(/<fieldset[^>]* role="radiogroup"/);
     expect(renders.RadioGroup).toMatch(/<input[^>]* value="pro"[^>]* checked/);
     expect(renders.Select).toMatch(/<select[^>]*>.*<option value="">.*Choose.*<option value="fr"/s);
-    expect(renders.Slider).toContain("--omni-slider-fill:50%");
+    expect(renders.Slider).toContain("--mitos-slider-fill:50%");
     expect(renders.Slider).toMatch(/<input[^>]* type="range"[^>]* min="0"|<input[^>]* min="0"[^>]* type="range"/);
     expect(renders.Fieldset).toMatch(/<fieldset[^>]*>.*<legend[^>]*>.*Address.*<\/legend>.*<input/s);
   });

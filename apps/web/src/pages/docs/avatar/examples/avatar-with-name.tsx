@@ -1,4 +1,4 @@
-import { Avatar } from "@lynxgsm/omni-ui/react";
+import { Avatar } from "mitos-ui/react";
 
 export default function AvatarWithName() {
   return (

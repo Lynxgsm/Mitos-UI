@@ -1,4 +1,4 @@
-import { Button } from "@lynxgsm/omni-ui/react";
+import { Button } from "mitos-ui/react";
 
 export default function ButtonIcon() {
   // icon-only buttons have no visible text: aria-label gives them an accessible name

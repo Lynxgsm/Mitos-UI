@@ -35,7 +35,7 @@ Calque `button.lite.tsx` :
 - `class`, jamais `className`, dans le JSX et dans les props.
 - `OWN_PROPS` : les props consommées par le composant ; tout le reste (attributs natifs, `aria-*`, `data-*`, handlers) est transféré à l'élément racine via `state.attributes`. Garde le getter et son commentaire tels quels : dans la cible Svelte, `props` y devient l'objet `$props()` (voir `mitosis.config.cjs`).
 - Le type `<Name>Props` déclare les attributs natifs utiles et la signature `[attribute: \`aria-${string}\` | \`data-${string}\`]`.
-- Styles : `stylex.create`, couleurs et rayons depuis `@/config/tokens.stylex` (`colors["--omni-…"]`, `radii["--omni-radius-…"]`). Classes fusionnées avec `clsx(stylex.props(...).className, props.class)`.
+- Styles : `stylex.create`, couleurs et rayons depuis `@/config/tokens.stylex` (`colors["--mitos-…"]`, `radii["--mitos-radius-…"]`). Classes fusionnées avec `clsx(stylex.props(...).className, props.class)`.
 - Composant export `default`, fichier en kebab-case, composant en PascalCase.
 - Composant composé (Tabs, Dialog…) : un fichier `.lite.tsx` par partie si nécessaire, dans le même dossier.
 
@@ -48,7 +48,7 @@ Pièges du parseur Mitosis (le build échoue avec un message peu clair) :
 
 ### 3. Styles accessibles
 
-- **Focus visible** : reprends le motif de Button : `outlineStyle: { default: "none", ":focus-visible": "solid" }`, `outlineWidth: 2`, `outlineOffset: 2`, `outlineColor: colors["--omni-ring"]` (WCAG 1.4.11 / 2.4.7). Pour un `<input>` stylé, l'outline va sur l'input lui-même.
+- **Focus visible** : reprends le motif de Button : `outlineStyle: { default: "none", ":focus-visible": "solid" }`, `outlineWidth: 2`, `outlineOffset: 2`, `outlineColor: colors["--mitos-ring"]` (WCAG 1.4.11 / 2.4.7). Pour un `<input>` stylé, l'outline va sur l'input lui-même.
 - **Couleurs** : jamais de couleur en dur. Besoin d'une nouvelle couleur → ajoute un token dans `src/config/tokens.stylex.ts` (clair + `[DARK]`) **et** la paire texte/fond correspondante dans `src/config/tokens.test.ts` (texte ≥ 4.5:1, non-texte ≥ 3:1). Ce test lit le CSS compilé : c'est lui qui garantit le contraste, pas axe (jsdom n'a pas de rendu).
 - **Désactivé** : `:disabled` (ou `[aria-disabled=true]`) avec `opacity: 0.5` et `pointerEvents: "none"`, comme Button.
 - **Animation** : toute transition/animation non triviale est coupée sous `@media (prefers-reduced-motion: reduce)`.

@@ -40,18 +40,18 @@ const styles = stylex.create({
     font: "inherit",
     fontSize: "0.875rem",
     fontWeight: 500,
-    color: { default: colors["--omni-foreground"], ":hover": colors["--omni-accent-foreground"] },
-    backgroundColor: { default: colors["--omni-background"], ":hover": colors["--omni-accent"] },
+    color: { default: colors["--mitos-foreground"], ":hover": colors["--mitos-accent-foreground"] },
+    backgroundColor: { default: colors["--mitos-background"], ":hover": colors["--mitos-accent"] },
     borderWidth: 1,
     borderStyle: "solid",
-    borderColor: colors["--omni-border"],
-    borderRadius: radii["--omni-radius-md"],
+    borderColor: colors["--mitos-border"],
+    borderRadius: radii["--mitos-radius-md"],
     cursor: { default: "pointer", ":disabled": "not-allowed" },
     opacity: { default: 1, ":disabled": 0.5 },
     outlineStyle: { default: "none", ":focus-visible": "solid" },
     outlineWidth: 2,
     outlineOffset: 2,
-    outlineColor: colors["--omni-ring"],
+    outlineColor: colors["--mitos-ring"],
   },
   chevron: { width: "1rem", height: "1rem", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round" },
   menu: {
@@ -62,10 +62,10 @@ const styles = stylex.create({
     boxSizing: "border-box",
     borderWidth: 1,
     borderStyle: "solid",
-    borderColor: colors["--omni-border"],
-    borderRadius: radii["--omni-radius-md"],
-    backgroundColor: colors["--omni-background"],
-    boxShadow: `0 8px 24px -8px ${colors["--omni-overlay"]}`,
+    borderColor: colors["--mitos-border"],
+    borderRadius: radii["--mitos-radius-md"],
+    backgroundColor: colors["--mitos-background"],
+    boxShadow: `0 8px 24px -8px ${colors["--mitos-overlay"]}`,
   },
   // only while open: a display value would override the hidden attribute and keep the closed menu on screen
   open: { display: "grid" },
@@ -83,16 +83,16 @@ const styles = stylex.create({
     font: "inherit",
     fontSize: "0.875rem",
     textAlign: "start",
-    color: { default: colors["--omni-foreground"], ":focus": colors["--omni-accent-foreground"] },
-    backgroundColor: { default: "transparent", ":focus": colors["--omni-accent"] },
+    color: { default: colors["--mitos-foreground"], ":focus": colors["--mitos-accent-foreground"] },
+    backgroundColor: { default: "transparent", ":focus": colors["--mitos-accent"] },
     borderStyle: "none",
-    borderRadius: radii["--omni-radius-sm"],
+    borderRadius: radii["--mitos-radius-sm"],
     cursor: "pointer",
     // the focused item is highlighted, and keyboard focus also gets the ring (WCAG 2.4.7)
     outlineStyle: { default: "none", ":focus-visible": "solid" },
     outlineWidth: 2,
     outlineOffset: -2,
-    outlineColor: colors["--omni-ring"],
+    outlineColor: colors["--mitos-ring"],
   },
   disabled: { opacity: 0.5, cursor: "not-allowed" },
 });
@@ -203,7 +203,7 @@ export default function Menu(props: MenuProps) {
   });
 
   onMount(() => {
-    if (!props.id) state.generatedId = `omni-menu-${Math.random().toString(36).slice(2, 10)}`;
+    if (!props.id) state.generatedId = `mitos-menu-${Math.random().toString(36).slice(2, 10)}`;
   });
 
   // runs after the render that shows the placed menu, so the item can take the focus

@@ -1,4 +1,4 @@
-import { Button } from "@lynxgsm/omni-ui/react";
+import { Button } from "mitos-ui/react";
 
 const SIZES = ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"] as const;
 

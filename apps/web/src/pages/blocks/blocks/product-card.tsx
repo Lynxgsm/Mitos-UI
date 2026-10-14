@@ -1,4 +1,4 @@
-import { Badge, Button, ButtonGroup, Card, Select, toast } from "@lynxgsm/omni-ui/react";
+import { Badge, Button, ButtonGroup, Card, Select, toast } from "mitos-ui/react";
 
 export default function ProductCard() {
   return (
@@ -22,7 +22,7 @@ export default function ProductCard() {
           style={{
             aspectRatio: "4 / 3",
             marginBottom: "1rem",
-            borderRadius: "var(--omni-radius-lg)",
+            borderRadius: "var(--mitos-radius-lg)",
             background: "linear-gradient(135deg, #e8d9c4, #c9b291)",
           }}
         />

@@ -1,4 +1,4 @@
-import { Button, toast } from "@lynxgsm/omni-ui/react";
+import { Button, toast } from "mitos-ui/react";
 
 export default function ToastVariants() {
   return (

@@ -38,14 +38,14 @@ const styles = stylex.create({
     gap: "0.25rem",
     borderBottomWidth: 1,
     borderBottomStyle: "solid",
-    borderBottomColor: colors["--omni-border"],
+    borderBottomColor: colors["--mitos-border"],
   },
   listVertical: {
     flexDirection: "column",
     borderBottomWidth: 0,
     borderInlineEndWidth: 1,
     borderInlineEndStyle: "solid",
-    borderInlineEndColor: colors["--omni-border"],
+    borderInlineEndColor: colors["--mitos-border"],
   },
   tab: {
     display: "inline-flex",
@@ -57,18 +57,18 @@ const styles = stylex.create({
     fontSize: "0.875rem",
     fontWeight: 500,
     // muted-foreground on the page reaches 4.5:1; the selected tab gets the full foreground and an underline
-    color: colors["--omni-muted-foreground"],
+    color: colors["--mitos-muted-foreground"],
     backgroundColor: "transparent",
     borderStyle: "none",
     borderBottomWidth: 2,
     borderBottomStyle: "solid",
     borderBottomColor: "transparent",
-    borderRadius: `${radii["--omni-radius-sm"]} ${radii["--omni-radius-sm"]} 0 0`,
+    borderRadius: `${radii["--mitos-radius-sm"]} ${radii["--mitos-radius-sm"]} 0 0`,
     cursor: "pointer",
     outlineStyle: { default: "none", ":focus-visible": "solid" },
     outlineWidth: 2,
     outlineOffset: -2,
-    outlineColor: colors["--omni-ring"],
+    outlineColor: colors["--mitos-ring"],
   },
   tabVertical: {
     justifyContent: "flex-start",
@@ -78,28 +78,28 @@ const styles = stylex.create({
     borderInlineEndWidth: 2,
     borderInlineEndStyle: "solid",
     borderInlineEndColor: "transparent",
-    borderRadius: `${radii["--omni-radius-sm"]} 0 0 ${radii["--omni-radius-sm"]}`,
+    borderRadius: `${radii["--mitos-radius-sm"]} 0 0 ${radii["--mitos-radius-sm"]}`,
   },
   // the selected state is also carried by the underline, not only by the text color (WCAG 1.4.1)
   selected: {
-    color: colors["--omni-foreground"],
-    borderBottomColor: colors["--omni-primary"],
+    color: colors["--mitos-foreground"],
+    borderBottomColor: colors["--mitos-primary"],
   },
   selectedVertical: {
-    color: colors["--omni-foreground"],
-    borderInlineEndColor: colors["--omni-primary"],
+    color: colors["--mitos-foreground"],
+    borderInlineEndColor: colors["--mitos-primary"],
   },
   disabled: { opacity: 0.5, cursor: "not-allowed" },
   panel: {
     minWidth: 0,
     flexGrow: 1,
     fontSize: "0.875rem",
-    color: colors["--omni-foreground"],
+    color: colors["--mitos-foreground"],
     outlineStyle: { default: "none", ":focus-visible": "solid" },
     outlineWidth: 2,
     outlineOffset: 2,
-    outlineColor: colors["--omni-ring"],
-    borderRadius: radii["--omni-radius-sm"],
+    outlineColor: colors["--mitos-ring"],
+    borderRadius: radii["--mitos-radius-sm"],
   },
 });
 
@@ -147,7 +147,7 @@ export default function Tabs(props: TabsProps) {
   });
 
   onMount(() => {
-    if (!props.id) state.generatedId = `omni-tabs-${Math.random().toString(36).slice(2, 10)}`;
+    if (!props.id) state.generatedId = `mitos-tabs-${Math.random().toString(36).slice(2, 10)}`;
   });
 
   return (

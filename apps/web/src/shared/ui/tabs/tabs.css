@@ -7,7 +7,7 @@
 .tabs-list {
   display: flex;
   gap: 1rem;
-  border-bottom: 1px solid var(--omni-border);
+  border-bottom: 1px solid var(--mitos-border);
 }
 
 .tabs-list [role="tab"] {
@@ -23,13 +23,13 @@
   font: inherit;
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--omni-muted-foreground);
+  color: var(--mitos-muted-foreground);
   cursor: pointer;
 }
 
 .tabs-list [role="tab"][aria-selected="true"] {
   border-bottom-color: var(--site-brand);
-  color: var(--omni-foreground);
+  color: var(--mitos-foreground);
 }
 
 .tabs [role="tabpanel"] {

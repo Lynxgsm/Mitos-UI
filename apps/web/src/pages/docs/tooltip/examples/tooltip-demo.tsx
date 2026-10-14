@@ -1,4 +1,4 @@
-import { Button, Tooltip } from "@lynxgsm/omni-ui/react";
+import { Button, Tooltip } from "mitos-ui/react";
 
 export default function TooltipDemo() {
   return (

@@ -1,5 +1,5 @@
 <script>
-  import { Badge, Button, ButtonGroup, Card } from "@lynxgsm/omni-ui/svelte";
+  import { Badge, Button, ButtonGroup, Card } from "mitos-ui/svelte";
 
   const plans = [
     { name: "Starter", monthly: 0, description: "For trying things out.", features: ["1 project", "Community support"] },
@@ -23,7 +23,7 @@
       <Card title={plan.name} description={plan.description}>
         <p style="margin: 0; display: flex; align-items: baseline; gap: 0.5rem">
           <span style="font-size: 2rem; font-weight: 700">${yearly ? plan.monthly * 10 : plan.monthly}</span>
-          <span style="color: var(--omni-muted-foreground)">/ {yearly ? "year" : "month"}</span>
+          <span style="color: var(--mitos-muted-foreground)">/ {yearly ? "year" : "month"}</span>
           {#if plan.popular}<Badge>Popular</Badge>{/if}
         </p>
         <ul style="margin: 1rem 0 1.5rem; padding-inline-start: 1.1rem; display: grid; gap: 0.35rem; font-size: 0.875rem">

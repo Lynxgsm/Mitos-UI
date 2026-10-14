@@ -38,8 +38,8 @@ const styles = stylex.create({
   control: {
     display: "inline-grid",
     flexShrink: 0,
-    "--omni-checkbox-check": { default: "0", ":has(:checked:not(:indeterminate))": "1" },
-    "--omni-checkbox-dash": { default: "0", ":has(:indeterminate)": "1" },
+    "--mitos-checkbox-check": { default: "0", ":has(:checked:not(:indeterminate))": "1" },
+    "--mitos-checkbox-dash": { default: "0", ":has(:indeterminate)": "1" },
   },
   box: {
     appearance: { default: "none", "@media (forced-colors: active)": "auto" },
@@ -50,10 +50,10 @@ const styles = stylex.create({
     margin: 0,
     borderWidth: 1,
     borderStyle: "solid",
-    // --omni-input reaches 3:1 against the page: the empty box stays visible (WCAG 1.4.11)
-    borderColor: { default: colors["--omni-input"], ":checked": colors["--omni-primary"], ":indeterminate": colors["--omni-primary"] },
-    borderRadius: radii["--omni-radius-sm"],
-    backgroundColor: { default: colors["--omni-background"], ":checked": colors["--omni-primary"], ":indeterminate": colors["--omni-primary"] },
+    // --mitos-input reaches 3:1 against the page: the empty box stays visible (WCAG 1.4.11)
+    borderColor: { default: colors["--mitos-input"], ":checked": colors["--mitos-primary"], ":indeterminate": colors["--mitos-primary"] },
+    borderRadius: radii["--mitos-radius-sm"],
+    backgroundColor: { default: colors["--mitos-background"], ":checked": colors["--mitos-primary"], ":indeterminate": colors["--mitos-primary"] },
     cursor: { default: "pointer", ":disabled": "not-allowed" },
   },
   icon: {
@@ -62,14 +62,14 @@ const styles = stylex.create({
     width: "0.75rem",
     height: "0.75rem",
     pointerEvents: "none",
-    color: colors["--omni-primary-foreground"],
+    color: colors["--mitos-primary-foreground"],
     strokeWidth: 2.5,
     strokeLinecap: "round",
     strokeLinejoin: "round",
     display: { default: "block", "@media (forced-colors: active)": "none" },
   },
-  check: { opacity: "var(--omni-checkbox-check)" },
-  dash: { opacity: "var(--omni-checkbox-dash)" },
+  check: { opacity: "var(--mitos-checkbox-check)" },
+  dash: { opacity: "var(--mitos-checkbox-dash)" },
   // aligns the help texts with the label text, after the box
   indent: { paddingInlineStart: "1.5rem" },
 });
@@ -94,7 +94,7 @@ export default function Checkbox(props: CheckboxProps) {
   });
 
   onMount(() => {
-    if (!props.id) state.generatedId = `omni-checkbox-${Math.random().toString(36).slice(2, 10)}`;
+    if (!props.id) state.generatedId = `mitos-checkbox-${Math.random().toString(36).slice(2, 10)}`;
   });
 
   // indeterminate is a DOM property, not an attribute: set it on the element

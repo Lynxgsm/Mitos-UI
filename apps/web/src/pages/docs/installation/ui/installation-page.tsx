@@ -6,7 +6,7 @@ export function Installation() {
   return (
     <DocsPage
       title="Installation"
-      description="Add Omni UI to a React 19 or Svelte 5 project. No bundler plugin or CSS-in-JS setup required."
+      description="Add Mitos UI to a React 19 or Svelte 5 project. No bundler plugin or CSS-in-JS setup required."
       toc={[
         { id: "install-the-package", title: "Install the package" },
         { id: "import-the-styles", title: "Import the styles" },
@@ -16,17 +16,17 @@ export function Installation() {
       ]}
     >
       <Section id="install-the-package" title="Install the package">
-        <InstallCommand packages="@lynxgsm/omni-ui" />
+        <InstallCommand packages="mitos-ui" />
       </Section>
       <Section id="import-the-styles" title="Import the styles">
         <p>Import the stylesheet once, at the root of your app (entry file or root layout).</p>
         <FrameworkCode
           label="Styles import"
-          react={`import "@lynxgsm/omni-ui/react/styles.css";`}
+          react={`import "mitos-ui/react/styles.css";`}
           svelte={`
 <!-- +layout.svelte (SvelteKit) or App.svelte -->
 <script>
-  import "@lynxgsm/omni-ui/svelte/styles.css";
+  import "mitos-ui/svelte/styles.css";
 </script>`}
         />
         <p>
@@ -38,14 +38,14 @@ export function Installation() {
         <FrameworkCode
           label="First component"
           react={`
-import { Button } from "@lynxgsm/omni-ui/react";
+import { Button } from "mitos-ui/react";
 
 export default function App() {
   return <Button>Click me</Button>;
 }`}
           svelte={`
 <script>
-  import { Button } from "@lynxgsm/omni-ui/svelte";
+  import { Button } from "mitos-ui/svelte";
 </script>
 
 <Button>Click me</Button>`}

@@ -24,19 +24,19 @@ export function InputPage() {
       <ComponentPreview example={InputDemo} source={inputDemoSource} label="Input demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@lynxgsm/omni-ui" />
+        <InstallCommand packages="mitos-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Input usage"
           react={`
-import { Input } from "@lynxgsm/omni-ui/react";
+import { Input } from "mitos-ui/react";
 
 <Input label="Email" type="email" name="email" required />`}
           svelte={`
 <script>
-  import { Input } from "@lynxgsm/omni-ui/svelte";
+  import { Input } from "mitos-ui/svelte";
 </script>
 
 <Input label="Email" type="email" name="email" required />`}

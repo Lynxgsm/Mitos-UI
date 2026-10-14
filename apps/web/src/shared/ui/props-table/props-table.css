@@ -13,14 +13,14 @@
 .props-table th,
 .props-table td {
   padding: 0.6rem 0.75rem;
-  border-bottom: 1px solid var(--omni-border);
+  border-bottom: 1px solid var(--mitos-border);
   text-align: start;
   vertical-align: top;
 }
 
 .props-table thead th {
   font-weight: 600;
-  color: var(--omni-muted-foreground);
+  color: var(--mitos-muted-foreground);
 }
 
 .props-table tbody th {

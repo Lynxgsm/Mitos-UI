@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Dialog, Input } from "@lynxgsm/omni-ui/react";
+import { Button, Dialog, Input } from "mitos-ui/react";
 
 export default function DialogDemo() {
   const [open, setOpen] = useState(false);

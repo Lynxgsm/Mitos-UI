@@ -41,15 +41,15 @@ const styles = stylex.create({
     maxWidth: "16rem",
     paddingBlock: "0.375rem",
     paddingInline: "0.625rem",
-    borderRadius: radii["--omni-radius-md"],
+    borderRadius: radii["--mitos-radius-md"],
     // inverted colors: the foreground and background pair reaches 4.5:1 in both color schemes
-    backgroundColor: colors["--omni-foreground"],
-    color: colors["--omni-background"],
+    backgroundColor: colors["--mitos-foreground"],
+    color: colors["--mitos-background"],
     fontSize: "0.8125rem",
     lineHeight: 1.4,
     textAlign: "center",
     // centered on the trigger, then shifted to stay inside the viewport (set when it opens)
-    transform: "translateX(calc(-50% + var(--omni-tooltip-shift, 0px)))",
+    transform: "translateX(calc(-50% + var(--mitos-tooltip-shift, 0px)))",
   },
   top: { bottom: "calc(100% + 0.375rem)" },
   bottom: { top: "calc(100% + 0.375rem)" },
@@ -76,7 +76,7 @@ export default function Tooltip(props: TooltipProps) {
       return props.id ?? state.generatedId;
     },
     get positionStyle() {
-      return { "--omni-tooltip-shift": `${state.shift}px`, visibility: state.placed ? undefined : "hidden" } as any;
+      return { "--mitos-tooltip-shift": `${state.shift}px`, visibility: state.placed ? undefined : "hidden" } as any;
     },
     show(delay: number) {
       clearTimeout(timerRef);
@@ -112,7 +112,7 @@ export default function Tooltip(props: TooltipProps) {
 
   onMount(() => {
     // computed here: the state update is not visible yet within this hook
-    const describedId = props.id ?? `omni-tooltip-${Math.random().toString(36).slice(2, 10)}`;
+    const describedId = props.id ?? `mitos-tooltip-${Math.random().toString(36).slice(2, 10)}`;
     if (!props.id) state.generatedId = describedId;
     // the trigger is a child given by the consumer: describe it once the tooltip id exists
     rootRef?.querySelector(FOCUSABLE)?.setAttribute("aria-describedby", describedId);

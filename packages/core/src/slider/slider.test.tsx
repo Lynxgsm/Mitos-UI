@@ -39,18 +39,18 @@ describe("Slider", () => {
   it("fills the track up to the value, uncontrolled or controlled", () => {
     const { rerender } = render(<Slider label="Volume" min={0} max={200} defaultValue={50} />);
     const slider = screen.getByRole("slider") as HTMLInputElement;
-    expect(slider.style.getPropertyValue("--omni-slider-fill")).toBe("25%");
+    expect(slider.style.getPropertyValue("--mitos-slider-fill")).toBe("25%");
     fireEvent.input(slider, { target: { value: "100" } });
-    expect(slider.style.getPropertyValue("--omni-slider-fill")).toBe("50%");
+    expect(slider.style.getPropertyValue("--mitos-slider-fill")).toBe("50%");
     rerender(<Slider label="Volume" min={0} max={200} value={200} onChange={() => {}} />);
-    expect(slider.style.getPropertyValue("--omni-slider-fill")).toBe("100%");
+    expect(slider.style.getPropertyValue("--mitos-slider-fill")).toBe("100%");
   });
 
   it("starts at the middle like the native input, and calls the onInput of the consumer", () => {
     const onInput = vi.fn();
     render(<Slider label="Volume" onInput={onInput} />);
     const slider = screen.getByRole("slider") as HTMLInputElement;
-    expect(slider.style.getPropertyValue("--omni-slider-fill")).toBe("50%");
+    expect(slider.style.getPropertyValue("--mitos-slider-fill")).toBe("50%");
     fireEvent.input(slider, { target: { value: "10" } });
     expect(onInput).toHaveBeenCalledTimes(1);
   });

@@ -1,4 +1,4 @@
-import { Badge } from "@lynxgsm/omni-ui/react";
+import { Badge } from "mitos-ui/react";
 
 export default function BadgeVariants() {
   return (

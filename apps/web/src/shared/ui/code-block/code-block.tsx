@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "@lynxgsm/omni-ui/react";
+import { Button } from "mitos-ui/react";
 import { CheckIcon, CopyIcon } from "@phosphor-icons/react";
 import { highlight, type CodeLanguage } from "@/shared/lib/highlight";
 

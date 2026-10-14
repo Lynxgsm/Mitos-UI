@@ -1,20 +1,20 @@
-# Omni UI
+# Mitos UI
 
 Accessible, themeable UI components written once with [Mitosis](https://mitosis.builder.io/) and styled with
 [StyleX](https://stylexjs.com/), compiled for **React 19** and **Svelte 5**.
 
 - **One source, two frameworks**: every component is a single `.lite.tsx` file, compiled to React and to Svelte 5 runes.
 - **Accessible by default**: native elements and WAI-ARIA patterns, axe tests for every component, WCAG AA contrast checked in CI.
-- **Themeable**: every color and radius is a `--omni-*` CSS custom property. The library styles live in cascade layers, so your own CSS always wins.
+- **Themeable**: every color and radius is a `--mitos-*` CSS custom property. The library styles live in cascade layers, so your own CSS always wins.
 - **No bundler plugin**: one precompiled stylesheet.
 
 ```bash
-npm install @lynxgsm/omni-ui
+npm install mitos-ui
 ```
 
 ```tsx
-import "@lynxgsm/omni-ui/react/styles.css";
-import { Button } from "@lynxgsm/omni-ui/react";
+import "mitos-ui/react/styles.css";
+import { Button } from "mitos-ui/react";
 
 export default function App() {
   return <Button>Click me</Button>;
@@ -27,8 +27,8 @@ Usage for Svelte, theming and one page per component are covered in the document
 
 | Workspace       | Package            | Role                                                             |
 | --------------- | ------------------ | ---------------------------------------------------------------- |
-| `packages/core` | `@lynxgsm/omni-ui` | The component library, published to npm                          |
-| `apps/web`      | `@omni/web`        | The website: landing page, documentation, blocks, theme builder |
+| `packages/core` | `mitos-ui` | The component library, published to npm                          |
+| `apps/web`      | `@mitos/web`        | The website: landing page, documentation, blocks, theme builder |
 
 ## Development
 

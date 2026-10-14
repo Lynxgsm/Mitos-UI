@@ -1,5 +1,5 @@
 <script>
-  import { Card, Skeleton } from "@lynxgsm/omni-ui/svelte";
+  import { Card, Skeleton } from "mitos-ui/svelte";
 </script>
 
 <div style="width: 100%; max-width: 30rem">

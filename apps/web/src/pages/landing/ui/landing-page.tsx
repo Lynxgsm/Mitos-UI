@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Accordion } from "@lynxgsm/omni-ui/react";
+import { Accordion } from "mitos-ui/react";
 import { FRAMEWORKS } from "@/entities/framework";
 import { SiteHeader } from "@/widgets/site-header";
 import { CompileBeams } from "./compile-beams";
@@ -47,7 +47,7 @@ export function LandingPage() {
           </div>
           <div className="landing-hero-preview">
             <Accordion
-              aria-label="About Omni UI"
+              aria-label="About Mitos UI"
               class="landing-hero-accordion"
               defaultOpen={[0]}
               items={[
@@ -56,7 +56,7 @@ export function LandingPage() {
                   content: "One package with plain JavaScript, types and a precompiled stylesheet. No build plugin.",
                 },
                 { title: "Which frameworks?", content: "React and Svelte today, compiled from the same source. Vue is next." },
-                { title: "Can I restyle it?", content: "Override any --omni-* variable in your own CSS." },
+                { title: "Can I restyle it?", content: "Override any --mitos-* variable in your own CSS." },
               ]}
             />
           </div>
@@ -126,7 +126,7 @@ export function LandingPage() {
       </main>
 
       <footer className="landing-footer">
-        <p>Omni UI. Built with Mitosis and StyleX.</p>
+        <p>Mitos UI. Built with Mitosis and StyleX.</p>
         <nav aria-label="Footer">
           <ul>
             <li>

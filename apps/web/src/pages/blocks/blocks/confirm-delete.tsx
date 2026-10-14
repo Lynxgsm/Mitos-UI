@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Dialog, Input, toast } from "@lynxgsm/omni-ui/react";
+import { Button, Dialog, Input, toast } from "mitos-ui/react";
 
 export default function ConfirmDelete() {
   const [open, setOpen] = useState(false);

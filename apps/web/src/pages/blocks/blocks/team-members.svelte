@@ -1,5 +1,5 @@
 <script>
-  import { Avatar, Badge, Button, Card, Menu, Tooltip, toast } from "@lynxgsm/omni-ui/svelte";
+  import { Avatar, Badge, Button, Card, Menu, Tooltip, toast } from "mitos-ui/svelte";
 
   const members = [
     { name: "Inès Moreau", email: "ines@northwind.io", role: "Owner" },
@@ -21,7 +21,7 @@
           <Avatar alt="" fallback={initials(member.name)} size="sm" />
           <span style="display: grid; flex: 1; min-width: 0; font-size: 0.875rem">
             <span style={ellipsis}>{member.name}</span>
-            <span style="{ellipsis}; color: var(--omni-muted-foreground)">{member.email}</span>
+            <span style="{ellipsis}; color: var(--mitos-muted-foreground)">{member.email}</span>
           </span>
           <Badge variant={member.role === "Owner" ? "default" : "outline"}>{member.role}</Badge>
           <Menu

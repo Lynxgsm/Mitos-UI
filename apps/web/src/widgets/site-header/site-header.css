@@ -9,13 +9,13 @@
   gap: 2rem;
   height: var(--site-header-height);
   padding-inline: max(var(--site-header-gutter), calc((100% - var(--site-header-width)) / 2));
-  border-bottom: 1px solid var(--omni-border);
-  background: color-mix(in oklab, var(--omni-background) 88%, transparent);
+  border-bottom: 1px solid var(--mitos-border);
+  background: color-mix(in oklab, var(--mitos-background) 88%, transparent);
   backdrop-filter: blur(10px);
 }
 
 .site-header a:focus-visible {
-  outline: 2px solid var(--omni-ring);
+  outline: 2px solid var(--mitos-ring);
   outline-offset: 2px;
 }
 
@@ -35,7 +35,7 @@
   content: "";
   width: 0.85rem;
   height: 0.85rem;
-  border-radius: var(--omni-radius-sm);
+  border-radius: var(--mitos-radius-sm);
   background: var(--site-brand);
   box-shadow: 0.3rem 0.3rem 0 color-mix(in oklab, var(--site-brand) 35%, transparent);
 }
@@ -53,13 +53,13 @@
   padding-block: 0.35rem;
   border-bottom: 2px solid transparent;
   font-size: 0.875rem;
-  color: var(--omni-muted-foreground);
+  color: var(--mitos-muted-foreground);
   text-decoration: none;
 }
 
 .site-header nav a:hover,
 .site-header nav a[data-active] {
-  color: var(--omni-foreground);
+  color: var(--mitos-foreground);
 }
 
 .site-header nav a[data-active] {

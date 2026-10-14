@@ -34,7 +34,7 @@ const styles = stylex.create({
     borderStyle: "none",
   },
   // the legend is rendered above the grid, outside its gap: its own margin spaces it from the content
-  legend: { padding: 0, marginBottom: "0.5rem", fontSize: "1rem", fontWeight: 600, color: colors["--omni-foreground"] },
+  legend: { padding: 0, marginBottom: "0.5rem", fontSize: "1rem", fontWeight: 600, color: colors["--mitos-foreground"] },
 });
 
 export default function Fieldset(props: FieldsetProps) {
@@ -51,7 +51,7 @@ export default function Fieldset(props: FieldsetProps) {
   });
 
   onMount(() => {
-    if (!props.id) state.generatedId = `omni-fieldset-${Math.random().toString(36).slice(2, 10)}`;
+    if (!props.id) state.generatedId = `mitos-fieldset-${Math.random().toString(36).slice(2, 10)}`;
   });
 
   return (

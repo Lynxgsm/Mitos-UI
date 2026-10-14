@@ -1,4 +1,4 @@
-import { Fieldset, Input, Select } from "@lynxgsm/omni-ui/react";
+import { Fieldset, Input, Select } from "mitos-ui/react";
 
 export default function FieldsetDemo() {
   return (

@@ -2,15 +2,15 @@ import { CodeBlock } from "@/shared/ui/code-block";
 import { DocsPage, Section } from "@/widgets/docs-layout";
 
 const TOKENS = [
-  ["--omni-background / --omni-foreground", "Page background and default text."],
-  ["--omni-primary / --omni-primary-foreground", "Default button, links."],
-  ["--omni-secondary / --omni-secondary-foreground", "Secondary button."],
-  ["--omni-muted / --omni-muted-foreground", "Subdued surfaces, secondary text and icons."],
-  ["--omni-accent / --omni-accent-foreground", "Hover state of outline and ghost buttons."],
-  ["--omni-destructive / --omni-destructive-foreground", "Destructive actions."],
-  ["--omni-border / --omni-input", "Borders and form field outlines."],
-  ["--omni-ring", "Keyboard focus ring."],
-  ["--omni-radius-sm / -md / -lg / -xl", "Corner radii."],
+  ["--mitos-background / --mitos-foreground", "Page background and default text."],
+  ["--mitos-primary / --mitos-primary-foreground", "Default button, links."],
+  ["--mitos-secondary / --mitos-secondary-foreground", "Secondary button."],
+  ["--mitos-muted / --mitos-muted-foreground", "Subdued surfaces, secondary text and icons."],
+  ["--mitos-accent / --mitos-accent-foreground", "Hover state of outline and ghost buttons."],
+  ["--mitos-destructive / --mitos-destructive-foreground", "Destructive actions."],
+  ["--mitos-border / --mitos-input", "Borders and form field outlines."],
+  ["--mitos-ring", "Keyboard focus ring."],
+  ["--mitos-radius-sm / -md / -lg / -xl", "Corner radii."],
 ];
 
 export function Theming() {
@@ -31,13 +31,13 @@ export function Theming() {
           language="css"
           code={`
 :root {
-  --omni-primary: oklch(0.55 0.2 265);
-  --omni-primary-foreground: oklch(0.985 0 0);
-  --omni-radius-md: 0.25rem;
+  --mitos-primary: oklch(0.55 0.2 265);
+  --mitos-primary-foreground: oklch(0.985 0 0);
+  --mitos-radius-md: 0.25rem;
 }`}
         />
         <p>
-          The defaults sit in a CSS cascade layer, so your declaration wins even if it is loaded before the Omni UI
+          The defaults sit in a CSS cascade layer, so your declaration wins even if it is loaded before the Mitos UI
           stylesheet. Hover states are derived from the same variables and follow automatically.
         </p>
         <p>
@@ -55,7 +55,7 @@ export function Theming() {
           code={`
 @media (prefers-color-scheme: dark) {
   :root {
-    --omni-primary: oklch(0.75 0.15 265);
+    --mitos-primary: oklch(0.75 0.15 265);
   }
 }`}
         />

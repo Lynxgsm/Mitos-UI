@@ -51,7 +51,7 @@ const styles = stylex.create({
   control: {
     transitionProperty: "border-color",
     transitionDuration: { default: "150ms", "@media (prefers-reduced-motion: reduce)": "0s" },
-    "::placeholder": { color: colors["--omni-muted-foreground"], opacity: 1 },
+    "::placeholder": { color: colors["--mitos-muted-foreground"], opacity: 1 },
     cursor: { default: "text", ":disabled": "not-allowed" },
     opacity: { default: 1, ":disabled": 0.5 },
   },
@@ -64,10 +64,10 @@ const styles = stylex.create({
       paddingInline: "0.625rem",
       font: "inherit",
       fontWeight: 500,
-      color: colors["--omni-secondary-foreground"],
-      backgroundColor: colors["--omni-secondary"],
+      color: colors["--mitos-secondary-foreground"],
+      backgroundColor: colors["--mitos-secondary"],
       borderStyle: "none",
-      borderRadius: radii["--omni-radius-sm"],
+      borderRadius: radii["--mitos-radius-sm"],
       cursor: "pointer",
     },
   },
@@ -99,7 +99,7 @@ export default function Input(props: InputProps) {
   });
 
   onMount(() => {
-    if (!props.id) state.generatedId = `omni-input-${Math.random().toString(36).slice(2, 10)}`;
+    if (!props.id) state.generatedId = `mitos-input-${Math.random().toString(36).slice(2, 10)}`;
   });
 
   return (

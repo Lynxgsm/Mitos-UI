@@ -21,7 +21,7 @@ import {
   Toaster,
   Tooltip,
   toast,
-} from "@lynxgsm/omni-ui/react";
+} from "mitos-ui/react";
 
 const VARIANTS = ["default", "secondary", "outline", "ghost", "link", "destructive"] as const;
 const SIZES = ["xs", "sm", "md", "lg", "xl"] as const;
@@ -32,7 +32,7 @@ const MEMBERS = [
   { name: "Hana Kobayashi", email: "hana@northwind.io", role: "Viewer" },
 ];
 
-// Realistic compositions built only from library components and --omni-* tokens.
+// Realistic compositions built only from library components and --mitos-* tokens.
 export function Preview() {
   const [confirming, setConfirming] = useState(false);
   const [section, setSection] = useState("#overview");

@@ -1,4 +1,4 @@
-# Publishes @lynxgsm/omni-ui when main carries a version that npm does not have yet (see AGENTS.md, Releasing).
+# Publishes mitos-ui when main carries a version that npm does not have yet (see AGENTS.md, Releasing).
 name: Release
 
 on:

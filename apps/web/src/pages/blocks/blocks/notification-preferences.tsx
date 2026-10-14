@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Card, Fieldset, RadioGroup, Slider, Switch, toast } from "@lynxgsm/omni-ui/react";
+import { Button, Card, Fieldset, RadioGroup, Slider, Switch, toast } from "mitos-ui/react";
 
 export default function NotificationPreferences() {
   const [volume, setVolume] = useState(60);

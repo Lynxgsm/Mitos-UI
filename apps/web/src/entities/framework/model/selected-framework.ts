@@ -3,7 +3,7 @@ import { useSyncExternalStore } from "react";
 export type Framework = "react" | "svelte";
 
 // One choice for the whole site: every framework tab follows it, across pages and browser tabs.
-const STORAGE_KEY = "omni-framework";
+const STORAGE_KEY = "mitos-framework";
 const listeners = new Set<() => void>();
 let chosen: Framework | null = null;
 

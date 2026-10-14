@@ -98,7 +98,7 @@ export function radiusTokens(preset: Preset): Record<string, string> {
 
 function declarations(tokens: Record<string, string>, indent: string) {
   return Object.entries(tokens)
-    .map(([name, value]) => `${indent}--omni-${name}: ${value};`)
+    .map(([name, value]) => `${indent}--mitos-${name}: ${value};`)
     .join("\n");
 }
 

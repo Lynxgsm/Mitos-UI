@@ -19,21 +19,21 @@ export function CardPage() {
       <ComponentPreview example={CardDemo} source={cardDemoSource} label="Card demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@lynxgsm/omni-ui" />
+        <InstallCommand packages="mitos-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Card usage"
           react={`
-import { Button, Card } from "@lynxgsm/omni-ui/react";
+import { Button, Card } from "mitos-ui/react";
 
 <Card title="Team plan" description="Billed monthly." footer={<Button>Upgrade</Button>}>
   <p>Up to 10 seats.</p>
 </Card>`}
           svelte={`
 <script>
-  import { Card } from "@lynxgsm/omni-ui/svelte";
+  import { Card } from "mitos-ui/svelte";
 </script>
 
 <Card title="Team plan" description="Billed monthly.">

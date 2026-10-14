@@ -1,4 +1,4 @@
-import { Button, ButtonGroup } from "@lynxgsm/omni-ui/react";
+import { Button, ButtonGroup } from "mitos-ui/react";
 
 export default function ButtonGroupDemo() {
   return (

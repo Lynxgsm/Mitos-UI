@@ -1,4 +1,4 @@
-import { Avatar, Badge, Button, Card, Menu, Tooltip, toast } from "@lynxgsm/omni-ui/react";
+import { Avatar, Badge, Button, Card, Menu, Tooltip, toast } from "mitos-ui/react";
 
 const MEMBERS = [
   { name: "Inès Moreau", email: "ines@northwind.io", role: "Owner" },
@@ -29,7 +29,7 @@ export default function TeamMembers() {
               <span style={{ display: "grid", flex: 1, minWidth: 0, fontSize: "0.875rem" }}>
                 {/* long names and emails are cut, not pushed out of narrow screens */}
                 <span style={ELLIPSIS}>{member.name}</span>
-                <span style={{ ...ELLIPSIS, color: "var(--omni-muted-foreground)" }}>{member.email}</span>
+                <span style={{ ...ELLIPSIS, color: "var(--mitos-muted-foreground)" }}>{member.email}</span>
               </span>
               <Badge variant={member.role === "Owner" ? "default" : "outline"}>{member.role}</Badge>
               <Menu

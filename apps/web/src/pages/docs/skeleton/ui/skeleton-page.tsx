@@ -19,21 +19,21 @@ export function SkeletonPage() {
       <ComponentPreview example={SkeletonDemo} source={skeletonDemoSource} label="Skeleton demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@lynxgsm/omni-ui" />
+        <InstallCommand packages="mitos-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Skeleton usage"
           react={`
-import { Skeleton } from "@lynxgsm/omni-ui/react";
+import { Skeleton } from "mitos-ui/react";
 
 <section aria-busy="true" aria-label="Profile">
   <Skeleton style={{ width: "12rem", height: "1rem" }} />
 </section>`}
           svelte={`
 <script>
-  import { Skeleton } from "@lynxgsm/omni-ui/svelte";
+  import { Skeleton } from "mitos-ui/svelte";
 </script>
 
 <section aria-busy="true" aria-label="Profile">

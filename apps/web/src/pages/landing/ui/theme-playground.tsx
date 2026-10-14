@@ -1,5 +1,5 @@
 import { useState, type CSSProperties } from "react";
-import { Accordion, Button } from "@lynxgsm/omni-ui/react";
+import { Accordion, Button } from "mitos-ui/react";
 import { CodeBlock } from "@/shared/ui/code-block";
 import { OptionGroup } from "@/shared/ui/option-group";
 
@@ -13,10 +13,10 @@ export function ThemePlayground() {
 
   const overrides: Record<string, string> = {};
   if (ACCENTS[accent]) {
-    overrides["--omni-primary"] = ACCENTS[accent];
-    overrides["--omni-primary-foreground"] = "#ffffff";
+    overrides["--mitos-primary"] = ACCENTS[accent];
+    overrides["--mitos-primary-foreground"] = "#ffffff";
   }
-  if (RADII[radius]) overrides["--omni-radius-md"] = RADII[radius];
+  if (RADII[radius]) overrides["--mitos-radius-md"] = RADII[radius];
 
   const css = Object.keys(overrides).length
     ? `:root {\n${Object.entries(overrides)
@@ -30,7 +30,7 @@ export function ThemePlayground() {
         <OptionGroup
           legend="Accent"
           name="accent"
-          options={Object.entries(ACCENTS).map(([id, color]) => ({ id, label: id, swatch: color ?? "var(--omni-primary)" }))}
+          options={Object.entries(ACCENTS).map(([id, color]) => ({ id, label: id, swatch: color ?? "var(--mitos-primary)" }))}
           value={accent}
           onChange={setAccent}
         />
@@ -44,7 +44,7 @@ export function ThemePlayground() {
         <CodeBlock code={css} label="Generated CSS" language="css" />
       </div>
       {/* the same variables a consumer would set on :root, scoped to this preview */}
-      <div className="playground-preview omni-default-theme" style={overrides as CSSProperties}>
+      <div className="playground-preview mitos-default-theme" style={overrides as CSSProperties}>
         <div className="playground-buttons">
           <Button>Save changes</Button>
           <Button variant="outline">Cancel</Button>

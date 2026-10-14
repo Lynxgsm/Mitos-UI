@@ -22,7 +22,7 @@ export type ButtonGroupProps = {
   [attribute: `aria-${string}` | `data-${string}`]: string | number | boolean | undefined;
 };
 
-const R = radii["--omni-radius-md"];
+const R = radii["--mitos-radius-md"];
 
 // StyleX cannot style children from the parent: the group sets these variables and Button reads them
 // by position (button.lite.tsx). Outside a group they are unset and Button keeps its own radius.
@@ -38,18 +38,18 @@ const styles = stylex.create({
 const orientations = stylex.create({
   horizontal: {
     flexDirection: "row",
-    "--omni-button-group-first": `${R} 0 0 ${R}`,
-    "--omni-button-group-last": `0 ${R} ${R} 0`,
-    "--omni-button-group-middle": "0",
+    "--mitos-button-group-first": `${R} 0 0 ${R}`,
+    "--mitos-button-group-last": `0 ${R} ${R} 0`,
+    "--mitos-button-group-middle": "0",
     // neighbours share one border instead of two
-    "--omni-button-group-overlap-x": "-1px",
+    "--mitos-button-group-overlap-x": "-1px",
   },
   vertical: {
     flexDirection: "column",
-    "--omni-button-group-first": `${R} ${R} 0 0`,
-    "--omni-button-group-last": `0 0 ${R} ${R}`,
-    "--omni-button-group-middle": "0",
-    "--omni-button-group-overlap-y": "-1px",
+    "--mitos-button-group-first": `${R} ${R} 0 0`,
+    "--mitos-button-group-last": `0 0 ${R} ${R}`,
+    "--mitos-button-group-middle": "0",
+    "--mitos-button-group-overlap-y": "-1px",
   },
 });
 

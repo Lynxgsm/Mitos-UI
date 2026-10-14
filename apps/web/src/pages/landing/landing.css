@@ -1,4 +1,4 @@
-/* Landing page. Plain CSS on the --omni-* tokens; one radius scale (--omni-radius-*) everywhere. */
+/* Landing page. Plain CSS on the --mitos-* tokens; one radius scale (--mitos-radius-*) everywhere. */
 
 .landing {
   --site-width: 72rem;
@@ -12,7 +12,7 @@
 }
 
 .landing :focus-visible {
-  outline: 2px solid var(--omni-ring);
+  outline: 2px solid var(--mitos-ring);
   outline-offset: 2px;
 }
 
@@ -51,7 +51,7 @@
 
 .landing-hero h1 em {
   font-style: normal;
-  color: var(--omni-primary);
+  color: var(--mitos-primary);
 }
 
 .landing-hero-lead {
@@ -59,7 +59,7 @@
   margin: 1.25rem 0 2rem;
   font-size: clamp(1.05rem, 1.4vw, 1.2rem);
   line-height: 1.55;
-  color: var(--omni-muted-foreground);
+  color: var(--mitos-muted-foreground);
 }
 
 .landing-frameworks {
@@ -77,7 +77,7 @@
   align-items: center;
   gap: 0.375rem;
   padding: 0.25rem 0.625rem;
-  border: 1px solid var(--omni-border);
+  border: 1px solid var(--mitos-border);
   border-radius: 999px;
   font-size: 0.875rem;
   font-weight: 500;
@@ -87,12 +87,12 @@
   display: grid;
   gap: 1.75rem;
   padding: clamp(1.5rem, 3vw, 2.25rem);
-  border: 1px solid var(--omni-border);
-  border-radius: var(--omni-radius-xl);
+  border: 1px solid var(--mitos-border);
+  border-radius: var(--mitos-radius-xl);
   background:
-    radial-gradient(120% 80% at 100% 0%, color-mix(in oklab, var(--omni-primary) 7%, transparent), transparent 60%),
-    var(--omni-background);
-  box-shadow: 0 24px 60px -32px color-mix(in oklab, var(--omni-foreground) 35%, transparent);
+    radial-gradient(120% 80% at 100% 0%, color-mix(in oklab, var(--mitos-primary) 7%, transparent), transparent 60%),
+    var(--mitos-background);
+  box-shadow: 0 24px 60px -32px color-mix(in oklab, var(--mitos-foreground) 35%, transparent);
 }
 
 .landing-hero-accordion {
@@ -122,7 +122,7 @@
   font-size: 0.875rem;
   font-weight: 500;
   text-align: center;
-  color: var(--omni-muted-foreground);
+  color: var(--mitos-muted-foreground);
 }
 
 .landing-tools {
@@ -134,10 +134,10 @@
   padding: 0;
   overflow: hidden;
   list-style: none;
-  border: 1px solid var(--omni-border);
+  border: 1px solid var(--mitos-border);
   border-radius: 0.75rem;
   /* the 1px gaps show this color: cell borders that never double up when rows wrap */
-  background: var(--omni-border);
+  background: var(--mitos-border);
 }
 
 .landing-tools li {
@@ -147,10 +147,10 @@
   align-items: center;
   gap: 0.5rem;
   padding: 1.5rem 1rem;
-  background: var(--omni-background);
+  background: var(--mitos-background);
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--omni-muted-foreground);
+  color: var(--mitos-muted-foreground);
 }
 
 .landing-tools svg {
@@ -164,7 +164,7 @@
   margin: 0.9rem 0 0;
   font-size: 1.05rem;
   line-height: 1.6;
-  color: var(--omni-muted-foreground);
+  color: var(--mitos-muted-foreground);
 }
 
 /* Compile beams: sources → package → frameworks */
@@ -182,7 +182,7 @@
 
 .beam-track {
   fill: none;
-  stroke: var(--omni-border);
+  stroke: var(--mitos-border);
   stroke-width: 2;
 }
 
@@ -210,13 +210,13 @@
 
 .beam-node rect,
 .beam-node circle {
-  fill: var(--omni-background);
-  stroke: var(--omni-border);
+  fill: var(--mitos-background);
+  stroke: var(--mitos-border);
   stroke-width: 1.5;
 }
 
 .beam-hub > rect:first-child {
-  stroke: color-mix(in oklab, var(--site-brand) 45%, var(--omni-border));
+  stroke: color-mix(in oklab, var(--site-brand) 45%, var(--mitos-border));
   filter: drop-shadow(0 6px 16px color-mix(in oklab, var(--site-brand) 22%, transparent));
 }
 
@@ -233,12 +233,12 @@
 .beam-title {
   font-size: 17px;
   font-weight: 700;
-  fill: var(--omni-foreground);
+  fill: var(--mitos-foreground);
 }
 
 .beam-sub {
   font-size: 13px;
-  fill: var(--omni-muted-foreground);
+  fill: var(--mitos-muted-foreground);
 }
 
 .beam-code {
@@ -250,7 +250,7 @@
 }
 
 .beam-node.beam-next svg path {
-  fill: var(--omni-muted-foreground);
+  fill: var(--mitos-muted-foreground);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -279,8 +279,8 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
   gap: 1.25rem;
   padding: 1.25rem;
-  border: 1px solid var(--omni-border);
-  border-radius: var(--omni-radius-xl);
+  border: 1px solid var(--mitos-border);
+  border-radius: var(--mitos-radius-xl);
 }
 
 .playground-controls {
@@ -305,8 +305,8 @@
   align-content: start;
   gap: 1.25rem;
   padding: 1.5rem;
-  border-radius: var(--omni-radius-lg);
-  background: var(--omni-muted);
+  border-radius: var(--mitos-radius-lg);
+  background: var(--mitos-muted);
 }
 
 .playground-buttons {
@@ -317,8 +317,8 @@
 
 .playground-accordion {
   padding-inline: 1rem;
-  border-radius: var(--omni-radius-lg);
-  background: var(--omni-background);
+  border-radius: var(--mitos-radius-lg);
+  background: var(--mitos-background);
 }
 
 /* Accessibility bento: 4 items, 4 cells (one tall + three) */
@@ -335,8 +335,8 @@
 
 .landing-tile {
   padding: 1.5rem;
-  border: 1px solid var(--omni-border);
-  border-radius: var(--omni-radius-xl);
+  border: 1px solid var(--mitos-border);
+  border-radius: var(--mitos-radius-xl);
 }
 
 .landing-tile h3 {
@@ -347,7 +347,7 @@
 .landing-tile p {
   margin: 0;
   line-height: 1.6;
-  color: var(--omni-muted-foreground);
+  color: var(--mitos-muted-foreground);
 }
 
 .landing-tile-contrast {
@@ -358,8 +358,8 @@
   min-height: 18rem;
   border-color: transparent;
   background:
-    radial-gradient(90% 70% at 0% 0%, color-mix(in oklab, var(--omni-primary) 12%, transparent), transparent 70%),
-    var(--omni-muted);
+    radial-gradient(90% 70% at 0% 0%, color-mix(in oklab, var(--mitos-primary) 12%, transparent), transparent 70%),
+    var(--mitos-muted);
 }
 
 .landing-tile-contrast .landing-tile-figure {
@@ -368,7 +368,7 @@
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.04em;
-  color: var(--omni-foreground);
+  color: var(--mitos-foreground);
 }
 
 .landing-tile-native {
@@ -385,23 +385,23 @@
     repeating-linear-gradient(
       -45deg,
       transparent 0 10px,
-      color-mix(in oklab, var(--omni-border) 45%, transparent) 10px 11px
+      color-mix(in oklab, var(--mitos-border) 45%, transparent) 10px 11px
     ),
-    var(--omni-background);
+    var(--mitos-background);
 }
 
 .landing kbd {
   display: inline-block;
   min-width: 1.4em;
   padding: 0.1rem 0.4rem;
-  border: 1px solid var(--omni-border);
+  border: 1px solid var(--mitos-border);
   border-bottom-width: 2px;
-  border-radius: var(--omni-radius-sm);
-  background: var(--omni-background);
+  border-radius: var(--mitos-radius-sm);
+  background: var(--mitos-background);
   font: inherit;
   font-size: 0.8em;
   text-align: center;
-  color: var(--omni-foreground);
+  color: var(--mitos-foreground);
 }
 
 /* Comparison with shadcn/ui: table, then who should pick which */
@@ -409,12 +409,12 @@
 .compare-table-wrapper {
   margin-top: 2.25rem;
   overflow-x: auto;
-  border: 1px solid var(--omni-border);
-  border-radius: var(--omni-radius-xl);
+  border: 1px solid var(--mitos-border);
+  border-radius: var(--mitos-radius-xl);
 }
 
 .compare-table-wrapper:focus-visible {
-  outline: 2px solid var(--omni-ring);
+  outline: 2px solid var(--mitos-ring);
   outline-offset: 2px;
 }
 
@@ -428,7 +428,7 @@
 .compare-table th,
 .compare-table td {
   padding: 0.9rem 1.25rem;
-  border-bottom: 1px solid var(--omni-border);
+  border-bottom: 1px solid var(--mitos-border);
   text-align: start;
   vertical-align: top;
 }
@@ -441,10 +441,10 @@
   font-size: 1rem;
 }
 
-/* the Omni UI column is the one this page is about */
+/* the Mitos UI column is the one this page is about */
 .compare-table thead th:nth-child(2),
 .compare-table tbody td:nth-child(2) {
-  background: color-mix(in oklab, var(--site-brand) 6%, var(--omni-background));
+  background: color-mix(in oklab, var(--site-brand) 6%, var(--mitos-background));
 }
 
 .compare-table tbody th {
@@ -453,7 +453,7 @@
 }
 
 .compare-table tbody td:nth-child(3) {
-  color: var(--omni-muted-foreground);
+  color: var(--mitos-muted-foreground);
 }
 
 .compare-choices {
@@ -465,12 +465,12 @@
 
 .compare-choice {
   padding: 1.5rem;
-  border: 1px solid var(--omni-border);
-  border-radius: var(--omni-radius-xl);
+  border: 1px solid var(--mitos-border);
+  border-radius: var(--mitos-radius-xl);
 }
 
-.compare-choice-omni {
-  border-color: color-mix(in oklab, var(--site-brand) 45%, var(--omni-border));
+.compare-choice-mitos {
+  border-color: color-mix(in oklab, var(--site-brand) 45%, var(--mitos-border));
 }
 
 .compare-choice h3 {
@@ -495,10 +495,10 @@
 /* Closing CTA + footer */
 
 .landing-cta {
-  border-radius: var(--omni-radius-xl);
+  border-radius: var(--mitos-radius-xl);
   background:
     radial-gradient(80% 140% at 100% 0%, color-mix(in oklab, var(--site-brand) 22%, transparent), transparent 65%),
-    color-mix(in oklab, var(--site-brand) 6%, var(--omni-background));
+    color-mix(in oklab, var(--site-brand) 6%, var(--mitos-background));
   display: grid;
   justify-items: start;
   gap: 1.5rem;
@@ -522,9 +522,9 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 2rem max(var(--site-gutter), calc((100% - var(--site-width)) / 2));
-  border-top: 1px solid var(--omni-border);
+  border-top: 1px solid var(--mitos-border);
   font-size: 0.875rem;
-  color: var(--omni-muted-foreground);
+  color: var(--mitos-muted-foreground);
 }
 
 .landing-footer p {
@@ -545,7 +545,7 @@
 }
 
 .landing-footer a:hover {
-  color: var(--omni-foreground);
+  color: var(--mitos-foreground);
   text-decoration: underline;
 }
 

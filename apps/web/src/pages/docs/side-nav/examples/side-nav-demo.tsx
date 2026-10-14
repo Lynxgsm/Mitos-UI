@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SideNav } from "@lynxgsm/omni-ui/react";
+import { SideNav } from "mitos-ui/react";
 
 export default function SideNavDemo() {
   const [current, setCurrent] = useState("#profile");

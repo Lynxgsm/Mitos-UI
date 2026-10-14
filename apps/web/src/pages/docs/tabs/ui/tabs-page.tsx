@@ -22,14 +22,14 @@ export function TabsPage() {
       <ComponentPreview example={TabsDemo} source={tabsDemoSource} label="Tabs demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@lynxgsm/omni-ui" />
+        <InstallCommand packages="mitos-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Tabs usage"
           react={`
-import { Tabs } from "@lynxgsm/omni-ui/react";
+import { Tabs } from "mitos-ui/react";
 
 <Tabs
   label="Account settings"
@@ -40,7 +40,7 @@ import { Tabs } from "@lynxgsm/omni-ui/react";
 />`}
           svelte={`
 <script>
-  import { Tabs } from "@lynxgsm/omni-ui/svelte";
+  import { Tabs } from "mitos-ui/svelte";
 </script>
 
 <Tabs

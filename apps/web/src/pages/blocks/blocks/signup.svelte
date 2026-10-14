@@ -1,5 +1,5 @@
 <script>
-  import { Button, Card, Checkbox, Input } from "@lynxgsm/omni-ui/svelte";
+  import { Button, Card, Checkbox, Input } from "mitos-ui/svelte";
 </script>
 
 <div style="width: 100%; max-width: 26rem">

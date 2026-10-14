@@ -1,4 +1,4 @@
-import { Button, Card, Checkbox, Input } from "@lynxgsm/omni-ui/react";
+import { Button, Card, Checkbox, Input } from "mitos-ui/react";
 
 export default function Login() {
   return (
@@ -7,8 +7,8 @@ export default function Login() {
         title="Sign in"
         description="Welcome back. Enter your email to continue."
         footer={
-          <p style={{ margin: 0, fontSize: "0.875rem", color: "var(--omni-muted-foreground)" }}>
-            No account yet? <a href="#signup" style={{ color: "var(--omni-foreground)" }}>Create one</a>
+          <p style={{ margin: 0, fontSize: "0.875rem", color: "var(--mitos-muted-foreground)" }}>
+            No account yet? <a href="#signup" style={{ color: "var(--mitos-foreground)" }}>Create one</a>
           </p>
         }
       >
@@ -17,7 +17,7 @@ export default function Login() {
           <Input label="Password" type="password" name="password" autoComplete="current-password" required />
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem" }}>
             <Checkbox label="Remember me" name="remember" />
-            <a href="#forgot" style={{ fontSize: "0.875rem", color: "var(--omni-foreground)" }}>
+            <a href="#forgot" style={{ fontSize: "0.875rem", color: "var(--mitos-foreground)" }}>
               Forgot password?
             </a>
           </div>

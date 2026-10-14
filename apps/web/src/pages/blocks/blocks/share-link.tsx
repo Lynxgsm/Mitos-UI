@@ -1,6 +1,6 @@
-import { Button, Card, Input, Switch, Tooltip, toast } from "@lynxgsm/omni-ui/react";
+import { Button, Card, Input, Switch, Tooltip, toast } from "mitos-ui/react";
 
-const LINK = "https://omni.example/p/northwind-q3";
+const LINK = "https://mitos.example/p/northwind-q3";
 
 export default function ShareLink() {
   return (

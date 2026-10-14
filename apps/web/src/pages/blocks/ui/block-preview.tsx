@@ -24,7 +24,7 @@ export function BlockPreview(props: {
             label: "Preview",
             content: (
               // the package defaults, not the site brand theme
-              <div className="blocks-frame omni-default-theme">
+              <div className="blocks-frame mitos-default-theme">
                 <Block />
               </div>
             ),

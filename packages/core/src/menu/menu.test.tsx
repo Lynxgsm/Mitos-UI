@@ -111,7 +111,9 @@ describe("Menu", () => {
     const onSelect = vi.fn();
     render(<Menu id="actions" label="Actions" items={items(onSelect)} />);
     fireEvent.click(trigger());
-    fireEvent.click(await screen.findByRole("menuitem", { name: "Archive" }));
+    // wait until the menu is placed and focused, as a user would: no focus can land after the choice
+    await waitFor(() => expect(document.activeElement).toBe(item("Edit")));
+    fireEvent.click(item("Archive"));
     expect(onSelect).not.toHaveBeenCalled();
     expect(item("Archive").getAttribute("aria-disabled")).toBe("true");
     fireEvent.click(item("Duplicate"));

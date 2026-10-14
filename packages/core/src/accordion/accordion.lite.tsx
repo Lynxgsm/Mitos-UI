@@ -38,7 +38,7 @@ const styles = stylex.create({
   item: {
     borderBottomWidth: 1,
     borderBottomStyle: "solid",
-    borderBottomColor: colors["--omni-border"],
+    borderBottomColor: colors["--mitos-border"],
   },
   term: { margin: 0 },
   trigger: {
@@ -53,7 +53,7 @@ const styles = stylex.create({
     font: "inherit",
     fontWeight: 500,
     textAlign: "start",
-    color: colors["--omni-foreground"],
+    color: colors["--mitos-foreground"],
     backgroundColor: "transparent",
     borderStyle: "none",
     cursor: "pointer",
@@ -62,7 +62,7 @@ const styles = stylex.create({
     outlineStyle: { default: "none", ":focus-visible": "solid" },
     outlineWidth: 2,
     outlineOffset: 2,
-    outlineColor: colors["--omni-ring"],
+    outlineColor: colors["--mitos-ring"],
     pointerEvents: { default: null, ":disabled": "none" },
     opacity: { default: 1, ":disabled": 0.5 },
   },
@@ -70,7 +70,7 @@ const styles = stylex.create({
     flexShrink: 0,
     width: "1rem",
     height: "1rem",
-    color: colors["--omni-muted-foreground"],
+    color: colors["--mitos-muted-foreground"],
     strokeWidth: 2,
     strokeLinecap: "round",
     strokeLinejoin: "round",
@@ -142,7 +142,7 @@ export default function Accordion(props: AccordionProps) {
   });
 
   onMount(() => {
-    if (!props.id) state.generatedId = `omni-accordion-${Math.random().toString(36).slice(2, 10)}`;
+    if (!props.id) state.generatedId = `mitos-accordion-${Math.random().toString(36).slice(2, 10)}`;
   });
 
   return (

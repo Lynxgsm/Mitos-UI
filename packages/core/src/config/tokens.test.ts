@@ -8,7 +8,7 @@ const [lightCss, darkCss] = css.split("@media (prefers-color-scheme: dark)");
 function readTokens(block: string) {
   const tokens: Record<string, string> = {};
   // first match wins: lightningcss writes the hex fallback before its lab() version
-  for (const [, name, hex] of block.matchAll(/--omni-([\w-]+):\s*(#[0-9a-f]{3,8})\b/gi)) tokens[name!] ??= hex!;
+  for (const [, name, hex] of block.matchAll(/--mitos-([\w-]+):\s*(#[0-9a-f]{3,8})\b/gi)) tokens[name!] ??= hex!;
   return tokens;
 }
 

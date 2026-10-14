@@ -19,21 +19,21 @@ export function TooltipPage() {
       <ComponentPreview example={TooltipDemo} source={tooltipDemoSource} label="Tooltip demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@lynxgsm/omni-ui" />
+        <InstallCommand packages="mitos-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Tooltip usage"
           react={`
-import { Button, Tooltip } from "@lynxgsm/omni-ui/react";
+import { Button, Tooltip } from "mitos-ui/react";
 
 <Tooltip content="Copy to clipboard">
   <Button aria-label="Copy">⧉</Button>
 </Tooltip>`}
           svelte={`
 <script>
-  import { Button, Tooltip } from "@lynxgsm/omni-ui/svelte";
+  import { Button, Tooltip } from "mitos-ui/svelte";
 </script>
 
 <Tooltip content="Copy to clipboard">

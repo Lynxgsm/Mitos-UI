@@ -17,7 +17,7 @@ async function compileStylex(code: string, filename: string) {
   if (!code.includes("@stylexjs/stylex")) return code;
   // styles only read in the markup look unused to StyleX, which would drop them: reference them for the compile
   const styles = [...code.matchAll(/const (\w+) = stylex\.create\(/g)].map(([, name]) => name);
-  const result = await transformAsync(`${code}\n__omniKeep(${styles.join(", ")});`, {
+  const result = await transformAsync(`${code}\n__mitosKeep(${styles.join(", ")});`, {
     babelrc: false,
     configFile: false,
     filename,
@@ -35,7 +35,7 @@ async function compileStylex(code: string, filename: string) {
       ],
     ],
   });
-  return result!.code!.replace(/\n__omniKeep\([^)]*\);/, "");
+  return result!.code!.replace(/\n__mitosKeep\([^)]*\);/, "");
 }
 
 // published files can rely neither on the "@/" alias nor on extensionless imports

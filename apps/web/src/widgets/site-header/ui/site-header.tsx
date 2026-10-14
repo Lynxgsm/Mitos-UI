@@ -28,7 +28,7 @@ export function SiteHeader() {
       </a>
       <header className="site-header">
         <Link to="/" className="site-logo">
-          Omni UI
+          Mitos UI
         </Link>
         <nav aria-label="Main">
           <ul>

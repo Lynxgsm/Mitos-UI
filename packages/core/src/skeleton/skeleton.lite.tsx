@@ -29,8 +29,8 @@ const pulse = stylex.keyframes({
 const styles = stylex.create({
   skeleton: {
     display: "block",
-    borderRadius: radii["--omni-radius-md"],
-    backgroundColor: colors["--omni-muted"],
+    borderRadius: radii["--mitos-radius-md"],
+    backgroundColor: colors["--mitos-muted"],
     animationName: { default: pulse, "@media (prefers-reduced-motion: reduce)": "none" },
     animationDuration: "2s",
     animationTimingFunction: "cubic-bezier(0.4, 0, 0.6, 1)",

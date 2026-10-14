@@ -1,4 +1,4 @@
-import { Tabs } from "@lynxgsm/omni-ui/react";
+import { Tabs } from "mitos-ui/react";
 
 export default function TabsDemo() {
   return (

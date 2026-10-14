@@ -30,8 +30,8 @@ export type SwitchProps = {
 };
 
 // the thumb is a 1rem disc painted on the track (no pseudo-element on inputs)
-const THUMB_OFF = `radial-gradient(circle, ${colors["--omni-background"]} 0 calc(0.5rem - 1px), transparent 0.5rem)`;
-const THUMB_ON = `radial-gradient(circle, ${colors["--omni-primary-foreground"]} 0 calc(0.5rem - 1px), transparent 0.5rem)`;
+const THUMB_OFF = `radial-gradient(circle, ${colors["--mitos-background"]} 0 calc(0.5rem - 1px), transparent 0.5rem)`;
+const THUMB_ON = `radial-gradient(circle, ${colors["--mitos-primary-foreground"]} 0 calc(0.5rem - 1px), transparent 0.5rem)`;
 
 // A native checkbox with role=switch, drawn as a track and a thumb. Track colors reach 3:1 against the page
 // (input and primary tokens) and the thumb 3:1 against the track (WCAG 1.4.11).
@@ -48,7 +48,7 @@ const styles = stylex.create({
     borderStyle: "solid",
     borderColor: "transparent",
     borderRadius: "9999px",
-    backgroundColor: { default: colors["--omni-input"], ":checked": colors["--omni-primary"] },
+    backgroundColor: { default: colors["--mitos-input"], ":checked": colors["--mitos-primary"] },
     backgroundImage: {
       default: THUMB_OFF,
       ":checked": THUMB_ON,
@@ -78,7 +78,7 @@ export default function Switch(props: SwitchProps) {
   });
 
   onMount(() => {
-    if (!props.id) state.generatedId = `omni-switch-${Math.random().toString(36).slice(2, 10)}`;
+    if (!props.id) state.generatedId = `mitos-switch-${Math.random().toString(36).slice(2, 10)}`;
   });
 
   return (

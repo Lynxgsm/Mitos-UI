@@ -10,7 +10,7 @@
   padding: 1rem 3.5rem 1rem 1rem;
   overflow-x: auto;
   border: 1px solid color-mix(in oklab, #ffffff 8%, #1e1e1e);
-  border-radius: var(--omni-radius-lg);
+  border-radius: var(--mitos-radius-lg);
   /* VS Code Dark+ editor colors, in both site themes */
   background: #1e1e1e;
   color: #d4d4d4;

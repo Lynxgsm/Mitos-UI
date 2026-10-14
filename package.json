@@ -6,11 +6,11 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "bun --filter @lynxgsm/omni-ui build && bun --filter @omni/web dev",
+    "dev": "bun --filter mitos-ui build && bun --filter @mitos/web dev",
     "build": "bun --filter '*' build",
-    "typecheck": "bun --filter @lynxgsm/omni-ui build && bun --filter '*' typecheck",
+    "typecheck": "bun --filter mitos-ui build && bun --filter '*' typecheck",
     "test": "bun --filter '*' test",
-    "storybook": "bun --filter @lynxgsm/omni-ui storybook"
+    "storybook": "bun --filter mitos-ui storybook"
   },
   "devDependencies": {
     "shadcn": "^4.21.5",

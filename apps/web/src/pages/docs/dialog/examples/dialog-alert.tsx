@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Dialog } from "@lynxgsm/omni-ui/react";
+import { Button, Dialog } from "mitos-ui/react";
 
 export default function DialogAlert() {
   const [open, setOpen] = useState(false);

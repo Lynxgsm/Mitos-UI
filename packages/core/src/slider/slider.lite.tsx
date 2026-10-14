@@ -32,13 +32,13 @@ export type SliderProps = {
 };
 
 // Native range input: arrow keys, Page Up and Down, Home and End and the spoken value come from the browser.
-// Track and thumb are drawn the same in every engine; the filled part follows --omni-slider-fill, set from the
+// Track and thumb are drawn the same in every engine; the filled part follows --mitos-slider-fill, set from the
 // value. Forced colors mode gets the native slider back.
 const TRACK = {
   height: "0.375rem",
   borderRadius: "9999px",
-  // filled part in primary, the rest in --omni-input: both reach 3:1 against the page (WCAG 1.4.11)
-  backgroundImage: `linear-gradient(to right, ${colors["--omni-primary"]} var(--omni-slider-fill, 50%), ${colors["--omni-input"]} var(--omni-slider-fill, 50%))`,
+  // filled part in primary, the rest in --mitos-input: both reach 3:1 against the page (WCAG 1.4.11)
+  backgroundImage: `linear-gradient(to right, ${colors["--mitos-primary"]} var(--mitos-slider-fill, 50%), ${colors["--mitos-input"]} var(--mitos-slider-fill, 50%))`,
 };
 const THUMB = {
   boxSizing: "border-box",
@@ -46,9 +46,9 @@ const THUMB = {
   height: "1rem",
   borderWidth: 2,
   borderStyle: "solid",
-  borderColor: colors["--omni-primary"],
+  borderColor: colors["--mitos-primary"],
   borderRadius: "9999px",
-  backgroundColor: colors["--omni-background"],
+  backgroundColor: colors["--mitos-background"],
   cursor: "pointer",
 };
 
@@ -81,7 +81,7 @@ export default function Slider(props: SliderProps) {
     },
     // any: custom properties are not in the CSS typings of React
     get fillStyle() {
-      return { "--omni-slider-fill": state.fill } as any;
+      return { "--mitos-slider-fill": state.fill } as any;
     },
     // a random id would differ between server and client: without an `id` prop it is set after mount
     generatedId: "",
@@ -95,7 +95,7 @@ export default function Slider(props: SliderProps) {
   });
 
   onMount(() => {
-    if (!props.id) state.generatedId = `omni-slider-${Math.random().toString(36).slice(2, 10)}`;
+    if (!props.id) state.generatedId = `mitos-slider-${Math.random().toString(36).slice(2, 10)}`;
   });
 
   return (

@@ -31,7 +31,7 @@ export function CompileBeams() {
     <figure className="compile-beams">
       <svg
         role="img"
-        aria-label="Mitosis (markup and logic) and StyleX (styles and tokens) compile into @lynxgsm/omni-ui, which ships React and Svelte components. Vue is next."
+        aria-label="Mitosis (markup and logic) and StyleX (styles and tokens) compile into mitos-ui, which ships React and Svelte components. Vue is next."
         viewBox="0 0 560 300"
       >
         {[...SOURCES, ...TARGETS].map((link) => (
@@ -75,7 +75,7 @@ export function CompileBeams() {
           <rect x={272} y={140} width={22} height={22} rx={5} className="beam-mark-shadow" />
           <rect x={266} y={134} width={22} height={22} rx={5} className="beam-mark" />
           <text x={280} y={216} textAnchor="middle" className="beam-sub beam-code">
-            @lynxgsm/omni-ui
+            mitos-ui
           </text>
         </g>
 

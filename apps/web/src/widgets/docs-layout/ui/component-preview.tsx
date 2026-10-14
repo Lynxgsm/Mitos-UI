@@ -12,7 +12,7 @@ export function ComponentPreview(props: { example: ComponentType; source: string
           label: "Preview",
           content: (
             // the real package defaults, not the site's brand theme
-            <div className="docs-preview omni-default-theme">
+            <div className="docs-preview mitos-default-theme">
               <Example />
             </div>
           ),

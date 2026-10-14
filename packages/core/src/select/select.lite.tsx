@@ -36,7 +36,7 @@ export type SelectProps = {
 };
 
 // chevron drawn with two gradients so it follows the theme colors
-const CHEVRON = `linear-gradient(45deg, transparent 50%, ${colors["--omni-muted-foreground"]} 50%), linear-gradient(135deg, ${colors["--omni-muted-foreground"]} 50%, transparent 50%)`;
+const CHEVRON = `linear-gradient(45deg, transparent 50%, ${colors["--mitos-muted-foreground"]} 50%), linear-gradient(135deg, ${colors["--mitos-muted-foreground"]} 50%, transparent 50%)`;
 
 const styles = stylex.create({
   select: {
@@ -69,7 +69,7 @@ export default function Select(props: SelectProps) {
   });
 
   onMount(() => {
-    if (!props.id) state.generatedId = `omni-select-${Math.random().toString(36).slice(2, 10)}`;
+    if (!props.id) state.generatedId = `mitos-select-${Math.random().toString(36).slice(2, 10)}`;
   });
 
   return (

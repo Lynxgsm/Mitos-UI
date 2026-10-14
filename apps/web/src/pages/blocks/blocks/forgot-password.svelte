@@ -1,5 +1,5 @@
 <script>
-  import { Button, Card, Input } from "@lynxgsm/omni-ui/svelte";
+  import { Button, Card, Input } from "mitos-ui/svelte";
 
   let sent = $state(false);
 </script>
@@ -16,10 +16,10 @@
       <Input label="Email" type="email" name="email" autocomplete="email" required />
       <Button type="submit">Send the link</Button>
       <!-- announced to screen readers when it appears -->
-      <p role="status" style="margin: 0; font-size: 0.875rem; color: var(--omni-muted-foreground)">
+      <p role="status" style="margin: 0; font-size: 0.875rem; color: var(--mitos-muted-foreground)">
         {sent ? "If an account exists for this email, the link is on its way." : ""}
       </p>
-      <a href="#login" style="font-size: 0.875rem; color: var(--omni-foreground)">Back to sign in</a>
+      <a href="#login" style="font-size: 0.875rem; color: var(--mitos-foreground)">Back to sign in</a>
     </form>
   </Card>
 </div>

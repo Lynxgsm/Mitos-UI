@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Avatar, Badge, SideNav } from "@lynxgsm/omni-ui/react";
+import { Avatar, Badge, SideNav } from "mitos-ui/react";
 
 const SECTIONS = {
   "#overview": "Overview",
@@ -18,13 +18,13 @@ export default function AppSidebar() {
         gridTemplateColumns: "13rem minmax(0, 1fr)",
         width: "100%",
         minHeight: "20rem",
-        border: "1px solid var(--omni-border)",
-        borderRadius: "var(--omni-radius-xl)",
+        border: "1px solid var(--mitos-border)",
+        borderRadius: "var(--mitos-radius-xl)",
         overflow: "hidden",
-        background: "var(--omni-background)",
+        background: "var(--mitos-background)",
       }}
     >
-      <div style={{ display: "grid", alignContent: "space-between", gap: "1.5rem", padding: "1rem", borderInlineEnd: "1px solid var(--omni-border)" }}>
+      <div style={{ display: "grid", alignContent: "space-between", gap: "1.5rem", padding: "1rem", borderInlineEnd: "1px solid var(--mitos-border)" }}>
         <SideNav
           label="Workspace"
           currentHref={current}
@@ -45,7 +45,7 @@ export default function AppSidebar() {
           {SECTIONS[current as keyof typeof SECTIONS]}
           <Badge variant="secondary">Northwind</Badge>
         </h3>
-        <p style={{ margin: "0.5rem 0 0", color: "var(--omni-muted-foreground)" }}>The content of the selected section.</p>
+        <p style={{ margin: "0.5rem 0 0", color: "var(--mitos-muted-foreground)" }}>The content of the selected section.</p>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Badge, Button, ButtonGroup, Card } from "@lynxgsm/omni-ui/react";
+import { Badge, Button, ButtonGroup, Card } from "mitos-ui/react";
 
 const PLANS = [
   { name: "Starter", monthly: 0, description: "For trying things out.", features: ["1 project", "Community support"] },
@@ -30,7 +30,7 @@ export default function Pricing() {
           >
             <p style={{ margin: 0, display: "flex", alignItems: "baseline", gap: "0.5rem" }}>
               <span style={{ fontSize: "2rem", fontWeight: 700 }}>${yearly ? plan.monthly * 10 : plan.monthly}</span>
-              <span style={{ color: "var(--omni-muted-foreground)" }}>/ {yearly ? "year" : "month"}</span>
+              <span style={{ color: "var(--mitos-muted-foreground)" }}>/ {yearly ? "year" : "month"}</span>
               {plan.popular && <Badge>Popular</Badge>}
             </p>
             <ul style={{ margin: "1rem 0 0", paddingInlineStart: "1.1rem", display: "grid", gap: "0.35rem", fontSize: "0.875rem" }}>

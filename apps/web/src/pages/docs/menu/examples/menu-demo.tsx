@@ -1,4 +1,4 @@
-import { Menu, toast } from "@lynxgsm/omni-ui/react";
+import { Menu, toast } from "mitos-ui/react";
 
 export default function MenuDemo() {
   return (

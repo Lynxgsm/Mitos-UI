@@ -1,4 +1,4 @@
-/* Site-wide pieces shared by the landing page and the docs. Plain CSS on the --omni-* tokens. */
+/* Site-wide pieces shared by the landing page and the docs. Plain CSS on the --mitos-* tokens. */
 
 :root {
   /* brand color, used as-is for decoration; text and buttons use its AA shades (Ember accent) */
@@ -24,9 +24,9 @@
   left: 0.5rem;
   z-index: 20;
   padding: 0.5rem 1rem;
-  border-radius: var(--omni-radius-md);
-  background: var(--omni-primary);
-  color: var(--omni-primary-foreground);
+  border-radius: var(--mitos-radius-md);
+  background: var(--mitos-primary);
+  color: var(--mitos-primary-foreground);
   transform: translateY(-200%);
 }
 
@@ -49,9 +49,9 @@
   height: 2.5rem;
   padding-inline: 1.5rem;
   border: 1px solid transparent;
-  border-radius: var(--omni-radius-md);
-  background: var(--omni-primary);
-  color: var(--omni-primary-foreground);
+  border-radius: var(--mitos-radius-md);
+  background: var(--mitos-primary);
+  color: var(--mitos-primary-foreground);
   font-weight: 500;
   white-space: nowrap;
   text-decoration: none;
@@ -59,7 +59,7 @@
 }
 
 .site-button:hover {
-  background: color-mix(in oklab, var(--omni-primary) 90%, transparent);
+  background: color-mix(in oklab, var(--mitos-primary) 90%, transparent);
 }
 
 .site-button:active {
@@ -67,14 +67,14 @@
 }
 
 .site-button-outline {
-  border-color: var(--omni-border);
-  background: var(--omni-background);
-  color: var(--omni-foreground);
+  border-color: var(--mitos-border);
+  background: var(--mitos-background);
+  color: var(--mitos-foreground);
 }
 
 .site-button-outline:hover {
-  background: var(--omni-accent);
-  color: var(--omni-accent-foreground);
+  background: var(--mitos-accent);
+  color: var(--mitos-accent-foreground);
 }
 
 .site-button-small {

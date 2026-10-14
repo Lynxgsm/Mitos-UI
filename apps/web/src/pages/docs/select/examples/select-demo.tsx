@@ -1,4 +1,4 @@
-import { Select } from "@lynxgsm/omni-ui/react";
+import { Select } from "mitos-ui/react";
 
 export default function SelectDemo() {
   return (

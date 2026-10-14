@@ -56,10 +56,10 @@ describe("themeCss", () => {
     const css = themeCss(preset);
     const [light, dark] = css.split("@media (prefers-color-scheme: dark)");
     for (const name of Object.keys(colorTokens(preset, "light"))) {
-      expect(light).toContain(`--omni-${name}:`);
-      expect(dark).toContain(`--omni-${name}:`);
+      expect(light).toContain(`--mitos-${name}:`);
+      expect(dark).toContain(`--mitos-${name}:`);
     }
-    expect(light).toContain("--omni-radius-lg: 0.75rem;");
+    expect(light).toContain("--mitos-radius-lg: 0.75rem;");
     expect(dark).not.toContain("radius");
   });
 
@@ -67,7 +67,7 @@ describe("themeCss", () => {
     const css = themeCss(preset, ".preview", "dark");
     expect(css.startsWith(".preview {")).toBe(true);
     expect(css).not.toContain("@media");
-    expect(css).toContain(`--omni-background: ${BASES.slate.scale[950]};`);
+    expect(css).toContain(`--mitos-background: ${BASES.slate.scale[950]};`);
   });
 
   it("never produces a negative radius", () => {

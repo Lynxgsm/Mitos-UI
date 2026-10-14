@@ -2,12 +2,12 @@
 
 ## 1. Overview
 
-Omni UI is a **Bun monorepo** with two workspaces:
+Mitos UI is a **Bun monorepo** with two workspaces:
 
 | Workspace       | Package      | Role                                                                                  |
 | --------------- | ------------ | ------------------------------------------------------------------------------------- |
-| `packages/core` | `@lynxgsm/omni-ui` | The design system: components written once in Mitosis, styled with StyleX, compiled for React and Svelte |
-| `apps/web`      | `@omni/web`  | The website: landing page, documentation, theme builder. A **TanStack Start** app      |
+| `packages/core` | `mitos-ui` | The design system: components written once in Mitosis, styled with StyleX, compiled for React and Svelte |
+| `apps/web`      | `@mitos/web`  | The website: landing page, documentation, theme builder. A **TanStack Start** app      |
 
 The web app follows a pragmatic **Feature-Sliced Design (FSD)** architecture adapted to **TanStack Start**. The library does not: it has its own component-per-folder structure (see §3).
 
@@ -17,8 +17,8 @@ The web app follows a pragmatic **Feature-Sliced Design (FSD)** architecture ada
 
 - **TanStack Start** (on Vite) with **TanStack Router** file-based routing: SSR, routing, `head`, search params, loaders
 - **React 19**
-- **@lynxgsm/omni-ui**, the in-house design system, consumed through its public entry points (`@lynxgsm/omni-ui/react`)
-- **Plain CSS** with the `--omni-*` design tokens and the site's `--site-*` variables (no Tailwind, no CSS-in-JS in the web app)
+- **mitos-ui**, the in-house design system, consumed through its public entry points (`mitos-ui/react`)
+- **Plain CSS** with the `--mitos-*` design tokens and the site's `--site-*` variables (no Tailwind, no CSS-in-JS in the web app)
 - **Shiki** for code highlighting, **Phosphor** for icons
 - **bun test** for the web app's unit tests; **Vitest** + **axe-core** for the library
 - **Bun** as package manager and script runner
@@ -36,9 +36,9 @@ The architecture is designed to provide:
 Run from the repository root:
 
 ```bash
-bun run dev        # builds @lynxgsm/omni-ui, then starts the web app
+bun run dev        # builds mitos-ui, then starts the web app
 bun run build      # builds every workspace
-bun run typecheck  # builds @lynxgsm/omni-ui, then typechecks every workspace
+bun run typecheck  # builds mitos-ui, then typechecks every workspace
 bun run test       # tests every workspace
 ```
 
@@ -96,7 +96,7 @@ is forbidden.
 
 If two slices need common functionality, move it to the appropriate lower layer.
 
-External packages are not layers: `@lynxgsm/omni-ui/react`, `@tanstack/react-router`, `react` and `@phosphor-icons/react` may be imported from any layer.
+External packages are not layers: `mitos-ui/react`, `@tanstack/react-router`, `react` and `@phosphor-icons/react` may be imported from any layer.
 
 ---
 
@@ -106,9 +106,9 @@ External packages are not layers: `@lynxgsm/omni-ui/react`, `@tanstack/react-rou
 packages/core  ──(build)──▶  dist/react, dist/svelte  ──(npm entry points)──▶  apps/web
 ```
 
-- `apps/web` imports the library **only through its public entry points**: `@lynxgsm/omni-ui/react` and `@lynxgsm/omni-ui/react/styles.css`.
+- `apps/web` imports the library **only through its public entry points**: `mitos-ui/react` and `mitos-ui/react/styles.css`.
 - Never import from `packages/core/src`, `packages/core/output` or `packages/core/dist/...` paths. The web app must use the library exactly like any consumer would.
-- The library is built before the web app runs (`bun run dev` and `bun run typecheck` do it). After changing a component, rebuild it (`bun --filter @lynxgsm/omni-ui build`) to see the change in the site.
+- The library is built before the web app runs (`bun run dev` and `bun run typecheck` do it). After changing a component, rebuild it (`bun --filter mitos-ui build`) to see the change in the site.
 - `packages/core` is **not** organized with FSD. Each component lives in `src/<name>/` (`<name>.lite.tsx`, `<name>.test.tsx`, `<name>.stories.tsx`) and is exported from `src/index.ts`. Follow the `create-component` skill (`.claude/skills/create-component/SKILL.md`) for anything in the library.
 
 ---
@@ -287,7 +287,7 @@ export const Route = createFileRoute("/create")({
   // the preset lives in the URL so a theme can be shared as a link
   validateSearch: (search: Record<string, unknown>): Preset => parsePreset(search),
   head: () => ({
-    meta: [{ title: "Create a theme · Omni UI" }],
+    meta: [{ title: "Create a theme · Mitos UI" }],
     links: [{ rel: "stylesheet", href: createStylesHref }],
   }),
   component: CreatePage,
@@ -324,11 +324,11 @@ pages/
 
 A page slice:
 
-- composes widgets, features, entities and `@lynxgsm/omni-ui` components;
+- composes widgets, features, entities and `mitos-ui` components;
 - owns the blocks used **only by that page** (`ui/`): the landing's `compile-beams.tsx` and `works-with.tsx` stay in `pages/landing`;
 - owns its stylesheet and exports its URL for the route's `head`;
 - for component docs, owns its **examples** (`examples/*.tsx`, shown live and as source through `?raw`).
-- for `/blocks`, owns the **blocks** (`blocks/*.tsx`): same rule as docs examples, they import only `@lynxgsm/omni-ui/react` and `react` (checked by `model/blocks.test.ts`).
+- for `/blocks`, owns the **blocks** (`blocks/*.tsx`): same rule as docs examples, they import only `mitos-ui/react` and `react` (checked by `model/blocks.test.ts`).
 
 ```ts
 // pages/landing/index.ts
@@ -342,7 +342,7 @@ Promote a block out of a page **only when a second page needs it**: to `widgets`
 
 Examples are displayed to users as source code. They must read like consumer code:
 
-- import only from `@lynxgsm/omni-ui/react` (and `react`, icon packages);
+- import only from `mitos-ui/react` (and `react`, icon packages);
 - never import site code (`@/shared/…`, `@/entities/…`);
 - stay small: one idea per example.
 
@@ -438,7 +438,7 @@ Entities are the domain objects of the site.
 | Entity      | What it is                                                     | Exposes                                                                  |
 | ----------- | -------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | `framework` | A framework the library ships for (React, Svelte; Vue next)    | `FRAMEWORKS`, `useFramework()`, `setFramework()`, `ReactLogo`, `SvelteLogo` |
-| `theme`     | An Omni theme preset (base, accent, radius) and the CSS it produces | `BASES`, `ACCENTS`, `RADII`, `Preset`, `themeCss()`, `schemeAwareCss()`, `parsePreset()` |
+| `theme`     | A Mitos theme preset (base, accent, radius) and the CSS it produces | `BASES`, `ACCENTS`, `RADII`, `Preset`, `themeCss()`, `schemeAwareCss()`, `parsePreset()` |
 
 An entity describes **what something is**. A feature describes **what the user does with it**:
 
@@ -481,29 +481,29 @@ Current `shared/ui` members:
 
 ## 11. Design System Usage
 
-The site is the first consumer of Omni UI: it **dogfoods** the library.
+The site is the first consumer of Mitos UI: it **dogfoods** the library.
 
 Before creating any UI component, check in this order:
 
-1. `@lynxgsm/omni-ui/react`: Button, Accordion, Dialog, Input, Textarea, Toast…
+1. `mitos-ui/react`: Button, Accordion, Dialog, Input, Textarea, Toast…
 2. `shared/ui`
 3. `entities/<domain>/ui`, `features/<action>/ui`, `widgets`
 
 If a **generic** component is missing (a checkbox, a select, tabs…), add it to the library with the `create-component` skill rather than to `shared/ui`. `shared/ui` only holds what is specific to running this website (code blocks, install commands, props tables).
 
-`shared/ui/tabs` predates a library Tabs component: replace it when `@lynxgsm/omni-ui` ships one.
+`shared/ui/tabs` predates a library Tabs component: replace it when `mitos-ui` ships one.
 
 ### Avoid
 
 ```text
-shared/ui/omni-button.tsx         # wraps the library's Button
+shared/ui/mitos-button.tsx         # wraps the library's Button
 shared/ui/checkbox.tsx            # generic: belongs in packages/core
 ```
 
 ### Prefer
 
 ```tsx
-import { Button } from "@lynxgsm/omni-ui/react";
+import { Button } from "mitos-ui/react";
 
 <Button variant="outline">Save</Button>;
 ```
@@ -516,21 +516,21 @@ Pass extra classes with `class` (not `className`): it is the library's prop.
 
 The web app uses **plain CSS files** and the library's design tokens. StyleX is used only inside `packages/core`.
 
-- **Tokens.** Use `var(--omni-*)` for colors and radii (`--omni-primary`, `--omni-border`, `--omni-radius-md`…) and the site variables (`--site-brand`, `--site-width`, `--site-gutter`). Hard-coded colors are reserved for brand logos.
+- **Tokens.** Use `var(--mitos-*)` for colors and radii (`--mitos-primary`, `--mitos-border`, `--mitos-radius-md`…) and the site variables (`--site-brand`, `--site-width`, `--site-gutter`). Hard-coded colors are reserved for brand logos.
 - **Cascade layers.** The library's rules live in layers, and the site theme in `@layer site-theme`. Unlayered site CSS always wins: do not use `!important` to beat the library.
 - **One stylesheet per slice** that needs one, named after it (`landing.css`, `docs-layout.css`). Prefix its classes with the slice name (`landing-`, `docs-`, `beam-`…).
 - **Loading.** Stylesheets are linked from a route `head` with `?url` imports, and each slice exports its stylesheet URL from its public API (`landingStylesHref`). Where to link:
   - `__root.tsx`: the library, `app/styles/*`, and the CSS of UI present on every page (`site-header`, `toggle-color-scheme`, `entities/framework`, every `shared/ui` component);
   - `docs/route.tsx`: `docs-layout`;
   - each page's route: the page's own stylesheet.
-- **Previews** of library components use the `omni-default-theme` class, so they show what the package ships, not the site's brand theme.
+- **Previews** of library components use the `mitos-default-theme` class, so they show what the package ships, not the site's brand theme.
 - **Motion** must stop under `@media (prefers-reduced-motion: reduce)`.
 
 ```css
 /* pages/landing/landing.css */
 .landing-tools li {
-  background: var(--omni-background);
-  color: var(--omni-muted-foreground);
+  background: var(--mitos-background);
+  color: var(--mitos-muted-foreground);
 }
 ```
 
@@ -652,7 +652,7 @@ Use the `@/` alias for cross-slice imports. It requires one line in `apps/web/ts
 ```
 
 ```tsx
-import { Button } from "@lynxgsm/omni-ui/react";
+import { Button } from "mitos-ui/react";
 import { CodeBlock } from "@/shared/ui/code-block";
 import { useFramework } from "@/entities/framework";
 import { FrameworkCode } from "@/features/select-framework";
@@ -773,7 +773,7 @@ packages/core/src/checkbox/         # 1. the component (create-component skill)
 apps/web/src/
 ├── pages/docs/checkbox/            # 2. the docs page
 │   ├── ui/checkbox-page.tsx        #    DocsPage, ComponentPreview, FrameworkCode, PropsTable
-│   ├── examples/checkbox-demo.tsx  #    imports only from @lynxgsm/omni-ui/react
+│   ├── examples/checkbox-demo.tsx  #    imports only from mitos-ui/react
 │   └── index.ts
 ├── app/routes/docs/components/
 │   └── checkbox.tsx                # 3. thin route: head + component
@@ -787,7 +787,7 @@ The flow:
 checkbox.lite.tsx
  │  mitosis build + vite build
  ▼
-@lynxgsm/omni-ui/react, @lynxgsm/omni-ui/svelte
+mitos-ui/react, mitos-ui/svelte
  │
  ▼
 pages/docs/checkbox  ──uses──▶  widgets/docs-layout, features/select-framework, shared/ui
@@ -805,7 +805,7 @@ When implementing something, follow these steps:
 1. **Library or site?** A reusable UI component goes to `packages/core` (`create-component` skill). Anything about the website goes to `apps/web`.
 2. **Identify the domain**: `framework`, `theme`, docs content…
 3. **Identify the user action**, if any: select, toggle, copy, share…
-4. **Search before creating**, in this order: `@lynxgsm/omni-ui/react`, `shared/ui`, `entities/<domain>`, `features/<action>`, `widgets`, the page slice.
+4. **Search before creating**, in this order: `mitos-ui/react`, `shared/ui`, `entities/<domain>`, `features/<action>`, `widgets`, the page slice.
 5. **Reuse utilities** from `shared/lib` and entity models.
 6. **Keep route files thin**; put markup in the page slice.
 7. **Add only the necessary files.** A block used by one page stays in that page.
@@ -873,7 +873,7 @@ apps/web/src/
 Responsibilities:
 
 ```text
-@lynxgsm/omni-ui          → UI components (dogfooded)
+mitos-ui          → UI components (dogfooded)
 Plain CSS + tokens  → styling
 TanStack Router     → routing, URL state, head, loaders
 React state         → local UI state

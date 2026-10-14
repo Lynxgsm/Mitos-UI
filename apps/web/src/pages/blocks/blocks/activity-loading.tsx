@@ -1,4 +1,4 @@
-import { Card, Skeleton } from "@lynxgsm/omni-ui/react";
+import { Card, Skeleton } from "mitos-ui/react";
 
 export default function ActivityLoading() {
   return (

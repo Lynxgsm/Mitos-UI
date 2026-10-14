@@ -28,19 +28,19 @@ export function ButtonPage() {
       <ComponentPreview example={ButtonDemo} source={buttonDemoSource} label="Button demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@lynxgsm/omni-ui" />
+        <InstallCommand packages="mitos-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Button usage"
           react={`
-import { Button } from "@lynxgsm/omni-ui/react";
+import { Button } from "mitos-ui/react";
 
 <Button variant="outline">Button</Button>`}
           svelte={`
 <script>
-  import { Button } from "@lynxgsm/omni-ui/svelte";
+  import { Button } from "mitos-ui/svelte";
 </script>
 
 <Button variant="outline">Button</Button>`}

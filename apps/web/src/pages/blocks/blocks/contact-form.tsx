@@ -1,4 +1,4 @@
-import { Button, Card, Checkbox, Input, Select, Textarea, toast } from "@lynxgsm/omni-ui/react";
+import { Button, Card, Checkbox, Input, Select, Textarea, toast } from "mitos-ui/react";
 
 export default function ContactForm() {
   return (

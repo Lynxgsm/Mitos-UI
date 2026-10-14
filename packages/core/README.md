@@ -1,4 +1,4 @@
-# @lynxgsm/omni-ui
+# mitos-ui
 
 Accessible, themeable UI components written once with [Mitosis](https://mitosis.builder.io/) and styled with
 [StyleX](https://stylexjs.com/), compiled for **React 19** and **Svelte 5**. One precompiled stylesheet, no bundler
@@ -7,14 +7,14 @@ plugin, WCAG AA contrast checked in CI.
 ## Install
 
 ```bash
-npm install @lynxgsm/omni-ui
+npm install mitos-ui
 ```
 
 ## React
 
 ```tsx
-import "@lynxgsm/omni-ui/react/styles.css";
-import { Button } from "@lynxgsm/omni-ui/react";
+import "mitos-ui/react/styles.css";
+import { Button } from "mitos-ui/react";
 
 export default function App() {
   return <Button>Click me</Button>;
@@ -25,8 +25,8 @@ export default function App() {
 
 ```svelte
 <script>
-  import "@lynxgsm/omni-ui/svelte/styles.css";
-  import { Button } from "@lynxgsm/omni-ui/svelte";
+  import "mitos-ui/svelte/styles.css";
+  import { Button } from "mitos-ui/svelte";
 </script>
 
 <Button>Click me</Button>
@@ -34,13 +34,13 @@ export default function App() {
 
 ## Theming
 
-Every color and radius is a `--omni-*` CSS custom property. The library rules live in cascade layers, so any CSS you
+Every color and radius is a `--mitos-*` CSS custom property. The library rules live in cascade layers, so any CSS you
 write without layers overrides them, whatever the import order:
 
 ```css
 :root {
-  --omni-primary: #1d4ed8;
-  --omni-radius-md: 0.75rem;
+  --mitos-primary: #1d4ed8;
+  --mitos-radius-md: 0.75rem;
 }
 ```
 

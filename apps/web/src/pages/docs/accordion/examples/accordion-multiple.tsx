@@ -1,4 +1,4 @@
-import { Accordion } from "@lynxgsm/omni-ui/react";
+import { Accordion } from "mitos-ui/react";
 
 export default function AccordionMultiple() {
   return (

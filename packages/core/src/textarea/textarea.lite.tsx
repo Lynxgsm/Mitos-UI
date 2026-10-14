@@ -44,7 +44,7 @@ const styles = stylex.create({
     resize: "vertical",
     transitionProperty: "border-color",
     transitionDuration: { default: "150ms", "@media (prefers-reduced-motion: reduce)": "0s" },
-    "::placeholder": { color: colors["--omni-muted-foreground"], opacity: 1 },
+    "::placeholder": { color: colors["--mitos-muted-foreground"], opacity: 1 },
     cursor: { default: "text", ":disabled": "not-allowed" },
     opacity: { default: 1, ":disabled": 0.5 },
   },
@@ -69,7 +69,7 @@ export default function Textarea(props: TextareaProps) {
   });
 
   onMount(() => {
-    if (!props.id) state.generatedId = `omni-textarea-${Math.random().toString(36).slice(2, 10)}`;
+    if (!props.id) state.generatedId = `mitos-textarea-${Math.random().toString(36).slice(2, 10)}`;
   });
 
   return (

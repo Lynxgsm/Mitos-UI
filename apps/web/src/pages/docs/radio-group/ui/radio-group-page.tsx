@@ -19,14 +19,14 @@ export function RadioGroupPage() {
       <ComponentPreview example={RadioGroupDemo} source={radioGroupDemoSource} label="Radio Group demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@lynxgsm/omni-ui" />
+        <InstallCommand packages="mitos-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Radio Group usage"
           react={`
-import { RadioGroup } from "@lynxgsm/omni-ui/react";
+import { RadioGroup } from "mitos-ui/react";
 
 <RadioGroup
   legend="Delivery"
@@ -40,7 +40,7 @@ import { RadioGroup } from "@lynxgsm/omni-ui/react";
 />`}
           svelte={`
 <script>
-  import { RadioGroup } from "@lynxgsm/omni-ui/svelte";
+  import { RadioGroup } from "mitos-ui/svelte";
 </script>
 
 <RadioGroup

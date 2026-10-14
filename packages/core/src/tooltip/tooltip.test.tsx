@@ -132,7 +132,7 @@ describe("Tooltip", () => {
       });
       expect(tooltip().dataset.side).toBe("bottom");
       // centered on the trigger it would start at 18 - 60 = -42px: moved right to the 8px margin
-      expect(tooltip().style.getPropertyValue("--omni-tooltip-shift")).toBe("50px");
+      expect(tooltip().style.getPropertyValue("--mitos-tooltip-shift")).toBe("50px");
       expect(tooltip().style.visibility).toBe("");
     } finally {
       restore();
@@ -148,7 +148,7 @@ describe("Tooltip", () => {
         vi.runAllTimers();
       });
       expect(tooltip().dataset.side).toBe("top");
-      expect(tooltip().style.getPropertyValue("--omni-tooltip-shift")).toBe("0px");
+      expect(tooltip().style.getPropertyValue("--mitos-tooltip-shift")).toBe("0px");
     } finally {
       restore();
     }

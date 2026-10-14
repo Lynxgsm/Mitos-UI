@@ -31,20 +31,20 @@ describe("release", () => {
   });
 
   it("publishes a new version, once", () => {
-    const pkg = { name: "@lynxgsm/omni-ui", version: "0.1.0" };
+    const pkg = { name: "mitos-ui", version: "0.1.0" };
     expect(release(pkg, CHANGELOG, never)).toMatchObject({ publish: true, prerelease: false });
-    expect(release(pkg, CHANGELOG, (spec) => spec === "@lynxgsm/omni-ui@0.1.0").publish).toBe(false);
+    expect(release(pkg, CHANGELOG, (spec) => spec === "mitos-ui@0.1.0").publish).toBe(false);
   });
 
   it("never publishes 0.0.0, which means nothing released yet", () => {
-    expect(release({ name: "@lynxgsm/omni-ui", version: "0.0.0" }, CHANGELOG, never).publish).toBe(false);
+    expect(release({ name: "mitos-ui", version: "0.0.0" }, CHANGELOG, never).publish).toBe(false);
   });
 
   it("flags prereleases, published under the next tag", () => {
-    expect(release({ name: "@lynxgsm/omni-ui", version: "0.2.0-beta.1" }, CHANGELOG, never).prerelease).toBe(true);
+    expect(release({ name: "mitos-ui", version: "0.2.0-beta.1" }, CHANGELOG, never).prerelease).toBe(true);
   });
 
   it("reports a missing CHANGELOG section as missing notes", () => {
-    expect(release({ name: "@lynxgsm/omni-ui", version: "0.3.0" }, CHANGELOG, never).notes).toBeNull();
+    expect(release({ name: "mitos-ui", version: "0.3.0" }, CHANGELOG, never).notes).toBeNull();
   });
 });

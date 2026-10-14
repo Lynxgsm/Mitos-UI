@@ -1,11 +1,11 @@
-import { Button, Card, RadioGroup, Select, toast } from "@lynxgsm/omni-ui/react";
+import { Button, Card, RadioGroup, Select, toast } from "mitos-ui/react";
 
 export default function Checkout() {
   return (
     <div style={{ width: "100%", maxWidth: "28rem" }}>
       <Card
         title="Order summary"
-        description="Omni UI Pro license"
+        description="Mitos UI Pro license"
         footer={
           <Button onClick={() => toast({ title: "Payment confirmed" })}>
             Pay $96.00
@@ -32,9 +32,9 @@ export default function Checkout() {
             ]}
           />
           <dl style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "0.5rem", margin: 0, fontSize: "0.875rem" }}>
-            <dt style={{ color: "var(--omni-muted-foreground)" }}>Subtotal</dt>
+            <dt style={{ color: "var(--mitos-muted-foreground)" }}>Subtotal</dt>
             <dd style={{ margin: 0 }}>$80.00</dd>
-            <dt style={{ color: "var(--omni-muted-foreground)" }}>Tax</dt>
+            <dt style={{ color: "var(--mitos-muted-foreground)" }}>Tax</dt>
             <dd style={{ margin: 0 }}>$16.00</dd>
             <dt style={{ fontWeight: 600 }}>Total</dt>
             <dd style={{ margin: 0, fontWeight: 600 }}>$96.00</dd>

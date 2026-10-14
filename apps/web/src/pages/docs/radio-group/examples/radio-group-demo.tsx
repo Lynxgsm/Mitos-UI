@@ -1,4 +1,4 @@
-import { RadioGroup } from "@lynxgsm/omni-ui/react";
+import { RadioGroup } from "mitos-ui/react";
 
 export default function RadioGroupDemo() {
   return (

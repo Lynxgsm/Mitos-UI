@@ -1,4 +1,4 @@
-/* Docs site styles. Plain CSS on top of the --omni-* tokens, like any consumer app would do. */
+/* Docs site styles. Plain CSS on top of the --mitos-* tokens, like any consumer app would do. */
 
 .docs {
   min-height: 100vh;
@@ -12,7 +12,7 @@
 }
 
 .docs :focus-visible {
-  outline: 2px solid var(--omni-ring);
+  outline: 2px solid var(--mitos-ring);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -72,7 +72,7 @@
 .docs-lead {
   margin: 0.5rem 0 2rem;
   font-size: 1.05rem;
-  color: var(--omni-muted-foreground);
+  color: var(--mitos-muted-foreground);
 }
 
 .docs-section {
@@ -83,7 +83,7 @@
 .docs-section h2 {
   margin: 0 0 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--omni-border);
+  border-bottom: 1px solid var(--mitos-border);
   font-size: 1.5rem;
   letter-spacing: -0.01em;
   scroll-margin-top: calc(var(--site-header-height) + 1rem);
@@ -96,20 +96,20 @@
 
 .docs-article p a,
 .docs-article li a {
-  color: var(--omni-primary);
+  color: var(--mitos-primary);
 }
 
 .docs-article :not(pre) > code {
   padding: 0.1rem 0.3rem;
-  border-radius: var(--omni-radius-sm);
-  background: var(--omni-muted);
+  border-radius: var(--mitos-radius-sm);
+  background: var(--mitos-muted);
   font-size: 0.875em;
 }
 
 .docs kbd {
   padding: 0.05rem 0.35rem;
-  border: 1px solid var(--omni-border);
-  border-radius: var(--omni-radius-sm);
+  border: 1px solid var(--mitos-border);
+  border-radius: var(--mitos-radius-sm);
   font: inherit;
   font-size: 0.8em;
 }
@@ -120,8 +120,8 @@
   justify-content: center;
   min-height: 14rem;
   padding: 2.5rem;
-  border: 1px solid var(--omni-border);
-  border-radius: var(--omni-radius-lg);
+  border: 1px solid var(--mitos-border);
+  border-radius: var(--mitos-radius-lg);
 }
 
 .docs-example-accordion {
@@ -147,11 +147,11 @@
   display: block;
   padding-block: 0.2rem;
   text-decoration: none;
-  color: var(--omni-muted-foreground);
+  color: var(--mitos-muted-foreground);
 }
 
 .docs-toc a:hover {
-  color: var(--omni-foreground);
+  color: var(--mitos-foreground);
 }
 
 /* Pager */
@@ -162,20 +162,20 @@
   gap: 1rem;
   margin-top: 4rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--omni-border);
+  border-top: 1px solid var(--mitos-border);
 }
 
 .docs-pager a {
   padding: 0.5rem 0.75rem;
-  border: 1px solid var(--omni-border);
-  border-radius: var(--omni-radius-md);
+  border: 1px solid var(--mitos-border);
+  border-radius: var(--mitos-radius-md);
   font-size: 0.875rem;
   font-weight: 500;
   text-decoration: none;
 }
 
 .docs-pager a:hover {
-  background: var(--omni-accent);
+  background: var(--mitos-accent);
 }
 
 .docs-pager-next {
@@ -207,7 +207,7 @@
   .docs-mobile-nav {
     display: block;
     padding-block: 1rem;
-    border-bottom: 1px solid var(--omni-border);
+    border-bottom: 1px solid var(--mitos-border);
   }
 
   .docs-mobile-nav summary {
