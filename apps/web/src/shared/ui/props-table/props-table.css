@@ -1,0 +1,29 @@
+/* API reference tables (shared/ui/props-table); the theming page reuses them for its token table */
+
+.props-table-wrapper {
+  overflow-x: auto;
+}
+
+.props-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.props-table th,
+.props-table td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--omni-border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.props-table thead th {
+  font-weight: 600;
+  color: var(--omni-muted-foreground);
+}
+
+.props-table tbody th {
+  font-weight: 400;
+  white-space: nowrap;
+}
