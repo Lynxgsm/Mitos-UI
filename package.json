@@ -1,0 +1,14 @@
+{
+  "name": "omni-system-ui",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "bun --filter @omni/web dev",
+    "build": "bun --filter '*' build",
+    "typecheck": "bun --filter '*' typecheck"
+  },
+  "devDependencies": {
+    "shadcn": "^4.21.5",
+    "typescript": "^7.0.2"
+  }
+}
