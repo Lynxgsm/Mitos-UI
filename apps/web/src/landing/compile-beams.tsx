@@ -15,6 +15,15 @@ const TARGETS = [
   { name: "Vue", logo: VUE_PATH, next: true, y: 240, path: "M322 150 C400 150 400 240 474 240" },
 ];
 
+const TRAIL = [
+  [0.3, 0.25],
+  [0.18, 0.55],
+  [0.08, 1],
+] as const;
+
+// sources first, then the framework outputs once the light has reached the package
+const beamDelay = (index: number) => (index < SOURCES.length ? index * 0.3 : 1.1 + (index - SOURCES.length) * 0.15);
+
 // Beams in the spirit of Magic UI's Animated Beam, as a loop rather than an entrance: light leaves the
 // sources, goes through the package and comes out as each framework. Static lines under reduced motion.
 export function CompileBeams() {
@@ -30,16 +39,24 @@ export function CompileBeams() {
         ))}
         {[...SOURCES, ...TARGETS]
           .filter((link) => !("next" in link))
-          .map((link, index) => (
-            <path
-              key={link.name}
-              d={link.path}
-              pathLength={1}
-              className="beam-flow"
-              // sources first, then the framework outputs
-              style={{ "--beam-delay": `${index < SOURCES.length ? index * 0.3 : 1.1 + (index - SOURCES.length) * 0.15}s` } as CSSProperties}
-            />
-          ))}
+          .flatMap((link, index) =>
+            // three stacked dashes sharing one head: a bright tip with a fading tail
+            TRAIL.map(([length, opacity]) => (
+              <path
+                key={`${link.name}-${length}`}
+                d={link.path}
+                pathLength={1}
+                className="beam-flow"
+                style={
+                  {
+                    "--beam-length": length,
+                    "--beam-delay": `${beamDelay(index)}s`,
+                    opacity,
+                  } as CSSProperties
+                }
+              />
+            )),
+          )}
 
         {SOURCES.map((source) => (
           <g key={source.name} className="beam-node">

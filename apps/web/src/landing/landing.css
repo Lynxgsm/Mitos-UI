@@ -210,15 +210,16 @@
   stroke: var(--site-brand);
   stroke-width: 2.5;
   stroke-linecap: round;
-  /* one short dash per path (pathLength=1), travelling from start to end */
-  stroke-dasharray: 0.14 1;
-  stroke-dashoffset: 0.14;
+  /* one dash per path (pathLength=1, gap longer than the path); its head runs from 0 to past the end */
+  stroke-dasharray: calc(var(--beam-length) * 1px) 2px;
+  stroke-dashoffset: calc(var(--beam-length) * 1px);
   animation: beam-flow 2.6s linear var(--beam-delay, 0s) infinite both;
 }
 
 @keyframes beam-flow {
   to {
-    stroke-dashoffset: -1;
+    /* units required: a unitless calc() is invalid here and would drop the keyframe */
+    stroke-dashoffset: calc(var(--beam-length) * 1px - 1.35px);
   }
 }
 
