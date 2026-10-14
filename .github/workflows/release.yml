@@ -37,6 +37,9 @@ jobs:
 
       - if: steps.release.outputs.publish == 'true'
         working-directory: packages/core
+        # only for the very first publish, before the trusted publisher exists; trusted publishing wins once it is set up
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish --tag ${{ steps.release.outputs.prerelease == 'true' && 'next' || 'latest' }}
 
       - if: steps.release.outputs.publish == 'true'

@@ -8,6 +8,8 @@ This file covers the library only: changes to the documentation website (`apps/w
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-10-15
+
 ### Added
 
 - React entry point `mitos-ui/react` (React 19) and its precompiled stylesheet `mitos-ui/react/styles.css`. Components are marked `"use client"` and work with server rendering; no StyleX or bundler plugin is needed in the consuming app.
