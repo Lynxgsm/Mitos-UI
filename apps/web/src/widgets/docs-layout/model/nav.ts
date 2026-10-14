@@ -12,6 +12,8 @@ export const DOCS_NAV = [
     title: "Components",
     items: [
       { title: "Accordion", href: "/docs/components/accordion" },
+      { title: "Avatar", href: "/docs/components/avatar" },
+      { title: "Badge", href: "/docs/components/badge" },
       { title: "Button", href: "/docs/components/button" },
       { title: "Dialog", href: "/docs/components/dialog" },
       { title: "Input", href: "/docs/components/input" },

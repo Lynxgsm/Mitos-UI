@@ -15,6 +15,8 @@ describe("Svelte build: server", async () => {
     Input: await html(`<Input id="email" label="Email" error="Required" required />`),
     Textarea: await html(`<Textarea label="Message" />`),
     Toaster: await html(`<Toaster />`),
+    Avatar: await html(`<Avatar src="https://example.com/ada.png" alt="Ada Lovelace" /><Avatar alt="Grace Hopper" />`),
+    Badge: await html(`<Badge variant="outline" id="status">Passing</Badge>`),
   };
 
   it("renders Button with its defaults, forwarded attributes and merged class", () => {
@@ -44,6 +46,16 @@ describe("Svelte build: server", async () => {
   it("renders Textarea and Toaster", () => {
     expect(renders.Textarea).toContain("<textarea");
     expect(renders.Toaster).toContain('aria-label="Notifications"');
+  });
+
+  it("renders Avatar as an image, or as initials with the same name", () => {
+    expect(renders.Avatar).toMatch(/<img[^>]* src="https:\/\/example.com\/ada.png"[^>]* alt="Ada Lovelace"/);
+    expect(renders.Avatar).toMatch(/<span role="img" aria-label="Grace Hopper"[^>]*>GH<\/span>/);
+  });
+
+  it("renders Badge as a span with forwarded attributes", () => {
+    // children may come wrapped in hydration markers (<!---->)
+    expect(renders.Badge).toMatch(/<span[^>]* id="status"[^>]*>(<!---->)?Passing(<!---->)?<\/span>/);
   });
 
   const css = readFileSync("dist/react/assets/stylex.css", "utf8");

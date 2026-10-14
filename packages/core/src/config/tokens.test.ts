@@ -69,17 +69,18 @@ describe.each([
   const NON_TEXT = 3; // WCAG 1.4.11
 
   it.each([
-    ["default", t["primary-foreground"], t.primary],
+    ["default (button, badge)", t["primary-foreground"], t.primary],
     ["default:hover", t["primary-foreground"], over(t.primary!, 0.9, t.background!)],
-    ["secondary", t["secondary-foreground"], t.secondary],
+    ["secondary (button, badge)", t["secondary-foreground"], t.secondary],
     ["secondary:hover", t["secondary-foreground"], over(t.secondary!, 0.8, t.background!)],
-    ["outline / ghost", t.foreground, t.background],
+    ["outline / ghost (button, badge)", t.foreground, t.background],
     ["outline / ghost:hover", t["accent-foreground"], t.accent],
     ["link", t.primary, t.background],
-    ["destructive", t["destructive-foreground"], t.destructive],
+    ["destructive (button, badge)", t["destructive-foreground"], t.destructive],
     ["destructive:hover", t["destructive-foreground"], over(t.destructive!, 0.9, t.background!)],
     ["muted text (dialog description)", t["muted-foreground"], t.background],
     ["field error message", t.destructive, t.background],
+    ["avatar initials", t.foreground, t.muted],
   ])("%s text contrast ≥ 4.5:1", (_, fg, bg) => {
     expect(contrast(fg!, bg!)).toBeGreaterThanOrEqual(TEXT);
   });

@@ -12,3 +12,7 @@ export { default as Input } from "./input/input.lite";
 export type { InputProps } from "./input/input.lite";
 export { default as Textarea } from "./textarea/textarea.lite";
 export type { TextareaProps } from "./textarea/textarea.lite";
+export { default as Avatar } from "./avatar/avatar.lite";
+export type { AvatarProps } from "./avatar/avatar.lite";
+export { default as Badge } from "./badge/badge.lite";
+export type { BadgeProps } from "./badge/badge.lite";

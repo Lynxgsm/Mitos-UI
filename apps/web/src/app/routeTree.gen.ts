@@ -16,6 +16,8 @@ import { Route as DocsIndexRouteImport } from './routes/docs/index'
 import { Route as DocsInstallationRouteImport } from './routes/docs/installation'
 import { Route as DocsThemingRouteImport } from './routes/docs/theming'
 import { Route as DocsComponentsAccordionRouteImport } from './routes/docs/components/accordion'
+import { Route as DocsComponentsAvatarRouteImport } from './routes/docs/components/avatar'
+import { Route as DocsComponentsBadgeRouteImport } from './routes/docs/components/badge'
 import { Route as DocsComponentsButtonRouteImport } from './routes/docs/components/button'
 import { Route as DocsComponentsDialogRouteImport } from './routes/docs/components/dialog'
 import { Route as DocsComponentsInputRouteImport } from './routes/docs/components/input'
@@ -57,6 +59,16 @@ const DocsComponentsAccordionRoute = DocsComponentsAccordionRouteImport.update({
   path: '/components/accordion',
   getParentRoute: () => DocsRouteRoute,
 } as any)
+const DocsComponentsAvatarRoute = DocsComponentsAvatarRouteImport.update({
+  id: '/components/avatar',
+  path: '/components/avatar',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
+const DocsComponentsBadgeRoute = DocsComponentsBadgeRouteImport.update({
+  id: '/components/badge',
+  path: '/components/badge',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
 const DocsComponentsButtonRoute = DocsComponentsButtonRouteImport.update({
   id: '/components/button',
   path: '/components/button',
@@ -91,6 +103,8 @@ export interface FileRoutesByFullPath {
   '/docs/theming': typeof DocsThemingRoute
   '/docs/': typeof DocsIndexRoute
   '/docs/components/accordion': typeof DocsComponentsAccordionRoute
+  '/docs/components/avatar': typeof DocsComponentsAvatarRoute
+  '/docs/components/badge': typeof DocsComponentsBadgeRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/dialog': typeof DocsComponentsDialogRoute
   '/docs/components/input': typeof DocsComponentsInputRoute
@@ -104,6 +118,8 @@ export interface FileRoutesByTo {
   '/docs/theming': typeof DocsThemingRoute
   '/docs': typeof DocsIndexRoute
   '/docs/components/accordion': typeof DocsComponentsAccordionRoute
+  '/docs/components/avatar': typeof DocsComponentsAvatarRoute
+  '/docs/components/badge': typeof DocsComponentsBadgeRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/dialog': typeof DocsComponentsDialogRoute
   '/docs/components/input': typeof DocsComponentsInputRoute
@@ -119,6 +135,8 @@ export interface FileRoutesById {
   '/docs/theming': typeof DocsThemingRoute
   '/docs/': typeof DocsIndexRoute
   '/docs/components/accordion': typeof DocsComponentsAccordionRoute
+  '/docs/components/avatar': typeof DocsComponentsAvatarRoute
+  '/docs/components/badge': typeof DocsComponentsBadgeRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/dialog': typeof DocsComponentsDialogRoute
   '/docs/components/input': typeof DocsComponentsInputRoute
@@ -135,6 +153,8 @@ export interface FileRouteTypes {
     | '/docs/theming'
     | '/docs/'
     | '/docs/components/accordion'
+    | '/docs/components/avatar'
+    | '/docs/components/badge'
     | '/docs/components/button'
     | '/docs/components/dialog'
     | '/docs/components/input'
@@ -148,6 +168,8 @@ export interface FileRouteTypes {
     | '/docs/theming'
     | '/docs'
     | '/docs/components/accordion'
+    | '/docs/components/avatar'
+    | '/docs/components/badge'
     | '/docs/components/button'
     | '/docs/components/dialog'
     | '/docs/components/input'
@@ -162,6 +184,8 @@ export interface FileRouteTypes {
     | '/docs/theming'
     | '/docs/'
     | '/docs/components/accordion'
+    | '/docs/components/avatar'
+    | '/docs/components/badge'
     | '/docs/components/button'
     | '/docs/components/dialog'
     | '/docs/components/input'
@@ -226,6 +250,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentsAccordionRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/components/avatar': {
+      id: '/docs/components/avatar'
+      path: '/components/avatar'
+      fullPath: '/docs/components/avatar'
+      preLoaderRoute: typeof DocsComponentsAvatarRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/components/badge': {
+      id: '/docs/components/badge'
+      path: '/components/badge'
+      fullPath: '/docs/components/badge'
+      preLoaderRoute: typeof DocsComponentsBadgeRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
     '/docs/components/button': {
       id: '/docs/components/button'
       path: '/components/button'
@@ -269,6 +307,8 @@ interface DocsRouteRouteChildren {
   DocsThemingRoute: typeof DocsThemingRoute
   DocsIndexRoute: typeof DocsIndexRoute
   DocsComponentsAccordionRoute: typeof DocsComponentsAccordionRoute
+  DocsComponentsAvatarRoute: typeof DocsComponentsAvatarRoute
+  DocsComponentsBadgeRoute: typeof DocsComponentsBadgeRoute
   DocsComponentsButtonRoute: typeof DocsComponentsButtonRoute
   DocsComponentsDialogRoute: typeof DocsComponentsDialogRoute
   DocsComponentsInputRoute: typeof DocsComponentsInputRoute
@@ -281,6 +321,8 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsThemingRoute: DocsThemingRoute,
   DocsIndexRoute: DocsIndexRoute,
   DocsComponentsAccordionRoute: DocsComponentsAccordionRoute,
+  DocsComponentsAvatarRoute: DocsComponentsAvatarRoute,
+  DocsComponentsBadgeRoute: DocsComponentsBadgeRoute,
   DocsComponentsButtonRoute: DocsComponentsButtonRoute,
   DocsComponentsDialogRoute: DocsComponentsDialogRoute,
   DocsComponentsInputRoute: DocsComponentsInputRoute,

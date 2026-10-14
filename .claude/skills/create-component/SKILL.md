@@ -39,6 +39,11 @@ Calque `button.lite.tsx` :
 - Composant export `default`, fichier en kebab-case, composant en PascalCase.
 - Composant composé (Tabs, Dialog…) : un fichier `.lite.tsx` par partie si nécessaire, dans le même dossier.
 
+Pièges du parseur Mitosis (le build échoue avec un message peu clair) :
+- **pas de fonction au niveau du module** (`function x() {}` hors du composant → « Could not JSON5 parse object ») : mets la logique dans un getter ou une méthode de `useStore` ;
+- **pas d'apostrophe ni de guillemets dans les commentaires du type `<Name>Props`** (« Format error … '}' expected ») ;
+- pour un élément conditionnel, utilise un ternaire en JSX (`{cond ? <img /> : <span />}`), il devient `{#if}{:else}` en Svelte.
+
 ### 3. Styles accessibles
 
 - **Focus visible** : reprends le motif de Button : `outlineStyle: { default: "none", ":focus-visible": "solid" }`, `outlineWidth: 2`, `outlineOffset: 2`, `outlineColor: colors["--omni-ring"]` (WCAG 1.4.11 / 2.4.7). Pour un `<input>` stylé, l'outline va sur l'input lui-même.

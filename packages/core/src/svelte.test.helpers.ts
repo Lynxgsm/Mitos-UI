@@ -26,7 +26,7 @@ const outputs: Partial<Record<Generate, string>> = {};
 // used the way an app would: from a compiled Svelte template, so snippets and events go through the real path
 export async function fixture(generate: Generate, markup: string) {
   const source = `<script>
-  import { Accordion, Button, Dialog, Input, Textarea, Toaster, toast } from "./index.js";
+  import { Accordion, Avatar, Badge, Button, Dialog, Input, Textarea, Toaster, toast } from "./index.js";
   let { spy = () => {}, spy2 = () => {} } = $props();
   let open = $state(false);
 </script>

@@ -67,6 +67,15 @@ describe("Svelte build: client", () => {
     expect(spy).toHaveBeenCalledOnce();
   });
 
+  it("falls back to initials when the Avatar image fails", async () => {
+    await show(`<Avatar src="https://example.com/ada.png" alt="Ada Lovelace" />`);
+    document.querySelector("img")!.dispatchEvent(new Event("error"));
+    flushSync();
+    const fallback = document.querySelector('[role="img"]')!;
+    expect(fallback.tagName).toBe("SPAN");
+    expect(fallback.textContent).toBe("AL");
+  });
+
   it("shows toasts in the Toaster", async () => {
     await show(`<Toaster /><Button onClick={() => toast({ title: "Saved" })}>Notify</Button>`);
     button("Notify").click();
