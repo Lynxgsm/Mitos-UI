@@ -1,21 +1,11 @@
 /* Docs site styles. Plain CSS on top of the --omni-* tokens, like any consumer app would do. */
 
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
 .docs {
-  --docs-header-height: 3.5rem;
   min-height: 100vh;
   line-height: 1.6;
 }
 
-.docs a {
+:where(.docs) a {
   color: inherit;
   text-underline-offset: 4px;
 }
@@ -26,61 +16,13 @@
   border-radius: 2px;
 }
 
-.docs-skip-link {
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  z-index: 20;
-  padding: 0.5rem 1rem;
-  border-radius: var(--omni-radius-md);
-  background: var(--omni-primary);
-  color: var(--omni-primary-foreground) !important;
-  transform: translateY(-200%);
-}
-
-.docs-skip-link:focus {
-  transform: none;
-}
-
-/* Header */
-
-.docs-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  height: var(--docs-header-height);
-  padding-inline: 1.5rem;
-  border-bottom: 1px solid var(--omni-border);
-  background: color-mix(in oklab, var(--omni-background) 92%, transparent);
-  backdrop-filter: blur(8px);
-}
-
-.docs-logo {
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.docs-header-link {
-  font-size: 0.875rem;
-  color: var(--omni-muted-foreground) !important;
-  text-decoration: none;
-}
-
-.docs-header-link:hover,
-.docs-header-link[aria-current="page"] {
-  color: var(--omni-foreground) !important;
-}
-
 /* Layout: sidebar | content | on this page */
 
 .docs-shell {
   display: grid;
   grid-template-columns: 14rem minmax(0, 1fr);
   gap: 3rem;
-  max-width: 88rem;
+  max-width: var(--site-width, 88rem);
   margin-inline: auto;
   padding-inline: 1.5rem;
 }
@@ -94,8 +36,8 @@
 
 .docs-sidebar {
   position: sticky;
-  top: var(--docs-header-height);
-  height: calc(100vh - var(--docs-header-height));
+  top: var(--site-header-height);
+  height: calc(100vh - var(--site-header-height));
   overflow-y: auto;
   padding-block: 2rem;
 }
@@ -164,7 +106,7 @@
 
 .docs-section {
   margin-top: 3rem;
-  scroll-margin-top: calc(var(--docs-header-height) + 1rem);
+  scroll-margin-top: calc(var(--site-header-height) + 1rem);
 }
 
 .docs-section h2 {
@@ -173,7 +115,7 @@
   border-bottom: 1px solid var(--omni-border);
   font-size: 1.5rem;
   letter-spacing: -0.01em;
-  scroll-margin-top: calc(var(--docs-header-height) + 1rem);
+  scroll-margin-top: calc(var(--site-header-height) + 1rem);
 }
 
 .docs-section h3 {
@@ -304,7 +246,7 @@
 
 .docs-toc {
   position: sticky;
-  top: calc(var(--docs-header-height) + 2.5rem);
+  top: calc(var(--site-header-height) + 2.5rem);
   align-self: start;
   font-size: 0.875rem;
 }

@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import omniStylesHref from "@omni/core/react/styles.css?url";
 import stylesHref from "../styles.css?url";
+import siteStylesHref from "../site/site.css?url";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -13,6 +14,7 @@ export const Route = createRootRoute({
     links: [
       { rel: "stylesheet", href: omniStylesHref },
       { rel: "stylesheet", href: stylesHref },
+      { rel: "stylesheet", href: siteStylesHref },
     ],
   }),
   component: () => (

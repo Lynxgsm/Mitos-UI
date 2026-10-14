@@ -1,5 +1,6 @@
 import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import { DOCS_NAV } from "../../docs/nav";
+import { SiteHeader } from "../../site/site-header";
 import docsStylesHref from "../../docs/docs.css?url";
 
 export const Route = createFileRoute("/docs")({
@@ -31,20 +32,7 @@ function SidebarNav() {
 function DocsLayout() {
   return (
     <div className="docs">
-      <a href="#content" className="docs-skip-link">
-        Skip to content
-      </a>
-      <header className="docs-header">
-        <Link to="/" className="docs-logo">
-          Omni UI
-        </Link>
-        <Link to="/docs" className="docs-header-link">
-          Docs
-        </Link>
-        <Link to="/docs/components/accordion" className="docs-header-link">
-          Components
-        </Link>
-      </header>
+      <SiteHeader />
       <div className="docs-shell">
         <aside className="docs-sidebar">
           <SidebarNav />
