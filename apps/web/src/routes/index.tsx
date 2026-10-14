@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Accordion, Button } from "@omni/core/react";
 import { useState } from "react";
 
@@ -11,6 +11,9 @@ function Home() {
   return (
     <main>
       <h1>Omni System UI</h1>
+      <p>
+        <Link to="/docs">Read the documentation</Link>
+      </p>
       <Button onClick={() => setCount((c) => c + 1)}>Clicked {count} times</Button>
       <Button variant="secondary" disabled>
         Disabled

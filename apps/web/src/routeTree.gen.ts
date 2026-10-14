@@ -10,33 +10,108 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DocsRouteRouteImport } from './routes/docs/route'
+import { Route as DocsIndexRouteImport } from './routes/docs/index'
+import { Route as DocsInstallationRouteImport } from './routes/docs/installation'
+import { Route as DocsThemingRouteImport } from './routes/docs/theming'
+import { Route as DocsComponentsAccordionRouteImport } from './routes/docs/components/accordion'
+import { Route as DocsComponentsButtonRouteImport } from './routes/docs/components/button'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DocsRouteRoute = DocsRouteRouteImport.update({
+  id: '/docs',
+  path: '/docs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocsIndexRoute = DocsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
+const DocsInstallationRoute = DocsInstallationRouteImport.update({
+  id: '/installation',
+  path: '/installation',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
+const DocsThemingRoute = DocsThemingRouteImport.update({
+  id: '/theming',
+  path: '/theming',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
+const DocsComponentsAccordionRoute = DocsComponentsAccordionRouteImport.update({
+  id: '/components/accordion',
+  path: '/components/accordion',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
+const DocsComponentsButtonRoute = DocsComponentsButtonRouteImport.update({
+  id: '/components/button',
+  path: '/components/button',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/docs': typeof DocsRouteRouteWithChildren
+  '/docs/installation': typeof DocsInstallationRoute
+  '/docs/theming': typeof DocsThemingRoute
+  '/docs/': typeof DocsIndexRoute
+  '/docs/components/accordion': typeof DocsComponentsAccordionRoute
+  '/docs/components/button': typeof DocsComponentsButtonRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/docs/installation': typeof DocsInstallationRoute
+  '/docs/theming': typeof DocsThemingRoute
+  '/docs': typeof DocsIndexRoute
+  '/docs/components/accordion': typeof DocsComponentsAccordionRoute
+  '/docs/components/button': typeof DocsComponentsButtonRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/docs': typeof DocsRouteRouteWithChildren
+  '/docs/installation': typeof DocsInstallationRoute
+  '/docs/theming': typeof DocsThemingRoute
+  '/docs/': typeof DocsIndexRoute
+  '/docs/components/accordion': typeof DocsComponentsAccordionRoute
+  '/docs/components/button': typeof DocsComponentsButtonRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/docs'
+    | '/docs/installation'
+    | '/docs/theming'
+    | '/docs/'
+    | '/docs/components/accordion'
+    | '/docs/components/button'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/docs/installation'
+    | '/docs/theming'
+    | '/docs'
+    | '/docs/components/accordion'
+    | '/docs/components/button'
+  id:
+    | '__root__'
+    | '/'
+    | '/docs'
+    | '/docs/installation'
+    | '/docs/theming'
+    | '/docs/'
+    | '/docs/components/accordion'
+    | '/docs/components/button'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DocsRouteRoute: typeof DocsRouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +123,74 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/docs': {
+      id: '/docs'
+      path: '/docs'
+      fullPath: '/docs'
+      preLoaderRoute: typeof DocsRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs/': {
+      id: '/docs/'
+      path: '/'
+      fullPath: '/docs/'
+      preLoaderRoute: typeof DocsIndexRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/installation': {
+      id: '/docs/installation'
+      path: '/installation'
+      fullPath: '/docs/installation'
+      preLoaderRoute: typeof DocsInstallationRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/theming': {
+      id: '/docs/theming'
+      path: '/theming'
+      fullPath: '/docs/theming'
+      preLoaderRoute: typeof DocsThemingRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/components/accordion': {
+      id: '/docs/components/accordion'
+      path: '/components/accordion'
+      fullPath: '/docs/components/accordion'
+      preLoaderRoute: typeof DocsComponentsAccordionRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/components/button': {
+      id: '/docs/components/button'
+      path: '/components/button'
+      fullPath: '/docs/components/button'
+      preLoaderRoute: typeof DocsComponentsButtonRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
   }
 }
 
+interface DocsRouteRouteChildren {
+  DocsInstallationRoute: typeof DocsInstallationRoute
+  DocsThemingRoute: typeof DocsThemingRoute
+  DocsIndexRoute: typeof DocsIndexRoute
+  DocsComponentsAccordionRoute: typeof DocsComponentsAccordionRoute
+  DocsComponentsButtonRoute: typeof DocsComponentsButtonRoute
+}
+
+const DocsRouteRouteChildren: DocsRouteRouteChildren = {
+  DocsInstallationRoute: DocsInstallationRoute,
+  DocsThemingRoute: DocsThemingRoute,
+  DocsIndexRoute: DocsIndexRoute,
+  DocsComponentsAccordionRoute: DocsComponentsAccordionRoute,
+  DocsComponentsButtonRoute: DocsComponentsButtonRoute,
+}
+
+const DocsRouteRouteWithChildren = DocsRouteRoute._addFileChildren(
+  DocsRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DocsRouteRoute: DocsRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
