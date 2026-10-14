@@ -3,6 +3,7 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { Button } from "@omni/core/react";
 import { CheckIcon, CopyIcon } from "@phosphor-icons/react";
 import { highlight, type CodeLanguage } from "../site/highlight";
+import { FRAMEWORKS, setFramework, useFramework } from "../site/framework";
 import { neighbours } from "./nav";
 
 export type TocEntry = { id: string; title: string };
@@ -104,8 +105,16 @@ export function CodeBlock(props: { code: string; label?: string; language?: Code
 }
 
 // APG tabs with automatic activation: one tab stop, arrows/Home/End move and select.
-export function Tabs(props: { label: string; tabs: { label: string; content: ReactNode }[] }) {
-  const [selected, setSelected] = useState(0);
+// Controlled when `selected`/`onSelect` are given (tabs that share one choice across the site).
+export function Tabs(props: {
+  label: string;
+  tabs: { label: string; icon?: ReactNode; content: ReactNode }[];
+  selected?: number;
+  onSelect?: (index: number) => void;
+}) {
+  const [ownSelected, setOwnSelected] = useState(0);
+  const selected = props.selected ?? ownSelected;
+  const setSelected = props.onSelect ?? setOwnSelected;
   const id = useId();
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -141,6 +150,7 @@ export function Tabs(props: { label: string; tabs: { label: string; content: Rea
             onClick={() => setSelected(index)}
             onKeyDown={onKeyDown}
           >
+            {tab.icon}
             {tab.label}
           </button>
         ))}
@@ -177,6 +187,29 @@ export function ComponentPreview(props: { example: ComponentType; source: string
         },
         { label: "Code", content: <CodeBlock code={props.source} label={`${props.label} source`} /> },
       ]}
+    />
+  );
+}
+
+// Same snippet in each framework's syntax; picking a framework switches every such block on the site.
+export function FrameworkCode(props: { label: string; react: string; svelte: string }) {
+  const framework = useFramework();
+  return (
+    <Tabs
+      label={`${props.label}: framework`}
+      selected={FRAMEWORKS.findIndex((entry) => entry.id === framework)}
+      onSelect={(index) => setFramework(FRAMEWORKS[index]!.id)}
+      tabs={FRAMEWORKS.map(({ id, name, Logo }) => ({
+        label: name,
+        icon: <Logo />,
+        content: (
+          <CodeBlock
+            code={props[id]}
+            label={`${props.label} (${name})`}
+            language={id === "svelte" ? "svelte" : "tsx"}
+          />
+        ),
+      }))}
     />
   );
 }

@@ -12,6 +12,7 @@ export default defineConfig({
     // and keeps Vitest from exiting; revisit when @stylexjs/unplugin fixes it.
     { ...stylex.vite({ aliases: { "@/*": [`${reactOutput}/*`] } }), configureServer: undefined },
   ],
-  resolve: { alias: { "@": reactOutput } },
+  // browser builds in jsdom, like an app bundle (Svelte otherwise resolves to its server runtime)
+  resolve: { alias: { "@": reactOutput }, conditions: ["browser"] },
   test: { environment: "jsdom" },
 });

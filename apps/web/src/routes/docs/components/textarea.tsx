@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CodeBlock, ComponentPreview, DocsPage, InstallCommand, PropsTable, Section } from "../../../docs/components";
+import { ComponentPreview, DocsPage, FrameworkCode, InstallCommand, PropsTable, Section } from "../../../docs/components";
 import TextareaDemo from "../../../docs/examples/textarea-demo";
 import textareaDemoSource from "../../../docs/examples/textarea-demo?raw";
 
@@ -27,8 +27,19 @@ function TextareaPage() {
       </Section>
 
       <Section id="usage" title="Usage">
-        <CodeBlock code={`import { Textarea } from "@omni/core/react";`} />
-        <CodeBlock code={`<Textarea label="Message" name="message" rows={5} required />`} />
+        <FrameworkCode
+          label="Textarea usage"
+          react={`
+import { Textarea } from "@omni/core/react";
+
+<Textarea label="Message" name="message" rows={5} required />`}
+          svelte={`
+<script>
+  import { Textarea } from "@omni/core/svelte";
+</script>
+
+<Textarea label="Message" name="message" rows={5} required />`}
+        />
       </Section>
 
       <Section id="accessibility" title="Accessibility">

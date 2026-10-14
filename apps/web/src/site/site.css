@@ -268,3 +268,18 @@
     display: none;
   }
 }
+
+/* Framework logos: decorative, always next to the framework's name */
+.framework-logo {
+  width: 1em;
+  height: 1em;
+  flex: none;
+}
+
+.framework-logo-react {
+  fill: #149eca;
+}
+
+.framework-logo-svelte {
+  fill: #ff3e00;
+}

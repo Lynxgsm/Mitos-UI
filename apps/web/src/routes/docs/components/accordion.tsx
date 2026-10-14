@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CodeBlock, ComponentPreview, DocsPage, InstallCommand, PropsTable, Section } from "../../../docs/components";
+import { ComponentPreview, DocsPage, FrameworkCode, InstallCommand, PropsTable, Section } from "../../../docs/components";
 import AccordionDemo from "../../../docs/examples/accordion-demo";
 import accordionDemoSource from "../../../docs/examples/accordion-demo?raw";
 import AccordionMultiple from "../../../docs/examples/accordion-multiple";
@@ -32,9 +32,23 @@ function AccordionPage() {
       </Section>
 
       <Section id="usage" title="Usage">
-        <CodeBlock code={`import { Accordion } from "@omni/core/react";`} />
-        <CodeBlock
-          code={`
+        <FrameworkCode
+          label="Accordion usage"
+          react={`
+import { Accordion } from "@omni/core/react";
+
+<Accordion
+  aria-label="FAQ"
+  items={[
+    { title: "Is it accessible?", content: "Yes." },
+    { title: "Is it animated?", content: "Yes, unless reduced motion is on." },
+  ]}
+/>`}
+          svelte={`
+<script>
+  import { Accordion } from "@omni/core/svelte";
+</script>
+
 <Accordion
   aria-label="FAQ"
   items={[

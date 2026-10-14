@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Accordion, Button } from "@omni/core/react";
-import { CodeBlock } from "../docs/components";
+import { CodeBlock, FrameworkCode } from "../docs/components";
+import { FRAMEWORKS } from "../site/framework";
 import { ThemePlayground } from "../landing/theme-playground";
 import { SiteHeader } from "../site/site-header";
 import docsStylesHref from "../docs/docs.css?url";
@@ -12,7 +13,7 @@ export const Route = createFileRoute("/")({
       { title: "Omni UI: accessible components, written once" },
       {
         name: "description",
-        content: "An accessible design system authored with Mitosis and styled with StyleX. React today, Vue and Svelte next.",
+        content: "An accessible design system authored with Mitosis and styled with StyleX. React and Svelte today, Vue next.",
       },
     ],
     // docs.css provides the shared code block and visually-hidden styles
@@ -60,6 +61,23 @@ function Button(props: ButtonProps) {
 
 export default Button;`;
 
+const SVELTE_OUTPUT = `
+<script lang="ts">
+  import * as stylex from "@stylexjs/stylex";
+  import { colors } from "@/config/tokens.stylex";
+
+  let props: ButtonProps = $props();
+  let { type, children } = $derived(props);
+
+  const styles = stylex.create({
+    base: { backgroundColor: colors["--omni-primary"] },
+  });
+</script>
+
+<button class={stylex.props(styles.base).className} type={type ?? "button"}>
+  {@render children?.()}
+</button>`;
+
 function PrimaryActions() {
   return (
     <div className="landing-actions">
@@ -86,8 +104,16 @@ function Landing() {
               Accessible components, <em>written once.</em>
             </h1>
             <p className="landing-hero-lead">
-              A design system authored with Mitosis and styled with StyleX. React today, Vue and Svelte next.
+              A design system authored with Mitosis and styled with StyleX. React and Svelte today, Vue next.
             </p>
+            <ul className="landing-frameworks" aria-label="Available for">
+              {FRAMEWORKS.map(({ id, name, Logo }) => (
+                <li key={id}>
+                  <Logo />
+                  {name}
+                </li>
+              ))}
+            </ul>
             <PrimaryActions />
           </div>
           <div className="landing-hero-preview">
@@ -106,7 +132,7 @@ function Landing() {
                   title: "What do I install?",
                   content: "One package with plain JavaScript, types and a precompiled stylesheet. No build plugin.",
                 },
-                { title: "Which frameworks?", content: "React today. Vue and Svelte are compiled from the same source next." },
+                { title: "Which frameworks?", content: "React and Svelte today, compiled from the same source. Vue is next." },
                 { title: "Can I restyle it?", content: "Override any --omni-* variable in your own CSS." },
               ]}
             />
@@ -125,9 +151,9 @@ function Landing() {
               <CodeBlock code={MITOSIS_SOURCE} label="Mitosis source, simplified from the Button" />
             </div>
             <div>
-              <p className="landing-code-title">React output</p>
-              <CodeBlock code={REACT_OUTPUT} label="Compiled React output" />
-              <p className="landing-note">Vue and Svelte targets are next, from the same file.</p>
+              <p className="landing-code-title">Compiled output</p>
+              <FrameworkCode label="Compiled output" react={REACT_OUTPUT} svelte={SVELTE_OUTPUT} />
+              <p className="landing-note">Vue is next, from the same file.</p>
             </div>
           </div>
         </section>

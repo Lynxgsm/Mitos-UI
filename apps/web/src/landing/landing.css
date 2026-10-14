@@ -62,6 +62,27 @@
   color: var(--omni-muted-foreground);
 }
 
+.landing-frameworks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  /* tucked under the lead, before the actions */
+  margin: -1rem 0 2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.landing-frameworks li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  border: 1px solid var(--omni-border);
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
 .landing-hero-preview {
   display: grid;
   gap: 1.75rem;

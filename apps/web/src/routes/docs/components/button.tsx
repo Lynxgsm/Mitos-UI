@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CodeBlock, ComponentPreview, DocsPage, InstallCommand, PropsTable, Section } from "../../../docs/components";
+import { ComponentPreview, DocsPage, FrameworkCode, InstallCommand, PropsTable, Section } from "../../../docs/components";
 import ButtonDemo from "../../../docs/examples/button-demo";
 import buttonDemoSource from "../../../docs/examples/button-demo?raw";
 import ButtonVariants from "../../../docs/examples/button-variants";
@@ -36,8 +36,19 @@ function ButtonPage() {
       </Section>
 
       <Section id="usage" title="Usage">
-        <CodeBlock code={`import { Button } from "@omni/core/react";`} />
-        <CodeBlock code={`<Button variant="outline">Button</Button>`} />
+        <FrameworkCode
+          label="Button usage"
+          react={`
+import { Button } from "@omni/core/react";
+
+<Button variant="outline">Button</Button>`}
+          svelte={`
+<script>
+  import { Button } from "@omni/core/svelte";
+</script>
+
+<Button variant="outline">Button</Button>`}
+        />
       </Section>
 
       <Section id="examples" title="Examples">

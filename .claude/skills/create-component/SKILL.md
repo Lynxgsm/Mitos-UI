@@ -33,7 +33,7 @@ Annonce ton choix à l'utilisateur en une ligne (« Checkbox → `<input type="c
 Calque `button.lite.tsx` :
 - `useStore` de `@builder.io/mitosis` pour l'état et les valeurs dérivées. **Pas de hooks React** (`useState`, `useEffect`, `useRef` React) : Mitosis compile vers d'autres frameworks. Utilise `useStore`, `useRef`, `onMount`, `onUpdate` de `@builder.io/mitosis`.
 - `class`, jamais `className`, dans le JSX et dans les props.
-- `OWN_PROPS` : les props consommées par le composant ; tout le reste (attributs natifs, `aria-*`, `data-*`, handlers) est transféré à l'élément racine via `state.attributes`. Garde le commentaire `shortcut:` de Button.
+- `OWN_PROPS` : les props consommées par le composant ; tout le reste (attributs natifs, `aria-*`, `data-*`, handlers) est transféré à l'élément racine via `state.attributes`. Garde le getter et son commentaire tels quels : dans la cible Svelte, `props` y devient l'objet `$props()` (voir `mitosis.config.cjs`).
 - Le type `<Name>Props` déclare les attributs natifs utiles et la signature `[attribute: \`aria-${string}\` | \`data-${string}\`]`.
 - Styles : `stylex.create`, couleurs et rayons depuis `@/config/tokens.stylex` (`colors["--omni-…"]`, `radii["--omni-radius-…"]`). Classes fusionnées avec `clsx(stylex.props(...).className, props.class)`.
 - Composant export `default`, fichier en kebab-case, composant en PascalCase.
@@ -74,6 +74,8 @@ Même forme que `button.stories.tsx` : `meta` avec `title: "Components/<Name>"`,
 export { default as <Name> } from "./<name>/<name>.lite";
 export type { <Name>Props } from "./<name>/<name>.lite";
 ```
+
+Ajoute aussi le composant aux tests de la sortie Svelte 5 (runes, réécrite depuis la sortie Mitosis par `mitosis.config.cjs`) : import dans le fixture de `src/svelte.test.helpers.ts`, une entrée dans `renders` de `src/svelte.server.test.ts` (compile sans warning, rendu serveur, classes présentes dans le CSS partagé) et son interaction principale dans `src/svelte.client.test.ts`. Si le build échoue avec « no Svelte 5 rewrite for … », c'est qu'une construction Mitosis n'est pas encore convertie en runes : ajoute la règle dans `mitosis.config.cjs`.
 
 ### 7. Vérifier
 

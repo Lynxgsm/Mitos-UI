@@ -20,11 +20,11 @@ function Introduction() {
         <p>
           Omni UI is a design system authored with <a href="https://mitosis.builder.io/">Mitosis</a> and styled with{" "}
           <a href="https://stylexjs.com/">StyleX</a>. Each component is written once and compiled to a framework
-          package. React is available today; Vue and Svelte will follow.
+          package. React and Svelte are available today; Vue will follow.
         </p>
         <p>
-          The package ships plain JavaScript, types and one precompiled stylesheet: no build plugin is required in your
-          app. Start with the <Link to="/docs/installation">installation guide</Link>.
+          The package ships types and one precompiled stylesheet, with plain JavaScript for React and{" "}
+          <code>.svelte</code> components for Svelte: no build plugin is required in your app. Start with the <Link to="/docs/installation">installation guide</Link>.
         </p>
       </Section>
       <Section id="principles" title="Principles">

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CodeBlock, ComponentPreview, DocsPage, InstallCommand, PropsTable, Section } from "../../../docs/components";
+import { ComponentPreview, DocsPage, FrameworkCode, InstallCommand, PropsTable, Section } from "../../../docs/components";
 import ToastDemo from "../../../docs/examples/toast-demo";
 import toastDemoSource from "../../../docs/examples/toast-demo?raw";
 import ToastVariants from "../../../docs/examples/toast-variants";
@@ -33,8 +33,9 @@ function ToastPage() {
         <p>
           Render one <code>Toaster</code> at the root of your app, then call <code>toast()</code> from anywhere.
         </p>
-        <CodeBlock
-          code={`
+        <FrameworkCode
+          label="Toaster setup"
+          react={`
 import { Toaster } from "@omni/core/react";
 
 export function App() {
@@ -45,8 +46,28 @@ export function App() {
     </>
   );
 }`}
+          svelte={`
+<!-- +layout.svelte -->
+<script>
+  import { Toaster } from "@omni/core/svelte";
+
+  let { children } = $props();
+</script>
+
+{@render children()}
+<Toaster />`}
         />
-        <CodeBlock code={`toast({ title: "Changes saved", description: "Your profile is up to date." });`} />
+        <FrameworkCode
+          label="Toast call"
+          react={`
+import { toast } from "@omni/core/react";
+
+toast({ title: "Changes saved", description: "Your profile is up to date." });`}
+          svelte={`
+import { toast } from "@omni/core/svelte";
+
+toast({ title: "Changes saved", description: "Your profile is up to date." });`}
+        />
       </Section>
 
       <Section id="examples" title="Examples">

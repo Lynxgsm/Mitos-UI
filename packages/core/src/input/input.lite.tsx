@@ -5,8 +5,8 @@ import { colors, radii } from "@/config/tokens.stylex";
 
 const OWN_PROPS = [
   // Props the component consumes itself; everything else is forwarded to the <input>.
-  // shortcut: iterating props only compiles correctly for React; Vue/Svelte targets will need
-  // their native fallthrough ($attrs / $$restProps) when added.
+  // iterating props only compiles correctly for React: mitosis.config.cjs maps props to the
+  // Svelte $props() object. shortcut: a Vue target will need the same with $attrs.
   "label", "description", "error", "id", "class",
 ];
 

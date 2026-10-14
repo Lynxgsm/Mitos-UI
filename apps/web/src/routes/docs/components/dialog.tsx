@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CodeBlock, ComponentPreview, DocsPage, InstallCommand, PropsTable, Section } from "../../../docs/components";
+import { ComponentPreview, DocsPage, FrameworkCode, InstallCommand, PropsTable, Section } from "../../../docs/components";
 import DialogDemo from "../../../docs/examples/dialog-demo";
 import dialogDemoSource from "../../../docs/examples/dialog-demo?raw";
 import DialogAlert from "../../../docs/examples/dialog-alert";
@@ -30,12 +30,24 @@ function DialogPage() {
       </Section>
 
       <Section id="usage" title="Usage">
-        <CodeBlock code={`import { Dialog } from "@omni/core/react";`} />
-        <CodeBlock
-          code={`
+        <FrameworkCode
+          label="Dialog usage"
+          react={`
+import { Dialog } from "@omni/core/react";
+
 const [open, setOpen] = useState(false);
 
 <Dialog open={open} onClose={() => setOpen(false)} title="Edit profile">
+  …
+</Dialog>`}
+          svelte={`
+<script>
+  import { Dialog } from "@omni/core/svelte";
+
+  let open = $state(false);
+</script>
+
+<Dialog {open} onClose={() => (open = false)} title="Edit profile">
   …
 </Dialog>`}
         />

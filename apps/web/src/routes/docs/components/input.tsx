@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CodeBlock, ComponentPreview, DocsPage, InstallCommand, PropsTable, Section } from "../../../docs/components";
+import { ComponentPreview, DocsPage, FrameworkCode, InstallCommand, PropsTable, Section } from "../../../docs/components";
 import InputDemo from "../../../docs/examples/input-demo";
 import inputDemoSource from "../../../docs/examples/input-demo?raw";
 import InputStates from "../../../docs/examples/input-states";
@@ -30,11 +30,23 @@ function InputPage() {
       </Section>
 
       <Section id="usage" title="Usage">
-        <CodeBlock code={`import { Input } from "@omni/core/react";`} />
-        <CodeBlock code={`<Input label="Email" type="email" name="email" required />`} />
+        <FrameworkCode
+          label="Input usage"
+          react={`
+import { Input } from "@omni/core/react";
+
+<Input label="Email" type="email" name="email" required />`}
+          svelte={`
+<script>
+  import { Input } from "@omni/core/svelte";
+</script>
+
+<Input label="Email" type="email" name="email" required />`}
+        />
         <p>
           Native attributes (<code>name</code>, <code>value</code>, <code>onChange</code>, <code>autoComplete</code>…)
-          go to the <code>&lt;input&gt;</code>, so it works controlled, uncontrolled and inside a plain form.
+          go to the <code>&lt;input&gt;</code>, so it works controlled, uncontrolled and inside a plain form. In Svelte,
+          handlers are lowercase (<code>oninput</code>, <code>onchange</code>).
         </p>
       </Section>
 
