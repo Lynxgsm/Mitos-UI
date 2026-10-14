@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
-import * as stylex from "@stylexjs/stylex";
-import { colors } from "@omni/core/tokens.stylex";
+import omniStylesHref from "@omni/core/react/styles.css?url";
 import stylesHref from "../styles.css?url";
 
 export const Route = createRootRoute({
@@ -12,9 +11,8 @@ export const Route = createRootRoute({
       { title: "Omni System UI" },
     ],
     links: [
+      { rel: "stylesheet", href: omniStylesHref },
       { rel: "stylesheet", href: stylesHref },
-      // StyleX serves its CSS from a virtual module in dev; in prod it is appended to styles.css
-      ...(import.meta.env.DEV ? [{ rel: "stylesheet", href: "/virtual:stylex.css" }] : []),
     ],
   }),
   component: () => (
@@ -30,14 +28,10 @@ function RootDocument({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body {...stylex.props(styles.body)}>
+      <body>
         {children}
         <Scripts />
       </body>
     </html>
   );
 }
-
-const styles = stylex.create({
-  body: { backgroundColor: colors.background, color: colors.foreground },
-});

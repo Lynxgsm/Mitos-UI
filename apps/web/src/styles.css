@@ -2,6 +2,8 @@
 
 body {
   font-family: "Outfit Variable", system-ui, sans-serif;
+  background-color: var(--omni-background);
+  color: var(--omni-foreground);
 }
 
 .custom-button {

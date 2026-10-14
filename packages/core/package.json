@@ -4,11 +4,14 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./react": "./output/react/src/index.ts",
-    "./tokens.stylex": "./output/react/src/tokens.stylex.ts"
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.js"
+    },
+    "./react/styles.css": "./dist/react/assets/stylex.css"
   },
   "scripts": {
-    "build": "mitosis build",
+    "build": "mitosis build && vite build -c vite.lib.config.ts && tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.test.json",
     "test": "mitosis build && vitest run",
     "storybook": "mitosis build && storybook dev -p 6006",
@@ -34,10 +37,17 @@
     "react-dom": "^19.3.0",
     "storybook": "^10.6.2",
     "typescript": "^7.0.2",
+    "vite": "^8.3.4",
     "vitest": "^5.0.4"
   },
   "dependencies": {
     "@stylexjs/stylex": "^0.19.1",
     "clsx": "^2.1.1"
-  }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ]
 }

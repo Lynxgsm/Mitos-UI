@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "rootDir": "output/react/src",
+    "outDir": "dist/react"
+  },
+  "include": ["output/react/src"]
+}
