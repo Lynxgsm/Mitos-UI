@@ -79,7 +79,7 @@ CI (`.github/workflows/ci.yml`) runs the Definition of Done on every pull reques
 
 The workflow fails if the new version has no CHANGELOG section. Pushes to `main` that keep an already published version publish nothing.
 
-Publishing uses npm trusted publishing (OIDC): a trusted publisher on npmjs.com (package settings, GitHub Actions, repository `Lynxgsm/Mitos-UI`, workflow `release.yml`). A package must exist before it can have one, so the first version is published with an `NPM_TOKEN` repository secret. Once the trusted publisher is set up, delete that secret and revoke the token.
+Publishing uses npm trusted publishing (OIDC) only: the trusted publisher of `mitos-ui` on npmjs.com is repository `Lynxgsm/Mitos-UI`, workflow `release.yml`, allowed action `npm publish`. The package requires 2FA and refuses tokens, so there is no npm token anywhere: never add one. Renaming the repository or the workflow file means updating the trusted publisher first.
 
 ---
 
