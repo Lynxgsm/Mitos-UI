@@ -46,16 +46,16 @@ const styles = stylex.create({
     padding: "1.5rem",
     borderWidth: 1,
     borderStyle: "solid",
-    borderColor: colors["--omni-border"],
-    borderRadius: radii["--omni-radius-xl"],
-    backgroundColor: colors["--omni-background"],
-    color: colors["--omni-foreground"],
-    boxShadow: `0 24px 48px -12px ${colors["--omni-overlay"]}`,
+    borderColor: colors["--mitos-border"],
+    borderRadius: radii["--mitos-radius-xl"],
+    backgroundColor: colors["--mitos-background"],
+    color: colors["--mitos-foreground"],
+    boxShadow: `0 24px 48px -12px ${colors["--mitos-overlay"]}`,
     animationName: enter,
     animationDuration: DURATION,
     animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
     "::backdrop": {
-      backgroundColor: colors["--omni-overlay"],
+      backgroundColor: colors["--mitos-overlay"],
       animationName: fade,
       animationDuration: DURATION,
     },
@@ -67,7 +67,7 @@ const styles = stylex.create({
     gap: "1rem",
   },
   title: { margin: 0, fontSize: "1.125rem", fontWeight: 600, lineHeight: 1.4 },
-  description: { margin: "0.375rem 0 0", fontSize: "0.875rem", color: colors["--omni-muted-foreground"] },
+  description: { margin: "0.375rem 0 0", fontSize: "0.875rem", color: colors["--mitos-muted-foreground"] },
   body: { marginTop: "1rem" },
   footer: {
     display: "flex",
@@ -87,14 +87,14 @@ const styles = stylex.create({
     marginRight: "-0.5rem",
     padding: 0,
     borderStyle: "none",
-    borderRadius: radii["--omni-radius-md"],
-    backgroundColor: { default: "transparent", ":hover": colors["--omni-accent"] },
-    color: colors["--omni-muted-foreground"],
+    borderRadius: radii["--mitos-radius-md"],
+    backgroundColor: { default: "transparent", ":hover": colors["--mitos-accent"] },
+    color: colors["--mitos-muted-foreground"],
     cursor: "pointer",
     outlineStyle: { default: "none", ":focus-visible": "solid" },
     outlineWidth: 2,
     outlineOffset: 2,
-    outlineColor: colors["--omni-ring"],
+    outlineColor: colors["--mitos-ring"],
   },
   icon: { width: "1rem", height: "1rem", strokeWidth: 2, strokeLinecap: "round" },
 });
@@ -134,7 +134,7 @@ export default function Dialog(props: DialogProps) {
       event.preventDefault();
       props.onClose?.();
     },
-    // any other close (form method="dialog", browser close watcher): report it and restore focus
+    // any other close (form method=dialog, browser close watcher): report it and restore focus
     handleClose() {
       if (props.open) props.onClose?.();
       const target = returnFocusRef;
@@ -144,7 +144,7 @@ export default function Dialog(props: DialogProps) {
   });
 
   onMount(() => {
-    if (!props.id) state.generatedId = `omni-dialog-${Math.random().toString(36).slice(2, 10)}`;
+    if (!props.id) state.generatedId = `mitos-dialog-${Math.random().toString(36).slice(2, 10)}`;
     state.sync();
   });
 

@@ -4,5 +4,5 @@
   "compilerOptions": {
     "paths": { "@/*": ["./output/react/src/*"] }
   },
-  "include": ["src/**/*.test.*", "src/**/*.stories.*", ".storybook"]
+  "include": ["src/**/*.test.*", "src/**/*.stories.*", ".storybook", "test-env.d.ts"]
 }

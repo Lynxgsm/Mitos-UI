@@ -25,7 +25,10 @@ const svelteRunes = () => ({
       // (Mitosis declares only the bound ones)
       for (const [name, value] of Object.entries(json.state)) {
         if (value.type !== "property") continue;
-        code = code.replace(new RegExp(`^( *)let ${name} = ([\\s\\S]*?);$`, "m"), (_, indent, value) => {
+        // the formatter may break the line after "=" for a long initial value
+        const declaration = new RegExp(`^( *)let ${name} =\\s*([\\s\\S]*?);$`, "m");
+        if (!declaration.test(code)) throw new Error(`${json.name}: state "${name}" not found, cannot make it $state`);
+        code = code.replace(declaration, (_, indent, value) => {
           // a prop in the initial value is read once, on purpose (React's useState): say so to Svelte
           const readsProp = props.some((prop) => new RegExp(`\\b${prop.split(/[ =:]/)[0]}\\b`).test(value));
           if (readsProp) svelteImports.add("untrack");
@@ -60,8 +63,12 @@ const svelteRunes = () => ({
         .replace(/^( *)\$: (onUpdateFn_\d+\(\.\.\.\[[^\]]*\]\));/gm, "$1$effect(() => {\n$1  $2;\n$1});")
         .replace(/\{#if \$\$slots\.default\}/g, "{#if children}")
         .replace(/<slot \/>/g, "{@render children?.()}")
+        // React's uncontrolled initial state; in Svelte an unbound checked attribute already is that
+        .replace(/\bdefaultChecked=/g, "checked=")
+        // the HTML attribute name: the Svelte a11y checks only know the lowercase one
+        .replace(/\btabIndex=/g, "tabindex=")
         // Svelte 5 warns on self-closing non-void elements
-        .replace(/<textarea\b([^<]*?)\s*\/>/g, "<textarea$1></textarea>");
+        .replace(/<(textarea|div|span|p)\b([^<]*?)\s*\/>/g, "<$1$2></$1>");
 
       // events: `on:x` → `onx`. On the element receiving the forwarded attributes, a consumer's own `onx` would be
       // overridden by the component's, so the component's handler calls it first.
@@ -71,11 +78,13 @@ const svelteRunes = () => ({
         const indent = lines[i].match(/^ */)[0].length;
         if (lines[i].trim() === "{...attributes()}") rootIndent = indent;
         else if (rootIndent !== null && indent < rootIndent) rootIndent = null;
-        lines[i] = lines[i].replace(/\bon:(\w+)=\{\((\w+)\) => \{$/, (_, event, arg) =>
-          indent === rootIndent
-            ? `on${event}={(${arg}) => {\n${" ".repeat(indent + 2)}attributes().on${event}?.(${arg});`
-            : `on${event}={(${arg}) => {`,
-        );
+        lines[i] = lines[i].replace(/\bon:(\w+)=\{\((\w+)\) => \{$/, (_, event, arg) => {
+          // React focus and blur handlers bubble from children (they are focusin and focusout): same in Svelte
+          const domEvent = { focus: "focusin", blur: "focusout" }[event] ?? event;
+          return indent === rootIndent
+            ? `on${domEvent}={(${arg}) => {\n${" ".repeat(indent + 2)}attributes().on${event}?.(${arg});`
+            : `on${domEvent}={(${arg}) => {`;
+        });
       }
       code = lines.join("\n");
 

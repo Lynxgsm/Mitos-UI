@@ -9,7 +9,7 @@ const OWN_PROPS = [
   // Props the component consumes itself; everything else is forwarded to the <section>.
   // iterating props only compiles correctly for React: mitosis.config.cjs maps props to the
   // Svelte $props() object. shortcut: a Vue target will need the same with $attrs.
-  "label", "class",
+  "label", "name", "class",
 ];
 
 // Mitosis drops `[] as Toast[]` casts in state initializers: a typed constant keeps the type (never mutated)
@@ -17,6 +17,8 @@ const NO_TOASTS: Toast[] = [];
 
 export type ToasterProps = {
   label?: string;
+  // shows only the toasts sent with toast({ toaster: name }); without it, the toasts sent to no Toaster
+  name?: string;
   class?: string;
   [attribute: `aria-${string}` | `data-${string}`]: string | number | boolean | undefined;
 };
@@ -49,19 +51,19 @@ const styles = stylex.create({
     padding: "1rem",
     borderWidth: 1,
     borderStyle: "solid",
-    borderColor: colors["--omni-border"],
-    borderRadius: radii["--omni-radius-lg"],
-    backgroundColor: colors["--omni-background"],
-    color: colors["--omni-foreground"],
-    boxShadow: `0 12px 32px -12px ${colors["--omni-overlay"]}`,
+    borderColor: colors["--mitos-border"],
+    borderRadius: radii["--mitos-radius-lg"],
+    backgroundColor: colors["--mitos-background"],
+    color: colors["--mitos-foreground"],
+    boxShadow: `0 12px 32px -12px ${colors["--mitos-overlay"]}`,
     animationName: { default: enter, "@media (prefers-reduced-motion: reduce)": "none" },
     animationDuration: "250ms",
     animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
   },
   destructive: {
-    borderColor: colors["--omni-destructive"],
-    backgroundColor: colors["--omni-destructive"],
-    color: colors["--omni-destructive-foreground"],
+    borderColor: colors["--mitos-destructive"],
+    backgroundColor: colors["--mitos-destructive"],
+    color: colors["--mitos-destructive-foreground"],
   },
   content: { flexGrow: 1, minWidth: 0 },
   title: { margin: 0, fontSize: "0.875rem", fontWeight: 600 },
@@ -78,12 +80,12 @@ const styles = stylex.create({
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "currentColor",
-    borderRadius: radii["--omni-radius-md"],
+    borderRadius: radii["--mitos-radius-md"],
     cursor: "pointer",
     outlineStyle: { default: "none", ":focus-visible": "solid" },
     outlineWidth: 2,
     outlineOffset: 2,
-    outlineColor: colors["--omni-ring"],
+    outlineColor: colors["--mitos-ring"],
   },
   dismiss: {
     display: "inline-flex",
@@ -96,7 +98,7 @@ const styles = stylex.create({
     marginRight: "-0.25rem",
     padding: 0,
     borderStyle: "none",
-    borderRadius: radii["--omni-radius-sm"],
+    borderRadius: radii["--mitos-radius-sm"],
     // full opacity: the icon keeps 3:1 against the toast, including on destructive
     backgroundColor: { default: "transparent", ":hover": "color-mix(in oklab, currentColor 15%, transparent)" },
     color: "inherit",
@@ -104,7 +106,7 @@ const styles = stylex.create({
     outlineStyle: { default: "none", ":focus-visible": "solid" },
     outlineWidth: 2,
     outlineOffset: 2,
-    outlineColor: colors["--omni-ring"],
+    outlineColor: colors["--mitos-ring"],
   },
   icon: { width: "1rem", height: "1rem", strokeWidth: 2, strokeLinecap: "round" },
   visuallyHidden: {
@@ -132,7 +134,7 @@ export default function Toaster(props: ToasterProps) {
     get attributes() {
       return Object.fromEntries(Object.entries(props).filter(([key]) => !OWN_PROPS.includes(key)));
     },
-    // an identical message must still change the region's text to be announced again (trailing nbsp)
+    // an identical message must still change the text of the region to be announced again (trailing nbsp)
     announce(list: Toast[]) {
       const fresh = list.filter((toast) => toast.id > lastAnnouncedRef);
       if (fresh.length === 0) return;
@@ -156,8 +158,9 @@ export default function Toaster(props: ToasterProps) {
 
   onMount(() => {
     unsubscribeRef = subscribeToasts((list) => {
-      state.announce(list);
-      state.toasts = list;
+      const mine = list.filter((entry) => entry.toaster === props.name);
+      state.announce(mine);
+      state.toasts = mine;
     });
   });
 

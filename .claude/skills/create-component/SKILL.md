@@ -1,6 +1,6 @@
 ---
 name: create-component
-description: Créer ou ajouter un composant UI dans packages/core d'omni-system-ui (Checkbox, Switch, Input, Select, Tabs, Dialog, Tooltip, Accordion, Menu…), selon le schéma de Button (source Mitosis .lite.tsx + StyleX + tokens, test Vitest + axe, story Storybook, export dans index.ts) et toujours conforme HTML + WAI-ARIA. À utiliser dès qu'on demande un nouveau composant, widget ou élément d'interface dans ce repo, même si la demande ne parle ni de Mitosis, ni d'accessibilité, ni de tests.
+description: Créer ou ajouter un composant UI dans packages/core de Mitos UI (Checkbox, Switch, Input, Select, Tabs, Dialog, Tooltip, Accordion, Menu…), selon le schéma de Button (source Mitosis .lite.tsx + StyleX + tokens, test Vitest + axe, story Storybook, export dans index.ts) et toujours conforme HTML + WAI-ARIA. À utiliser dès qu'on demande un nouveau composant, widget ou élément d'interface dans ce repo, même si la demande ne parle ni de Mitosis, ni d'accessibilité, ni de tests.
 ---
 
 # Créer un composant dans `packages/core`
@@ -35,16 +35,24 @@ Calque `button.lite.tsx` :
 - `class`, jamais `className`, dans le JSX et dans les props.
 - `OWN_PROPS` : les props consommées par le composant ; tout le reste (attributs natifs, `aria-*`, `data-*`, handlers) est transféré à l'élément racine via `state.attributes`. Garde le getter et son commentaire tels quels : dans la cible Svelte, `props` y devient l'objet `$props()` (voir `mitosis.config.cjs`).
 - Le type `<Name>Props` déclare les attributs natifs utiles et la signature `[attribute: \`aria-${string}\` | \`data-${string}\`]`.
-- Styles : `stylex.create`, couleurs et rayons depuis `@/config/tokens.stylex` (`colors["--omni-…"]`, `radii["--omni-radius-…"]`). Classes fusionnées avec `clsx(stylex.props(...).className, props.class)`.
+- Styles : `stylex.create`, couleurs et rayons depuis `@/config/tokens.stylex` (`colors["--mitos-…"]`, `radii["--mitos-radius-…"]`). Classes fusionnées avec `clsx(stylex.props(...).className, props.class)`.
 - Composant export `default`, fichier en kebab-case, composant en PascalCase.
 - Composant composé (Tabs, Dialog…) : un fichier `.lite.tsx` par partie si nécessaire, dans le même dossier.
 
+Pièges du parseur Mitosis (le build échoue avec un message peu clair) :
+- **pas de fonction au niveau du module** (`function x() {}` hors du composant → « Could not JSON5 parse object ») : mets la logique dans un getter ou une méthode de `useStore` ;
+- **pas d'apostrophe ni de guillemets dans les commentaires** à l'intérieur du type `<Name>Props`, des objets `stylex.create` ou du composant : Mitosis recolle alors la suite sur la ligne du commentaire, soit un « Format error … '}' expected », soit, pire, des styles **silencieusement commentés** (vérifie la présence de la règle dans `dist/react/assets/stylex.css`) ;
+- **une variable locale ne doit pas porter le nom d'une prop** : en Svelte, `props.min` devient `min`, et `const min = props.min` donne une erreur « Cannot access before initialization » ;
+- Mitosis **supprime les annotations de type de retour** des getters et les **arguments génériques** (`querySelector<HTMLElement>`) : caste dans le corps (`return { "--x": v } as any;`, `(el.querySelector("…") as HTMLElement | null)?.focus()`) ;
+- pour un élément conditionnel, utilise un ternaire en JSX (`{cond ? <img /> : <span />}`), il devient `{#if}{:else}` en Svelte.
+
 ### 3. Styles accessibles
 
-- **Focus visible** : reprends le motif de Button : `outlineStyle: { default: "none", ":focus-visible": "solid" }`, `outlineWidth: 2`, `outlineOffset: 2`, `outlineColor: colors["--omni-ring"]` (WCAG 1.4.11 / 2.4.7). Pour un `<input>` stylé, l'outline va sur l'input lui-même.
+- **Focus visible** : reprends le motif de Button : `outlineStyle: { default: "none", ":focus-visible": "solid" }`, `outlineWidth: 2`, `outlineOffset: 2`, `outlineColor: colors["--mitos-ring"]` (WCAG 1.4.11 / 2.4.7). Pour un `<input>` stylé, l'outline va sur l'input lui-même.
 - **Couleurs** : jamais de couleur en dur. Besoin d'une nouvelle couleur → ajoute un token dans `src/config/tokens.stylex.ts` (clair + `[DARK]`) **et** la paire texte/fond correspondante dans `src/config/tokens.test.ts` (texte ≥ 4.5:1, non-texte ≥ 3:1). Ce test lit le CSS compilé : c'est lui qui garantit le contraste, pas axe (jsdom n'a pas de rendu).
 - **Désactivé** : `:disabled` (ou `[aria-disabled=true]`) avec `opacity: 0.5` et `pointerEvents: "none"`, comme Button.
 - **Animation** : toute transition/animation non triviale est coupée sous `@media (prefers-reduced-motion: reduce)`.
+- **Élément masqué par `hidden`** (panneau, menu, popup) : ne lui donne jamais de `display` dans ses styles permanents, sinon il reste affiché une fois « fermé ». Applique le `display` dans un style conditionnel (`state.open && styles.open`). `src/hidden.test.tsx` le vérifie : ajoutes-y tout nouveau composant qui masque des éléments avec `hidden`.
 - Zone cliquable ≥ 24×24 px (WCAG 2.5.8).
 
 ### 4. Test : `src/<name>/<name>.test.tsx`
@@ -76,6 +84,8 @@ export type { <Name>Props } from "./<name>/<name>.lite";
 ```
 
 Ajoute aussi le composant aux tests de la sortie Svelte 5 (runes, réécrite depuis la sortie Mitosis par `mitosis.config.cjs`) : import dans le fixture de `src/svelte.test.helpers.ts`, une entrée dans `renders` de `src/svelte.server.test.ts` (compile sans warning, rendu serveur, classes présentes dans le CSS partagé) et son interaction principale dans `src/svelte.client.test.ts`. Si le build échoue avec « no Svelte 5 rewrite for … », c'est qu'une construction Mitosis n'est pas encore convertie en runes : ajoute la règle dans `mitosis.config.cjs`.
+
+`src/library.test.ts` vérifie tout ce câblage pour chaque composant (test, story, exports, tests Svelte, `CHANGELOG.md`), la parité des exports React/Svelte (avec un instantané de l'API publique à mettre à jour volontairement : c'est un changement d'API à noter au changelog) et l'absence d'apostrophes ou de guillemets dans les commentaires Mitosis. Côté site, `apps/web/src/app/component-docs.test.ts` exige une page de doc, une route et une entrée de navigation pour chaque composant exporté.
 
 ### 7. Vérifier
 

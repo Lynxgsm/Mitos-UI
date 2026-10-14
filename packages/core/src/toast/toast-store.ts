@@ -1,5 +1,6 @@
 // Framework-agnostic toast queue: plain TypeScript, so every Mitosis target shares it as-is.
-// One queue per page (module singleton), rendered by a single <Toaster />.
+// One queue per page (module singleton). Each <Toaster /> shows the toasts addressed to its name: usually a
+// single unnamed Toaster shows them all; a named one (a preview, a panel) only shows the toasts sent to it.
 
 export type ToastVariant = "default" | "destructive";
 
@@ -11,6 +12,8 @@ export type ToastOptions = {
   duration?: number;
   /** A toast with an action never auto-dismisses: the user must get time to act (WCAG 2.2.1). */
   action?: { label: string; onClick: () => void };
+  /** Name of the Toaster that shows it; without it, the unnamed Toaster does. */
+  toaster?: string;
 };
 
 export type Toast = ToastOptions & { id: number };

@@ -1,0 +1,610 @@
+/* Landing page. Plain CSS on the --mitos-* tokens; one radius scale (--mitos-radius-*) everywhere. */
+
+.landing {
+  --site-width: 72rem;
+  --site-gutter: clamp(1rem, 4vw, 2rem);
+  overflow-x: clip;
+}
+
+:where(.landing) a {
+  color: inherit;
+  text-underline-offset: 4px;
+}
+
+.landing :focus-visible {
+  outline: 2px solid var(--mitos-ring);
+  outline-offset: 2px;
+}
+
+.landing h1,
+.landing h2,
+.landing h3 {
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.landing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Hero: asymmetric split, copy left, live components right */
+
+.landing-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  max-width: var(--site-width);
+  margin-inline: auto;
+  padding: clamp(3rem, 9vh, 6rem) var(--site-gutter) clamp(2rem, 6vh, 4rem);
+  box-sizing: border-box;
+}
+
+.landing-hero h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 5.2vw, 4.25rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.landing-hero h1 em {
+  font-style: normal;
+  color: var(--mitos-primary);
+}
+
+.landing-hero-lead {
+  max-width: 34ch;
+  margin: 1.25rem 0 2rem;
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.55;
+  color: var(--mitos-muted-foreground);
+}
+
+.landing-frameworks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  /* tucked under the lead, before the actions */
+  margin: -1rem 0 2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.landing-frameworks li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  border: 1px solid var(--mitos-border);
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.landing-hero-preview {
+  display: grid;
+  gap: 1.75rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border: 1px solid var(--mitos-border);
+  border-radius: var(--mitos-radius-xl);
+  background:
+    radial-gradient(120% 80% at 100% 0%, color-mix(in oklab, var(--mitos-primary) 7%, transparent), transparent 60%),
+    var(--mitos-background);
+  box-shadow: 0 24px 60px -32px color-mix(in oklab, var(--mitos-foreground) 35%, transparent);
+}
+
+.landing-hero-accordion {
+  width: 100%;
+}
+
+/* Sections */
+
+.landing-section {
+  max-width: var(--site-width);
+  margin-inline: auto;
+  padding: clamp(4rem, 10vw, 7rem) var(--site-gutter) 0;
+}
+
+.landing-section h2 {
+  margin: 0;
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  line-height: 1.1;
+}
+
+/* Works with: a quiet logo cloud between the hero and the first section */
+.landing-tools-band {
+  padding-top: clamp(2.5rem, 6vw, 4rem);
+}
+
+.landing-tools-band h2 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+  color: var(--mitos-muted-foreground);
+}
+
+.landing-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  max-width: 56rem;
+  margin: 1rem auto 0;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+  border: 1px solid var(--mitos-border);
+  border-radius: 0.75rem;
+  /* the 1px gaps show this color: cell borders that never double up when rows wrap */
+  background: var(--mitos-border);
+}
+
+.landing-tools li {
+  display: flex;
+  flex: 1 1 9rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem;
+  background: var(--mitos-background);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--mitos-muted-foreground);
+}
+
+.landing-tools svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: currentColor;
+}
+
+.landing-section-lead {
+  max-width: 60ch;
+  margin: 0.9rem 0 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--mitos-muted-foreground);
+}
+
+/* Compile beams: sources → package → frameworks */
+.compile-beams {
+  max-width: 40rem;
+  margin: 2.5rem auto 0;
+}
+
+.compile-beams svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.beam-track {
+  fill: none;
+  stroke: var(--mitos-border);
+  stroke-width: 2;
+}
+
+.beam-track.beam-next {
+  stroke-dasharray: 0.02 0.02;
+}
+
+.beam-flow {
+  fill: none;
+  stroke: var(--site-brand);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  /* one dash per path (pathLength=1, gap longer than the path); its head runs from 0 to past the end */
+  stroke-dasharray: calc(var(--beam-length) * 1px) 2px;
+  stroke-dashoffset: calc(var(--beam-length) * 1px);
+  animation: beam-flow 2.6s linear var(--beam-delay, 0s) infinite both;
+}
+
+@keyframes beam-flow {
+  to {
+    /* units required: a unitless calc() is invalid here and would drop the keyframe */
+    stroke-dashoffset: calc(var(--beam-length) * 1px - 1.35px);
+  }
+}
+
+.beam-node rect,
+.beam-node circle {
+  fill: var(--mitos-background);
+  stroke: var(--mitos-border);
+  stroke-width: 1.5;
+}
+
+.beam-hub > rect:first-child {
+  stroke: color-mix(in oklab, var(--site-brand) 45%, var(--mitos-border));
+  filter: drop-shadow(0 6px 16px color-mix(in oklab, var(--site-brand) 22%, transparent));
+}
+
+.beam-node .beam-mark {
+  fill: var(--site-brand);
+  stroke: none;
+}
+
+.beam-node .beam-mark-shadow {
+  fill: color-mix(in oklab, var(--site-brand) 35%, transparent);
+  stroke: none;
+}
+
+.beam-title {
+  font-size: 17px;
+  font-weight: 700;
+  fill: var(--mitos-foreground);
+}
+
+.beam-sub {
+  font-size: 13px;
+  fill: var(--mitos-muted-foreground);
+}
+
+.beam-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.beam-node.beam-next circle {
+  stroke-dasharray: 4 4;
+}
+
+.beam-node.beam-next svg path {
+  fill: var(--mitos-muted-foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .beam-flow {
+    display: none;
+  }
+}
+
+/* Theming: copy column + playground */
+
+.landing-theming {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.landing-theming-copy > a {
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-weight: 500;
+}
+
+.playground {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 1.25rem;
+  padding: 1.25rem;
+  border: 1px solid var(--mitos-border);
+  border-radius: var(--mitos-radius-xl);
+}
+
+.playground-controls {
+  display: grid;
+  /* minmax(0, …): long code lines scroll inside the block instead of widening the card */
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: 1.25rem;
+}
+
+.playground-controls .code-block {
+  margin: 0;
+}
+
+.playground-controls .code-block pre {
+  min-height: 6.5rem;
+  font-size: 0.75rem;
+}
+
+.playground-preview {
+  display: grid;
+  align-content: start;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  border-radius: var(--mitos-radius-lg);
+  background: var(--mitos-muted);
+}
+
+.playground-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.playground-accordion {
+  padding-inline: 1rem;
+  border-radius: var(--mitos-radius-lg);
+  background: var(--mitos-background);
+}
+
+/* Accessibility bento: 4 items, 4 cells (one tall + three) */
+
+.landing-bento {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    "contrast native motion"
+    "contrast keys keys";
+  gap: 1rem;
+  margin-top: 2.25rem;
+}
+
+.landing-tile {
+  padding: 1.5rem;
+  border: 1px solid var(--mitos-border);
+  border-radius: var(--mitos-radius-xl);
+}
+
+.landing-tile h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.landing-tile p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--mitos-muted-foreground);
+}
+
+.landing-tile-contrast {
+  grid-area: contrast;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 18rem;
+  border-color: transparent;
+  background:
+    radial-gradient(90% 70% at 0% 0%, color-mix(in oklab, var(--mitos-primary) 12%, transparent), transparent 70%),
+    var(--mitos-muted);
+}
+
+.landing-tile-contrast .landing-tile-figure {
+  margin-bottom: auto;
+  font-size: clamp(3.5rem, 7vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--mitos-foreground);
+}
+
+.landing-tile-native {
+  grid-area: native;
+}
+
+.landing-tile-motion {
+  grid-area: motion;
+}
+
+.landing-tile-keys {
+  grid-area: keys;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0 10px,
+      color-mix(in oklab, var(--mitos-border) 45%, transparent) 10px 11px
+    ),
+    var(--mitos-background);
+}
+
+.landing kbd {
+  display: inline-block;
+  min-width: 1.4em;
+  padding: 0.1rem 0.4rem;
+  border: 1px solid var(--mitos-border);
+  border-bottom-width: 2px;
+  border-radius: var(--mitos-radius-sm);
+  background: var(--mitos-background);
+  font: inherit;
+  font-size: 0.8em;
+  text-align: center;
+  color: var(--mitos-foreground);
+}
+
+/* Comparison with shadcn/ui: table, then who should pick which */
+
+.compare-table-wrapper {
+  margin-top: 2.25rem;
+  overflow-x: auto;
+  border: 1px solid var(--mitos-border);
+  border-radius: var(--mitos-radius-xl);
+}
+
+.compare-table-wrapper:focus-visible {
+  outline: 2px solid var(--mitos-ring);
+  outline-offset: 2px;
+}
+
+.compare-table {
+  width: 100%;
+  min-width: 40rem;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.compare-table th,
+.compare-table td {
+  padding: 0.9rem 1.25rem;
+  border-bottom: 1px solid var(--mitos-border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.compare-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+.compare-table thead th {
+  font-size: 1rem;
+}
+
+/* the Mitos UI column is the one this page is about */
+.compare-table thead th:nth-child(2),
+.compare-table tbody td:nth-child(2) {
+  background: color-mix(in oklab, var(--site-brand) 6%, var(--mitos-background));
+}
+
+.compare-table tbody th {
+  width: 10rem;
+  font-weight: 600;
+}
+
+.compare-table tbody td:nth-child(3) {
+  color: var(--mitos-muted-foreground);
+}
+
+.compare-choices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.compare-choice {
+  padding: 1.5rem;
+  border: 1px solid var(--mitos-border);
+  border-radius: var(--mitos-radius-xl);
+}
+
+.compare-choice-mitos {
+  border-color: color-mix(in oklab, var(--site-brand) 45%, var(--mitos-border));
+}
+
+.compare-choice h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+}
+
+.compare-choice ul {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding-inline-start: 1.1rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 767px) {
+  .compare-choices {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Closing CTA + footer */
+
+.landing-cta {
+  border-radius: var(--mitos-radius-xl);
+  background:
+    radial-gradient(80% 140% at 100% 0%, color-mix(in oklab, var(--site-brand) 22%, transparent), transparent 65%),
+    color-mix(in oklab, var(--site-brand) 6%, var(--mitos-background));
+  display: grid;
+  justify-items: start;
+  gap: 1.5rem;
+  /* inset by the gutter on narrow screens, like the sections above */
+  width: calc(100% - 2 * var(--site-gutter));
+  max-width: var(--site-width);
+  margin: clamp(4rem, 10vw, 7rem) auto clamp(3rem, 8vw, 5rem);
+  padding: clamp(2rem, 5vw, 3.5rem) var(--site-gutter);
+  box-sizing: border-box;
+}
+
+.landing-cta h2 {
+  margin: 0;
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+}
+
+.landing-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 2rem max(var(--site-gutter), calc((100% - var(--site-width)) / 2));
+  border-top: 1px solid var(--mitos-border);
+  font-size: 0.875rem;
+  color: var(--mitos-muted-foreground);
+}
+
+.landing-footer p {
+  margin: 0;
+}
+
+.landing-footer ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.landing-footer a {
+  text-decoration: none;
+}
+
+.landing-footer a:hover {
+  color: var(--mitos-foreground);
+  text-decoration: underline;
+}
+
+/* Motion: hero enters once, sections rise as they scroll in. Off under reduced motion. */
+
+@keyframes landing-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .landing-hero-copy > *,
+  .landing-hero-preview {
+    animation: landing-rise 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .landing-hero-copy > :nth-child(2) {
+    animation-delay: 80ms;
+  }
+
+  .landing-hero-copy > :nth-child(3) {
+    animation-delay: 160ms;
+  }
+
+  .landing-hero-preview {
+    animation-delay: 240ms;
+  }
+
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: landing-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+
+/* Responsive collapse */
+
+@media (max-width: 1023px) {
+  .landing-theming,
+  .playground {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .landing-hero,
+  .landing-bento {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .landing-bento {
+    grid-template-areas: "contrast" "native" "keys" "motion";
+  }
+
+  .landing-tile-contrast {
+    min-height: 0;
+  }
+}

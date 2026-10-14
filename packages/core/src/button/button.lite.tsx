@@ -40,7 +40,17 @@ const styles = stylex.create({
     whiteSpace: "nowrap",
     font: "inherit",
     fontWeight: 500,
-    borderRadius: radii["--omni-radius-md"],
+    // inside a ButtonGroup, the variables of the group join neighbouring buttons (button-group.lite.tsx)
+    borderRadius: {
+      default: radii["--mitos-radius-md"],
+      ":first-child:not(:last-child)": `var(--mitos-button-group-first, ${radii["--mitos-radius-md"]})`,
+      ":last-child:not(:first-child)": `var(--mitos-button-group-last, ${radii["--mitos-radius-md"]})`,
+      ":not(:first-child):not(:last-child)": `var(--mitos-button-group-middle, ${radii["--mitos-radius-md"]})`,
+    },
+    marginInlineStart: { default: null, ":not(:first-child)": "var(--mitos-button-group-overlap-x, 0px)" },
+    marginBlockStart: { default: null, ":not(:first-child)": "var(--mitos-button-group-overlap-y, 0px)" },
+    // the ring of the focused button stays above its overlapping neighbours
+    zIndex: { default: null, ":focus-visible": 1 },
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "transparent",
@@ -51,7 +61,7 @@ const styles = stylex.create({
     // opaque + offset: contrast is measured against the page, not the button (WCAG 1.4.11)
     outlineWidth: 2,
     outlineOffset: 2,
-    outlineColor: colors["--omni-ring"],
+    outlineColor: colors["--mitos-ring"],
     // same as shadcn: no hover/click feedback once disabled
     pointerEvents: { default: null, ":disabled": "none" },
     opacity: { default: 1, ":disabled": 0.5 },
@@ -61,39 +71,39 @@ const styles = stylex.create({
 const variants = stylex.create({
   default: {
     backgroundColor: {
-      default: colors["--omni-primary"],
-      ":hover": `color-mix(in oklab, ${colors["--omni-primary"]} 90%, transparent)`,
+      default: colors["--mitos-primary"],
+      ":hover": `color-mix(in oklab, ${colors["--mitos-primary"]} 90%, transparent)`,
     },
-    color: colors["--omni-primary-foreground"],
+    color: colors["--mitos-primary-foreground"],
   },
   secondary: {
     backgroundColor: {
-      default: colors["--omni-secondary"],
-      ":hover": `color-mix(in oklab, ${colors["--omni-secondary"]} 80%, transparent)`,
+      default: colors["--mitos-secondary"],
+      ":hover": `color-mix(in oklab, ${colors["--mitos-secondary"]} 80%, transparent)`,
     },
-    color: colors["--omni-secondary-foreground"],
+    color: colors["--mitos-secondary-foreground"],
   },
   outline: {
-    backgroundColor: { default: colors["--omni-background"], ":hover": colors["--omni-accent"] },
-    color: { default: colors["--omni-foreground"], ":hover": colors["--omni-accent-foreground"] },
-    borderColor: colors["--omni-border"],
+    backgroundColor: { default: colors["--mitos-background"], ":hover": colors["--mitos-accent"] },
+    color: { default: colors["--mitos-foreground"], ":hover": colors["--mitos-accent-foreground"] },
+    borderColor: colors["--mitos-border"],
   },
   ghost: {
-    backgroundColor: { default: "transparent", ":hover": colors["--omni-accent"] },
-    color: { default: colors["--omni-foreground"], ":hover": colors["--omni-accent-foreground"] },
+    backgroundColor: { default: "transparent", ":hover": colors["--mitos-accent"] },
+    color: { default: colors["--mitos-foreground"], ":hover": colors["--mitos-accent-foreground"] },
   },
   link: {
     backgroundColor: "transparent",
-    color: colors["--omni-primary"],
+    color: colors["--mitos-primary"],
     textDecorationLine: { default: "none", ":hover": "underline" },
     textUnderlineOffset: 4,
   },
   destructive: {
     backgroundColor: {
-      default: colors["--omni-destructive"],
-      ":hover": `color-mix(in oklab, ${colors["--omni-destructive"]} 90%, transparent)`,
+      default: colors["--mitos-destructive"],
+      ":hover": `color-mix(in oklab, ${colors["--mitos-destructive"]} 90%, transparent)`,
     },
-    color: colors["--omni-destructive-foreground"],
+    color: colors["--mitos-destructive-foreground"],
   },
 });
 
@@ -105,7 +115,18 @@ const sizes = stylex.create({
   xl: { height: "2.75rem", paddingInline: "1.75rem", fontSize: "1rem" },
   "2xl": { height: "3rem", paddingInline: "2rem", fontSize: "1.125rem" },
   "3xl": { height: "3.5rem", paddingInline: "2.25rem", fontSize: "1.25rem" },
-  "4xl": { height: "4rem", paddingInline: "2.5rem", fontSize: "1.5rem", borderRadius: radii["--omni-radius-lg"] },
+  "4xl": {
+    height: "4rem",
+    paddingInline: "2.5rem",
+    fontSize: "1.5rem",
+    // same group conditions as base, with lg as the radius outside a group
+    borderRadius: {
+      default: radii["--mitos-radius-lg"],
+      ":first-child:not(:last-child)": `var(--mitos-button-group-first, ${radii["--mitos-radius-lg"]})`,
+      ":last-child:not(:first-child)": `var(--mitos-button-group-last, ${radii["--mitos-radius-lg"]})`,
+      ":not(:first-child):not(:last-child)": `var(--mitos-button-group-middle, ${radii["--mitos-radius-lg"]})`,
+    },
+  },
 });
 
 export default function Button(props: ButtonProps) {

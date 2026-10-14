@@ -9,13 +9,13 @@ import pkg from "./package.json" with { type: "json" };
 const reactOutput = fileURLToPath(new URL("./output/react/src", import.meta.url));
 
 // shortcut: StyleX emits its priority-0 group unlayered when it starts with a rule of priority exactly 0
-// (any stylex.keyframes), which drags the --omni-* tokens out of their layer and breaks the "overrides
+// (any stylex.keyframes), which drags the --mitos-* tokens out of their layer and breaks the "overrides
 // win regardless of load order" guarantee. Move those rules into the layer StyleX already declares for
 // them (priority1). Remove once StyleX layers that group itself; tokens.test.ts guards the result.
 function layerStrayRules(): Plugin {
   let outDir = "";
   return {
-    name: "omni:layer-stray-rules",
+    name: "mitos:layer-stray-rules",
     configResolved(config) {
       outDir = config.build.outDir;
     },
@@ -47,8 +47,8 @@ function layerStrayRules(): Plugin {
 // Builds the compiled React output into a framework-agnostic-to-consume package:
 // plain JS + one precompiled CSS file, so consumers need no StyleX setup.
 export default defineConfig({
-  // useCSSLayers keeps defaults (incl. --omni-* tokens) in @layer, so any unlayered consumer CSS
-  // like `:root { --omni-primary: red }` overrides them regardless of load order. Don't disable.
+  // useCSSLayers keeps defaults (incl. --mitos-* tokens) in @layer, so any unlayered consumer CSS
+  // like `:root { --mitos-primary: red }` overrides them regardless of load order. Don't disable.
   plugins: [stylex.vite({ useCSSLayers: true, aliases: { "@/*": [`${reactOutput}/*`] } }), layerStrayRules()],
   resolve: { alias: { "@": reactOutput } },
   build: {

@@ -2,6 +2,7 @@ import { onMount, useStore } from "@builder.io/mitosis";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { colors, radii } from "@/config/tokens.stylex";
+import { field } from "@/config/field";
 
 const OWN_PROPS = [
   // Props the component consumes itself; everything else is forwarded to the <input>.
@@ -14,7 +15,7 @@ export type InputProps = {
   label: any;
   description?: any;
   error?: any;
-  type?: "text" | "email" | "password" | "search" | "tel" | "url" | "number";
+  type?: "text" | "email" | "password" | "search" | "tel" | "url" | "number" | "date" | "time" | "datetime-local" | "file" | "color";
   id?: string;
   class?: string;
   // native attributes below are forwarded as-is to the <input>
@@ -30,6 +31,13 @@ export type InputProps = {
   minLength?: number;
   maxLength?: number;
   pattern?: string;
+  // date and time types
+  min?: string | number;
+  max?: string | number;
+  step?: string | number;
+  // file type
+  accept?: string;
+  multiple?: boolean;
   onInput?: (event: any) => void;
   onChange?: (event: any) => void;
   onFocus?: (event: any) => void;
@@ -39,41 +47,37 @@ export type InputProps = {
 };
 
 const styles = stylex.create({
-  field: { display: "grid", gap: "0.375rem" },
-  label: { display: "grid", gap: "0.375rem" },
-  labelText: { fontSize: "0.875rem", fontWeight: 500, color: colors["--omni-foreground"] },
-  required: { color: colors["--omni-destructive"] },
+  // the box, focus ring and invalid state come from config/field.ts; only what differs is here
   control: {
-    boxSizing: "border-box",
-    width: "100%",
-    minHeight: "2.25rem",
-    paddingBlock: "0.375rem",
-    paddingInline: "0.75rem",
-    font: "inherit",
-    fontSize: "0.875rem",
-    color: colors["--omni-foreground"],
-    backgroundColor: colors["--omni-background"],
-    borderWidth: 1,
-    borderStyle: "solid",
-    // --omni-input reaches 3:1 against the background: the border identifies the field (WCAG 1.4.11)
-    borderColor: colors["--omni-input"],
-    borderRadius: radii["--omni-radius-md"],
     transitionProperty: "border-color",
     transitionDuration: { default: "150ms", "@media (prefers-reduced-motion: reduce)": "0s" },
-    outlineStyle: { default: "none", ":focus-visible": "solid" },
-    outlineWidth: 2,
-    outlineOffset: 2,
-    outlineColor: colors["--omni-ring"],
-    "::placeholder": { color: colors["--omni-muted-foreground"], opacity: 1 },
+    "::placeholder": { color: colors["--mitos-muted-foreground"], opacity: 1 },
     cursor: { default: "text", ":disabled": "not-allowed" },
     opacity: { default: 1, ":disabled": 0.5 },
   },
-  invalid: {
-    borderColor: colors["--omni-destructive"],
-    outlineColor: colors["--omni-destructive"],
+  // the browser button inside a file input, styled like a secondary Button
+  file: {
+    cursor: { default: "pointer", ":disabled": "not-allowed" },
+    "::file-selector-button": {
+      marginInlineEnd: "0.75rem",
+      paddingBlock: "0.125rem",
+      paddingInline: "0.625rem",
+      font: "inherit",
+      fontWeight: 500,
+      color: colors["--mitos-secondary-foreground"],
+      backgroundColor: colors["--mitos-secondary"],
+      borderStyle: "none",
+      borderRadius: radii["--mitos-radius-sm"],
+      cursor: "pointer",
+    },
   },
-  description: { margin: 0, fontSize: "0.8125rem", color: colors["--omni-muted-foreground"] },
-  error: { margin: 0, fontSize: "0.8125rem", fontWeight: 500, color: colors["--omni-destructive"] },
+  // a compact swatch instead of a full-width bar
+  color: {
+    width: "3.5rem",
+    paddingBlock: "0.25rem",
+    paddingInline: "0.25rem",
+    cursor: { default: "pointer", ":disabled": "not-allowed" },
+  },
 });
 
 export default function Input(props: InputProps) {
@@ -95,17 +99,17 @@ export default function Input(props: InputProps) {
   });
 
   onMount(() => {
-    if (!props.id) state.generatedId = `omni-input-${Math.random().toString(36).slice(2, 10)}`;
+    if (!props.id) state.generatedId = `mitos-input-${Math.random().toString(36).slice(2, 10)}`;
   });
 
   return (
-    <div class={clsx(stylex.props(styles.field).className, props.class)}>
+    <div class={clsx(stylex.props(field.stack).className, props.class)}>
       {/* wrapping label: the field is named from the server render on, no id needed */}
-      <label class={stylex.props(styles.label).className}>
-        <span class={stylex.props(styles.labelText).className}>
+      <label class={stylex.props(field.labelBox).className}>
+        <span class={stylex.props(field.label, field.labelText).className}>
           {props.label}
           {props.required && (
-            <span aria-hidden="true" class={stylex.props(styles.required).className}>
+            <span aria-hidden="true" class={stylex.props(field.required).className}>
               {" *"}
             </span>
           )}
@@ -116,16 +120,23 @@ export default function Input(props: InputProps) {
           type={props.type ?? "text"}
           aria-invalid={props.error ? true : undefined}
           aria-describedby={state.describedBy}
-          class={stylex.props(styles.control, props.error && styles.invalid).className}
+          class={stylex.props(
+            field.box,
+            field.focusRing,
+            styles.control,
+            props.type === "file" && styles.file,
+            props.type === "color" && styles.color,
+            props.error && field.invalid,
+          ).className}
         />
       </label>
       {props.description && (
-        <p id={state.partId("description")} class={stylex.props(styles.description).className}>
+        <p id={state.partId("description")} class={stylex.props(field.description).className}>
           {props.description}
         </p>
       )}
       {props.error && (
-        <p id={state.partId("error")} class={stylex.props(styles.error).className}>
+        <p id={state.partId("error")} class={stylex.props(field.error).className}>
           {props.error}
         </p>
       )}

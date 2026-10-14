@@ -67,6 +67,80 @@ describe("Svelte build: client", () => {
     expect(spy).toHaveBeenCalledOnce();
   });
 
+  it("falls back to initials when the Avatar image fails", async () => {
+    await show(`<Avatar src="https://example.com/ada.png" alt="Ada Lovelace" />`);
+    document.querySelector("img")!.dispatchEvent(new Event("error"));
+    flushSync();
+    const fallback = document.querySelector('[role="img"]')!;
+    expect(fallback.tagName).toBe("SPAN");
+    expect(fallback.textContent).toBe("AL");
+  });
+
+  it("keeps the buttons of a ButtonGroup working", async () => {
+    const spy = vi.fn();
+    await show(`<ButtonGroup aria-label="Alignment"><Button onClick={spy}>Left</Button><Button>Right</Button></ButtonGroup>`, { spy });
+    button("Left").click();
+    expect(spy).toHaveBeenCalledOnce();
+  });
+
+  it("sets the mixed state of Checkbox and toggles it", async () => {
+    await show(`<Checkbox label="Select all" indeterminate />`);
+    const checkbox = document.querySelector<HTMLInputElement>('input[type="checkbox"]')!;
+    expect(checkbox.indeterminate).toBe(true);
+    checkbox.click();
+    expect(checkbox.checked).toBe(true);
+  });
+
+  it("selects the default option of RadioGroup, then the clicked one", async () => {
+    await show(`<RadioGroup legend="Plan" name="plan" defaultValue="pro" options={[{ value: "free", label: "Free" }, { value: "pro", label: "Pro" }]} />`);
+    const [free, pro] = Array.from(document.querySelectorAll<HTMLInputElement>('input[type="radio"]'));
+    expect(pro!.checked).toBe(true);
+    free!.click();
+    flushSync();
+    expect([free!.checked, pro!.checked]).toEqual([true, false]);
+  });
+
+  it("moves between Tabs with the arrows", async () => {
+    await show(`<Tabs id="t" label="Settings" items={[{ value: "a", label: "Account", content: "A" }, { value: "b", label: "Billing", content: "B" }]} />`);
+    const [account, billing] = Array.from(document.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    account!.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight", bubbles: true }));
+    flushSync();
+    expect(document.activeElement).toBe(billing);
+    expect(billing!.getAttribute("aria-selected")).toBe("true");
+    expect(document.querySelector('[role="tabpanel"]:not([hidden])')!.textContent).toBe("B");
+  });
+
+  it("describes the Tooltip trigger and shows the tooltip on focus", async () => {
+    await show(`<Tooltip id="tip" content="Copy to clipboard"><Button>Copy</Button></Tooltip>`);
+    const trigger = button("Copy");
+    expect(trigger.getAttribute("aria-describedby")).toBe("tip");
+    trigger.focus();
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    flushSync();
+    expect(document.getElementById("tip")!.hidden).toBe(false);
+  });
+
+  it("opens the Menu and runs an item", async () => {
+    const spy = vi.fn();
+    await show(`<Menu label="Actions" items={[{ label: "Edit", onSelect: spy }]} />`, { spy });
+    button("Actions").click();
+    flushSync();
+    expect(button("Actions").getAttribute("aria-expanded")).toBe("true");
+    button("Edit").click();
+    flushSync();
+    expect(spy).toHaveBeenCalledOnce();
+    expect(button("Actions").getAttribute("aria-expanded")).toBe("false");
+  });
+
+  it("hands SideNav clicks to onNavigate", async () => {
+    const spy = vi.fn();
+    await show(`<SideNav label="Docs" onNavigate={spy} groups={[{ items: [{ label: "Guide", href: "/guide" }] }]} />`, { spy });
+    const link = document.querySelector("a")!;
+    const followed = link.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, button: 0 }));
+    expect(followed).toBe(false);
+    expect(spy.mock.calls[0]![0]).toBe("/guide");
+  });
+
   it("shows toasts in the Toaster", async () => {
     await show(`<Toaster /><Button onClick={() => toast({ title: "Saved" })}>Notify</Button>`);
     button("Notify").click();

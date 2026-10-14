@@ -8,7 +8,7 @@ const [lightCss, darkCss] = css.split("@media (prefers-color-scheme: dark)");
 function readTokens(block: string) {
   const tokens: Record<string, string> = {};
   // first match wins: lightningcss writes the hex fallback before its lab() version
-  for (const [, name, hex] of block.matchAll(/--omni-([\w-]+):\s*(#[0-9a-f]{3,8})\b/gi)) tokens[name!] ??= hex!;
+  for (const [, name, hex] of block.matchAll(/--mitos-([\w-]+):\s*(#[0-9a-f]{3,8})\b/gi)) tokens[name!] ??= hex!;
   return tokens;
 }
 
@@ -69,17 +69,18 @@ describe.each([
   const NON_TEXT = 3; // WCAG 1.4.11
 
   it.each([
-    ["default", t["primary-foreground"], t.primary],
+    ["default (button, badge)", t["primary-foreground"], t.primary],
     ["default:hover", t["primary-foreground"], over(t.primary!, 0.9, t.background!)],
-    ["secondary", t["secondary-foreground"], t.secondary],
+    ["secondary (button, badge)", t["secondary-foreground"], t.secondary],
     ["secondary:hover", t["secondary-foreground"], over(t.secondary!, 0.8, t.background!)],
-    ["outline / ghost", t.foreground, t.background],
+    ["outline / ghost (button, badge)", t.foreground, t.background],
     ["outline / ghost:hover", t["accent-foreground"], t.accent],
     ["link", t.primary, t.background],
-    ["destructive", t["destructive-foreground"], t.destructive],
+    ["destructive (button, badge)", t["destructive-foreground"], t.destructive],
     ["destructive:hover", t["destructive-foreground"], over(t.destructive!, 0.9, t.background!)],
     ["muted text (dialog description)", t["muted-foreground"], t.background],
     ["field error message", t.destructive, t.background],
+    ["avatar initials", t.foreground, t.muted],
   ])("%s text contrast ≥ 4.5:1", (_, fg, bg) => {
     expect(contrast(fg!, bg!)).toBeGreaterThanOrEqual(TEXT);
   });

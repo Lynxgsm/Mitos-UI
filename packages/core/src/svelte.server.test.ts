@@ -15,6 +15,27 @@ describe("Svelte build: server", async () => {
     Input: await html(`<Input id="email" label="Email" error="Required" required />`),
     Textarea: await html(`<Textarea label="Message" />`),
     Toaster: await html(`<Toaster />`),
+    Avatar: await html(`<Avatar src="https://example.com/ada.png" alt="Ada Lovelace" /><Avatar alt="Grace Hopper" />`),
+    Badge: await html(`<Badge variant="outline" id="status">Passing</Badge>`),
+    Card: await html(`<Card title="Plan" description="Billed monthly." headingLevel={2}>Body</Card>`),
+    ButtonGroup: await html(`<ButtonGroup aria-label="Alignment"><Button>Left</Button><Button>Right</Button></ButtonGroup>`),
+    Skeleton: await html(`<Skeleton class="line" />`),
+    Checkbox: await html(`<Checkbox id="terms" label="Terms" error="Required." />`),
+    Switch: await html(`<Switch label="Airplane mode" />`),
+    RadioGroup: await html(
+      `<RadioGroup legend="Plan" name="plan" defaultValue="pro" options={[{ value: "free", label: "Free" }, { value: "pro", label: "Pro" }]} />`,
+    ),
+    Select: await html(`<Select label="Country" placeholder="Choose" options={[{ value: "fr", label: "France" }]} />`),
+    Slider: await html(`<Slider label="Volume" min={0} max={10} />`),
+    Fieldset: await html(`<Fieldset legend="Address"><Input label="City" /></Fieldset>`),
+    Tabs: await html(
+      `<Tabs id="settings" label="Settings" items={[{ value: "a", label: "Account", content: "Account panel" }, { value: "b", label: "Billing", content: "Billing panel" }]} />`,
+    ),
+    Tooltip: await html(`<Tooltip id="tip" content="Copy to clipboard"><Button>Copy</Button></Tooltip>`),
+    Menu: await html(`<Menu id="actions" label="Actions" items={[{ label: "Edit", onSelect: () => {} }]} />`),
+    SideNav: await html(
+      `<SideNav label="Docs" currentHref="/b" groups={[{ title: "Guides", items: [{ label: "A", href: "/a" }, { label: "B", href: "/b" }] }]} />`,
+    ),
   };
 
   it("renders Button with its defaults, forwarded attributes and merged class", () => {
@@ -44,6 +65,58 @@ describe("Svelte build: server", async () => {
   it("renders Textarea and Toaster", () => {
     expect(renders.Textarea).toContain("<textarea");
     expect(renders.Toaster).toContain('aria-label="Notifications"');
+  });
+
+  it("renders Avatar as an image, or as initials with the same name", () => {
+    expect(renders.Avatar).toMatch(/<img[^>]* src="https:\/\/example.com\/ada.png"[^>]* alt="Ada Lovelace"/);
+    expect(renders.Avatar).toMatch(/<span role="img" aria-label="Grace Hopper"[^>]*>GH<\/span>/);
+  });
+
+  it("renders Badge as a span with forwarded attributes", () => {
+    // children may come wrapped in hydration markers (<!---->)
+    expect(renders.Badge).toMatch(/<span[^>]* id="status"[^>]*>(<!---->)?Passing(<!---->)?<\/span>/);
+  });
+
+  it("renders Card with its title as a heading", () => {
+    expect(renders.Card).toMatch(/<div role="heading" aria-level="2"[^>]*>.*Plan/);
+    expect(renders.Card).toContain("Billed monthly.");
+    expect(renders.Card).toContain("Body");
+  });
+
+  it("renders ButtonGroup as a named group of buttons", () => {
+    expect(renders.ButtonGroup).toMatch(/<div[^>]* aria-label="Alignment"[^>]* role="group"|<div[^>]* role="group"[^>]* aria-label="Alignment"/);
+    expect(renders.ButtonGroup.match(/<button/g)?.length).toBe(2);
+  });
+
+  it("renders Skeleton hidden from assistive technologies", () => {
+    expect(renders.Skeleton).toMatch(/<div[^>]* aria-hidden="true"[^>]* class="[^"]* line"/);
+  });
+
+  it("renders the form controls on their native elements", () => {
+    expect(renders.Checkbox).toMatch(/<input[^>]* type="checkbox"[^>]* aria-invalid="true"[^>]* aria-describedby="terms-error"/);
+    expect(renders.Switch).toMatch(/<input[^>]* type="checkbox"[^>]* role="switch"|<input[^>]* role="switch"[^>]* type="checkbox"/);
+    expect(renders.RadioGroup).toMatch(/<fieldset[^>]* role="radiogroup"/);
+    expect(renders.RadioGroup).toMatch(/<input[^>]* value="pro"[^>]* checked/);
+    expect(renders.Select).toMatch(/<select[^>]*>.*<option value="">.*Choose.*<option value="fr"/s);
+    expect(renders.Slider).toContain("--mitos-slider-fill:50%");
+    expect(renders.Slider).toMatch(/<input[^>]* type="range"[^>]* min="0"|<input[^>]* min="0"[^>]* type="range"/);
+    expect(renders.Fieldset).toMatch(/<fieldset[^>]*>.*<legend[^>]*>.*Address.*<\/legend>.*<input/s);
+  });
+
+  it("renders Tabs, Tooltip and Menu with their ARIA patterns", () => {
+    expect(renders.Tabs).toMatch(/<div role="tablist"[^>]* aria-label="Settings"/);
+    expect(renders.Tabs).toMatch(/<button[^>]* role="tab"[^>]* aria-selected="true"[^>]* aria-controls="settings-panel-0"/);
+    expect(renders.Tabs).toMatch(/<div role="tabpanel"[^>]* id="settings-panel-1"[^>]* hidden/);
+    expect(renders.Tooltip).toMatch(/<span[^>]* role="tooltip" id="tip"[^>]* hidden/);
+    expect(renders.Menu).toMatch(/<button[^>]* aria-haspopup="menu"[^>]* aria-expanded="false"/);
+    expect(renders.Menu).toMatch(/<div[^>]* role="menu"[^>]* aria-labelledby="actions-trigger"[^>]* hidden/);
+  });
+
+  it("renders SideNav as a named nav with the current link marked", () => {
+    expect(renders.SideNav).toMatch(/<nav[^>]* aria-label="Docs"/);
+    expect(renders.SideNav).toMatch(/<ul aria-label="Guides"/);
+    expect(renders.SideNav).toMatch(/<a href="\/b" aria-current="page"/);
+    expect(renders.SideNav).not.toMatch(/<a href="\/a" aria-current/);
   });
 
   const css = readFileSync("dist/react/assets/stylex.css", "utf8");

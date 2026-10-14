@@ -31,14 +31,14 @@ export type AccordionProps = {
 const DURATION = { default: "300ms", "@media (prefers-reduced-motion: reduce)": "0s" };
 const EASING = "cubic-bezier(0.65, 0, 0.35, 1)";
 
-// panel: animating grid rows 0fr -> 1fr reaches the content's natural height without measuring it in JS.
-// visibility flips at the end of the close transition, so collapsed text can't be found or selected.
+// panel: animating grid rows 0fr -> 1fr reaches the natural height of the content without measuring it in JS.
+// visibility flips at the end of the close transition, so collapsed text cannot be found or selected.
 const styles = stylex.create({
   root: { margin: 0 },
   item: {
     borderBottomWidth: 1,
     borderBottomStyle: "solid",
-    borderBottomColor: colors["--omni-border"],
+    borderBottomColor: colors["--mitos-border"],
   },
   term: { margin: 0 },
   trigger: {
@@ -53,7 +53,7 @@ const styles = stylex.create({
     font: "inherit",
     fontWeight: 500,
     textAlign: "start",
-    color: colors["--omni-foreground"],
+    color: colors["--mitos-foreground"],
     backgroundColor: "transparent",
     borderStyle: "none",
     cursor: "pointer",
@@ -62,7 +62,7 @@ const styles = stylex.create({
     outlineStyle: { default: "none", ":focus-visible": "solid" },
     outlineWidth: 2,
     outlineOffset: 2,
-    outlineColor: colors["--omni-ring"],
+    outlineColor: colors["--mitos-ring"],
     pointerEvents: { default: null, ":disabled": "none" },
     opacity: { default: 1, ":disabled": 0.5 },
   },
@@ -70,7 +70,7 @@ const styles = stylex.create({
     flexShrink: 0,
     width: "1rem",
     height: "1rem",
-    color: colors["--omni-muted-foreground"],
+    color: colors["--mitos-muted-foreground"],
     strokeWidth: 2,
     strokeLinecap: "round",
     strokeLinejoin: "round",
@@ -142,7 +142,7 @@ export default function Accordion(props: AccordionProps) {
   });
 
   onMount(() => {
-    if (!props.id) state.generatedId = `omni-accordion-${Math.random().toString(36).slice(2, 10)}`;
+    if (!props.id) state.generatedId = `mitos-accordion-${Math.random().toString(36).slice(2, 10)}`;
   });
 
   return (

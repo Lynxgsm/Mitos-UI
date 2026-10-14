@@ -120,4 +120,31 @@ describe("Input", () => {
     for (const prop of ["label", "description", "error"]) expect(field.hasAttribute(prop)).toBe(false);
     expect((container.firstElementChild as HTMLElement).classList.contains("custom")).toBe(true);
   });
+
+  it("supports date, time, file and color types, with their own styles for file and color", () => {
+    render(
+      <>
+        <Input label="Birthday" type="date" min="1900-01-01" />
+        <Input label="Alarm" type="time" step={60} />
+        <Input label="Meeting" type="datetime-local" />
+        <Input label="Avatar" type="file" accept="image/*" />
+        <Input label="Brand color" type="color" />
+        <Input label="Name" />
+      </>,
+    );
+    const field = (name: string) => screen.getByLabelText(name) as HTMLInputElement;
+    expect(["Birthday", "Alarm", "Meeting", "Avatar", "Brand color"].map((name) => field(name).type)).toEqual([
+      "date",
+      "time",
+      "datetime-local",
+      "file",
+      "color",
+    ]);
+    expect(field("Birthday").min).toBe("1900-01-01");
+    expect(field("Avatar").accept).toBe("image/*");
+    // file and color get extra styles; date keeps the text field ones
+    expect(field("Avatar").className).not.toBe(field("Name").className);
+    expect(field("Brand color").className).not.toBe(field("Name").className);
+    expect(field("Birthday").className).toBe(field("Name").className);
+  });
 });

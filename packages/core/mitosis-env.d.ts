@@ -4,6 +4,10 @@ declare module "@builder.io/mitosis/jsx-runtime" {
     interface HTMLAttributes<T> {
       inert?: boolean;
     }
+    interface InputHTMLAttributes<T> {
+      // compiled to defaultChecked in React and to an unbound checked attribute in Svelte (mitosis.config.cjs)
+      defaultChecked?: boolean;
+    }
     interface DialogHtmlAttributes<T> {
       onCancel?: (event: Event) => void;
       onClose?: (event: Event) => void;
