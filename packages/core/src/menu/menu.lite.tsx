@@ -1,4 +1,4 @@
-import { For, onMount, useRef, useStore } from "@builder.io/mitosis";
+import { For, onMount, onUpdate, useRef, useStore } from "@builder.io/mitosis";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { colors, radii } from "@/config/tokens.stylex";
@@ -57,7 +57,6 @@ const styles = stylex.create({
   menu: {
     position: "absolute",
     zIndex: 50,
-    display: "grid",
     minWidth: "max(100%, 10rem)",
     padding: "0.25rem",
     boxSizing: "border-box",
@@ -68,6 +67,8 @@ const styles = stylex.create({
     backgroundColor: colors["--omni-background"],
     boxShadow: `0 8px 24px -8px ${colors["--omni-overlay"]}`,
   },
+  // only while open: a display value would override the hidden attribute and keep the closed menu on screen
+  open: { display: "grid" },
   below: { top: "calc(100% + 0.25rem)" },
   above: { bottom: "calc(100% + 0.25rem)" },
   // shortcut: start and end are measured as left and right, so a right-to-left page gets the sides swapped;
@@ -106,6 +107,8 @@ export default function Menu(props: MenuProps) {
     above: false,
     alignment: props.align ?? "start",
     placed: false,
+    // item to focus once the menu is placed and visible: browsers do not focus hidden elements
+    pendingFocus: "",
     // a random id would differ between server and client: without an `id` prop it is set after mount
     generatedId: "",
     get attributes() {
@@ -137,18 +140,12 @@ export default function Menu(props: MenuProps) {
       else state.alignment = fitsEnd || !fitsStart ? "end" : "start";
       state.placed = true;
     },
-    // opens, then places the menu and focuses an item once it is rendered
+    // opens, places the menu once rendered, then focuses an item (see the onUpdate below)
     openAt(position: "first" | "last") {
+      state.pendingFocus = position;
       state.placed = false;
       state.open = true;
-      requestAnimationFrame(() => {
-        state.place();
-        // a frame later: the menu is still invisible until placed, and browsers do not focus invisible elements
-        requestAnimationFrame(() => {
-          const entries = state.menuItems;
-          entries[position === "first" ? 0 : entries.length - 1]?.focus();
-        });
-      });
+      requestAnimationFrame(() => state.place());
     },
     close(restoreFocus: boolean) {
       state.open = false;
@@ -190,6 +187,10 @@ export default function Menu(props: MenuProps) {
       event.preventDefault();
       entries[next]?.focus();
     },
+    // the pointer moves the focus, like the arrows: one highlighted item at a time, and the keys go on from it
+    hover(item: MenuItem, event: any) {
+      if (!item.disabled) event.currentTarget.focus();
+    },
     choose(item: MenuItem) {
       if (item.disabled) return;
       state.close(true);
@@ -204,6 +205,14 @@ export default function Menu(props: MenuProps) {
   onMount(() => {
     if (!props.id) state.generatedId = `omni-menu-${Math.random().toString(36).slice(2, 10)}`;
   });
+
+  // runs after the render that shows the placed menu, so the item can take the focus
+  onUpdate(() => {
+    if (!state.placed || !state.pendingFocus) return;
+    const entries = state.menuItems;
+    entries[state.pendingFocus === "first" ? 0 : entries.length - 1]?.focus();
+    state.pendingFocus = "";
+  }, [state.placed]);
 
   return (
     <div
@@ -239,6 +248,7 @@ export default function Menu(props: MenuProps) {
         style={state.positionStyle}
         class={stylex.props(
           styles.menu,
+          state.open && styles.open,
           state.above ? styles.above : styles.below,
           state.alignment === "end" ? styles.end : styles.start,
         ).className}
@@ -254,6 +264,7 @@ export default function Menu(props: MenuProps) {
               aria-disabled={item.disabled ? true : undefined}
               class={stylex.props(styles.item, item.disabled && styles.disabled).className}
               onClick={() => state.choose(item)}
+              onMouseEnter={(event) => state.hover(item, event)}
             >
               {item.label}
             </button>

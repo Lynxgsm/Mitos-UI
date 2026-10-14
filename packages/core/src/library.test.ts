@@ -74,6 +74,7 @@ describe("public API", () => {
         "Menu",
         "RadioGroup",
         "Select",
+        "SideNav",
         "Skeleton",
         "Slider",
         "Switch",

@@ -94,17 +94,28 @@ toast({ title: "Changes saved", description: "Your profile is up to date." });`}
             { prop: "variant", type: '"default" | "destructive"', default: '"default"', description: "Destructive is announced assertively." },
             { prop: "duration", type: "number", default: "5000", description: "Milliseconds before dismissal; Infinity keeps it." },
             { prop: "action", type: "{ label: string; onClick: () => void }", description: "One action; disables auto-dismiss." },
+            { prop: "toaster", type: "string", description: "Name of the Toaster that shows it; the unnamed Toaster by default." },
           ]}
         />
         <p>
           <code>toast()</code> returns an id for <code>dismissToast(id)</code>; <code>dismissAllToasts()</code> clears the
           queue.
         </p>
+        <p>
+          One unnamed Toaster usually shows every toast. Add a named one when part of the page needs its own, for example
+          a themed preview: <code>toast({"{"} title, toaster: "preview" {"}"})</code> reaches only{" "}
+          <code>&lt;Toaster name="preview" /&gt;</code>. The Create page does exactly that.
+        </p>
         <h3>Toaster</h3>
         <FrameworkPropsTable
           component="Toaster"
           rows={[
             { prop: "label", type: "string", default: '"Notifications"', description: "Name of the region." },
+            {
+              prop: "name",
+              type: "string",
+              description: "Shows only the toasts sent with this toaster name, e.g. a Toaster inside a preview or a panel.",
+            },
             { prop: "class", type: "string", description: "Extra classes for the region." },
             { prop: "aria-* / data-*", type: "—", description: "Forwarded to the region." },
           ]}

@@ -132,6 +132,15 @@ describe("Svelte build: client", () => {
     expect(button("Actions").getAttribute("aria-expanded")).toBe("false");
   });
 
+  it("hands SideNav clicks to onNavigate", async () => {
+    const spy = vi.fn();
+    await show(`<SideNav label="Docs" onNavigate={spy} groups={[{ items: [{ label: "Guide", href: "/guide" }] }]} />`, { spy });
+    const link = document.querySelector("a")!;
+    const followed = link.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, button: 0 }));
+    expect(followed).toBe(false);
+    expect(spy.mock.calls[0]![0]).toBe("/guide");
+  });
+
   it("shows toasts in the Toaster", async () => {
     await show(`<Toaster /><Button onClick={() => toast({ title: "Saved" })}>Notify</Button>`);
     button("Notify").click();

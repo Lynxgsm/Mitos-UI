@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlocksRouteImport } from './routes/blocks'
 import { Route as CreateRouteImport } from './routes/create'
 import { Route as DocsRouteRouteImport } from './routes/docs/route'
 import { Route as DocsIndexRouteImport } from './routes/docs/index'
@@ -28,6 +29,7 @@ import { Route as DocsComponentsInputRouteImport } from './routes/docs/component
 import { Route as DocsComponentsMenuRouteImport } from './routes/docs/components/menu'
 import { Route as DocsComponentsRadioGroupRouteImport } from './routes/docs/components/radio-group'
 import { Route as DocsComponentsSelectRouteImport } from './routes/docs/components/select'
+import { Route as DocsComponentsSideNavRouteImport } from './routes/docs/components/side-nav'
 import { Route as DocsComponentsSkeletonRouteImport } from './routes/docs/components/skeleton'
 import { Route as DocsComponentsSliderRouteImport } from './routes/docs/components/slider'
 import { Route as DocsComponentsSwitchRouteImport } from './routes/docs/components/switch'
@@ -39,6 +41,11 @@ import { Route as DocsComponentsTooltipRouteImport } from './routes/docs/compone
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlocksRoute = BlocksRouteImport.update({
+  id: '/blocks',
+  path: '/blocks',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreateRoute = CreateRouteImport.update({
@@ -133,6 +140,11 @@ const DocsComponentsSelectRoute = DocsComponentsSelectRouteImport.update({
   path: '/components/select',
   getParentRoute: () => DocsRouteRoute,
 } as any)
+const DocsComponentsSideNavRoute = DocsComponentsSideNavRouteImport.update({
+  id: '/components/side-nav',
+  path: '/components/side-nav',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
 const DocsComponentsSkeletonRoute = DocsComponentsSkeletonRouteImport.update({
   id: '/components/skeleton',
   path: '/components/skeleton',
@@ -172,6 +184,7 @@ const DocsComponentsTooltipRoute = DocsComponentsTooltipRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
+  '/blocks': typeof BlocksRoute
   '/create': typeof CreateRoute
   '/docs/installation': typeof DocsInstallationRoute
   '/docs/theming': typeof DocsThemingRoute
@@ -189,6 +202,7 @@ export interface FileRoutesByFullPath {
   '/docs/components/menu': typeof DocsComponentsMenuRoute
   '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
+  '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
   '/docs/components/skeleton': typeof DocsComponentsSkeletonRoute
   '/docs/components/slider': typeof DocsComponentsSliderRoute
   '/docs/components/switch': typeof DocsComponentsSwitchRoute
@@ -199,6 +213,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/blocks': typeof BlocksRoute
   '/create': typeof CreateRoute
   '/docs/installation': typeof DocsInstallationRoute
   '/docs/theming': typeof DocsThemingRoute
@@ -216,6 +231,7 @@ export interface FileRoutesByTo {
   '/docs/components/menu': typeof DocsComponentsMenuRoute
   '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
+  '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
   '/docs/components/skeleton': typeof DocsComponentsSkeletonRoute
   '/docs/components/slider': typeof DocsComponentsSliderRoute
   '/docs/components/switch': typeof DocsComponentsSwitchRoute
@@ -228,6 +244,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
+  '/blocks': typeof BlocksRoute
   '/create': typeof CreateRoute
   '/docs/installation': typeof DocsInstallationRoute
   '/docs/theming': typeof DocsThemingRoute
@@ -245,6 +262,7 @@ export interface FileRoutesById {
   '/docs/components/menu': typeof DocsComponentsMenuRoute
   '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
   '/docs/components/select': typeof DocsComponentsSelectRoute
+  '/docs/components/side-nav': typeof DocsComponentsSideNavRoute
   '/docs/components/skeleton': typeof DocsComponentsSkeletonRoute
   '/docs/components/slider': typeof DocsComponentsSliderRoute
   '/docs/components/switch': typeof DocsComponentsSwitchRoute
@@ -258,6 +276,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/docs'
+    | '/blocks'
     | '/create'
     | '/docs/installation'
     | '/docs/theming'
@@ -275,6 +294,7 @@ export interface FileRouteTypes {
     | '/docs/components/menu'
     | '/docs/components/radio-group'
     | '/docs/components/select'
+    | '/docs/components/side-nav'
     | '/docs/components/skeleton'
     | '/docs/components/slider'
     | '/docs/components/switch'
@@ -285,6 +305,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/blocks'
     | '/create'
     | '/docs/installation'
     | '/docs/theming'
@@ -302,6 +323,7 @@ export interface FileRouteTypes {
     | '/docs/components/menu'
     | '/docs/components/radio-group'
     | '/docs/components/select'
+    | '/docs/components/side-nav'
     | '/docs/components/skeleton'
     | '/docs/components/slider'
     | '/docs/components/switch'
@@ -313,6 +335,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/docs'
+    | '/blocks'
     | '/create'
     | '/docs/installation'
     | '/docs/theming'
@@ -330,6 +353,7 @@ export interface FileRouteTypes {
     | '/docs/components/menu'
     | '/docs/components/radio-group'
     | '/docs/components/select'
+    | '/docs/components/side-nav'
     | '/docs/components/skeleton'
     | '/docs/components/slider'
     | '/docs/components/switch'
@@ -342,6 +366,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DocsRouteRoute: typeof DocsRouteRouteWithChildren
+  BlocksRoute: typeof BlocksRoute
   CreateRoute: typeof CreateRoute
 }
 
@@ -352,6 +377,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blocks': {
+      id: '/blocks'
+      path: '/blocks'
+      fullPath: '/blocks'
+      preLoaderRoute: typeof BlocksRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/create': {
@@ -480,6 +512,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentsSelectRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/components/side-nav': {
+      id: '/docs/components/side-nav'
+      path: '/components/side-nav'
+      fullPath: '/docs/components/side-nav'
+      preLoaderRoute: typeof DocsComponentsSideNavRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
     '/docs/components/skeleton': {
       id: '/docs/components/skeleton'
       path: '/components/skeleton'
@@ -549,6 +588,7 @@ interface DocsRouteRouteChildren {
   DocsComponentsMenuRoute: typeof DocsComponentsMenuRoute
   DocsComponentsRadioGroupRoute: typeof DocsComponentsRadioGroupRoute
   DocsComponentsSelectRoute: typeof DocsComponentsSelectRoute
+  DocsComponentsSideNavRoute: typeof DocsComponentsSideNavRoute
   DocsComponentsSkeletonRoute: typeof DocsComponentsSkeletonRoute
   DocsComponentsSliderRoute: typeof DocsComponentsSliderRoute
   DocsComponentsSwitchRoute: typeof DocsComponentsSwitchRoute
@@ -575,6 +615,7 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsComponentsMenuRoute: DocsComponentsMenuRoute,
   DocsComponentsRadioGroupRoute: DocsComponentsRadioGroupRoute,
   DocsComponentsSelectRoute: DocsComponentsSelectRoute,
+  DocsComponentsSideNavRoute: DocsComponentsSideNavRoute,
   DocsComponentsSkeletonRoute: DocsComponentsSkeletonRoute,
   DocsComponentsSliderRoute: DocsComponentsSliderRoute,
   DocsComponentsSwitchRoute: DocsComponentsSwitchRoute,
@@ -591,6 +632,7 @@ const DocsRouteRouteWithChildren = DocsRouteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DocsRouteRoute: DocsRouteRouteWithChildren,
+  BlocksRoute: BlocksRoute,
   CreateRoute: CreateRoute,
 }
 export const routeTree = rootRouteImport

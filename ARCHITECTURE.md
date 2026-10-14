@@ -153,6 +153,12 @@ apps/web/
     │   │   │   └── theme-playground.tsx
     │   │   ├── landing.css
     │   │   └── index.ts
+    │   ├── blocks/
+    │   │   ├── blocks/            # one file per block, copied as-is by users (library imports only)
+    │   │   ├── model/blocks.ts    # catalog: title, category; components and sources via import.meta.glob
+    │   │   ├── ui/
+    │   │   ├── blocks.css
+    │   │   └── index.ts
     │   ├── create/
     │   │   ├── ui/
     │   │   │   ├── create-page.tsx
@@ -322,6 +328,7 @@ A page slice:
 - owns the blocks used **only by that page** (`ui/`): the landing's `compile-beams.tsx` and `works-with.tsx` stay in `pages/landing`;
 - owns its stylesheet and exports its URL for the route's `head`;
 - for component docs, owns its **examples** (`examples/*.tsx`, shown live and as source through `?raw`).
+- for `/blocks`, owns the **blocks** (`blocks/*.tsx`): same rule as docs examples, they import only `@omni/core/react` and `react` (checked by `model/blocks.test.ts`).
 
 ```ts
 // pages/landing/index.ts

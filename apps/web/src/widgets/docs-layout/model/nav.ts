@@ -46,6 +46,10 @@ export const DOCS_NAV = [
     ],
   },
   {
+    title: "Navigation",
+    items: [{ title: "Side Nav", href: "/docs/components/side-nav" }],
+  },
+  {
     title: "Disclosure",
     items: [
       { title: "Accordion", href: "/docs/components/accordion" },

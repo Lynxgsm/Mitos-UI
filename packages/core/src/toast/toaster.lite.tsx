@@ -9,7 +9,7 @@ const OWN_PROPS = [
   // Props the component consumes itself; everything else is forwarded to the <section>.
   // iterating props only compiles correctly for React: mitosis.config.cjs maps props to the
   // Svelte $props() object. shortcut: a Vue target will need the same with $attrs.
-  "label", "class",
+  "label", "name", "class",
 ];
 
 // Mitosis drops `[] as Toast[]` casts in state initializers: a typed constant keeps the type (never mutated)
@@ -17,6 +17,8 @@ const NO_TOASTS: Toast[] = [];
 
 export type ToasterProps = {
   label?: string;
+  // shows only the toasts sent with toast({ toaster: name }); without it, the toasts sent to no Toaster
+  name?: string;
   class?: string;
   [attribute: `aria-${string}` | `data-${string}`]: string | number | boolean | undefined;
 };
@@ -156,8 +158,9 @@ export default function Toaster(props: ToasterProps) {
 
   onMount(() => {
     unsubscribeRef = subscribeToasts((list) => {
-      state.announce(list);
-      state.toasts = list;
+      const mine = list.filter((entry) => entry.toaster === props.name);
+      state.announce(mine);
+      state.toasts = mine;
     });
   });
 

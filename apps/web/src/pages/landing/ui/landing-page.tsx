@@ -1,66 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import { Accordion, Button } from "@omni/core/react";
+import { Accordion } from "@omni/core/react";
 import { FRAMEWORKS } from "@/entities/framework";
-import { FrameworkCode } from "@/features/select-framework";
-import { CodeBlock } from "@/shared/ui/code-block";
 import { SiteHeader } from "@/widgets/site-header";
 import { CompileBeams } from "./compile-beams";
 import { Comparison } from "./comparison";
 import { ThemePlayground } from "./theme-playground";
 import { WorksWith } from "./works-with";
-
-const MITOSIS_SOURCE = `
-import * as stylex from "@stylexjs/stylex";
-import { colors } from "@/config/tokens.stylex";
-
-const styles = stylex.create({
-  base: { backgroundColor: colors["--omni-primary"] },
-});
-
-export default function Button(props: ButtonProps) {
-  return (
-    <button class={stylex.props(styles.base).className} type={props.type ?? "button"}>
-      {props.children}
-    </button>
-  );
-}`;
-
-const REACT_OUTPUT = `
-"use client";
-import * as React from "react";
-import * as stylex from "@stylexjs/stylex";
-import { colors } from "@/config/tokens.stylex";
-
-const styles = stylex.create({
-  base: { backgroundColor: colors["--omni-primary"] },
-});
-
-function Button(props: ButtonProps) {
-  return (
-    <button className={stylex.props(styles.base).className} type={props.type ?? "button"}>
-      {props.children}
-    </button>
-  );
-}
-
-export default Button;`;
-
-const SVELTE_OUTPUT = `
-<script lang="ts">
-  import * as stylex from "@stylexjs/stylex";
-  import { colors } from "@/config/tokens.stylex";
-
-  let props: ButtonProps = $props();
-  let { type, children } = $derived(props);
-
-  const styles = stylex.create({
-    base: { backgroundColor: colors["--omni-primary"] },
-  });
-</script>
-
-<button class={stylex.props(styles.base).className} type={type ?? "button"}>
-  {@render children?.()}
-</button>`;
 
 function PrimaryActions() {
   return (
@@ -101,12 +46,6 @@ export function LandingPage() {
             <PrimaryActions />
           </div>
           <div className="landing-hero-preview">
-            <div className="landing-hero-buttons">
-              <Button>Default</Button>
-              <Button variant="secondary">Secondary</Button>
-              <Button variant="outline">Outline</Button>
-              <Button variant="ghost">Ghost</Button>
-            </div>
             <Accordion
               aria-label="About Omni UI"
               class="landing-hero-accordion"
@@ -135,17 +74,6 @@ export function LandingPage() {
             styles, same accessibility.
           </p>
           <CompileBeams />
-          <div className="landing-compile-grid">
-            <div>
-              <p className="landing-code-title">button.lite.tsx</p>
-              <CodeBlock code={MITOSIS_SOURCE} label="Mitosis source, simplified from the Button" />
-            </div>
-            <div>
-              <p className="landing-code-title">Compiled output</p>
-              <FrameworkCode label="Compiled output" react={REACT_OUTPUT} svelte={SVELTE_OUTPUT} />
-              <p className="landing-note">Vue is next, from the same file.</p>
-            </div>
-          </div>
         </section>
 
         <section className="landing-section landing-theming reveal" aria-labelledby="theming-title">

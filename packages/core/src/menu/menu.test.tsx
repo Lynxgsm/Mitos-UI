@@ -85,6 +85,19 @@ describe("Menu", () => {
     expect(document.activeElement).toBe(item("Delete"));
   });
 
+  it("moves the focus to the item under the pointer, but not to a disabled one", async () => {
+    render(<Menu id="actions" label="Actions" items={items()} />);
+    fireEvent.keyDown(trigger(), { key: "ArrowDown" });
+    await waitFor(() => expect(document.activeElement).toBe(item("Edit")));
+    fireEvent.mouseEnter(item("Duplicate"));
+    expect(document.activeElement).toBe(item("Duplicate"));
+    fireEvent.mouseEnter(item("Archive"));
+    expect(document.activeElement).toBe(item("Duplicate"));
+    // the keys go on from the hovered item
+    fireEvent.keyDown(item("Duplicate"), { key: "ArrowDown" });
+    expect(document.activeElement).toBe(item("Archive"));
+  });
+
   it("closes on Escape and gives the focus back to the button", async () => {
     render(<Menu id="actions" label="Actions" items={items()} />);
     fireEvent.keyDown(trigger(), { key: "ArrowDown" });

@@ -1,25 +1,22 @@
 import type { ReactNode } from "react";
-import { Link, Outlet } from "@tanstack/react-router";
-import { DOCS_NAV } from "../model/nav";
+import { Outlet, useLocation, useNavigate } from "@tanstack/react-router";
+import { SideNav } from "@omni/core/react";
+import { DOCS_NAV, type DocsHref } from "../model/nav";
 
+// the library SideNav, wired to the router: plain clicks navigate client-side, new-tab clicks stay links
 function SidebarNav() {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
   return (
-    <nav aria-label="Docs" className="docs-nav">
-      {DOCS_NAV.map((group) => (
-        <div key={group.title} className="docs-nav-group">
-          <p className="docs-nav-title">{group.title}</p>
-          <ul>
-            {group.items.map((item) => (
-              <li key={item.href}>
-                <Link to={item.href} activeOptions={{ exact: true }}>
-                  {item.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </nav>
+    <SideNav
+      label="Docs"
+      currentHref={pathname.replace(/\/$/, "") || "/docs"}
+      groups={DOCS_NAV.map((group) => ({
+        title: group.title,
+        items: group.items.map((item) => ({ label: item.title, href: item.href })),
+      }))}
+      onNavigate={(href) => navigate({ to: href as DocsHref })}
+    />
   );
 }
 

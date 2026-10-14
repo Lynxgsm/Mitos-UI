@@ -40,3 +40,5 @@ export { default as Tooltip } from "./tooltip/tooltip.lite";
 export type { TooltipProps } from "./tooltip/tooltip.lite";
 export { default as Menu } from "./menu/menu.lite";
 export type { MenuProps, MenuItem } from "./menu/menu.lite";
+export { default as SideNav } from "./side-nav/side-nav.lite";
+export type { SideNavProps, SideNavGroup, SideNavItem } from "./side-nav/side-nav.lite";

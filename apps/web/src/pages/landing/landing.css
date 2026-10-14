@@ -95,12 +95,6 @@
   box-shadow: 0 24px 60px -32px color-mix(in oklab, var(--omni-foreground) 35%, transparent);
 }
 
-.landing-hero-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-}
-
 .landing-hero-accordion {
   width: 100%;
 }
@@ -171,15 +165,6 @@
   font-size: 1.05rem;
   line-height: 1.6;
   color: var(--omni-muted-foreground);
-}
-
-/* Compile: stacked header, two code panels */
-
-.landing-compile-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.25rem;
-  margin-top: 2.25rem;
 }
 
 /* Compile beams: sources → package → frameworks */
@@ -272,24 +257,6 @@
   .beam-flow {
     display: none;
   }
-}
-
-.landing-code-title {
-  margin: 0 0 0.25rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.8rem;
-  color: var(--omni-primary);
-}
-
-.landing-compile-grid .code-block pre {
-  min-height: 21rem;
-  font-size: 0.78rem;
-}
-
-.landing-note {
-  margin: 0.5rem 0 0;
-  font-size: 0.875rem;
-  color: var(--omni-muted-foreground);
 }
 
 /* Theming: copy column + playground */
@@ -629,7 +596,6 @@
 
 @media (max-width: 767px) {
   .landing-hero,
-  .landing-compile-grid,
   .landing-bento {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -639,10 +605,6 @@
   }
 
   .landing-tile-contrast {
-    min-height: 0;
-  }
-
-  .landing-compile-grid .code-block pre {
     min-height: 0;
   }
 }

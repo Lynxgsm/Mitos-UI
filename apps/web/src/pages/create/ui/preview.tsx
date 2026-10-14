@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Accordion,
   Avatar,
@@ -6,13 +7,20 @@ import {
   ButtonGroup,
   Card,
   Checkbox,
+  Dialog,
   Input,
+  Menu,
   RadioGroup,
   Select,
+  SideNav,
   Skeleton,
   Slider,
   Switch,
+  Tabs,
   Textarea,
+  Toaster,
+  Tooltip,
+  toast,
 } from "@omni/core/react";
 
 const VARIANTS = ["default", "secondary", "outline", "ghost", "link", "destructive"] as const;
@@ -26,6 +34,8 @@ const MEMBERS = [
 
 // Realistic compositions built only from library components and --omni-* tokens.
 export function Preview() {
+  const [confirming, setConfirming] = useState(false);
+  const [section, setSection] = useState("#overview");
   return (
     <div className="create-canvas">
       <section className="create-card" aria-labelledby="preview-buttons">
@@ -64,6 +74,112 @@ export function Preview() {
           <Badge>Popular</Badge>
         </div>
       </Card>
+
+      <section className="create-card" aria-labelledby="preview-project">
+        <h3 id="preview-project">Project</h3>
+        <Tabs
+          label="Project views"
+          items={[
+            {
+              value: "overview",
+              label: "Overview",
+              content: (
+                <div className="create-row create-row-center">
+                  <Badge>Live</Badge>
+                  <span className="create-muted">Deployed 2 hours ago from main.</span>
+                </div>
+              ),
+            },
+            {
+              value: "activity",
+              label: "Activity",
+              content: (
+                <div className="create-row create-row-center">
+                  <Badge variant="secondary">12 commits</Badge>
+                  <span className="create-muted">This week, by 3 people.</span>
+                </div>
+              ),
+            },
+            {
+              value: "settings",
+              label: "Settings",
+              content: <Switch label="Preview deployments" defaultChecked />,
+            },
+          ]}
+        />
+      </section>
+
+      <section className="create-card" aria-labelledby="preview-actions">
+        <h3 id="preview-actions">Quick actions</h3>
+        <div className="create-row create-row-center">
+          <Tooltip content="Copy the link">
+            <Button variant="outline" size="sm" aria-label="Copy the link">
+              ⧉
+            </Button>
+          </Tooltip>
+          <Tooltip content="Share with your team">
+            <Button variant="outline" size="sm" aria-label="Share">
+              ↗
+            </Button>
+          </Tooltip>
+          <Menu
+            label="More actions"
+            items={[
+              { label: "Rename", onSelect: () => toast({ title: "Rename", toaster: "preview" }) },
+              { label: "Duplicate", onSelect: () => toast({ title: "Project duplicated", toaster: "preview" }) },
+              { label: "Move to archive", onSelect: () => {}, disabled: true },
+              { label: "Export as JSON", onSelect: () => toast({ title: "Export started", toaster: "preview" }) },
+            ]}
+          />
+        </div>
+        <p className="create-muted">Hover or focus the icons for their tooltip; the menu opens with Enter or the arrows.</p>
+      </section>
+
+      <section className="create-card" aria-labelledby="preview-toasts">
+        <h3 id="preview-toasts">Toasts</h3>
+        <p className="create-muted">Shown in the corner of the screen, in the theme of this preview.</p>
+        <div className="create-row">
+          <Button
+            variant="outline"
+            onClick={() => toast({ title: "Changes saved", description: "Your profile is up to date.", toaster: "preview" })}
+          >
+            Show a toast
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() =>
+              toast({ title: "Upload failed", description: "The file is over 10 MB.", variant: "destructive", toaster: "preview" })
+            }
+          >
+            Show an error
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() =>
+              toast({
+                title: "Project archived",
+                action: { label: "Undo", onClick: () => toast({ title: "Project restored", toaster: "preview" }) },
+                toaster: "preview",
+              })
+            }
+          >
+            With an action
+          </Button>
+        </div>
+      </section>
+
+      <section className="create-card" aria-labelledby="preview-navigation">
+        <h3 id="preview-navigation">Navigation</h3>
+        <SideNav
+          label="Workspace"
+          currentHref={section}
+          onNavigate={(href) => setSection(href)}
+          groups={[
+            { items: [{ label: "Overview", href: "#overview" }, { label: "Projects", href: "#projects" }] },
+            { title: "Settings", items: [{ label: "Members", href: "#members" }, { label: "Billing", href: "#billing" }] },
+          ]}
+        />
+      </section>
 
       <section className="create-card" aria-labelledby="preview-toolbar">
         <h3 id="preview-toolbar">Editor toolbar</h3>
@@ -158,9 +274,29 @@ export function Preview() {
           This removes the project, its themes and every published version. You cannot undo it.
         </p>
         <div className="create-row">
-          <Button variant="destructive">Delete project</Button>
+          <Button variant="destructive" onClick={() => setConfirming(true)}>
+            Delete project
+          </Button>
           <Button variant="ghost">Cancel</Button>
         </div>
+        {/* rendered inside the preview, so the modal wears the theme being built */}
+        <Dialog
+          alert
+          open={confirming}
+          onClose={() => setConfirming(false)}
+          title="Delete “Northwind website”?"
+          description="Every theme and published version goes with it."
+          footer={
+            <>
+              <Button variant="outline" onClick={() => setConfirming(false)}>
+                Cancel
+              </Button>
+              <Button variant="destructive" onClick={() => setConfirming(false)}>
+                Delete project
+              </Button>
+            </>
+          }
+        />
       </section>
 
       <section className="create-card" aria-labelledby="preview-loading" aria-busy="true">
@@ -184,6 +320,9 @@ export function Preview() {
         </p>
         <Button variant="link">Read the theming guide</Button>
       </section>
+
+      {/* a Toaster of its own inside the preview: its toasts wear the theme being built (toaster: "preview") */}
+      <Toaster name="preview" label="Preview notifications" />
     </div>
   );
 }

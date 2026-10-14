@@ -131,4 +131,25 @@ describe("Toaster", () => {
     expect(section.classList.contains("custom")).toBe(true);
     expect(section.hasAttribute("label")).toBe(false);
   });
+
+  it("sends a toast to the Toaster of its name only, and unaddressed toasts to the unnamed one", () => {
+    render(
+      <>
+        <Toaster />
+        <Toaster name="preview" label="Preview notifications" />
+      </>,
+    );
+    act(() => {
+      toast({ title: "For the page" });
+      toast({ title: "For the preview", toaster: "preview" });
+    });
+    const page = screen.getByRole("region", { name: "Notifications" });
+    const preview = screen.getByRole("region", { name: "Preview notifications" });
+    // each text shows twice in its own region (the toast, and the live region announcing it), never in the other
+    expect(within(page).queryAllByText("For the page").length).toBeGreaterThan(0);
+    expect(within(page).queryAllByText("For the preview")).toEqual([]);
+    expect(within(preview).queryAllByText("For the preview").length).toBeGreaterThan(0);
+    expect(within(preview).queryAllByText("For the page")).toEqual([]);
+    expect(preview.hasAttribute("name")).toBe(false);
+  });
 });

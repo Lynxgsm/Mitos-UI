@@ -52,6 +52,7 @@ Pièges du parseur Mitosis (le build échoue avec un message peu clair) :
 - **Couleurs** : jamais de couleur en dur. Besoin d'une nouvelle couleur → ajoute un token dans `src/config/tokens.stylex.ts` (clair + `[DARK]`) **et** la paire texte/fond correspondante dans `src/config/tokens.test.ts` (texte ≥ 4.5:1, non-texte ≥ 3:1). Ce test lit le CSS compilé : c'est lui qui garantit le contraste, pas axe (jsdom n'a pas de rendu).
 - **Désactivé** : `:disabled` (ou `[aria-disabled=true]`) avec `opacity: 0.5` et `pointerEvents: "none"`, comme Button.
 - **Animation** : toute transition/animation non triviale est coupée sous `@media (prefers-reduced-motion: reduce)`.
+- **Élément masqué par `hidden`** (panneau, menu, popup) : ne lui donne jamais de `display` dans ses styles permanents, sinon il reste affiché une fois « fermé ». Applique le `display` dans un style conditionnel (`state.open && styles.open`). `src/hidden.test.tsx` le vérifie : ajoutes-y tout nouveau composant qui masque des éléments avec `hidden`.
 - Zone cliquable ≥ 24×24 px (WCAG 2.5.8).
 
 ### 4. Test : `src/<name>/<name>.test.tsx`

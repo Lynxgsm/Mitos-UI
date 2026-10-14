@@ -33,6 +33,9 @@ describe("Svelte build: server", async () => {
     ),
     Tooltip: await html(`<Tooltip id="tip" content="Copy to clipboard"><Button>Copy</Button></Tooltip>`),
     Menu: await html(`<Menu id="actions" label="Actions" items={[{ label: "Edit", onSelect: () => {} }]} />`),
+    SideNav: await html(
+      `<SideNav label="Docs" currentHref="/b" groups={[{ title: "Guides", items: [{ label: "A", href: "/a" }, { label: "B", href: "/b" }] }]} />`,
+    ),
   };
 
   it("renders Button with its defaults, forwarded attributes and merged class", () => {
@@ -107,6 +110,13 @@ describe("Svelte build: server", async () => {
     expect(renders.Tooltip).toMatch(/<span[^>]* role="tooltip" id="tip"[^>]* hidden/);
     expect(renders.Menu).toMatch(/<button[^>]* aria-haspopup="menu"[^>]* aria-expanded="false"/);
     expect(renders.Menu).toMatch(/<div[^>]* role="menu"[^>]* aria-labelledby="actions-trigger"[^>]* hidden/);
+  });
+
+  it("renders SideNav as a named nav with the current link marked", () => {
+    expect(renders.SideNav).toMatch(/<nav[^>]* aria-label="Docs"/);
+    expect(renders.SideNav).toMatch(/<ul aria-label="Guides"/);
+    expect(renders.SideNav).toMatch(/<a href="\/b" aria-current="page"/);
+    expect(renders.SideNav).not.toMatch(/<a href="\/a" aria-current/);
   });
 
   const css = readFileSync("dist/react/assets/stylex.css", "utf8");

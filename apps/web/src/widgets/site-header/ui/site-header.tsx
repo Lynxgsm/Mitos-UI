@@ -4,12 +4,14 @@ import { ThemeToggle } from "@/features/toggle-color-scheme";
 const LINKS = [
   { section: "docs", label: "Docs", to: "/docs" },
   { section: "components", label: "Components", to: "/docs/components/button" },
+  { section: "blocks", label: "Blocks", to: "/blocks" },
   { section: "theming", label: "Theming", to: "/docs/theming" },
   { section: "create", label: "Create", to: "/create" },
 ] as const;
 
 function currentSection(pathname: string) {
   if (pathname.startsWith("/create")) return "create";
+  if (pathname.startsWith("/blocks")) return "blocks";
   if (pathname.startsWith("/docs/components")) return "components";
   if (pathname.startsWith("/docs/theming")) return "theming";
   if (pathname.startsWith("/docs")) return "docs";
