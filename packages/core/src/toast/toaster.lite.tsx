@@ -132,7 +132,7 @@ export default function Toaster(props: ToasterProps) {
     get attributes() {
       return Object.fromEntries(Object.entries(props).filter(([key]) => !OWN_PROPS.includes(key)));
     },
-    // an identical message must still change the region's text to be announced again (trailing nbsp)
+    // an identical message must still change the text of the region to be announced again (trailing nbsp)
     announce(list: Toast[]) {
       const fresh = list.filter((toast) => toast.id > lastAnnouncedRef);
       if (fresh.length === 0) return;

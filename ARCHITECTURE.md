@@ -610,8 +610,10 @@ Accessibility is a product requirement, for the library **and** the site.
 | Library components (React)   | Vitest + Testing Library + axe | `packages/core/src/<name>/<name>.test.tsx`        |
 | Library Svelte build         | Vitest (server + jsdom)      | `packages/core/src/svelte.*.test.ts`                |
 | Library tokens / contrast    | Vitest                       | `packages/core/src/config/tokens.test.ts`           |
+| Library inventory and API    | Vitest                       | `packages/core/src/library.test.ts`: every component wired everywhere, React/Svelte export parity, public API snapshot, Mitosis comment pitfalls |
 | Web app logic                | `bun test`                   | next to the code: `entities/theme/model/theme.test.ts` |
 | Web app architecture         | `bun test`                   | `apps/web/src/app/architecture.test.ts` (§27)       |
+| Web app component docs       | `bun test`                   | `apps/web/src/app/component-docs.test.ts`: a page, a route and a nav entry per exported component |
 | Web app end-to-end           | Playwright (**not set up yet**) | `apps/web/tests/e2e/`                            |
 
 Tests live next to the code they test. Pure model functions (`entities/*/model`) are the first thing to test in the web app.

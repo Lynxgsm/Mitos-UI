@@ -76,6 +76,13 @@ describe("Svelte build: client", () => {
     expect(fallback.textContent).toBe("AL");
   });
 
+  it("keeps the buttons of a ButtonGroup working", async () => {
+    const spy = vi.fn();
+    await show(`<ButtonGroup aria-label="Alignment"><Button onClick={spy}>Left</Button><Button>Right</Button></ButtonGroup>`, { spy });
+    button("Left").click();
+    expect(spy).toHaveBeenCalledOnce();
+  });
+
   it("shows toasts in the Toaster", async () => {
     await show(`<Toaster /><Button onClick={() => toast({ title: "Saved" })}>Notify</Button>`);
     button("Notify").click();

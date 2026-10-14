@@ -19,8 +19,11 @@ import { Route as DocsComponentsAccordionRouteImport } from './routes/docs/compo
 import { Route as DocsComponentsAvatarRouteImport } from './routes/docs/components/avatar'
 import { Route as DocsComponentsBadgeRouteImport } from './routes/docs/components/badge'
 import { Route as DocsComponentsButtonRouteImport } from './routes/docs/components/button'
+import { Route as DocsComponentsButtonGroupRouteImport } from './routes/docs/components/button-group'
+import { Route as DocsComponentsCardRouteImport } from './routes/docs/components/card'
 import { Route as DocsComponentsDialogRouteImport } from './routes/docs/components/dialog'
 import { Route as DocsComponentsInputRouteImport } from './routes/docs/components/input'
+import { Route as DocsComponentsSkeletonRouteImport } from './routes/docs/components/skeleton'
 import { Route as DocsComponentsTextareaRouteImport } from './routes/docs/components/textarea'
 import { Route as DocsComponentsToastRouteImport } from './routes/docs/components/toast'
 
@@ -74,6 +77,17 @@ const DocsComponentsButtonRoute = DocsComponentsButtonRouteImport.update({
   path: '/components/button',
   getParentRoute: () => DocsRouteRoute,
 } as any)
+const DocsComponentsButtonGroupRoute =
+  DocsComponentsButtonGroupRouteImport.update({
+    id: '/components/button-group',
+    path: '/components/button-group',
+    getParentRoute: () => DocsRouteRoute,
+  } as any)
+const DocsComponentsCardRoute = DocsComponentsCardRouteImport.update({
+  id: '/components/card',
+  path: '/components/card',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
 const DocsComponentsDialogRoute = DocsComponentsDialogRouteImport.update({
   id: '/components/dialog',
   path: '/components/dialog',
@@ -82,6 +96,11 @@ const DocsComponentsDialogRoute = DocsComponentsDialogRouteImport.update({
 const DocsComponentsInputRoute = DocsComponentsInputRouteImport.update({
   id: '/components/input',
   path: '/components/input',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
+const DocsComponentsSkeletonRoute = DocsComponentsSkeletonRouteImport.update({
+  id: '/components/skeleton',
+  path: '/components/skeleton',
   getParentRoute: () => DocsRouteRoute,
 } as any)
 const DocsComponentsTextareaRoute = DocsComponentsTextareaRouteImport.update({
@@ -106,8 +125,11 @@ export interface FileRoutesByFullPath {
   '/docs/components/avatar': typeof DocsComponentsAvatarRoute
   '/docs/components/badge': typeof DocsComponentsBadgeRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
+  '/docs/components/button-group': typeof DocsComponentsButtonGroupRoute
+  '/docs/components/card': typeof DocsComponentsCardRoute
   '/docs/components/dialog': typeof DocsComponentsDialogRoute
   '/docs/components/input': typeof DocsComponentsInputRoute
+  '/docs/components/skeleton': typeof DocsComponentsSkeletonRoute
   '/docs/components/textarea': typeof DocsComponentsTextareaRoute
   '/docs/components/toast': typeof DocsComponentsToastRoute
 }
@@ -121,8 +143,11 @@ export interface FileRoutesByTo {
   '/docs/components/avatar': typeof DocsComponentsAvatarRoute
   '/docs/components/badge': typeof DocsComponentsBadgeRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
+  '/docs/components/button-group': typeof DocsComponentsButtonGroupRoute
+  '/docs/components/card': typeof DocsComponentsCardRoute
   '/docs/components/dialog': typeof DocsComponentsDialogRoute
   '/docs/components/input': typeof DocsComponentsInputRoute
+  '/docs/components/skeleton': typeof DocsComponentsSkeletonRoute
   '/docs/components/textarea': typeof DocsComponentsTextareaRoute
   '/docs/components/toast': typeof DocsComponentsToastRoute
 }
@@ -138,8 +163,11 @@ export interface FileRoutesById {
   '/docs/components/avatar': typeof DocsComponentsAvatarRoute
   '/docs/components/badge': typeof DocsComponentsBadgeRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
+  '/docs/components/button-group': typeof DocsComponentsButtonGroupRoute
+  '/docs/components/card': typeof DocsComponentsCardRoute
   '/docs/components/dialog': typeof DocsComponentsDialogRoute
   '/docs/components/input': typeof DocsComponentsInputRoute
+  '/docs/components/skeleton': typeof DocsComponentsSkeletonRoute
   '/docs/components/textarea': typeof DocsComponentsTextareaRoute
   '/docs/components/toast': typeof DocsComponentsToastRoute
 }
@@ -156,8 +184,11 @@ export interface FileRouteTypes {
     | '/docs/components/avatar'
     | '/docs/components/badge'
     | '/docs/components/button'
+    | '/docs/components/button-group'
+    | '/docs/components/card'
     | '/docs/components/dialog'
     | '/docs/components/input'
+    | '/docs/components/skeleton'
     | '/docs/components/textarea'
     | '/docs/components/toast'
   fileRoutesByTo: FileRoutesByTo
@@ -171,8 +202,11 @@ export interface FileRouteTypes {
     | '/docs/components/avatar'
     | '/docs/components/badge'
     | '/docs/components/button'
+    | '/docs/components/button-group'
+    | '/docs/components/card'
     | '/docs/components/dialog'
     | '/docs/components/input'
+    | '/docs/components/skeleton'
     | '/docs/components/textarea'
     | '/docs/components/toast'
   id:
@@ -187,8 +221,11 @@ export interface FileRouteTypes {
     | '/docs/components/avatar'
     | '/docs/components/badge'
     | '/docs/components/button'
+    | '/docs/components/button-group'
+    | '/docs/components/card'
     | '/docs/components/dialog'
     | '/docs/components/input'
+    | '/docs/components/skeleton'
     | '/docs/components/textarea'
     | '/docs/components/toast'
   fileRoutesById: FileRoutesById
@@ -271,6 +308,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentsButtonRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/components/button-group': {
+      id: '/docs/components/button-group'
+      path: '/components/button-group'
+      fullPath: '/docs/components/button-group'
+      preLoaderRoute: typeof DocsComponentsButtonGroupRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/components/card': {
+      id: '/docs/components/card'
+      path: '/components/card'
+      fullPath: '/docs/components/card'
+      preLoaderRoute: typeof DocsComponentsCardRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
     '/docs/components/dialog': {
       id: '/docs/components/dialog'
       path: '/components/dialog'
@@ -283,6 +334,13 @@ declare module '@tanstack/react-router' {
       path: '/components/input'
       fullPath: '/docs/components/input'
       preLoaderRoute: typeof DocsComponentsInputRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/components/skeleton': {
+      id: '/docs/components/skeleton'
+      path: '/components/skeleton'
+      fullPath: '/docs/components/skeleton'
+      preLoaderRoute: typeof DocsComponentsSkeletonRouteImport
       parentRoute: typeof DocsRouteRoute
     }
     '/docs/components/textarea': {
@@ -310,8 +368,11 @@ interface DocsRouteRouteChildren {
   DocsComponentsAvatarRoute: typeof DocsComponentsAvatarRoute
   DocsComponentsBadgeRoute: typeof DocsComponentsBadgeRoute
   DocsComponentsButtonRoute: typeof DocsComponentsButtonRoute
+  DocsComponentsButtonGroupRoute: typeof DocsComponentsButtonGroupRoute
+  DocsComponentsCardRoute: typeof DocsComponentsCardRoute
   DocsComponentsDialogRoute: typeof DocsComponentsDialogRoute
   DocsComponentsInputRoute: typeof DocsComponentsInputRoute
+  DocsComponentsSkeletonRoute: typeof DocsComponentsSkeletonRoute
   DocsComponentsTextareaRoute: typeof DocsComponentsTextareaRoute
   DocsComponentsToastRoute: typeof DocsComponentsToastRoute
 }
@@ -324,8 +385,11 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsComponentsAvatarRoute: DocsComponentsAvatarRoute,
   DocsComponentsBadgeRoute: DocsComponentsBadgeRoute,
   DocsComponentsButtonRoute: DocsComponentsButtonRoute,
+  DocsComponentsButtonGroupRoute: DocsComponentsButtonGroupRoute,
+  DocsComponentsCardRoute: DocsComponentsCardRoute,
   DocsComponentsDialogRoute: DocsComponentsDialogRoute,
   DocsComponentsInputRoute: DocsComponentsInputRoute,
+  DocsComponentsSkeletonRoute: DocsComponentsSkeletonRoute,
   DocsComponentsTextareaRoute: DocsComponentsTextareaRoute,
   DocsComponentsToastRoute: DocsComponentsToastRoute,
 }

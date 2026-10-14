@@ -40,7 +40,17 @@ const styles = stylex.create({
     whiteSpace: "nowrap",
     font: "inherit",
     fontWeight: 500,
-    borderRadius: radii["--omni-radius-md"],
+    // inside a ButtonGroup, the variables of the group join neighbouring buttons (button-group.lite.tsx)
+    borderRadius: {
+      default: radii["--omni-radius-md"],
+      ":first-child:not(:last-child)": `var(--omni-button-group-first, ${radii["--omni-radius-md"]})`,
+      ":last-child:not(:first-child)": `var(--omni-button-group-last, ${radii["--omni-radius-md"]})`,
+      ":not(:first-child):not(:last-child)": `var(--omni-button-group-middle, ${radii["--omni-radius-md"]})`,
+    },
+    marginInlineStart: { default: null, ":not(:first-child)": "var(--omni-button-group-overlap-x, 0px)" },
+    marginBlockStart: { default: null, ":not(:first-child)": "var(--omni-button-group-overlap-y, 0px)" },
+    // the ring of the focused button stays above its overlapping neighbours
+    zIndex: { default: null, ":focus-visible": 1 },
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "transparent",
@@ -105,7 +115,18 @@ const sizes = stylex.create({
   xl: { height: "2.75rem", paddingInline: "1.75rem", fontSize: "1rem" },
   "2xl": { height: "3rem", paddingInline: "2rem", fontSize: "1.125rem" },
   "3xl": { height: "3.5rem", paddingInline: "2.25rem", fontSize: "1.25rem" },
-  "4xl": { height: "4rem", paddingInline: "2.5rem", fontSize: "1.5rem", borderRadius: radii["--omni-radius-lg"] },
+  "4xl": {
+    height: "4rem",
+    paddingInline: "2.5rem",
+    fontSize: "1.5rem",
+    // same group conditions as base, with lg as the radius outside a group
+    borderRadius: {
+      default: radii["--omni-radius-lg"],
+      ":first-child:not(:last-child)": `var(--omni-button-group-first, ${radii["--omni-radius-lg"]})`,
+      ":last-child:not(:first-child)": `var(--omni-button-group-last, ${radii["--omni-radius-lg"]})`,
+      ":not(:first-child):not(:last-child)": `var(--omni-button-group-middle, ${radii["--omni-radius-lg"]})`,
+    },
+  },
 });
 
 export default function Button(props: ButtonProps) {

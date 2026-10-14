@@ -17,6 +17,9 @@ describe("Svelte build: server", async () => {
     Toaster: await html(`<Toaster />`),
     Avatar: await html(`<Avatar src="https://example.com/ada.png" alt="Ada Lovelace" /><Avatar alt="Grace Hopper" />`),
     Badge: await html(`<Badge variant="outline" id="status">Passing</Badge>`),
+    Card: await html(`<Card title="Plan" description="Billed monthly." headingLevel={2}>Body</Card>`),
+    ButtonGroup: await html(`<ButtonGroup aria-label="Alignment"><Button>Left</Button><Button>Right</Button></ButtonGroup>`),
+    Skeleton: await html(`<Skeleton class="line" />`),
   };
 
   it("renders Button with its defaults, forwarded attributes and merged class", () => {
@@ -56,6 +59,21 @@ describe("Svelte build: server", async () => {
   it("renders Badge as a span with forwarded attributes", () => {
     // children may come wrapped in hydration markers (<!---->)
     expect(renders.Badge).toMatch(/<span[^>]* id="status"[^>]*>(<!---->)?Passing(<!---->)?<\/span>/);
+  });
+
+  it("renders Card with its title as a heading", () => {
+    expect(renders.Card).toMatch(/<div role="heading" aria-level="2"[^>]*>.*Plan/);
+    expect(renders.Card).toContain("Billed monthly.");
+    expect(renders.Card).toContain("Body");
+  });
+
+  it("renders ButtonGroup as a named group of buttons", () => {
+    expect(renders.ButtonGroup).toMatch(/<div[^>]* aria-label="Alignment"[^>]* role="group"|<div[^>]* role="group"[^>]* aria-label="Alignment"/);
+    expect(renders.ButtonGroup.match(/<button/g)?.length).toBe(2);
+  });
+
+  it("renders Skeleton hidden from assistive technologies", () => {
+    expect(renders.Skeleton).toMatch(/<div[^>]* aria-hidden="true"[^>]* class="[^"]* line"/);
   });
 
   const css = readFileSync("dist/react/assets/stylex.css", "utf8");

@@ -31,8 +31,8 @@ export type AccordionProps = {
 const DURATION = { default: "300ms", "@media (prefers-reduced-motion: reduce)": "0s" };
 const EASING = "cubic-bezier(0.65, 0, 0.35, 1)";
 
-// panel: animating grid rows 0fr -> 1fr reaches the content's natural height without measuring it in JS.
-// visibility flips at the end of the close transition, so collapsed text can't be found or selected.
+// panel: animating grid rows 0fr -> 1fr reaches the natural height of the content without measuring it in JS.
+// visibility flips at the end of the close transition, so collapsed text cannot be found or selected.
 const styles = stylex.create({
   root: { margin: 0 },
   item: {

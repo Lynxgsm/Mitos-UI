@@ -19,4 +19,7 @@ This file covers the library only: changes to the documentation website (`apps/w
 - `Input` and `Textarea` with a wrapping `label`, `description` and `error`, linked through `aria-describedby` and `aria-invalid`.
 - `Avatar` with `src`, `alt`, `fallback` and `size` (`sm`, `md`, `lg`). Shows the initials of `alt` when there is no image or it fails to load, including failures that happen before hydration; the fallback keeps the same accessible name, and `alt=""` makes the avatar decorative.
 - `Badge` with `variant` (`default`, `secondary`, `outline`, `destructive`). Renders a plain `<span>` and forwards native, `aria-*` and `data-*` attributes.
+- `ButtonGroup` (`role="group"`, named with `aria-label`) joining its `Button` children horizontally or vertically (`orientation`), with shared borders and the focus ring drawn above neighbours.
+- `Card` with `title`, `description`, `footer` and content. The title is a heading whose level is set with `headingLevel` (default 3).
+- `Skeleton`, a decorative loading placeholder hidden from assistive technologies, sized by the consumer through `class` or `style`. Its pulse stops under reduced motion.
 - `Toaster` and the `toast()`, `dismissToast()` and `dismissAllToasts()` functions, with `default` and `destructive` variants, an optional action, and a configurable `duration`. Toasts pause on hover and focus, toasts with an action never auto-dismiss, and messages are announced through polite or assertive live regions.

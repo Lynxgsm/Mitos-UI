@@ -41,7 +41,7 @@ Calque `button.lite.tsx` :
 
 Pièges du parseur Mitosis (le build échoue avec un message peu clair) :
 - **pas de fonction au niveau du module** (`function x() {}` hors du composant → « Could not JSON5 parse object ») : mets la logique dans un getter ou une méthode de `useStore` ;
-- **pas d'apostrophe ni de guillemets dans les commentaires du type `<Name>Props`** (« Format error … '}' expected ») ;
+- **pas d'apostrophe ni de guillemets dans les commentaires** à l'intérieur du type `<Name>Props`, des objets `stylex.create` ou du composant : Mitosis recolle alors la suite sur la ligne du commentaire, soit un « Format error … '}' expected », soit, pire, des styles **silencieusement commentés** (vérifie la présence de la règle dans `dist/react/assets/stylex.css`) ;
 - pour un élément conditionnel, utilise un ternaire en JSX (`{cond ? <img /> : <span />}`), il devient `{#if}{:else}` en Svelte.
 
 ### 3. Styles accessibles
@@ -81,6 +81,8 @@ export type { <Name>Props } from "./<name>/<name>.lite";
 ```
 
 Ajoute aussi le composant aux tests de la sortie Svelte 5 (runes, réécrite depuis la sortie Mitosis par `mitosis.config.cjs`) : import dans le fixture de `src/svelte.test.helpers.ts`, une entrée dans `renders` de `src/svelte.server.test.ts` (compile sans warning, rendu serveur, classes présentes dans le CSS partagé) et son interaction principale dans `src/svelte.client.test.ts`. Si le build échoue avec « no Svelte 5 rewrite for … », c'est qu'une construction Mitosis n'est pas encore convertie en runes : ajoute la règle dans `mitosis.config.cjs`.
+
+`src/library.test.ts` vérifie tout ce câblage pour chaque composant (test, story, exports, tests Svelte, `CHANGELOG.md`), la parité des exports React/Svelte (avec un instantané de l'API publique à mettre à jour volontairement : c'est un changement d'API à noter au changelog) et l'absence d'apostrophes ou de guillemets dans les commentaires Mitosis. Côté site, `apps/web/src/app/component-docs.test.ts` exige une page de doc, une route et une entrée de navigation pour chaque composant exporté.
 
 ### 7. Vérifier
 

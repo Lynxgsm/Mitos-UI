@@ -134,7 +134,7 @@ export default function Dialog(props: DialogProps) {
       event.preventDefault();
       props.onClose?.();
     },
-    // any other close (form method="dialog", browser close watcher): report it and restore focus
+    // any other close (form method=dialog, browser close watcher): report it and restore focus
     handleClose() {
       if (props.open) props.onClose?.();
       const target = returnFocusRef;

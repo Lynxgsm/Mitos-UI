@@ -61,7 +61,7 @@ const svelteRunes = () => ({
         .replace(/\{#if \$\$slots\.default\}/g, "{#if children}")
         .replace(/<slot \/>/g, "{@render children?.()}")
         // Svelte 5 warns on self-closing non-void elements
-        .replace(/<textarea\b([^<]*?)\s*\/>/g, "<textarea$1></textarea>");
+        .replace(/<(textarea|div|span|p)\b([^<]*?)\s*\/>/g, "<$1$2></$1>");
 
       // events: `on:x` → `onx`. On the element receiving the forwarded attributes, a consumer's own `onx` would be
       // overridden by the component's, so the component's handler calls it first.

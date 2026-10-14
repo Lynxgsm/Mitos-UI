@@ -71,7 +71,7 @@ export default function Avatar(props: AvatarProps) {
     get showImage() {
       return Boolean(props.src) && state.failedSrc !== props.src;
     },
-    // "Ada Lovelace" → "AL", "grace" → "G" (inline: Mitosis can't compile module-level functions)
+    // Ada Lovelace → AL, grace → G (inline: Mitosis cannot compile module-level functions)
     get initials() {
       if (props.fallback !== undefined) return props.fallback;
       const words = props.alt.trim().split(/\s+/).filter(Boolean);
@@ -103,7 +103,7 @@ export default function Avatar(props: AvatarProps) {
           }}
         />
       ) : (
-        // same accessible name as the image would have had; decorative when alt is ""
+        // same accessible name as the image would have had; decorative when alt is empty
         <span
           role={props.alt ? "img" : undefined}
           aria-label={props.alt || undefined}
