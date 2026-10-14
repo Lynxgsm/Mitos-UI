@@ -3,8 +3,15 @@ import { colors, radii } from "@/config/tokens.stylex";
 
 // Shared by the form components so that labels, help texts, errors and focus rings read the same everywhere.
 export const field = stylex.create({
-  stack: { display: "grid", gap: "0.375rem" },
+  // align-content start: stretched by a taller neighbour in a grid row, the label and the control stay at the
+  // top instead of sharing the extra height (the control would move down)
+  stack: { display: "grid", gap: "0.375rem", alignContent: "start" },
   label: { fontSize: "0.875rem", fontWeight: 500, color: colors["--omni-foreground"] },
+  // the <label> around a text, select or range control. No grid gap: password managers and autofill extensions
+  // insert elements next to the control, and each one would add a gap (the fields below would move down).
+  // The space under the label text is its margin instead (labelText).
+  labelBox: { display: "grid", alignContent: "start" },
+  labelText: { marginBottom: "0.375rem" },
   required: { color: colors["--omni-destructive"] },
   description: { margin: 0, fontSize: "0.8125rem", color: colors["--omni-muted-foreground"] },
   error: { margin: 0, fontSize: "0.8125rem", fontWeight: 500, color: colors["--omni-destructive"] },

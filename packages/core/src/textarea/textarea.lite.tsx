@@ -75,8 +75,8 @@ export default function Textarea(props: TextareaProps) {
   return (
     <div class={clsx(stylex.props(field.stack).className, props.class)}>
       {/* wrapping label: the field is named from the server render on, no id needed */}
-      <label class={stylex.props(field.stack).className}>
-        <span class={stylex.props(field.label).className}>
+      <label class={stylex.props(field.labelBox).className}>
+        <span class={stylex.props(field.label, field.labelText).className}>
           {props.label}
           {props.required && (
             <span aria-hidden="true" class={stylex.props(field.required).className}>

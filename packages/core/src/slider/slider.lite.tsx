@@ -100,8 +100,8 @@ export default function Slider(props: SliderProps) {
 
   return (
     <div class={clsx(stylex.props(field.stack).className, props.class)}>
-      <label class={stylex.props(field.stack).className}>
-        <span class={stylex.props(field.label).className}>{props.label}</span>
+      <label class={stylex.props(field.labelBox).className}>
+        <span class={stylex.props(field.label, field.labelText).className}>{props.label}</span>
         <input
           {...state.attributes}
           type="range"
