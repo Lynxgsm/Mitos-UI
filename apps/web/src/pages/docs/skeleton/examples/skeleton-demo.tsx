@@ -1,4 +1,4 @@
-import { Skeleton } from "@omni/core/react";
+import { Skeleton } from "@lynxgsm/omni-ui/react";
 
 export default function SkeletonDemo() {
   // the container announces the loading state; the skeletons themselves are hidden from screen readers

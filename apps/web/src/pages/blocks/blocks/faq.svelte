@@ -1,5 +1,5 @@
 <script>
-  import { Accordion } from "@omni/core/svelte";
+  import { Accordion } from "@lynxgsm/omni-ui/svelte";
 </script>
 
 <div style="width: 100%; max-width: 40rem">

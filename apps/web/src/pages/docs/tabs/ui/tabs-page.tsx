@@ -22,14 +22,14 @@ export function TabsPage() {
       <ComponentPreview example={TabsDemo} source={tabsDemoSource} label="Tabs demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@omni/core" />
+        <InstallCommand packages="@lynxgsm/omni-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Tabs usage"
           react={`
-import { Tabs } from "@omni/core/react";
+import { Tabs } from "@lynxgsm/omni-ui/react";
 
 <Tabs
   label="Account settings"
@@ -40,7 +40,7 @@ import { Tabs } from "@omni/core/react";
 />`}
           svelte={`
 <script>
-  import { Tabs } from "@omni/core/svelte";
+  import { Tabs } from "@lynxgsm/omni-ui/svelte";
 </script>
 
 <Tabs

@@ -1,4 +1,4 @@
-import { Button, ButtonGroup } from "@omni/core/react";
+import { Button, ButtonGroup } from "@lynxgsm/omni-ui/react";
 
 export default function ButtonGroupDemo() {
   return (

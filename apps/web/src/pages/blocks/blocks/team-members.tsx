@@ -1,4 +1,4 @@
-import { Avatar, Badge, Button, Card, Menu, Tooltip, toast } from "@omni/core/react";
+import { Avatar, Badge, Button, Card, Menu, Tooltip, toast } from "@lynxgsm/omni-ui/react";
 
 const MEMBERS = [
   { name: "Inès Moreau", email: "ines@northwind.io", role: "Owner" },

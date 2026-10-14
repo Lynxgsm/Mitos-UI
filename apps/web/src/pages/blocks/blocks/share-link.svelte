@@ -1,5 +1,5 @@
 <script>
-  import { Button, Card, Input, Switch, Tooltip, toast } from "@omni/core/svelte";
+  import { Button, Card, Input, Switch, Tooltip, toast } from "@lynxgsm/omni-ui/svelte";
 
   const link = "https://omni.example/p/northwind-q3";
 </script>

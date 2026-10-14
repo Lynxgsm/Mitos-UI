@@ -1,5 +1,5 @@
 <script>
-  import { Button, Dialog, Fieldset, Input, Select, Switch, Textarea, toast } from "@omni/core/svelte";
+  import { Button, Dialog, Fieldset, Input, Select, Switch, Textarea, toast } from "@lynxgsm/omni-ui/svelte";
 
   let confirming = $state(false);
 </script>

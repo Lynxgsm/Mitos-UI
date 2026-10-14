@@ -1,5 +1,5 @@
 <script>
-  import { Button, Card, RadioGroup, Select, toast } from "@omni/core/svelte";
+  import { Button, Card, RadioGroup, Select, toast } from "@lynxgsm/omni-ui/svelte";
 </script>
 
 <div style="width: 100%; max-width: 28rem">

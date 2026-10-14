@@ -1,4 +1,4 @@
-import { Fieldset, Input, Select } from "@omni/core/react";
+import { Fieldset, Input, Select } from "@lynxgsm/omni-ui/react";
 
 export default function FieldsetDemo() {
   return (

@@ -1,4 +1,4 @@
-import { Button, Card, RadioGroup, Select, toast } from "@omni/core/react";
+import { Button, Card, RadioGroup, Select, toast } from "@lynxgsm/omni-ui/react";
 
 export default function Checkout() {
   return (

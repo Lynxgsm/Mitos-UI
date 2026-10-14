@@ -19,14 +19,14 @@ export function MenuPage() {
       <ComponentPreview example={MenuDemo} source={menuDemoSource} label="Menu demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@omni/core" />
+        <InstallCommand packages="@lynxgsm/omni-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Menu usage"
           react={`
-import { Menu } from "@omni/core/react";
+import { Menu } from "@lynxgsm/omni-ui/react";
 
 <Menu
   label="Actions"
@@ -37,7 +37,7 @@ import { Menu } from "@omni/core/react";
 />`}
           svelte={`
 <script>
-  import { Menu } from "@omni/core/svelte";
+  import { Menu } from "@lynxgsm/omni-ui/svelte";
 </script>
 
 <Menu

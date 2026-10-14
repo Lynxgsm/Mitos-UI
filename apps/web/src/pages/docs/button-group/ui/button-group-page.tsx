@@ -22,14 +22,14 @@ export function ButtonGroupPage() {
       <ComponentPreview example={ButtonGroupDemo} source={buttonGroupDemoSource} label="Button group demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@omni/core" />
+        <InstallCommand packages="@lynxgsm/omni-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Button group usage"
           react={`
-import { Button, ButtonGroup } from "@omni/core/react";
+import { Button, ButtonGroup } from "@lynxgsm/omni-ui/react";
 
 <ButtonGroup aria-label="Text alignment">
   <Button variant="outline">Left</Button>
@@ -37,7 +37,7 @@ import { Button, ButtonGroup } from "@omni/core/react";
 </ButtonGroup>`}
           svelte={`
 <script>
-  import { Button, ButtonGroup } from "@omni/core/svelte";
+  import { Button, ButtonGroup } from "@lynxgsm/omni-ui/svelte";
 </script>
 
 <ButtonGroup aria-label="Text alignment">

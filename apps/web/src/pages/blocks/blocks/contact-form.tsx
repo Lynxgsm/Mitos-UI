@@ -1,4 +1,4 @@
-import { Button, Card, Checkbox, Input, Select, Textarea, toast } from "@omni/core/react";
+import { Button, Card, Checkbox, Input, Select, Textarea, toast } from "@lynxgsm/omni-ui/react";
 
 export default function ContactForm() {
   return (

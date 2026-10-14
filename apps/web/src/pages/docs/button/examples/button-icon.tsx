@@ -1,4 +1,4 @@
-import { Button } from "@omni/core/react";
+import { Button } from "@lynxgsm/omni-ui/react";
 
 export default function ButtonIcon() {
   // icon-only buttons have no visible text: aria-label gives them an accessible name

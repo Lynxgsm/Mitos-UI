@@ -1,5 +1,5 @@
 <script>
-  import { Avatar, Badge, SideNav } from "@omni/core/svelte";
+  import { Avatar, Badge, SideNav } from "@lynxgsm/omni-ui/svelte";
 
   const sections = {
     "#overview": "Overview",

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
-import { Toaster } from "@omni/core/react";
-import omniStylesHref from "@omni/core/react/styles.css?url";
+import { Toaster } from "@lynxgsm/omni-ui/react";
+import omniStylesHref from "@lynxgsm/omni-ui/react/styles.css?url";
 import baseStylesHref from "../styles/base.css?url";
 import siteStylesHref from "../styles/site.css?url";
 import { SITE_THEME_CSS } from "../styles/site-theme";

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Dialog, Input, Select, Switch, Tabs, Textarea, toast } from "@omni/core/react";
+import { Button, Dialog, Input, Select, Switch, Tabs, Textarea, toast } from "@lynxgsm/omni-ui/react";
 
 export default function AccountSettings() {
   const [confirming, setConfirming] = useState(false);

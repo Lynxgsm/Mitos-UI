@@ -1,4 +1,4 @@
-import * as library from "@omni/core/react";
+import * as library from "@lynxgsm/omni-ui/react";
 
 // counted from the exports, so the claim stays true as components are added
 const COMPONENT_COUNT = Object.keys(library).filter((name) => /^[A-Z]/.test(name)).length;

@@ -1,5 +1,5 @@
 <script>
-  import { Button, Dialog, Input, toast } from "@omni/core/svelte";
+  import { Button, Dialog, Input, toast } from "@lynxgsm/omni-ui/svelte";
 
   let open = $state(false);
   let typed = $state("");

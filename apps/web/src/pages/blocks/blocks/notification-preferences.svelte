@@ -1,5 +1,5 @@
 <script>
-  import { Button, Card, Fieldset, RadioGroup, Slider, Switch, toast } from "@omni/core/svelte";
+  import { Button, Card, Fieldset, RadioGroup, Slider, Switch, toast } from "@lynxgsm/omni-ui/svelte";
 
   let volume = $state(60);
 </script>

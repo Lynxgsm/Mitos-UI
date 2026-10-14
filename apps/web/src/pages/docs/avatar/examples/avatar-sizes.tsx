@@ -1,4 +1,4 @@
-import { Avatar } from "@omni/core/react";
+import { Avatar } from "@lynxgsm/omni-ui/react";
 
 export default function AvatarSizes() {
   return (

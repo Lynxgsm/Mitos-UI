@@ -21,7 +21,7 @@ import {
   Toaster,
   Tooltip,
   toast,
-} from "@omni/core/react";
+} from "@lynxgsm/omni-ui/react";
 
 const VARIANTS = ["default", "secondary", "outline", "ghost", "link", "destructive"] as const;
 const SIZES = ["xs", "sm", "md", "lg", "xl"] as const;

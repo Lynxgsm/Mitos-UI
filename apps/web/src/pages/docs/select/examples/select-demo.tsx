@@ -1,4 +1,4 @@
-import { Select } from "@omni/core/react";
+import { Select } from "@lynxgsm/omni-ui/react";
 
 export default function SelectDemo() {
   return (

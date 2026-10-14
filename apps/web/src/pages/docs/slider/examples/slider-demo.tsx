@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Slider } from "@omni/core/react";
+import { Slider } from "@lynxgsm/omni-ui/react";
 
 export default function SliderDemo() {
   const [volume, setVolume] = useState(40);

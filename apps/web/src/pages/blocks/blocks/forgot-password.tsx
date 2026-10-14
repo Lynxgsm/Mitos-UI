@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Card, Input } from "@omni/core/react";
+import { Button, Card, Input } from "@lynxgsm/omni-ui/react";
 
 export default function ForgotPassword() {
   const [sent, setSent] = useState(false);

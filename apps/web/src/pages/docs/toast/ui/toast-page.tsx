@@ -22,7 +22,7 @@ export function ToastPage() {
       <ComponentPreview example={ToastDemo} source={toastDemoSource} label="Toast demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@omni/core" />
+        <InstallCommand packages="@lynxgsm/omni-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
@@ -32,7 +32,7 @@ export function ToastPage() {
         <FrameworkCode
           label="Toaster setup"
           react={`
-import { Toaster } from "@omni/core/react";
+import { Toaster } from "@lynxgsm/omni-ui/react";
 
 export function App() {
   return (
@@ -45,7 +45,7 @@ export function App() {
           svelte={`
 <!-- +layout.svelte -->
 <script>
-  import { Toaster } from "@omni/core/svelte";
+  import { Toaster } from "@lynxgsm/omni-ui/svelte";
 
   let { children } = $props();
 </script>
@@ -56,11 +56,11 @@ export function App() {
         <FrameworkCode
           label="Toast call"
           react={`
-import { toast } from "@omni/core/react";
+import { toast } from "@lynxgsm/omni-ui/react";
 
 toast({ title: "Changes saved", description: "Your profile is up to date." });`}
           svelte={`
-import { toast } from "@omni/core/svelte";
+import { toast } from "@lynxgsm/omni-ui/svelte";
 
 toast({ title: "Changes saved", description: "Your profile is up to date." });`}
         />

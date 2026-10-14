@@ -1,4 +1,4 @@
-import { Button } from "@omni/core/react";
+import { Button } from "@lynxgsm/omni-ui/react";
 
 const SIZES = ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"] as const;
 

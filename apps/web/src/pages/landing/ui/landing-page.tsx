@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Accordion } from "@omni/core/react";
+import { Accordion } from "@lynxgsm/omni-ui/react";
 import { FRAMEWORKS } from "@/entities/framework";
 import { SiteHeader } from "@/widgets/site-header";
 import { CompileBeams } from "./compile-beams";

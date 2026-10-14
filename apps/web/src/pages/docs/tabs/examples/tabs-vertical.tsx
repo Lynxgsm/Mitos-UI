@@ -1,4 +1,4 @@
-import { Tabs } from "@omni/core/react";
+import { Tabs } from "@lynxgsm/omni-ui/react";
 
 export default function TabsVertical() {
   return (

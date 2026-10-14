@@ -1,4 +1,4 @@
-import { Switch } from "@omni/core/react";
+import { Switch } from "@lynxgsm/omni-ui/react";
 
 export default function SwitchDemo() {
   return (

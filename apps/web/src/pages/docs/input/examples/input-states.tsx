@@ -1,4 +1,4 @@
-import { Input } from "@omni/core/react";
+import { Input } from "@lynxgsm/omni-ui/react";
 
 export default function InputStates() {
   return (

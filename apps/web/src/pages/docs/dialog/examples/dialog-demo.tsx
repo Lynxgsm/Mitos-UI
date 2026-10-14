@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Dialog, Input } from "@omni/core/react";
+import { Button, Dialog, Input } from "@lynxgsm/omni-ui/react";
 
 export default function DialogDemo() {
   const [open, setOpen] = useState(false);

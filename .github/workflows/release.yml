@@ -1,0 +1,48 @@
+# Publishes @lynxgsm/omni-ui when main carries a version that npm does not have yet (see AGENTS.md, Releasing).
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+# never cancel a release halfway through
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # tag and GitHub release
+      id-token: write # npm trusted publishing and provenance
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.0
+      # trusted publishing needs npm 11.5.1 or later
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - run: npm install -g npm@latest
+      - run: bun install --frozen-lockfile
+      - run: bun run typecheck
+      - run: bun run test
+      - run: bun run build
+
+      - id: release
+        run: bun packages/core/scripts/release.ts
+
+      - if: steps.release.outputs.publish == 'true'
+        working-directory: packages/core
+        run: npm publish --tag ${{ steps.release.outputs.prerelease == 'true' && 'next' || 'latest' }}
+
+      - if: steps.release.outputs.publish == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.release.outputs.version }}
+        run: >
+          gh release create "v$VERSION" --target "$GITHUB_SHA" --title "v$VERSION" --notes-file release-notes.md
+          ${{ steps.release.outputs.prerelease == 'true' && '--prerelease' || '' }}

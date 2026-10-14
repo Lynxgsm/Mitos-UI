@@ -1,5 +1,5 @@
 <script>
-  import { Badge, Button, ButtonGroup, Card, Select, toast } from "@omni/core/svelte";
+  import { Badge, Button, ButtonGroup, Card, Select, toast } from "@lynxgsm/omni-ui/svelte";
 </script>
 
 <div style="width: 100%; max-width: 20rem">

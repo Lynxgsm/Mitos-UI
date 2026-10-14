@@ -1,8 +1,8 @@
 # Changelog
 
-All notable changes to `@omni/core` are documented in this file.
+All notable changes to `@lynxgsm/omni-ui` are documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). While `@omni/core` is `0.x`, breaking changes may ship in a minor release.
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). While `@lynxgsm/omni-ui` is `0.x`, breaking changes may ship in a minor release.
 
 This file covers the library only: changes to the documentation website (`apps/web`) are not listed.
 
@@ -10,8 +10,8 @@ This file covers the library only: changes to the documentation website (`apps/w
 
 ### Added
 
-- React entry point `@omni/core/react` (React 19) and its precompiled stylesheet `@omni/core/react/styles.css`. Components are marked `"use client"` and work with server rendering; no StyleX or bundler plugin is needed in the consuming app.
-- Svelte entry point `@omni/core/svelte` (Svelte 5, runes syntax) and its stylesheet `@omni/core/svelte/styles.css`. Components ship as `.svelte` files compiled by the consuming app, so SvelteKit server rendering works. Props match the React components; native event handlers are lowercase (`oninput`) and forwarded to the underlying element.
+- React entry point `@lynxgsm/omni-ui/react` (React 19) and its precompiled stylesheet `@lynxgsm/omni-ui/react/styles.css`. Components are marked `"use client"` and work with server rendering; no StyleX or bundler plugin is needed in the consuming app.
+- Svelte entry point `@lynxgsm/omni-ui/svelte` (Svelte 5, runes syntax) and its stylesheet `@lynxgsm/omni-ui/svelte/styles.css`. Components ship as `.svelte` files compiled by the consuming app, so SvelteKit server rendering works. Props match the React components; native event handlers are lowercase (`oninput`) and forwarded to the underlying element.
 - Default theme exposed as `--omni-*` CSS custom properties (colors and radii) with light and dark values. Every library rule lives in a cascade layer, so unlayered consumer CSS overrides it regardless of load order.
 - `Button` with `variant` (`default`, `secondary`, `outline`, `ghost`, `link`, `destructive`) and `size` (`xs` to `4xl`). Renders a native `<button>` that defaults to `type="button"` and forwards native, `aria-*` and `data-*` attributes.
 - `Accordion` with `items`, `multiple` and `defaultOpen`, following the WAI-ARIA accordion pattern (arrow keys, `Home`, `End`). Collapsed panels are `inert`; the animation stops under reduced motion.

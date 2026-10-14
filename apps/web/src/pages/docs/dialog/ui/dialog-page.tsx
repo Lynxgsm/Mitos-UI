@@ -22,14 +22,14 @@ export function DialogPage() {
       <ComponentPreview example={DialogDemo} source={dialogDemoSource} label="Dialog demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@omni/core" />
+        <InstallCommand packages="@lynxgsm/omni-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Dialog usage"
           react={`
-import { Dialog } from "@omni/core/react";
+import { Dialog } from "@lynxgsm/omni-ui/react";
 
 const [open, setOpen] = useState(false);
 
@@ -38,7 +38,7 @@ const [open, setOpen] = useState(false);
 </Dialog>`}
           svelte={`
 <script>
-  import { Dialog } from "@omni/core/svelte";
+  import { Dialog } from "@lynxgsm/omni-ui/svelte";
 
   let open = $state(false);
 </script>

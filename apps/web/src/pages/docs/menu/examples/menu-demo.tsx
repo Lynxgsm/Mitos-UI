@@ -1,4 +1,4 @@
-import { Menu, toast } from "@omni/core/react";
+import { Menu, toast } from "@lynxgsm/omni-ui/react";
 
 export default function MenuDemo() {
   return (

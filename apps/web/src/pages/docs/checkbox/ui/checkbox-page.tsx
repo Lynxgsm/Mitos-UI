@@ -22,19 +22,19 @@ export function CheckboxPage() {
       <ComponentPreview example={CheckboxDemo} source={checkboxDemoSource} label="Checkbox demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@omni/core" />
+        <InstallCommand packages="@lynxgsm/omni-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Checkbox usage"
           react={`
-import { Checkbox } from "@omni/core/react";
+import { Checkbox } from "@lynxgsm/omni-ui/react";
 
 <Checkbox label="Remember me" name="remember" />`}
           svelte={`
 <script>
-  import { Checkbox } from "@omni/core/svelte";
+  import { Checkbox } from "@lynxgsm/omni-ui/svelte";
 </script>
 
 <Checkbox label="Remember me" name="remember" />`}

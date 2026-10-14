@@ -1,4 +1,4 @@
-import { Textarea } from "@omni/core/react";
+import { Textarea } from "@lynxgsm/omni-ui/react";
 
 export default function TextareaDemo() {
   return (

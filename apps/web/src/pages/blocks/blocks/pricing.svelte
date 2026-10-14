@@ -1,5 +1,5 @@
 <script>
-  import { Badge, Button, ButtonGroup, Card } from "@omni/core/svelte";
+  import { Badge, Button, ButtonGroup, Card } from "@lynxgsm/omni-ui/svelte";
 
   const plans = [
     { name: "Starter", monthly: 0, description: "For trying things out.", features: ["1 project", "Community support"] },

@@ -19,14 +19,14 @@ export function FieldsetPage() {
       <ComponentPreview example={FieldsetDemo} source={fieldsetDemoSource} label="Fieldset demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@omni/core" />
+        <InstallCommand packages="@lynxgsm/omni-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Fieldset usage"
           react={`
-import { Fieldset, Input } from "@omni/core/react";
+import { Fieldset, Input } from "@lynxgsm/omni-ui/react";
 
 <Fieldset legend="Contact">
   <Input label="Email" type="email" />
@@ -34,7 +34,7 @@ import { Fieldset, Input } from "@omni/core/react";
 </Fieldset>`}
           svelte={`
 <script>
-  import { Fieldset, Input } from "@omni/core/svelte";
+  import { Fieldset, Input } from "@lynxgsm/omni-ui/svelte";
 </script>
 
 <Fieldset legend="Contact">

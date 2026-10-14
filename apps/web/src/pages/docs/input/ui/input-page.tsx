@@ -24,19 +24,19 @@ export function InputPage() {
       <ComponentPreview example={InputDemo} source={inputDemoSource} label="Input demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@omni/core" />
+        <InstallCommand packages="@lynxgsm/omni-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Input usage"
           react={`
-import { Input } from "@omni/core/react";
+import { Input } from "@lynxgsm/omni-ui/react";
 
 <Input label="Email" type="email" name="email" required />`}
           svelte={`
 <script>
-  import { Input } from "@omni/core/svelte";
+  import { Input } from "@lynxgsm/omni-ui/svelte";
 </script>
 
 <Input label="Email" type="email" name="email" required />`}

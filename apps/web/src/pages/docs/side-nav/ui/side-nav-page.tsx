@@ -20,14 +20,14 @@ export function SideNavPage() {
       <ComponentPreview example={SideNavDemo} source={sideNavDemoSource} label="Side nav demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@omni/core" />
+        <InstallCommand packages="@lynxgsm/omni-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Side nav usage"
           react={`
-import { SideNav } from "@omni/core/react";
+import { SideNav } from "@lynxgsm/omni-ui/react";
 
 <SideNav
   label="Docs"
@@ -40,7 +40,7 @@ import { SideNav } from "@omni/core/react";
           svelte={`
 <script>
   import { page } from "$app/state";
-  import { SideNav } from "@omni/core/svelte";
+  import { SideNav } from "@lynxgsm/omni-ui/svelte";
 </script>
 
 <SideNav

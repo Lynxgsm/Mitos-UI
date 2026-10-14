@@ -19,14 +19,14 @@ export function RadioGroupPage() {
       <ComponentPreview example={RadioGroupDemo} source={radioGroupDemoSource} label="Radio Group demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@omni/core" />
+        <InstallCommand packages="@lynxgsm/omni-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Radio Group usage"
           react={`
-import { RadioGroup } from "@omni/core/react";
+import { RadioGroup } from "@lynxgsm/omni-ui/react";
 
 <RadioGroup
   legend="Delivery"
@@ -40,7 +40,7 @@ import { RadioGroup } from "@omni/core/react";
 />`}
           svelte={`
 <script>
-  import { RadioGroup } from "@omni/core/svelte";
+  import { RadioGroup } from "@lynxgsm/omni-ui/svelte";
 </script>
 
 <RadioGroup

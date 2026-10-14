@@ -1,4 +1,4 @@
-import { Avatar } from "@omni/core/react";
+import { Avatar } from "@lynxgsm/omni-ui/react";
 
 export default function AvatarBroken() {
   // the image fails to load: the initials take its place, with the same accessible name

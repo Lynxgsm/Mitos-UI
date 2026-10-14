@@ -1,4 +1,4 @@
-import { Button, toast } from "@omni/core/react";
+import { Button, toast } from "@lynxgsm/omni-ui/react";
 
 export default function ToastDemo() {
   return (

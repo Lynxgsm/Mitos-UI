@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Outlet, useLocation, useNavigate } from "@tanstack/react-router";
-import { SideNav } from "@omni/core/react";
+import { SideNav } from "@lynxgsm/omni-ui/react";
 import { DOCS_NAV, type DocsHref } from "../model/nav";
 
 // the library SideNav, wired to the router: plain clicks navigate client-side, new-tab clicks stay links

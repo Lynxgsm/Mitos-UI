@@ -26,19 +26,19 @@ export function AvatarPage() {
       <ComponentPreview example={AvatarDemo} source={avatarDemoSource} label="Avatar demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@omni/core" />
+        <InstallCommand packages="@lynxgsm/omni-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Avatar usage"
           react={`
-import { Avatar } from "@omni/core/react";
+import { Avatar } from "@lynxgsm/omni-ui/react";
 
 <Avatar src={user.avatarUrl} alt={user.name} />`}
           svelte={`
 <script>
-  import { Avatar } from "@omni/core/svelte";
+  import { Avatar } from "@lynxgsm/omni-ui/svelte";
 
   let { user } = $props();
 </script>

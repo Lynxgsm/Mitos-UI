@@ -19,19 +19,19 @@ export function SliderPage() {
       <ComponentPreview example={SliderDemo} source={sliderDemoSource} label="Slider demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@omni/core" />
+        <InstallCommand packages="@lynxgsm/omni-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Slider usage"
           react={`
-import { Slider } from "@omni/core/react";
+import { Slider } from "@lynxgsm/omni-ui/react";
 
 <Slider label="Brightness" min={0} max={100} step={10} defaultValue={50} />`}
           svelte={`
 <script>
-  import { Slider } from "@omni/core/svelte";
+  import { Slider } from "@lynxgsm/omni-ui/svelte";
 </script>
 
 <Slider label="Brightness" min={0} max={100} step={10} value={50} />`}

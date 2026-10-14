@@ -28,19 +28,19 @@ export function ButtonPage() {
       <ComponentPreview example={ButtonDemo} source={buttonDemoSource} label="Button demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@omni/core" />
+        <InstallCommand packages="@lynxgsm/omni-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Button usage"
           react={`
-import { Button } from "@omni/core/react";
+import { Button } from "@lynxgsm/omni-ui/react";
 
 <Button variant="outline">Button</Button>`}
           svelte={`
 <script>
-  import { Button } from "@omni/core/svelte";
+  import { Button } from "@lynxgsm/omni-ui/svelte";
 </script>
 
 <Button variant="outline">Button</Button>`}

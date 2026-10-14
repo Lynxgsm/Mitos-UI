@@ -1,4 +1,4 @@
-import { Accordion } from "@omni/core/react";
+import { Accordion } from "@lynxgsm/omni-ui/react";
 
 export default function Faq() {
   return (

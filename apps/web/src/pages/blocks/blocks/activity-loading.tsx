@@ -1,4 +1,4 @@
-import { Card, Skeleton } from "@omni/core/react";
+import { Card, Skeleton } from "@lynxgsm/omni-ui/react";
 
 export default function ActivityLoading() {
   return (

@@ -19,19 +19,19 @@ export function TextareaPage() {
       <ComponentPreview example={TextareaDemo} source={textareaDemoSource} label="Textarea demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@omni/core" />
+        <InstallCommand packages="@lynxgsm/omni-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Textarea usage"
           react={`
-import { Textarea } from "@omni/core/react";
+import { Textarea } from "@lynxgsm/omni-ui/react";
 
 <Textarea label="Message" name="message" rows={5} required />`}
           svelte={`
 <script>
-  import { Textarea } from "@omni/core/svelte";
+  import { Textarea } from "@lynxgsm/omni-ui/svelte";
 </script>
 
 <Textarea label="Message" name="message" rows={5} required />`}

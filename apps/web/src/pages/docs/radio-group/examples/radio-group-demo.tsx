@@ -1,4 +1,4 @@
-import { RadioGroup } from "@omni/core/react";
+import { RadioGroup } from "@lynxgsm/omni-ui/react";
 
 export default function RadioGroupDemo() {
   return (

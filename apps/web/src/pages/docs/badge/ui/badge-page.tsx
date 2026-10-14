@@ -22,19 +22,19 @@ export function BadgePage() {
       <ComponentPreview example={BadgeDemo} source={badgeDemoSource} label="Badge demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@omni/core" />
+        <InstallCommand packages="@lynxgsm/omni-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Badge usage"
           react={`
-import { Badge } from "@omni/core/react";
+import { Badge } from "@lynxgsm/omni-ui/react";
 
 <Badge variant="secondary">Beta</Badge>`}
           svelte={`
 <script>
-  import { Badge } from "@omni/core/svelte";
+  import { Badge } from "@lynxgsm/omni-ui/svelte";
 </script>
 
 <Badge variant="secondary">Beta</Badge>`}

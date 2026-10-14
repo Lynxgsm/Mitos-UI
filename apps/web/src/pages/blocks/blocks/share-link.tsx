@@ -1,4 +1,4 @@
-import { Button, Card, Input, Switch, Tooltip, toast } from "@omni/core/react";
+import { Button, Card, Input, Switch, Tooltip, toast } from "@lynxgsm/omni-ui/react";
 
 const LINK = "https://omni.example/p/northwind-q3";
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Badge, Button, ButtonGroup, Card } from "@omni/core/react";
+import { Badge, Button, ButtonGroup, Card } from "@lynxgsm/omni-ui/react";
 
 const PLANS = [
   { name: "Starter", monthly: 0, description: "For trying things out.", features: ["1 project", "Community support"] },

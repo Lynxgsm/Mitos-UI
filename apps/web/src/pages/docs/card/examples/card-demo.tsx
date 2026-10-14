@@ -1,4 +1,4 @@
-import { Button, Card } from "@omni/core/react";
+import { Button, Card } from "@lynxgsm/omni-ui/react";
 
 export default function CardDemo() {
   return (

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button } from "@omni/core/react";
+import { Button } from "@lynxgsm/omni-ui/react";
 import { MoonIcon, SunIcon } from "@phosphor-icons/react";
 import { COLOR_SCHEME_STORAGE_KEY } from "../model/color-scheme";
 

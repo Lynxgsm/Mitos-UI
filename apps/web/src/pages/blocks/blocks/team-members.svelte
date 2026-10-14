@@ -1,5 +1,5 @@
 <script>
-  import { Avatar, Badge, Button, Card, Menu, Tooltip, toast } from "@omni/core/svelte";
+  import { Avatar, Badge, Button, Card, Menu, Tooltip, toast } from "@lynxgsm/omni-ui/svelte";
 
   const members = [
     { name: "Inès Moreau", email: "ines@northwind.io", role: "Owner" },

@@ -1,5 +1,5 @@
 <script>
-  import { Button, Card, Input } from "@omni/core/svelte";
+  import { Button, Card, Input } from "@lynxgsm/omni-ui/svelte";
 
   let sent = $state(false);
 </script>

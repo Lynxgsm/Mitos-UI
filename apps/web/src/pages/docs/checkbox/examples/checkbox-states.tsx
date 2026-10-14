@@ -1,4 +1,4 @@
-import { Checkbox } from "@omni/core/react";
+import { Checkbox } from "@lynxgsm/omni-ui/react";
 
 export default function CheckboxStates() {
   return (

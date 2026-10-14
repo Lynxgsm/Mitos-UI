@@ -6,7 +6,7 @@ Omni UI is a **Bun monorepo** with two workspaces:
 
 | Workspace       | Package      | Role                                                                                  |
 | --------------- | ------------ | ------------------------------------------------------------------------------------- |
-| `packages/core` | `@omni/core` | The design system: components written once in Mitosis, styled with StyleX, compiled for React and Svelte |
+| `packages/core` | `@lynxgsm/omni-ui` | The design system: components written once in Mitosis, styled with StyleX, compiled for React and Svelte |
 | `apps/web`      | `@omni/web`  | The website: landing page, documentation, theme builder. A **TanStack Start** app      |
 
 The web app follows a pragmatic **Feature-Sliced Design (FSD)** architecture adapted to **TanStack Start**. The library does not: it has its own component-per-folder structure (see §3).
@@ -17,7 +17,7 @@ The web app follows a pragmatic **Feature-Sliced Design (FSD)** architecture ada
 
 - **TanStack Start** (on Vite) with **TanStack Router** file-based routing: SSR, routing, `head`, search params, loaders
 - **React 19**
-- **@omni/core**, the in-house design system, consumed through its public entry points (`@omni/core/react`)
+- **@lynxgsm/omni-ui**, the in-house design system, consumed through its public entry points (`@lynxgsm/omni-ui/react`)
 - **Plain CSS** with the `--omni-*` design tokens and the site's `--site-*` variables (no Tailwind, no CSS-in-JS in the web app)
 - **Shiki** for code highlighting, **Phosphor** for icons
 - **bun test** for the web app's unit tests; **Vitest** + **axe-core** for the library
@@ -36,9 +36,9 @@ The architecture is designed to provide:
 Run from the repository root:
 
 ```bash
-bun run dev        # builds @omni/core, then starts the web app
+bun run dev        # builds @lynxgsm/omni-ui, then starts the web app
 bun run build      # builds every workspace
-bun run typecheck  # builds @omni/core, then typechecks every workspace
+bun run typecheck  # builds @lynxgsm/omni-ui, then typechecks every workspace
 bun run test       # tests every workspace
 ```
 
@@ -96,7 +96,7 @@ is forbidden.
 
 If two slices need common functionality, move it to the appropriate lower layer.
 
-External packages are not layers: `@omni/core/react`, `@tanstack/react-router`, `react` and `@phosphor-icons/react` may be imported from any layer.
+External packages are not layers: `@lynxgsm/omni-ui/react`, `@tanstack/react-router`, `react` and `@phosphor-icons/react` may be imported from any layer.
 
 ---
 
@@ -106,9 +106,9 @@ External packages are not layers: `@omni/core/react`, `@tanstack/react-router`, 
 packages/core  ──(build)──▶  dist/react, dist/svelte  ──(npm entry points)──▶  apps/web
 ```
 
-- `apps/web` imports the library **only through its public entry points**: `@omni/core/react` and `@omni/core/react/styles.css`.
+- `apps/web` imports the library **only through its public entry points**: `@lynxgsm/omni-ui/react` and `@lynxgsm/omni-ui/react/styles.css`.
 - Never import from `packages/core/src`, `packages/core/output` or `packages/core/dist/...` paths. The web app must use the library exactly like any consumer would.
-- The library is built before the web app runs (`bun run dev` and `bun run typecheck` do it). After changing a component, rebuild it (`bun --filter @omni/core build`) to see the change in the site.
+- The library is built before the web app runs (`bun run dev` and `bun run typecheck` do it). After changing a component, rebuild it (`bun --filter @lynxgsm/omni-ui build`) to see the change in the site.
 - `packages/core` is **not** organized with FSD. Each component lives in `src/<name>/` (`<name>.lite.tsx`, `<name>.test.tsx`, `<name>.stories.tsx`) and is exported from `src/index.ts`. Follow the `create-component` skill (`.claude/skills/create-component/SKILL.md`) for anything in the library.
 
 ---
@@ -324,11 +324,11 @@ pages/
 
 A page slice:
 
-- composes widgets, features, entities and `@omni/core` components;
+- composes widgets, features, entities and `@lynxgsm/omni-ui` components;
 - owns the blocks used **only by that page** (`ui/`): the landing's `compile-beams.tsx` and `works-with.tsx` stay in `pages/landing`;
 - owns its stylesheet and exports its URL for the route's `head`;
 - for component docs, owns its **examples** (`examples/*.tsx`, shown live and as source through `?raw`).
-- for `/blocks`, owns the **blocks** (`blocks/*.tsx`): same rule as docs examples, they import only `@omni/core/react` and `react` (checked by `model/blocks.test.ts`).
+- for `/blocks`, owns the **blocks** (`blocks/*.tsx`): same rule as docs examples, they import only `@lynxgsm/omni-ui/react` and `react` (checked by `model/blocks.test.ts`).
 
 ```ts
 // pages/landing/index.ts
@@ -342,7 +342,7 @@ Promote a block out of a page **only when a second page needs it**: to `widgets`
 
 Examples are displayed to users as source code. They must read like consumer code:
 
-- import only from `@omni/core/react` (and `react`, icon packages);
+- import only from `@lynxgsm/omni-ui/react` (and `react`, icon packages);
 - never import site code (`@/shared/…`, `@/entities/…`);
 - stay small: one idea per example.
 
@@ -485,13 +485,13 @@ The site is the first consumer of Omni UI: it **dogfoods** the library.
 
 Before creating any UI component, check in this order:
 
-1. `@omni/core/react`: Button, Accordion, Dialog, Input, Textarea, Toast…
+1. `@lynxgsm/omni-ui/react`: Button, Accordion, Dialog, Input, Textarea, Toast…
 2. `shared/ui`
 3. `entities/<domain>/ui`, `features/<action>/ui`, `widgets`
 
 If a **generic** component is missing (a checkbox, a select, tabs…), add it to the library with the `create-component` skill rather than to `shared/ui`. `shared/ui` only holds what is specific to running this website (code blocks, install commands, props tables).
 
-`shared/ui/tabs` predates a library Tabs component: replace it when `@omni/core` ships one.
+`shared/ui/tabs` predates a library Tabs component: replace it when `@lynxgsm/omni-ui` ships one.
 
 ### Avoid
 
@@ -503,7 +503,7 @@ shared/ui/checkbox.tsx            # generic: belongs in packages/core
 ### Prefer
 
 ```tsx
-import { Button } from "@omni/core/react";
+import { Button } from "@lynxgsm/omni-ui/react";
 
 <Button variant="outline">Save</Button>;
 ```
@@ -652,7 +652,7 @@ Use the `@/` alias for cross-slice imports. It requires one line in `apps/web/ts
 ```
 
 ```tsx
-import { Button } from "@omni/core/react";
+import { Button } from "@lynxgsm/omni-ui/react";
 import { CodeBlock } from "@/shared/ui/code-block";
 import { useFramework } from "@/entities/framework";
 import { FrameworkCode } from "@/features/select-framework";
@@ -773,7 +773,7 @@ packages/core/src/checkbox/         # 1. the component (create-component skill)
 apps/web/src/
 ├── pages/docs/checkbox/            # 2. the docs page
 │   ├── ui/checkbox-page.tsx        #    DocsPage, ComponentPreview, FrameworkCode, PropsTable
-│   ├── examples/checkbox-demo.tsx  #    imports only from @omni/core/react
+│   ├── examples/checkbox-demo.tsx  #    imports only from @lynxgsm/omni-ui/react
 │   └── index.ts
 ├── app/routes/docs/components/
 │   └── checkbox.tsx                # 3. thin route: head + component
@@ -787,7 +787,7 @@ The flow:
 checkbox.lite.tsx
  │  mitosis build + vite build
  ▼
-@omni/core/react, @omni/core/svelte
+@lynxgsm/omni-ui/react, @lynxgsm/omni-ui/svelte
  │
  ▼
 pages/docs/checkbox  ──uses──▶  widgets/docs-layout, features/select-framework, shared/ui
@@ -805,7 +805,7 @@ When implementing something, follow these steps:
 1. **Library or site?** A reusable UI component goes to `packages/core` (`create-component` skill). Anything about the website goes to `apps/web`.
 2. **Identify the domain**: `framework`, `theme`, docs content…
 3. **Identify the user action**, if any: select, toggle, copy, share…
-4. **Search before creating**, in this order: `@omni/core/react`, `shared/ui`, `entities/<domain>`, `features/<action>`, `widgets`, the page slice.
+4. **Search before creating**, in this order: `@lynxgsm/omni-ui/react`, `shared/ui`, `entities/<domain>`, `features/<action>`, `widgets`, the page slice.
 5. **Reuse utilities** from `shared/lib` and entity models.
 6. **Keep route files thin**; put markup in the page slice.
 7. **Add only the necessary files.** A block used by one page stays in that page.
@@ -873,7 +873,7 @@ apps/web/src/
 Responsibilities:
 
 ```text
-@omni/core          → UI components (dogfooded)
+@lynxgsm/omni-ui          → UI components (dogfooded)
 Plain CSS + tokens  → styling
 TanStack Router     → routing, URL state, head, loaders
 React state         → local UI state

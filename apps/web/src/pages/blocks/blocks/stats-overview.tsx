@@ -1,4 +1,4 @@
-import { Badge, Card } from "@omni/core/react";
+import { Badge, Card } from "@lynxgsm/omni-ui/react";
 
 const STATS = [
   { label: "Revenue", value: "$48,290", change: "+12.4%", up: true },

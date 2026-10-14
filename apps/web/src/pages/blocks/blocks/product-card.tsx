@@ -1,4 +1,4 @@
-import { Badge, Button, ButtonGroup, Card, Select, toast } from "@omni/core/react";
+import { Badge, Button, ButtonGroup, Card, Select, toast } from "@lynxgsm/omni-ui/react";
 
 export default function ProductCard() {
   return (

@@ -16,17 +16,17 @@ export function Installation() {
       ]}
     >
       <Section id="install-the-package" title="Install the package">
-        <InstallCommand packages="@omni/core" />
+        <InstallCommand packages="@lynxgsm/omni-ui" />
       </Section>
       <Section id="import-the-styles" title="Import the styles">
         <p>Import the stylesheet once, at the root of your app (entry file or root layout).</p>
         <FrameworkCode
           label="Styles import"
-          react={`import "@omni/core/react/styles.css";`}
+          react={`import "@lynxgsm/omni-ui/react/styles.css";`}
           svelte={`
 <!-- +layout.svelte (SvelteKit) or App.svelte -->
 <script>
-  import "@omni/core/svelte/styles.css";
+  import "@lynxgsm/omni-ui/svelte/styles.css";
 </script>`}
         />
         <p>
@@ -38,14 +38,14 @@ export function Installation() {
         <FrameworkCode
           label="First component"
           react={`
-import { Button } from "@omni/core/react";
+import { Button } from "@lynxgsm/omni-ui/react";
 
 export default function App() {
   return <Button>Click me</Button>;
 }`}
           svelte={`
 <script>
-  import { Button } from "@omni/core/svelte";
+  import { Button } from "@lynxgsm/omni-ui/svelte";
 </script>
 
 <Button>Click me</Button>`}

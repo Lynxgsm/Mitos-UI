@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Avatar, Badge, SideNav } from "@omni/core/react";
+import { Avatar, Badge, SideNav } from "@lynxgsm/omni-ui/react";
 
 const SECTIONS = {
   "#overview": "Overview",

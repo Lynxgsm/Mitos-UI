@@ -1,5 +1,5 @@
 import { useState, type CSSProperties } from "react";
-import { Accordion, Button } from "@omni/core/react";
+import { Accordion, Button } from "@lynxgsm/omni-ui/react";
 import { CodeBlock } from "@/shared/ui/code-block";
 import { OptionGroup } from "@/shared/ui/option-group";
 

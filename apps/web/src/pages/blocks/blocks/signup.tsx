@@ -1,4 +1,4 @@
-import { Button, Card, Checkbox, Input } from "@omni/core/react";
+import { Button, Card, Checkbox, Input } from "@lynxgsm/omni-ui/react";
 
 export default function Signup() {
   return (

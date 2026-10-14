@@ -1,4 +1,4 @@
-import { Button, Tooltip } from "@omni/core/react";
+import { Button, Tooltip } from "@lynxgsm/omni-ui/react";
 
 export default function TooltipDemo() {
   return (

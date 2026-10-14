@@ -1,5 +1,5 @@
 <script>
-  import { Badge, Card } from "@omni/core/svelte";
+  import { Badge, Card } from "@lynxgsm/omni-ui/svelte";
 
   const stats = [
     { label: "Revenue", value: "$48,290", change: "+12.4%", up: true },

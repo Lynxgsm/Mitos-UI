@@ -19,19 +19,19 @@ export function SelectPage() {
       <ComponentPreview example={SelectDemo} source={selectDemoSource} label="Select demo" />
 
       <Section id="installation" title="Installation">
-        <InstallCommand packages="@omni/core" />
+        <InstallCommand packages="@lynxgsm/omni-ui" />
       </Section>
 
       <Section id="usage" title="Usage">
         <FrameworkCode
           label="Select usage"
           react={`
-import { Select } from "@omni/core/react";
+import { Select } from "@lynxgsm/omni-ui/react";
 
 <Select label="Country" name="country" options={countries} placeholder="Choose a country" required />`}
           svelte={`
 <script>
-  import { Select } from "@omni/core/svelte";
+  import { Select } from "@lynxgsm/omni-ui/svelte";
 </script>
 
 <Select label="Country" name="country" options={countries} placeholder="Choose a country" required />`}

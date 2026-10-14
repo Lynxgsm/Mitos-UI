@@ -1,4 +1,4 @@
-import { Badge } from "@omni/core/react";
+import { Badge } from "@lynxgsm/omni-ui/react";
 
 export default function BadgeVariants() {
   return (

@@ -1,5 +1,5 @@
 <script>
-  import { Button } from "@omni/core/svelte";
+  import { Button } from "@lynxgsm/omni-ui/svelte";
 </script>
 
 <div
