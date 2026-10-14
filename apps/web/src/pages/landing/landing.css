@@ -437,6 +437,94 @@
   color: var(--omni-foreground);
 }
 
+/* Comparison with shadcn/ui: table, then who should pick which */
+
+.compare-table-wrapper {
+  margin-top: 2.25rem;
+  overflow-x: auto;
+  border: 1px solid var(--omni-border);
+  border-radius: var(--omni-radius-xl);
+}
+
+.compare-table-wrapper:focus-visible {
+  outline: 2px solid var(--omni-ring);
+  outline-offset: 2px;
+}
+
+.compare-table {
+  width: 100%;
+  min-width: 40rem;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.compare-table th,
+.compare-table td {
+  padding: 0.9rem 1.25rem;
+  border-bottom: 1px solid var(--omni-border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.compare-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+.compare-table thead th {
+  font-size: 1rem;
+}
+
+/* the Omni UI column is the one this page is about */
+.compare-table thead th:nth-child(2),
+.compare-table tbody td:nth-child(2) {
+  background: color-mix(in oklab, var(--site-brand) 6%, var(--omni-background));
+}
+
+.compare-table tbody th {
+  width: 10rem;
+  font-weight: 600;
+}
+
+.compare-table tbody td:nth-child(3) {
+  color: var(--omni-muted-foreground);
+}
+
+.compare-choices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.compare-choice {
+  padding: 1.5rem;
+  border: 1px solid var(--omni-border);
+  border-radius: var(--omni-radius-xl);
+}
+
+.compare-choice-omni {
+  border-color: color-mix(in oklab, var(--site-brand) 45%, var(--omni-border));
+}
+
+.compare-choice h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+}
+
+.compare-choice ul {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding-inline-start: 1.1rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 767px) {
+  .compare-choices {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 /* Closing CTA + footer */
 
 .landing-cta {

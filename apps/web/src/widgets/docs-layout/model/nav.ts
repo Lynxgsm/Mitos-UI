@@ -1,4 +1,5 @@
-// Single source for the sidebar and the previous/next links.
+// Single source for the sidebar and the previous/next links. Components are grouped by purpose; the order of the
+// groups is also the reading order of the pager.
 export const DOCS_NAV = [
   {
     title: "Getting Started",
@@ -9,25 +10,45 @@ export const DOCS_NAV = [
     ],
   },
   {
-    title: "Components",
+    title: "Actions",
     items: [
-      { title: "Accordion", href: "/docs/components/accordion" },
-      { title: "Avatar", href: "/docs/components/avatar" },
-      { title: "Badge", href: "/docs/components/badge" },
       { title: "Button", href: "/docs/components/button" },
       { title: "Button Group", href: "/docs/components/button-group" },
-      { title: "Card", href: "/docs/components/card" },
+    ],
+  },
+  {
+    title: "Forms",
+    items: [
       { title: "Checkbox", href: "/docs/components/checkbox" },
-      { title: "Dialog", href: "/docs/components/dialog" },
       { title: "Fieldset", href: "/docs/components/fieldset" },
       { title: "Input", href: "/docs/components/input" },
       { title: "Radio Group", href: "/docs/components/radio-group" },
       { title: "Select", href: "/docs/components/select" },
-      { title: "Skeleton", href: "/docs/components/skeleton" },
       { title: "Slider", href: "/docs/components/slider" },
       { title: "Switch", href: "/docs/components/switch" },
       { title: "Textarea", href: "/docs/components/textarea" },
+    ],
+  },
+  {
+    title: "Data Display",
+    items: [
+      { title: "Avatar", href: "/docs/components/avatar" },
+      { title: "Badge", href: "/docs/components/badge" },
+      { title: "Card", href: "/docs/components/card" },
+    ],
+  },
+  {
+    title: "Feedback",
+    items: [
+      { title: "Skeleton", href: "/docs/components/skeleton" },
       { title: "Toast", href: "/docs/components/toast" },
+    ],
+  },
+  {
+    title: "Disclosure & Overlays",
+    items: [
+      { title: "Accordion", href: "/docs/components/accordion" },
+      { title: "Dialog", href: "/docs/components/dialog" },
     ],
   },
 ] as const;

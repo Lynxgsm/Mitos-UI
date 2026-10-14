@@ -5,6 +5,7 @@ import { FrameworkCode } from "@/features/select-framework";
 import { CodeBlock } from "@/shared/ui/code-block";
 import { SiteHeader } from "@/widgets/site-header";
 import { CompileBeams } from "./compile-beams";
+import { Comparison } from "./comparison";
 import { ThemePlayground } from "./theme-playground";
 import { WorksWith } from "./works-with";
 
@@ -68,7 +69,7 @@ function PrimaryActions() {
       <Link to="/docs/installation" className="site-button">
         Get started
       </Link>
-      <Link to="/docs/components/accordion" className="site-button site-button-outline">
+      <Link to="/docs/components/button" className="site-button site-button-outline">
         Browse components
       </Link>
     </div>
@@ -187,6 +188,8 @@ export function LandingPage() {
             </article>
           </div>
         </section>
+
+        <Comparison />
 
         <section className="landing-cta reveal" aria-labelledby="cta-title">
           <h2 id="cta-title">Start with one component.</h2>

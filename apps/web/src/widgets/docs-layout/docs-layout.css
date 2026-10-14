@@ -50,8 +50,11 @@
   margin-top: 1.5rem;
 }
 
+/* titles share the inline padding of the links, so their text lines up without a negative margin:
+   inside the scrolling sidebar a negative margin overflows (horizontal scroll) and clips the active background */
 .docs-nav-title {
   margin: 0 0 0.5rem;
+  padding-inline: 0.5rem;
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--omni-muted-foreground);
@@ -67,7 +70,6 @@
 .docs-nav a {
   display: block;
   padding: 0.3rem 0.5rem;
-  margin-inline: -0.5rem;
   border-radius: var(--omni-radius-sm);
   font-size: 0.875rem;
   text-decoration: none;

@@ -3,7 +3,7 @@ import { ThemeToggle } from "@/features/toggle-color-scheme";
 
 const LINKS = [
   { section: "docs", label: "Docs", to: "/docs" },
-  { section: "components", label: "Components", to: "/docs/components/accordion" },
+  { section: "components", label: "Components", to: "/docs/components/button" },
   { section: "theming", label: "Theming", to: "/docs/theming" },
   { section: "create", label: "Create", to: "/create" },
 ] as const;
