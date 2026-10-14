@@ -6,6 +6,8 @@ import InputDemo from "../examples/input-demo";
 import inputDemoSource from "../examples/input-demo?raw";
 import InputStates from "../examples/input-states";
 import inputStatesSource from "../examples/input-states?raw";
+import InputTypes from "../examples/input-types";
+import inputTypesSource from "../examples/input-types?raw";
 
 export function InputPage() {
   return (
@@ -50,6 +52,8 @@ import { Input } from "@omni/core/react";
       <Section id="examples" title="Examples">
         <h3>Description, required, error and disabled</h3>
         <ComponentPreview example={InputStates} source={inputStatesSource} label="Input states" />
+        <h3>Date, file and color</h3>
+        <ComponentPreview example={InputTypes} source={inputTypesSource} label="Input types" />
       </Section>
 
       <Section id="accessibility" title="Accessibility">
@@ -78,7 +82,12 @@ import { Input } from "@omni/core/react";
             { prop: "required / disabled / readOnly", type: "boolean", description: "Native states; required adds a visual asterisk." },
             { prop: "id", type: "string", description: "Field id, base of the description and error ids." },
             { prop: "class", type: "string", description: "Extra classes for the wrapper." },
-            { prop: "type", type: '"text" | "email" | "password" | "search" | "tel" | "url" | "number"', default: '"text"', description: "Native input type." },
+            {
+              prop: "type",
+              type: '"text" | "email" | "password" | "search" | "tel" | "url" | "number" | "date" | "time" | "datetime-local" | "file" | "color"',
+              default: '"text"',
+              description: "Native input type.",
+            },
             { prop: "aria-* / data-* / native attributes", type: "—", description: "Forwarded to the <input>." },
           ]}
         />

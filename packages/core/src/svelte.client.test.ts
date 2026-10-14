@@ -83,6 +83,23 @@ describe("Svelte build: client", () => {
     expect(spy).toHaveBeenCalledOnce();
   });
 
+  it("sets the mixed state of Checkbox and toggles it", async () => {
+    await show(`<Checkbox label="Select all" indeterminate />`);
+    const checkbox = document.querySelector<HTMLInputElement>('input[type="checkbox"]')!;
+    expect(checkbox.indeterminate).toBe(true);
+    checkbox.click();
+    expect(checkbox.checked).toBe(true);
+  });
+
+  it("selects the default option of RadioGroup, then the clicked one", async () => {
+    await show(`<RadioGroup legend="Plan" name="plan" defaultValue="pro" options={[{ value: "free", label: "Free" }, { value: "pro", label: "Pro" }]} />`);
+    const [free, pro] = Array.from(document.querySelectorAll<HTMLInputElement>('input[type="radio"]'));
+    expect(pro!.checked).toBe(true);
+    free!.click();
+    flushSync();
+    expect([free!.checked, pro!.checked]).toEqual([true, false]);
+  });
+
   it("shows toasts in the Toaster", async () => {
     await show(`<Toaster /><Button onClick={() => toast({ title: "Saved" })}>Notify</Button>`);
     button("Notify").click();

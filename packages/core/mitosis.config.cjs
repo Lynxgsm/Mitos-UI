@@ -60,6 +60,8 @@ const svelteRunes = () => ({
         .replace(/^( *)\$: (onUpdateFn_\d+\(\.\.\.\[[^\]]*\]\));/gm, "$1$effect(() => {\n$1  $2;\n$1});")
         .replace(/\{#if \$\$slots\.default\}/g, "{#if children}")
         .replace(/<slot \/>/g, "{@render children?.()}")
+        // React's uncontrolled initial state; in Svelte an unbound checked attribute already is that
+        .replace(/\bdefaultChecked=/g, "checked=")
         // Svelte 5 warns on self-closing non-void elements
         .replace(/<(textarea|div|span|p)\b([^<]*?)\s*\/>/g, "<$1$2></$1>");
 

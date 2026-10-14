@@ -21,9 +21,15 @@ import { Route as DocsComponentsBadgeRouteImport } from './routes/docs/component
 import { Route as DocsComponentsButtonRouteImport } from './routes/docs/components/button'
 import { Route as DocsComponentsButtonGroupRouteImport } from './routes/docs/components/button-group'
 import { Route as DocsComponentsCardRouteImport } from './routes/docs/components/card'
+import { Route as DocsComponentsCheckboxRouteImport } from './routes/docs/components/checkbox'
 import { Route as DocsComponentsDialogRouteImport } from './routes/docs/components/dialog'
+import { Route as DocsComponentsFieldsetRouteImport } from './routes/docs/components/fieldset'
 import { Route as DocsComponentsInputRouteImport } from './routes/docs/components/input'
+import { Route as DocsComponentsRadioGroupRouteImport } from './routes/docs/components/radio-group'
+import { Route as DocsComponentsSelectRouteImport } from './routes/docs/components/select'
 import { Route as DocsComponentsSkeletonRouteImport } from './routes/docs/components/skeleton'
+import { Route as DocsComponentsSliderRouteImport } from './routes/docs/components/slider'
+import { Route as DocsComponentsSwitchRouteImport } from './routes/docs/components/switch'
 import { Route as DocsComponentsTextareaRouteImport } from './routes/docs/components/textarea'
 import { Route as DocsComponentsToastRouteImport } from './routes/docs/components/toast'
 
@@ -88,9 +94,19 @@ const DocsComponentsCardRoute = DocsComponentsCardRouteImport.update({
   path: '/components/card',
   getParentRoute: () => DocsRouteRoute,
 } as any)
+const DocsComponentsCheckboxRoute = DocsComponentsCheckboxRouteImport.update({
+  id: '/components/checkbox',
+  path: '/components/checkbox',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
 const DocsComponentsDialogRoute = DocsComponentsDialogRouteImport.update({
   id: '/components/dialog',
   path: '/components/dialog',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
+const DocsComponentsFieldsetRoute = DocsComponentsFieldsetRouteImport.update({
+  id: '/components/fieldset',
+  path: '/components/fieldset',
   getParentRoute: () => DocsRouteRoute,
 } as any)
 const DocsComponentsInputRoute = DocsComponentsInputRouteImport.update({
@@ -98,9 +114,30 @@ const DocsComponentsInputRoute = DocsComponentsInputRouteImport.update({
   path: '/components/input',
   getParentRoute: () => DocsRouteRoute,
 } as any)
+const DocsComponentsRadioGroupRoute =
+  DocsComponentsRadioGroupRouteImport.update({
+    id: '/components/radio-group',
+    path: '/components/radio-group',
+    getParentRoute: () => DocsRouteRoute,
+  } as any)
+const DocsComponentsSelectRoute = DocsComponentsSelectRouteImport.update({
+  id: '/components/select',
+  path: '/components/select',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
 const DocsComponentsSkeletonRoute = DocsComponentsSkeletonRouteImport.update({
   id: '/components/skeleton',
   path: '/components/skeleton',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
+const DocsComponentsSliderRoute = DocsComponentsSliderRouteImport.update({
+  id: '/components/slider',
+  path: '/components/slider',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
+const DocsComponentsSwitchRoute = DocsComponentsSwitchRouteImport.update({
+  id: '/components/switch',
+  path: '/components/switch',
   getParentRoute: () => DocsRouteRoute,
 } as any)
 const DocsComponentsTextareaRoute = DocsComponentsTextareaRouteImport.update({
@@ -127,9 +164,15 @@ export interface FileRoutesByFullPath {
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/button-group': typeof DocsComponentsButtonGroupRoute
   '/docs/components/card': typeof DocsComponentsCardRoute
+  '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
   '/docs/components/dialog': typeof DocsComponentsDialogRoute
+  '/docs/components/fieldset': typeof DocsComponentsFieldsetRoute
   '/docs/components/input': typeof DocsComponentsInputRoute
+  '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
+  '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/skeleton': typeof DocsComponentsSkeletonRoute
+  '/docs/components/slider': typeof DocsComponentsSliderRoute
+  '/docs/components/switch': typeof DocsComponentsSwitchRoute
   '/docs/components/textarea': typeof DocsComponentsTextareaRoute
   '/docs/components/toast': typeof DocsComponentsToastRoute
 }
@@ -145,9 +188,15 @@ export interface FileRoutesByTo {
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/button-group': typeof DocsComponentsButtonGroupRoute
   '/docs/components/card': typeof DocsComponentsCardRoute
+  '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
   '/docs/components/dialog': typeof DocsComponentsDialogRoute
+  '/docs/components/fieldset': typeof DocsComponentsFieldsetRoute
   '/docs/components/input': typeof DocsComponentsInputRoute
+  '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
+  '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/skeleton': typeof DocsComponentsSkeletonRoute
+  '/docs/components/slider': typeof DocsComponentsSliderRoute
+  '/docs/components/switch': typeof DocsComponentsSwitchRoute
   '/docs/components/textarea': typeof DocsComponentsTextareaRoute
   '/docs/components/toast': typeof DocsComponentsToastRoute
 }
@@ -165,9 +214,15 @@ export interface FileRoutesById {
   '/docs/components/button': typeof DocsComponentsButtonRoute
   '/docs/components/button-group': typeof DocsComponentsButtonGroupRoute
   '/docs/components/card': typeof DocsComponentsCardRoute
+  '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
   '/docs/components/dialog': typeof DocsComponentsDialogRoute
+  '/docs/components/fieldset': typeof DocsComponentsFieldsetRoute
   '/docs/components/input': typeof DocsComponentsInputRoute
+  '/docs/components/radio-group': typeof DocsComponentsRadioGroupRoute
+  '/docs/components/select': typeof DocsComponentsSelectRoute
   '/docs/components/skeleton': typeof DocsComponentsSkeletonRoute
+  '/docs/components/slider': typeof DocsComponentsSliderRoute
+  '/docs/components/switch': typeof DocsComponentsSwitchRoute
   '/docs/components/textarea': typeof DocsComponentsTextareaRoute
   '/docs/components/toast': typeof DocsComponentsToastRoute
 }
@@ -186,9 +241,15 @@ export interface FileRouteTypes {
     | '/docs/components/button'
     | '/docs/components/button-group'
     | '/docs/components/card'
+    | '/docs/components/checkbox'
     | '/docs/components/dialog'
+    | '/docs/components/fieldset'
     | '/docs/components/input'
+    | '/docs/components/radio-group'
+    | '/docs/components/select'
     | '/docs/components/skeleton'
+    | '/docs/components/slider'
+    | '/docs/components/switch'
     | '/docs/components/textarea'
     | '/docs/components/toast'
   fileRoutesByTo: FileRoutesByTo
@@ -204,9 +265,15 @@ export interface FileRouteTypes {
     | '/docs/components/button'
     | '/docs/components/button-group'
     | '/docs/components/card'
+    | '/docs/components/checkbox'
     | '/docs/components/dialog'
+    | '/docs/components/fieldset'
     | '/docs/components/input'
+    | '/docs/components/radio-group'
+    | '/docs/components/select'
     | '/docs/components/skeleton'
+    | '/docs/components/slider'
+    | '/docs/components/switch'
     | '/docs/components/textarea'
     | '/docs/components/toast'
   id:
@@ -223,9 +290,15 @@ export interface FileRouteTypes {
     | '/docs/components/button'
     | '/docs/components/button-group'
     | '/docs/components/card'
+    | '/docs/components/checkbox'
     | '/docs/components/dialog'
+    | '/docs/components/fieldset'
     | '/docs/components/input'
+    | '/docs/components/radio-group'
+    | '/docs/components/select'
     | '/docs/components/skeleton'
+    | '/docs/components/slider'
+    | '/docs/components/switch'
     | '/docs/components/textarea'
     | '/docs/components/toast'
   fileRoutesById: FileRoutesById
@@ -322,11 +395,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentsCardRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/components/checkbox': {
+      id: '/docs/components/checkbox'
+      path: '/components/checkbox'
+      fullPath: '/docs/components/checkbox'
+      preLoaderRoute: typeof DocsComponentsCheckboxRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
     '/docs/components/dialog': {
       id: '/docs/components/dialog'
       path: '/components/dialog'
       fullPath: '/docs/components/dialog'
       preLoaderRoute: typeof DocsComponentsDialogRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/components/fieldset': {
+      id: '/docs/components/fieldset'
+      path: '/components/fieldset'
+      fullPath: '/docs/components/fieldset'
+      preLoaderRoute: typeof DocsComponentsFieldsetRouteImport
       parentRoute: typeof DocsRouteRoute
     }
     '/docs/components/input': {
@@ -336,11 +423,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentsInputRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/components/radio-group': {
+      id: '/docs/components/radio-group'
+      path: '/components/radio-group'
+      fullPath: '/docs/components/radio-group'
+      preLoaderRoute: typeof DocsComponentsRadioGroupRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/components/select': {
+      id: '/docs/components/select'
+      path: '/components/select'
+      fullPath: '/docs/components/select'
+      preLoaderRoute: typeof DocsComponentsSelectRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
     '/docs/components/skeleton': {
       id: '/docs/components/skeleton'
       path: '/components/skeleton'
       fullPath: '/docs/components/skeleton'
       preLoaderRoute: typeof DocsComponentsSkeletonRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/components/slider': {
+      id: '/docs/components/slider'
+      path: '/components/slider'
+      fullPath: '/docs/components/slider'
+      preLoaderRoute: typeof DocsComponentsSliderRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/components/switch': {
+      id: '/docs/components/switch'
+      path: '/components/switch'
+      fullPath: '/docs/components/switch'
+      preLoaderRoute: typeof DocsComponentsSwitchRouteImport
       parentRoute: typeof DocsRouteRoute
     }
     '/docs/components/textarea': {
@@ -370,9 +485,15 @@ interface DocsRouteRouteChildren {
   DocsComponentsButtonRoute: typeof DocsComponentsButtonRoute
   DocsComponentsButtonGroupRoute: typeof DocsComponentsButtonGroupRoute
   DocsComponentsCardRoute: typeof DocsComponentsCardRoute
+  DocsComponentsCheckboxRoute: typeof DocsComponentsCheckboxRoute
   DocsComponentsDialogRoute: typeof DocsComponentsDialogRoute
+  DocsComponentsFieldsetRoute: typeof DocsComponentsFieldsetRoute
   DocsComponentsInputRoute: typeof DocsComponentsInputRoute
+  DocsComponentsRadioGroupRoute: typeof DocsComponentsRadioGroupRoute
+  DocsComponentsSelectRoute: typeof DocsComponentsSelectRoute
   DocsComponentsSkeletonRoute: typeof DocsComponentsSkeletonRoute
+  DocsComponentsSliderRoute: typeof DocsComponentsSliderRoute
+  DocsComponentsSwitchRoute: typeof DocsComponentsSwitchRoute
   DocsComponentsTextareaRoute: typeof DocsComponentsTextareaRoute
   DocsComponentsToastRoute: typeof DocsComponentsToastRoute
 }
@@ -387,9 +508,15 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsComponentsButtonRoute: DocsComponentsButtonRoute,
   DocsComponentsButtonGroupRoute: DocsComponentsButtonGroupRoute,
   DocsComponentsCardRoute: DocsComponentsCardRoute,
+  DocsComponentsCheckboxRoute: DocsComponentsCheckboxRoute,
   DocsComponentsDialogRoute: DocsComponentsDialogRoute,
+  DocsComponentsFieldsetRoute: DocsComponentsFieldsetRoute,
   DocsComponentsInputRoute: DocsComponentsInputRoute,
+  DocsComponentsRadioGroupRoute: DocsComponentsRadioGroupRoute,
+  DocsComponentsSelectRoute: DocsComponentsSelectRoute,
   DocsComponentsSkeletonRoute: DocsComponentsSkeletonRoute,
+  DocsComponentsSliderRoute: DocsComponentsSliderRoute,
+  DocsComponentsSwitchRoute: DocsComponentsSwitchRoute,
   DocsComponentsTextareaRoute: DocsComponentsTextareaRoute,
   DocsComponentsToastRoute: DocsComponentsToastRoute,
 }

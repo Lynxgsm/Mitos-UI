@@ -20,6 +20,14 @@ describe("Svelte build: server", async () => {
     Card: await html(`<Card title="Plan" description="Billed monthly." headingLevel={2}>Body</Card>`),
     ButtonGroup: await html(`<ButtonGroup aria-label="Alignment"><Button>Left</Button><Button>Right</Button></ButtonGroup>`),
     Skeleton: await html(`<Skeleton class="line" />`),
+    Checkbox: await html(`<Checkbox id="terms" label="Terms" error="Required." />`),
+    Switch: await html(`<Switch label="Airplane mode" />`),
+    RadioGroup: await html(
+      `<RadioGroup legend="Plan" name="plan" defaultValue="pro" options={[{ value: "free", label: "Free" }, { value: "pro", label: "Pro" }]} />`,
+    ),
+    Select: await html(`<Select label="Country" placeholder="Choose" options={[{ value: "fr", label: "France" }]} />`),
+    Slider: await html(`<Slider label="Volume" min={0} max={10} />`),
+    Fieldset: await html(`<Fieldset legend="Address"><Input label="City" /></Fieldset>`),
   };
 
   it("renders Button with its defaults, forwarded attributes and merged class", () => {
@@ -74,6 +82,17 @@ describe("Svelte build: server", async () => {
 
   it("renders Skeleton hidden from assistive technologies", () => {
     expect(renders.Skeleton).toMatch(/<div[^>]* aria-hidden="true"[^>]* class="[^"]* line"/);
+  });
+
+  it("renders the form controls on their native elements", () => {
+    expect(renders.Checkbox).toMatch(/<input[^>]* type="checkbox"[^>]* aria-invalid="true"[^>]* aria-describedby="terms-error"/);
+    expect(renders.Switch).toMatch(/<input[^>]* type="checkbox"[^>]* role="switch"|<input[^>]* role="switch"[^>]* type="checkbox"/);
+    expect(renders.RadioGroup).toMatch(/<fieldset[^>]* role="radiogroup"/);
+    expect(renders.RadioGroup).toMatch(/<input[^>]* value="pro"[^>]* checked/);
+    expect(renders.Select).toMatch(/<select[^>]*>.*<option value="">.*Choose.*<option value="fr"/s);
+    expect(renders.Slider).toContain("--omni-slider-fill:50%");
+    expect(renders.Slider).toMatch(/<input[^>]* type="range"[^>]* min="0"|<input[^>]* min="0"[^>]* type="range"/);
+    expect(renders.Fieldset).toMatch(/<fieldset[^>]*>.*<legend[^>]*>.*Address.*<\/legend>.*<input/s);
   });
 
   const css = readFileSync("dist/react/assets/stylex.css", "utf8");

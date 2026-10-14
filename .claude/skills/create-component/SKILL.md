@@ -42,6 +42,8 @@ Calque `button.lite.tsx` :
 Pièges du parseur Mitosis (le build échoue avec un message peu clair) :
 - **pas de fonction au niveau du module** (`function x() {}` hors du composant → « Could not JSON5 parse object ») : mets la logique dans un getter ou une méthode de `useStore` ;
 - **pas d'apostrophe ni de guillemets dans les commentaires** à l'intérieur du type `<Name>Props`, des objets `stylex.create` ou du composant : Mitosis recolle alors la suite sur la ligne du commentaire, soit un « Format error … '}' expected », soit, pire, des styles **silencieusement commentés** (vérifie la présence de la règle dans `dist/react/assets/stylex.css`) ;
+- **une variable locale ne doit pas porter le nom d'une prop** : en Svelte, `props.min` devient `min`, et `const min = props.min` donne une erreur « Cannot access before initialization » ;
+- Mitosis **supprime les annotations de type de retour** des getters : pour typer un objet `style` contenant une variable CSS, caste dans le corps (`return { "--x": v } as any;`) ;
 - pour un élément conditionnel, utilise un ternaire en JSX (`{cond ? <img /> : <span />}`), il devient `{#if}{:else}` en Svelte.
 
 ### 3. Styles accessibles

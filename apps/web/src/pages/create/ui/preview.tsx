@@ -1,4 +1,19 @@
-import { Accordion, Button } from "@omni/core/react";
+import {
+  Accordion,
+  Avatar,
+  Badge,
+  Button,
+  ButtonGroup,
+  Card,
+  Checkbox,
+  Input,
+  RadioGroup,
+  Select,
+  Skeleton,
+  Slider,
+  Switch,
+  Textarea,
+} from "@omni/core/react";
 
 const VARIANTS = ["default", "secondary", "outline", "ghost", "link", "destructive"] as const;
 const SIZES = ["xs", "sm", "md", "lg", "xl"] as const;
@@ -8,13 +23,6 @@ const MEMBERS = [
   { name: "Kwame Asante", email: "kwame@northwind.io", role: "Editor" },
   { name: "Hana Kobayashi", email: "hana@northwind.io", role: "Viewer" },
 ];
-
-function initials(name: string) {
-  return name
-    .split(" ")
-    .map((part) => part[0])
-    .join("");
-}
 
 // Realistic compositions built only from library components and --omni-* tokens.
 export function Preview() {
@@ -38,16 +46,76 @@ export function Preview() {
         </div>
       </section>
 
-      <section className="create-card" aria-labelledby="preview-plan">
-        <h3 id="preview-plan">Upgrade to Pro</h3>
-        <p className="create-muted">Unlimited projects, shared themes and priority support.</p>
-        <p className="create-price">
-          $12<span> / month</span>
-        </p>
-        <div className="create-row">
-          <Button>Upgrade</Button>
-          <Button variant="outline">Compare plans</Button>
+      <Card
+        class="create-card-component"
+        title="Upgrade to Pro"
+        description="Unlimited projects, shared themes and priority support."
+        footer={
+          <>
+            <Button>Upgrade</Button>
+            <Button variant="outline">Compare plans</Button>
+          </>
+        }
+      >
+        <div className="create-row create-row-center">
+          <p className="create-price">
+            $12<span> / month</span>
+          </p>
+          <Badge>Popular</Badge>
         </div>
+      </Card>
+
+      <section className="create-card" aria-labelledby="preview-toolbar">
+        <h3 id="preview-toolbar">Editor toolbar</h3>
+        <div className="create-row">
+          <ButtonGroup aria-label="Text alignment">
+            <Button variant="outline">Left</Button>
+            <Button variant="outline">Center</Button>
+            <Button variant="outline">Right</Button>
+          </ButtonGroup>
+          <ButtonGroup aria-label="Date range">
+            <Button variant="secondary">Day</Button>
+            <Button variant="secondary">Week</Button>
+            <Button variant="secondary">Month</Button>
+          </ButtonGroup>
+        </div>
+      </section>
+
+      <section className="create-card" aria-labelledby="preview-profile">
+        <h3 id="preview-profile">Profile</h3>
+        <Input label="Display name" defaultValue="Inès Moreau" />
+        <Input label="Email" type="email" defaultValue="ines@northwind" error="Enter a complete email address." />
+        <Select
+          label="Language"
+          defaultValue="en"
+          options={[
+            { value: "en", label: "English" },
+            { value: "fr", label: "Français" },
+            { value: "ja", label: "日本語" },
+          ]}
+        />
+        <Textarea label="Bio" description="Shown on your public profile." rows={2} />
+        <div className="create-row">
+          <Button>Save</Button>
+        </div>
+      </section>
+
+      <section className="create-card" aria-labelledby="preview-preferences">
+        <h3 id="preview-preferences">Preferences</h3>
+        <Switch label="Email notifications" defaultChecked />
+        <Switch label="Push notifications" description="Mentions and direct messages only." />
+        <RadioGroup
+          legend="Weekly digest"
+          name="preview-digest"
+          defaultValue="weekly"
+          options={[
+            { value: "daily", label: "Daily" },
+            { value: "weekly", label: "Weekly" },
+            { value: "never", label: "Never" },
+          ]}
+        />
+        <Slider label="Notification volume" defaultValue={60} />
+        <Checkbox label="Share anonymous usage data" defaultChecked />
       </section>
 
       <section className="create-card" aria-labelledby="preview-notifications">
@@ -69,14 +137,13 @@ export function Preview() {
         <ul className="create-members">
           {MEMBERS.map((member) => (
             <li key={member.email}>
-              <span aria-hidden="true" className="create-avatar">
-                {initials(member.name)}
-              </span>
+              {/* the name is written next to it: a decorative avatar, not read twice */}
+              <Avatar alt="" fallback={member.name.split(" ").map((part) => part[0]).join("")} size="sm" />
               <span className="create-member">
                 <span>{member.name}</span>
                 <span className="create-muted">{member.email}</span>
               </span>
-              <span className="create-muted">{member.role}</span>
+              <Badge variant={member.role === "Owner" ? "default" : "outline"}>{member.role}</Badge>
             </li>
           ))}
         </ul>
@@ -94,6 +161,19 @@ export function Preview() {
           <Button variant="destructive">Delete project</Button>
           <Button variant="ghost">Cancel</Button>
         </div>
+      </section>
+
+      <section className="create-card" aria-labelledby="preview-loading" aria-busy="true">
+        <h3 id="preview-loading">Loading activity</h3>
+        {[0, 1, 2].map((row) => (
+          <div key={row} className="create-row create-row-center">
+            <Skeleton class="create-skeleton-avatar" />
+            <div className="create-skeleton-lines">
+              <Skeleton class="create-skeleton-line" />
+              <Skeleton class="create-skeleton-line create-skeleton-short" />
+            </div>
+          </div>
+        ))}
       </section>
 
       <section className="create-card" aria-labelledby="preview-type">
