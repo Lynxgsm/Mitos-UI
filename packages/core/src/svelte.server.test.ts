@@ -28,6 +28,11 @@ describe("Svelte build: server", async () => {
     Select: await html(`<Select label="Country" placeholder="Choose" options={[{ value: "fr", label: "France" }]} />`),
     Slider: await html(`<Slider label="Volume" min={0} max={10} />`),
     Fieldset: await html(`<Fieldset legend="Address"><Input label="City" /></Fieldset>`),
+    Tabs: await html(
+      `<Tabs id="settings" label="Settings" items={[{ value: "a", label: "Account", content: "Account panel" }, { value: "b", label: "Billing", content: "Billing panel" }]} />`,
+    ),
+    Tooltip: await html(`<Tooltip id="tip" content="Copy to clipboard"><Button>Copy</Button></Tooltip>`),
+    Menu: await html(`<Menu id="actions" label="Actions" items={[{ label: "Edit", onSelect: () => {} }]} />`),
   };
 
   it("renders Button with its defaults, forwarded attributes and merged class", () => {
@@ -93,6 +98,15 @@ describe("Svelte build: server", async () => {
     expect(renders.Slider).toContain("--omni-slider-fill:50%");
     expect(renders.Slider).toMatch(/<input[^>]* type="range"[^>]* min="0"|<input[^>]* min="0"[^>]* type="range"/);
     expect(renders.Fieldset).toMatch(/<fieldset[^>]*>.*<legend[^>]*>.*Address.*<\/legend>.*<input/s);
+  });
+
+  it("renders Tabs, Tooltip and Menu with their ARIA patterns", () => {
+    expect(renders.Tabs).toMatch(/<div role="tablist"[^>]* aria-label="Settings"/);
+    expect(renders.Tabs).toMatch(/<button[^>]* role="tab"[^>]* aria-selected="true"[^>]* aria-controls="settings-panel-0"/);
+    expect(renders.Tabs).toMatch(/<div role="tabpanel"[^>]* id="settings-panel-1"[^>]* hidden/);
+    expect(renders.Tooltip).toMatch(/<span[^>]* role="tooltip" id="tip"[^>]* hidden/);
+    expect(renders.Menu).toMatch(/<button[^>]* aria-haspopup="menu"[^>]* aria-expanded="false"/);
+    expect(renders.Menu).toMatch(/<div[^>]* role="menu"[^>]* aria-labelledby="actions-trigger"[^>]* hidden/);
   });
 
   const css = readFileSync("dist/react/assets/stylex.css", "utf8");

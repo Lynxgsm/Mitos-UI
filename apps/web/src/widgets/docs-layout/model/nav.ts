@@ -14,6 +14,7 @@ export const DOCS_NAV = [
     items: [
       { title: "Button", href: "/docs/components/button" },
       { title: "Button Group", href: "/docs/components/button-group" },
+      { title: "Menu", href: "/docs/components/menu" },
     ],
   },
   {
@@ -45,10 +46,17 @@ export const DOCS_NAV = [
     ],
   },
   {
-    title: "Disclosure & Overlays",
+    title: "Disclosure",
     items: [
       { title: "Accordion", href: "/docs/components/accordion" },
+      { title: "Tabs", href: "/docs/components/tabs" },
+    ],
+  },
+  {
+    title: "Overlays",
+    items: [
       { title: "Dialog", href: "/docs/components/dialog" },
+      { title: "Tooltip", href: "/docs/components/tooltip" },
     ],
   },
 ] as const;
