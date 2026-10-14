@@ -49,7 +49,7 @@ write without layers overrides them, whatever the import order:
 Accordion, Avatar, Badge, Button, ButtonGroup, Card, Checkbox, Dialog, Fieldset, Input, Menu, RadioGroup, Select,
 SideNav, Skeleton, Slider, Switch, Tabs, Textarea, Toast (`Toaster`, `toast()`), Tooltip.
 
-See [CHANGELOG.md](https://github.com/Lynxgsm/omni-system-ui/blob/main/CHANGELOG.md) for the history.
+See [CHANGELOG.md](https://github.com/Lynxgsm/Mitos-UI/blob/main/CHANGELOG.md) for the history.
 
 ## License
 

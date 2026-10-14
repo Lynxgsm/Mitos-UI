@@ -1,6 +1,6 @@
 ---
 name: create-component
-description: Créer ou ajouter un composant UI dans packages/core d'omni-system-ui (Checkbox, Switch, Input, Select, Tabs, Dialog, Tooltip, Accordion, Menu…), selon le schéma de Button (source Mitosis .lite.tsx + StyleX + tokens, test Vitest + axe, story Storybook, export dans index.ts) et toujours conforme HTML + WAI-ARIA. À utiliser dès qu'on demande un nouveau composant, widget ou élément d'interface dans ce repo, même si la demande ne parle ni de Mitosis, ni d'accessibilité, ni de tests.
+description: Créer ou ajouter un composant UI dans packages/core de Mitos UI (Checkbox, Switch, Input, Select, Tabs, Dialog, Tooltip, Accordion, Menu…), selon le schéma de Button (source Mitosis .lite.tsx + StyleX + tokens, test Vitest + axe, story Storybook, export dans index.ts) et toujours conforme HTML + WAI-ARIA. À utiliser dès qu'on demande un nouveau composant, widget ou élément d'interface dans ce repo, même si la demande ne parle ni de Mitosis, ni d'accessibilité, ni de tests.
 ---
 
 # Créer un composant dans `packages/core`

@@ -1,5 +1,5 @@
 {
-  "name": "omni-system-ui",
+  "name": "mitos-ui-monorepo",
   "private": true,
   "workspaces": [
     "apps/*",

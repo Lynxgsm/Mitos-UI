@@ -79,7 +79,7 @@ CI (`.github/workflows/ci.yml`) runs the Definition of Done on every pull reques
 
 The workflow fails if the new version has no CHANGELOG section. Pushes to `main` that keep an already published version publish nothing.
 
-Publishing uses npm trusted publishing (OIDC), with no token in the repository. The first version must be published by hand (`npm publish` in `packages/core` after `bun run build`). After that, add a trusted publisher on npmjs.com: package settings, GitHub Actions, repository `Lynxgsm/omni-system-ui`, workflow `release.yml`.
+Publishing uses npm trusted publishing (OIDC), with no token in the repository. The first version must be published by hand (`npm publish` in `packages/core` after `bun run build`). After that, add a trusted publisher on npmjs.com: package settings, GitHub Actions, repository `Lynxgsm/Mitos-UI`, workflow `release.yml`.
 
 ---
 

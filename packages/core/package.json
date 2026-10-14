@@ -6,11 +6,11 @@
   "author": "Aili Fida Aliotti Christino",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Lynxgsm/omni-system-ui.git",
+    "url": "git+https://github.com/Lynxgsm/Mitos-UI.git",
     "directory": "packages/core"
   },
-  "homepage": "https://github.com/Lynxgsm/omni-system-ui#readme",
-  "bugs": "https://github.com/Lynxgsm/omni-system-ui/issues",
+  "homepage": "https://github.com/Lynxgsm/Mitos-UI#readme",
+  "bugs": "https://github.com/Lynxgsm/Mitos-UI/issues",
   "keywords": [
     "ui",
     "components",

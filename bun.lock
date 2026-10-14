@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "omni-system-ui",
+      "name": "mitos-ui-monorepo",
       "devDependencies": {
         "shadcn": "^4.21.5",
         "typescript": "^7.0.2",
