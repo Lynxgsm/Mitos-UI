@@ -79,6 +79,7 @@
 }
 
 .docs-nav a[aria-current="page"] {
+  box-shadow: inset 2px 0 0 var(--site-brand);
   background: var(--omni-accent);
   color: var(--omni-accent-foreground);
   font-weight: 500;
@@ -123,6 +124,11 @@
   font-size: 1.125rem;
 }
 
+.docs-article p a,
+.docs-article li a {
+  color: var(--omni-primary);
+}
+
 .docs-article :not(pre) > code {
   padding: 0.1rem 0.3rem;
   border-radius: var(--omni-radius-sm);
@@ -165,7 +171,7 @@
 }
 
 .docs-tablist [role="tab"][aria-selected="true"] {
-  border-bottom-color: var(--omni-foreground);
+  border-bottom-color: var(--site-brand);
   color: var(--omni-foreground);
 }
 
@@ -197,10 +203,13 @@
 
 .docs-code pre {
   margin: 0;
-  padding: 1rem 4.5rem 1rem 1rem;
+  padding: 1rem 3.5rem 1rem 1rem;
   overflow-x: auto;
+  border: 1px solid color-mix(in oklab, #ffffff 8%, #1e1e1e);
   border-radius: var(--omni-radius-lg);
-  background: var(--omni-muted);
+  /* VS Code Dark+ editor colors, in both site themes */
+  background: #1e1e1e;
+  color: #d4d4d4;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.85rem;
   line-height: 1.7;
@@ -210,6 +219,8 @@
   position: absolute;
   top: 0.6rem;
   right: 0.6rem;
+  width: 1.5rem;
+  padding-inline: 0;
 }
 
 /* Tables */

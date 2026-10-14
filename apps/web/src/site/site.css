@@ -1,7 +1,12 @@
 /* Site-wide pieces shared by the landing page and the docs. Plain CSS on the --omni-* tokens. */
 
 :root {
+  /* brand color, used as-is for decoration; text and buttons use its AA shades (Ember accent) */
+  --site-brand: #c45c26;
   --site-header-height: 3.5rem;
+  /* fixed on purpose: the header must look identical on every page, whatever the page's own width */
+  --site-header-width: 88rem;
+  --site-header-gutter: 1.5rem;
 }
 
 .visually-hidden {
@@ -39,7 +44,7 @@
   align-items: center;
   gap: 2rem;
   height: var(--site-header-height);
-  padding-inline: max(var(--site-gutter, 1.5rem), calc((100% - var(--site-width, 88rem)) / 2));
+  padding-inline: max(var(--site-header-gutter), calc((100% - var(--site-header-width)) / 2));
   border-bottom: 1px solid var(--omni-border);
   background: color-mix(in oklab, var(--omni-background) 88%, transparent);
   backdrop-filter: blur(10px);
@@ -51,10 +56,24 @@
 }
 
 .site-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  white-space: nowrap;
   font-weight: 700;
   font-size: 1.05rem;
   color: inherit;
   text-decoration: none;
+}
+
+.site-logo::before {
+  content: "";
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: var(--omni-radius-sm);
+  background: var(--site-brand);
+  box-shadow: 0.3rem 0.3rem 0 color-mix(in oklab, var(--site-brand) 35%, transparent);
 }
 
 .site-header ul {
@@ -66,6 +85,9 @@
 }
 
 .site-header nav a {
+  display: inline-block;
+  padding-block: 0.35rem;
+  border-bottom: 2px solid transparent;
   font-size: 0.875rem;
   color: var(--omni-muted-foreground);
   text-decoration: none;
@@ -78,10 +100,30 @@
 
 .site-header nav a[data-active] {
   font-weight: 500;
+  border-bottom-color: var(--site-brand);
 }
 
-.site-header-cta {
+.site-header nav {
+  min-width: 0;
+}
+
+.site-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   margin-left: auto;
+}
+
+/* icon-only Buttons: square hit area (≥ 32px, WCAG 2.5.8) */
+.site-icon-button {
+  width: 2rem;
+  padding-inline: 0;
+}
+
+/* Button has no pressed styling of its own: show the toggle state */
+.site-theme-toggle[aria-pressed="true"] {
+  background: var(--omni-accent);
+  color: var(--omni-accent-foreground);
 }
 
 /* Links styled as buttons (same tokens and sizes as the Button component) */
@@ -127,13 +169,98 @@
   font-size: 0.875rem;
 }
 
+/* Option groups (radio chips) */
+
+.option-group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.option-group legend {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.option-group-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.option-group-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2rem;
+  padding-inline: 0.75rem;
+  border: 1px solid var(--omni-border);
+  border-radius: var(--omni-radius-md);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color 150ms, background-color 150ms;
+}
+
+.option-group-option:hover {
+  background: var(--omni-accent);
+}
+
+.option-group-option:has(:checked) {
+  border-color: var(--omni-foreground);
+  font-weight: 600;
+}
+
+.option-group-option:has(:focus-visible) {
+  outline: 2px solid var(--omni-ring);
+  outline-offset: 2px;
+}
+
+.option-group-swatch {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--omni-foreground) 20%, transparent);
+}
+
 @media (max-width: 639px) {
-  .site-header {
-    gap: 1.25rem;
+  /* two rows on small screens: logo + actions, then the section links (same on every page) */
+  :root {
+    --site-header-height: 5.25rem;
   }
 
-  .site-header ul {
+  .site-header {
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 0.25rem 1.25rem;
+  }
+
+  .site-header nav {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .site-logo::before {
+  content: "";
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: var(--omni-radius-sm);
+  background: var(--site-brand);
+  box-shadow: 0.3rem 0.3rem 0 color-mix(in oklab, var(--site-brand) 35%, transparent);
+}
+
+.site-header ul {
     gap: 1rem;
+  }
+
+  /* links scroll sideways rather than overflowing the viewport */
+  .site-header nav {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .site-header nav a {
+    white-space: nowrap;
   }
 
   /* Get started stays reachable from the hero and the docs nav; the header keeps the section links */

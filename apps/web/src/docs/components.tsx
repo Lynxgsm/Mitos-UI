@@ -1,6 +1,8 @@
 import { useId, useRef, useState, type ComponentType, type KeyboardEvent, type ReactNode } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { Button } from "@omni/core/react";
+import { CheckIcon, CopyIcon } from "@phosphor-icons/react";
+import { highlight, type CodeLanguage } from "../site/highlight";
 import { neighbours } from "./nav";
 
 export type TocEntry = { id: string; title: string };
@@ -58,12 +60,14 @@ export function Section(props: { id: string; title: string; children: ReactNode 
   );
 }
 
-export function CodeBlock(props: { code: string; label?: string }) {
+export function CodeBlock(props: { code: string; label?: string; language?: CodeLanguage }) {
   const [status, setStatus] = useState<"idle" | "copied" | "failed">("idle");
+  const code = props.code.trim();
+  const lines = highlight(code, props.language ?? "tsx");
 
   async function copy() {
     try {
-      await navigator.clipboard.writeText(props.code);
+      await navigator.clipboard.writeText(code);
       setStatus("copied");
     } catch {
       // clipboard is unavailable outside secure contexts or when permission is denied
@@ -76,10 +80,21 @@ export function CodeBlock(props: { code: string; label?: string }) {
     <div className="docs-code">
       {/* focusable so keyboard users can scroll long lines (WCAG 2.1.1) */}
       <pre tabIndex={0} aria-label={props.label ?? "Code"}>
-        <code>{props.code.trim()}</code>
+        <code>
+          {lines.map((tokens, line) => (
+            <span key={line} className="docs-code-line">
+              {tokens.map((token, index) => (
+                <span key={index} style={token.color ? { color: token.color } : undefined}>
+                  {token.content}
+                </span>
+              ))}
+              {line < lines.length - 1 && "\n"}
+            </span>
+          ))}
+        </code>
       </pre>
-      <Button variant="ghost" size="xs" class="docs-copy" onClick={copy}>
-        {status === "copied" ? "Copied" : "Copy"}
+      <Button variant="ghost" size="xs" class="docs-copy" aria-label="Copy code" onClick={copy}>
+        {status === "copied" ? <CheckIcon aria-hidden="true" size={14} weight="bold" /> : <CopyIcon aria-hidden="true" size={14} />}
       </Button>
       <span role="status" className="visually-hidden">
         {status === "copied" ? "Copied to clipboard" : status === "failed" ? "Copy failed" : ""}
@@ -154,7 +169,8 @@ export function ComponentPreview(props: { example: ComponentType; source: string
         {
           label: "Preview",
           content: (
-            <div className="docs-preview">
+            // the real package defaults, not the site's brand theme
+            <div className="docs-preview omni-default-theme">
               <Example />
             </div>
           ),
@@ -178,7 +194,7 @@ export function InstallCommand(props: { packages: string }) {
       label="Package manager"
       tabs={PACKAGE_MANAGERS.map(([name, command]) => ({
         label: name,
-        content: <CodeBlock code={`${command} ${props.packages}`} label={`${name} install command`} />,
+        content: <CodeBlock code={`${command} ${props.packages}`} label={`${name} install command`} language="bash" />,
       }))}
     />
   );

@@ -82,7 +82,9 @@ function Landing() {
       <main id="content">
         <section className="landing-hero" aria-labelledby="hero-title">
           <div className="landing-hero-copy">
-            <h1 id="hero-title">Accessible components, written once.</h1>
+            <h1 id="hero-title">
+              Accessible components, <em>written once.</em>
+            </h1>
             <p className="landing-hero-lead">
               A design system authored with Mitosis and styled with StyleX. React today, Vue and Svelte next.
             </p>

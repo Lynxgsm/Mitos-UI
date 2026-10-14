@@ -33,6 +33,7 @@ function Theming() {
       <Section id="override-a-token" title="Override a token">
         <p>Declare the variable in your own stylesheet. No build step, no config file.</p>
         <CodeBlock
+          language="css"
           code={`
 :root {
   --omni-primary: oklch(0.55 0.2 265);
@@ -55,6 +56,7 @@ function Theming() {
           <code>:root</code> applies to both schemes; to set a dark value, add your own media query:
         </p>
         <CodeBlock
+          language="css"
           code={`
 @media (prefers-color-scheme: dark) {
   :root {

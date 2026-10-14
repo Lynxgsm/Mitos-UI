@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CreateRouteImport } from './routes/create'
 import { Route as DocsRouteRouteImport } from './routes/docs/route'
 import { Route as DocsIndexRouteImport } from './routes/docs/index'
 import { Route as DocsInstallationRouteImport } from './routes/docs/installation'
@@ -20,6 +21,11 @@ import { Route as DocsComponentsButtonRouteImport } from './routes/docs/componen
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateRoute = CreateRouteImport.update({
+  id: '/create',
+  path: '/create',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DocsRouteRoute = DocsRouteRouteImport.update({
@@ -56,6 +62,7 @@ const DocsComponentsButtonRoute = DocsComponentsButtonRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
+  '/create': typeof CreateRoute
   '/docs/installation': typeof DocsInstallationRoute
   '/docs/theming': typeof DocsThemingRoute
   '/docs/': typeof DocsIndexRoute
@@ -64,6 +71,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/create': typeof CreateRoute
   '/docs/installation': typeof DocsInstallationRoute
   '/docs/theming': typeof DocsThemingRoute
   '/docs': typeof DocsIndexRoute
@@ -74,6 +82,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteRouteWithChildren
+  '/create': typeof CreateRoute
   '/docs/installation': typeof DocsInstallationRoute
   '/docs/theming': typeof DocsThemingRoute
   '/docs/': typeof DocsIndexRoute
@@ -85,6 +94,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/docs'
+    | '/create'
     | '/docs/installation'
     | '/docs/theming'
     | '/docs/'
@@ -93,6 +103,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/create'
     | '/docs/installation'
     | '/docs/theming'
     | '/docs'
@@ -102,6 +113,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/docs'
+    | '/create'
     | '/docs/installation'
     | '/docs/theming'
     | '/docs/'
@@ -112,6 +124,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DocsRouteRoute: typeof DocsRouteRouteWithChildren
+  CreateRoute: typeof CreateRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -121,6 +134,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create': {
+      id: '/create'
+      path: '/create'
+      fullPath: '/create'
+      preLoaderRoute: typeof CreateRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/docs': {
@@ -191,6 +211,7 @@ const DocsRouteRouteWithChildren = DocsRouteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DocsRouteRoute: DocsRouteRouteWithChildren,
+  CreateRoute: CreateRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

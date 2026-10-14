@@ -9,7 +9,7 @@
     "dev": "bun --filter @omni/core build && bun --filter @omni/web dev",
     "build": "bun --filter '*' build",
     "typecheck": "bun --filter @omni/core build && bun --filter '*' typecheck",
-    "test": "bun --filter @omni/core test",
+    "test": "bun --filter '*' test",
     "storybook": "bun --filter @omni/core storybook"
   },
   "devDependencies": {
