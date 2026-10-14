@@ -2,7 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Accordion, Button } from "@omni/core/react";
 import { CodeBlock, FrameworkCode } from "../docs/components";
 import { FRAMEWORKS } from "../site/framework";
+import { CompileBeams } from "../landing/compile-beams";
 import { ThemePlayground } from "../landing/theme-playground";
+import { WorksWith } from "../landing/works-with";
 import { SiteHeader } from "../site/site-header";
 import docsStylesHref from "../docs/docs.css?url";
 import landingStylesHref from "../landing/landing.css?url";
@@ -139,12 +141,18 @@ function Landing() {
           </div>
         </section>
 
+        <section className="landing-section landing-tools-band reveal" aria-labelledby="tools-title">
+          <h2 id="tools-title">Works with your stack</h2>
+          <WorksWith />
+        </section>
+
         <section className="landing-section landing-compile reveal" aria-labelledby="compile-title">
           <h2 id="compile-title">One source, compiled per framework</h2>
           <p className="landing-section-lead">
             Components are written in Mitosis, then compiled to idiomatic code for each framework. Same markup, same
             styles, same accessibility.
           </p>
+          <CompileBeams />
           <div className="landing-compile-grid">
             <div>
               <p className="landing-code-title">button.lite.tsx</p>
