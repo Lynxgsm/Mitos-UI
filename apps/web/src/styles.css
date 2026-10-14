@@ -1,5 +1,9 @@
 @import "@fontsource-variable/outfit";
 
+:root{
+    --omni-primary:blue;
+}
+
 body {
   font-family: "Outfit Variable", system-ui, sans-serif;
   background-color: var(--omni-background);

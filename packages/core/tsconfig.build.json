@@ -5,7 +5,8 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "rootDir": "output/react/src",
-    "outDir": "dist/react"
+    "outDir": "dist/react",
+    "paths": { "@/*": ["./output/react/src/*"] }
   },
   "include": ["output/react/src"]
 }
