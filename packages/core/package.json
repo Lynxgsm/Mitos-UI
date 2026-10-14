@@ -1,6 +1,6 @@
 {
   "name": "mitos-ui",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Accessible, themeable UI components written once with Mitosis and StyleX, for React and Svelte.",
   "license": "MIT",
   "author": "Aili Fida Aliotti Christino",

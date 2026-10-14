@@ -44,7 +44,7 @@ The public API is everything a consumer can rely on:
 
 While `mitos-ui` is `0.x`, breaking changes may use a `MINOR` release.
 
-`mitos-ui` is still `0.0.0`: nothing has been released yet, and CI never publishes `0.0.0`. Never change a version by hand outside of a release, and never reset it.
+Never change a version by hand outside of a release, and never reset it. CI never publishes `0.0.0`.
 
 `@mitos/web` is the website, not a package: it is not versioned.
 
@@ -79,7 +79,7 @@ CI (`.github/workflows/ci.yml`) runs the Definition of Done on every pull reques
 
 The workflow fails if the new version has no CHANGELOG section. Pushes to `main` that keep an already published version publish nothing.
 
-Publishing uses npm trusted publishing (OIDC), with no token in the repository. The first version must be published by hand (`npm publish` in `packages/core` after `bun run build`). After that, add a trusted publisher on npmjs.com: package settings, GitHub Actions, repository `Lynxgsm/Mitos-UI`, workflow `release.yml`.
+Publishing uses npm trusted publishing (OIDC) only: the trusted publisher of `mitos-ui` on npmjs.com is repository `Lynxgsm/Mitos-UI`, workflow `release.yml`, allowed action `npm publish`. The package requires 2FA and refuses tokens, so there is no npm token anywhere: never add one. Renaming the repository or the workflow file means updating the trusted publisher first.
 
 ---
 
