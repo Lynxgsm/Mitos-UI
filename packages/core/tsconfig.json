@@ -1,4 +1,8 @@
 {
   "extends": "../../tsconfig.base.json",
-  "include": ["src"]
+  "compilerOptions": {
+    "jsxImportSource": "@builder.io/mitosis"
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.*"]
 }

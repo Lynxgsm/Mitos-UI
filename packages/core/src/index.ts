@@ -1,1 +1,2 @@
-export const CORE_VERSION = "0.0.0";
+export { default as Button } from "./button/button.lite";
+export type { ButtonProps } from "./button/button.lite";
