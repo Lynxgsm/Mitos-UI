@@ -352,3 +352,8 @@
     scroll-behavior: smooth;
   }
 }
+
+.docs-example-field {
+  width: 100%;
+  max-width: 22rem;
+}

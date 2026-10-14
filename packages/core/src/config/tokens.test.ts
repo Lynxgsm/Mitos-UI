@@ -36,6 +36,31 @@ function contrast(fg: string, bg: string) {
   return (hi! + 0.05) / (lo! + 0.05);
 }
 
+// Top-level statements and blocks of a stylesheet (brace matching; the generated CSS has no braces in strings).
+function topLevelChunks(source: string) {
+  const chunks: string[] = [];
+  let depth = 0;
+  let start = 0;
+  for (let i = 0; i < source.length; i++) {
+    const char = source[i];
+    if (char === "{") depth++;
+    else if (char === "}" && --depth === 0) {
+      chunks.push(source.slice(start, i + 1).trim());
+      start = i + 1;
+    } else if (char === ";" && depth === 0) {
+      chunks.push(source.slice(start, i + 1).trim());
+      start = i + 1;
+    }
+  }
+  return chunks.filter(Boolean);
+}
+
+// Overrides rely on this: unlayered consumer CSS beats every library rule, whatever the load order.
+it("ships every rule inside a cascade layer", () => {
+  const unlayered = topLevelChunks(css).filter((chunk) => !chunk.startsWith("@layer"));
+  expect(unlayered.map((chunk) => chunk.slice(0, 60))).toEqual([]);
+});
+
 describe.each([
   ["light", readTokens(lightCss!)],
   ["dark", readTokens(darkCss!)],
@@ -53,6 +78,8 @@ describe.each([
     ["link", t.primary, t.background],
     ["destructive", t["destructive-foreground"], t.destructive],
     ["destructive:hover", t["destructive-foreground"], over(t.destructive!, 0.9, t.background!)],
+    ["muted text (dialog description)", t["muted-foreground"], t.background],
+    ["field error message", t.destructive, t.background],
   ])("%s text contrast ≥ 4.5:1", (_, fg, bg) => {
     expect(contrast(fg!, bg!)).toBeGreaterThanOrEqual(TEXT);
   });
@@ -60,6 +87,7 @@ describe.each([
   it.each([
     ["focus ring", t.ring, t.background],
     ["accordion chevron icon", t["muted-foreground"], t.background],
+    ["input / textarea border", t.input, t.background],
   ])("%s contrast against the page ≥ 3:1", (_, fg, bg) => {
     expect(contrast(fg!, bg!)).toBeGreaterThanOrEqual(NON_TEXT);
   });

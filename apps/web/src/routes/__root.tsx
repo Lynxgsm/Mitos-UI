@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
+import { Toaster } from "@omni/core/react";
 import omniStylesHref from "@omni/core/react/styles.css?url";
 import stylesHref from "../styles.css?url";
 import siteStylesHref from "../site/site.css?url";
@@ -37,6 +38,7 @@ function RootDocument({ children }: { children: ReactNode }) {
       </head>
       <body>
         {children}
+        <Toaster />
         <Scripts />
       </body>
     </html>

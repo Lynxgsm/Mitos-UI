@@ -62,7 +62,8 @@ export function colorTokens(preset: Preset, mode: Mode): Record<string, string> 
       accent: s[100],
       "accent-foreground": s[900],
       border: s[200],
-      input: s[200],
+      // field borders need 3:1 against the page (WCAG 1.4.11)
+      input: s[500],
       ring: s[500],
       ...DESTRUCTIVE.light,
     };
@@ -79,7 +80,7 @@ export function colorTokens(preset: Preset, mode: Mode): Record<string, string> 
     accent: s[800],
     "accent-foreground": s[50],
     border: s[800],
-    input: s[800],
+    input: s[500],
     ring: s[400],
     ...DESTRUCTIVE.dark,
   };

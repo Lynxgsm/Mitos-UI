@@ -51,7 +51,7 @@ export function Preview() {
       </section>
 
       <section className="create-card" aria-labelledby="preview-notifications">
-        <h3 id="preview-notifications">Notifications</h3>
+        <h3 id="preview-notifications">Notification settings</h3>
         <Accordion
           aria-labelledby="preview-notifications"
           multiple

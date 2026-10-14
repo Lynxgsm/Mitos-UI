@@ -13,6 +13,10 @@ export const DOCS_NAV = [
     items: [
       { title: "Accordion", href: "/docs/components/accordion" },
       { title: "Button", href: "/docs/components/button" },
+      { title: "Dialog", href: "/docs/components/dialog" },
+      { title: "Input", href: "/docs/components/input" },
+      { title: "Textarea", href: "/docs/components/textarea" },
+      { title: "Toast", href: "/docs/components/toast" },
     ],
   },
 ] as const;

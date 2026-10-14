@@ -17,6 +17,10 @@ import { Route as DocsInstallationRouteImport } from './routes/docs/installation
 import { Route as DocsThemingRouteImport } from './routes/docs/theming'
 import { Route as DocsComponentsAccordionRouteImport } from './routes/docs/components/accordion'
 import { Route as DocsComponentsButtonRouteImport } from './routes/docs/components/button'
+import { Route as DocsComponentsDialogRouteImport } from './routes/docs/components/dialog'
+import { Route as DocsComponentsInputRouteImport } from './routes/docs/components/input'
+import { Route as DocsComponentsTextareaRouteImport } from './routes/docs/components/textarea'
+import { Route as DocsComponentsToastRouteImport } from './routes/docs/components/toast'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -58,6 +62,26 @@ const DocsComponentsButtonRoute = DocsComponentsButtonRouteImport.update({
   path: '/components/button',
   getParentRoute: () => DocsRouteRoute,
 } as any)
+const DocsComponentsDialogRoute = DocsComponentsDialogRouteImport.update({
+  id: '/components/dialog',
+  path: '/components/dialog',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
+const DocsComponentsInputRoute = DocsComponentsInputRouteImport.update({
+  id: '/components/input',
+  path: '/components/input',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
+const DocsComponentsTextareaRoute = DocsComponentsTextareaRouteImport.update({
+  id: '/components/textarea',
+  path: '/components/textarea',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
+const DocsComponentsToastRoute = DocsComponentsToastRouteImport.update({
+  id: '/components/toast',
+  path: '/components/toast',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -68,6 +92,10 @@ export interface FileRoutesByFullPath {
   '/docs/': typeof DocsIndexRoute
   '/docs/components/accordion': typeof DocsComponentsAccordionRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
+  '/docs/components/dialog': typeof DocsComponentsDialogRoute
+  '/docs/components/input': typeof DocsComponentsInputRoute
+  '/docs/components/textarea': typeof DocsComponentsTextareaRoute
+  '/docs/components/toast': typeof DocsComponentsToastRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -77,6 +105,10 @@ export interface FileRoutesByTo {
   '/docs': typeof DocsIndexRoute
   '/docs/components/accordion': typeof DocsComponentsAccordionRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
+  '/docs/components/dialog': typeof DocsComponentsDialogRoute
+  '/docs/components/input': typeof DocsComponentsInputRoute
+  '/docs/components/textarea': typeof DocsComponentsTextareaRoute
+  '/docs/components/toast': typeof DocsComponentsToastRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -88,6 +120,10 @@ export interface FileRoutesById {
   '/docs/': typeof DocsIndexRoute
   '/docs/components/accordion': typeof DocsComponentsAccordionRoute
   '/docs/components/button': typeof DocsComponentsButtonRoute
+  '/docs/components/dialog': typeof DocsComponentsDialogRoute
+  '/docs/components/input': typeof DocsComponentsInputRoute
+  '/docs/components/textarea': typeof DocsComponentsTextareaRoute
+  '/docs/components/toast': typeof DocsComponentsToastRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -100,6 +136,10 @@ export interface FileRouteTypes {
     | '/docs/'
     | '/docs/components/accordion'
     | '/docs/components/button'
+    | '/docs/components/dialog'
+    | '/docs/components/input'
+    | '/docs/components/textarea'
+    | '/docs/components/toast'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -109,6 +149,10 @@ export interface FileRouteTypes {
     | '/docs'
     | '/docs/components/accordion'
     | '/docs/components/button'
+    | '/docs/components/dialog'
+    | '/docs/components/input'
+    | '/docs/components/textarea'
+    | '/docs/components/toast'
   id:
     | '__root__'
     | '/'
@@ -119,6 +163,10 @@ export interface FileRouteTypes {
     | '/docs/'
     | '/docs/components/accordion'
     | '/docs/components/button'
+    | '/docs/components/dialog'
+    | '/docs/components/input'
+    | '/docs/components/textarea'
+    | '/docs/components/toast'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -185,6 +233,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentsButtonRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/components/dialog': {
+      id: '/docs/components/dialog'
+      path: '/components/dialog'
+      fullPath: '/docs/components/dialog'
+      preLoaderRoute: typeof DocsComponentsDialogRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/components/input': {
+      id: '/docs/components/input'
+      path: '/components/input'
+      fullPath: '/docs/components/input'
+      preLoaderRoute: typeof DocsComponentsInputRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/components/textarea': {
+      id: '/docs/components/textarea'
+      path: '/components/textarea'
+      fullPath: '/docs/components/textarea'
+      preLoaderRoute: typeof DocsComponentsTextareaRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
+    '/docs/components/toast': {
+      id: '/docs/components/toast'
+      path: '/components/toast'
+      fullPath: '/docs/components/toast'
+      preLoaderRoute: typeof DocsComponentsToastRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
   }
 }
 
@@ -194,6 +270,10 @@ interface DocsRouteRouteChildren {
   DocsIndexRoute: typeof DocsIndexRoute
   DocsComponentsAccordionRoute: typeof DocsComponentsAccordionRoute
   DocsComponentsButtonRoute: typeof DocsComponentsButtonRoute
+  DocsComponentsDialogRoute: typeof DocsComponentsDialogRoute
+  DocsComponentsInputRoute: typeof DocsComponentsInputRoute
+  DocsComponentsTextareaRoute: typeof DocsComponentsTextareaRoute
+  DocsComponentsToastRoute: typeof DocsComponentsToastRoute
 }
 
 const DocsRouteRouteChildren: DocsRouteRouteChildren = {
@@ -202,6 +282,10 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsIndexRoute: DocsIndexRoute,
   DocsComponentsAccordionRoute: DocsComponentsAccordionRoute,
   DocsComponentsButtonRoute: DocsComponentsButtonRoute,
+  DocsComponentsDialogRoute: DocsComponentsDialogRoute,
+  DocsComponentsInputRoute: DocsComponentsInputRoute,
+  DocsComponentsTextareaRoute: DocsComponentsTextareaRoute,
+  DocsComponentsToastRoute: DocsComponentsToastRoute,
 }
 
 const DocsRouteRouteWithChildren = DocsRouteRoute._addFileChildren(

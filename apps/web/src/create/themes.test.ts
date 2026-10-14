@@ -40,10 +40,12 @@ describe.each(["light", "dark"] as const)("%s mode", (mode) => {
       ["outline / ghost:hover", t["accent-foreground"]!, t.accent!],
       ["link", t.primary!, t.background!],
       ["muted text", t["muted-foreground"]!, t.background!],
+      ["field error message", t.destructive!, t.background!],
       ["destructive", t["destructive-foreground"]!, t.destructive!],
     ];
     for (const [name, fg, bg] of text) expect({ name, ratio: contrast(fg, bg) >= 4.5 }).toEqual({ name, ratio: true });
     expect(contrast(t.ring!, t.background!)).toBeGreaterThanOrEqual(3);
+    expect(contrast(t.input!, t.background!)).toBeGreaterThanOrEqual(3);
   });
 });
 
