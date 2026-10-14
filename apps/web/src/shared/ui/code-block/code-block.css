@@ -1,0 +1,28 @@
+/* Highlighted, copyable code (shared/ui/code-block) */
+
+.code-block {
+  position: relative;
+  margin-block: 0.75rem;
+}
+
+.code-block pre {
+  margin: 0;
+  padding: 1rem 3.5rem 1rem 1rem;
+  overflow-x: auto;
+  border: 1px solid color-mix(in oklab, #ffffff 8%, #1e1e1e);
+  border-radius: var(--omni-radius-lg);
+  /* VS Code Dark+ editor colors, in both site themes */
+  background: #1e1e1e;
+  color: #d4d4d4;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.code-block-copy {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 1.5rem;
+  padding-inline: 0;
+}

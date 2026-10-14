@@ -1,0 +1,97 @@
+/* Site-wide pieces shared by the landing page and the docs. Plain CSS on the --omni-* tokens. */
+
+:root {
+  /* brand color, used as-is for decoration; text and buttons use its AA shades (Ember accent) */
+  --site-brand: #c45c26;
+  --site-header-height: 3.5rem;
+  /* fixed on purpose: the header must look identical on every page, whatever the page's own width */
+  --site-header-width: 88rem;
+  --site-header-gutter: 1.5rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.site-skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 20;
+  padding: 0.5rem 1rem;
+  border-radius: var(--omni-radius-md);
+  background: var(--omni-primary);
+  color: var(--omni-primary-foreground);
+  transform: translateY(-200%);
+}
+
+.site-skip-link:focus {
+  transform: none;
+}
+
+/* icon-only Buttons: square hit area (≥ 32px, WCAG 2.5.8) */
+.site-icon-button {
+  width: 2rem;
+  padding-inline: 0;
+}
+
+/* Links styled as buttons (same tokens and sizes as the Button component) */
+
+.site-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  padding-inline: 1.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--omni-radius-md);
+  background: var(--omni-primary);
+  color: var(--omni-primary-foreground);
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 150ms, transform 150ms;
+}
+
+.site-button:hover {
+  background: color-mix(in oklab, var(--omni-primary) 90%, transparent);
+}
+
+.site-button:active {
+  transform: translateY(1px);
+}
+
+.site-button-outline {
+  border-color: var(--omni-border);
+  background: var(--omni-background);
+  color: var(--omni-foreground);
+}
+
+.site-button-outline:hover {
+  background: var(--omni-accent);
+  color: var(--omni-accent-foreground);
+}
+
+.site-button-small {
+  height: 2rem;
+  padding-inline: 0.875rem;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 639px) {
+  /* the header wraps to two rows (site-header.css) */
+  :root {
+    --site-header-height: 5.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}

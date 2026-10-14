@@ -1,0 +1,112 @@
+/* Header: aligned to the page content via --site-width / --site-gutter (set by each layout) */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: var(--site-header-height);
+  padding-inline: max(var(--site-header-gutter), calc((100% - var(--site-header-width)) / 2));
+  border-bottom: 1px solid var(--omni-border);
+  background: color-mix(in oklab, var(--omni-background) 88%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.site-header a:focus-visible {
+  outline: 2px solid var(--omni-ring);
+  outline-offset: 2px;
+}
+
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-logo::before {
+  content: "";
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: var(--omni-radius-sm);
+  background: var(--site-brand);
+  box-shadow: 0.3rem 0.3rem 0 color-mix(in oklab, var(--site-brand) 35%, transparent);
+}
+
+.site-header ul {
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-header nav a {
+  display: inline-block;
+  padding-block: 0.35rem;
+  border-bottom: 2px solid transparent;
+  font-size: 0.875rem;
+  color: var(--omni-muted-foreground);
+  text-decoration: none;
+}
+
+.site-header nav a:hover,
+.site-header nav a[data-active] {
+  color: var(--omni-foreground);
+}
+
+.site-header nav a[data-active] {
+  font-weight: 500;
+  border-bottom-color: var(--site-brand);
+}
+
+.site-header nav {
+  min-width: 0;
+}
+
+.site-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+@media (max-width: 639px) {
+  /* two rows on small screens: logo + actions, then the section links (same on every page) */
+  .site-header {
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 0.25rem 1.25rem;
+  }
+
+  .site-header nav {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .site-header ul {
+    gap: 1rem;
+  }
+
+  /* links scroll sideways rather than overflowing the viewport */
+  .site-header nav {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .site-header nav a {
+    white-space: nowrap;
+  }
+
+  /* Get started stays reachable from the hero and the docs nav; the header keeps the section links */
+  .site-header-cta {
+    display: none;
+  }
+}

@@ -1,0 +1,5 @@
+/* Button has no pressed styling of its own: show the toggle state */
+.theme-toggle[aria-pressed="true"] {
+  background: var(--omni-accent);
+  color: var(--omni-accent-foreground);
+}
