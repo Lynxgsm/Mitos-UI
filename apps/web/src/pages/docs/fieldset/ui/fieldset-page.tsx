@@ -1,6 +1,5 @@
-import { FrameworkCode } from "@/features/select-framework";
+import { FrameworkCode, FrameworkPropsTable } from "@/features/select-framework";
 import { InstallCommand } from "@/shared/ui/install-command";
-import { PropsTable } from "@/shared/ui/props-table";
 import { ComponentPreview, DocsPage, Section } from "@/widgets/docs-layout";
 import FieldsetDemo from "../examples/fieldset-demo";
 import fieldsetDemoSource from "../examples/fieldset-demo?raw";
@@ -54,7 +53,7 @@ import { Fieldset, Input } from "@omni/core/react";
       </Section>
 
       <Section id="api-reference" title="API Reference">
-        <PropsTable
+        <FrameworkPropsTable
           component="Fieldset"
           rows={[
             { prop: "legend", type: "ReactNode", description: "Names the group." },

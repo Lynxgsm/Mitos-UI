@@ -1,6 +1,5 @@
-import { FrameworkCode } from "@/features/select-framework";
+import { FrameworkCode, FrameworkPropsTable } from "@/features/select-framework";
 import { InstallCommand } from "@/shared/ui/install-command";
-import { PropsTable } from "@/shared/ui/props-table";
 import { ComponentPreview, DocsPage, Section } from "@/widgets/docs-layout";
 import SkeletonDemo from "../examples/skeleton-demo";
 import skeletonDemoSource from "../examples/skeleton-demo?raw";
@@ -61,11 +60,11 @@ import { Skeleton } from "@omni/core/react";
       </Section>
 
       <Section id="api-reference" title="API Reference">
-        <PropsTable
+        <FrameworkPropsTable
           component="Skeleton"
           rows={[
             { prop: "class", type: "string", description: "Size and shape (width, height, border-radius)." },
-            { prop: "style", type: "object | string", description: "Inline size and shape: an object in React, a string in Svelte." },
+            { prop: "style", type: "object", description: "Inline size and shape.", svelte: { type: "string" } },
             { prop: "data-* / native attributes", type: "—", description: "Forwarded to the <div>." },
           ]}
         />

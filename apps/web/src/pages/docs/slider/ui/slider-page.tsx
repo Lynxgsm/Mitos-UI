@@ -1,6 +1,5 @@
-import { FrameworkCode } from "@/features/select-framework";
+import { FrameworkCode, FrameworkPropsTable } from "@/features/select-framework";
 import { InstallCommand } from "@/shared/ui/install-command";
-import { PropsTable } from "@/shared/ui/props-table";
 import { ComponentPreview, DocsPage, Section } from "@/widgets/docs-layout";
 import SliderDemo from "../examples/slider-demo";
 import sliderDemoSource from "../examples/slider-demo?raw";
@@ -49,13 +48,18 @@ import { Slider } from "@omni/core/react";
       </Section>
 
       <Section id="api-reference" title="API Reference">
-        <PropsTable
+        <FrameworkPropsTable
           component="Slider"
           rows={[
             { prop: "label", type: "ReactNode", description: "Visible label; names the slider." },
             { prop: "description", type: "ReactNode", description: "Help text (aria-describedby)." },
             { prop: "min / max / step", type: "number", default: "0 / 100 / 1", description: "Range and increment (native defaults)." },
-            { prop: "value / defaultValue", type: "number", description: "Controlled or initial value (React); use value in Svelte." },
+            {
+              prop: "value / defaultValue",
+              type: "number",
+              description: "Controlled or initial value.",
+              svelte: { prop: "value", description: "Value of the native input; read changes from oninput." },
+            },
             { prop: "aria-valuetext", type: "string", description: "Spoken instead of the number." },
             { prop: "aria-* / data-* / native attributes", type: "\u2014", description: "Forwarded to the <input>." },
           ]}

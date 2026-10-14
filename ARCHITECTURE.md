@@ -382,7 +382,7 @@ Features represent **user actions**.
 
 | Feature               | Action                                             | Owns                                       |
 | --------------------- | -------------------------------------------------- | ------------------------------------------ |
-| `select-framework`    | Pick React or Svelte for every code sample         | `FrameworkCode` (tabs bound to the choice) |
+| `select-framework`    | Pick React or Svelte for every code sample and API table | `FrameworkCode`, `FrameworkPropsTable` (tabs bound to the choice; props written for React, translated for Svelte) |
 | `toggle-color-scheme` | Force light or dark mode for the site              | `ThemeToggle`, `COLOR_SCHEME_INIT_SCRIPT`  |
 
 Candidates, kept inside `pages/create` until a second page needs them:

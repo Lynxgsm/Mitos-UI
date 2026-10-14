@@ -1,6 +1,5 @@
-import { FrameworkCode } from "@/features/select-framework";
+import { FrameworkCode, FrameworkPropsTable } from "@/features/select-framework";
 import { InstallCommand } from "@/shared/ui/install-command";
-import { PropsTable } from "@/shared/ui/props-table";
 import { ComponentPreview, DocsPage, Section } from "@/widgets/docs-layout";
 import ButtonDemo from "../examples/button-demo";
 import buttonDemoSource from "../examples/button-demo?raw";
@@ -75,7 +74,7 @@ import { Button } from "@omni/core/react";
       </Section>
 
       <Section id="api-reference" title="API Reference">
-        <PropsTable
+        <FrameworkPropsTable
           component="Button"
           rows={[
             {

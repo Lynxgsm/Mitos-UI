@@ -1,6 +1,5 @@
-import { FrameworkCode } from "@/features/select-framework";
+import { FrameworkCode, FrameworkPropsTable } from "@/features/select-framework";
 import { InstallCommand } from "@/shared/ui/install-command";
-import { PropsTable } from "@/shared/ui/props-table";
 import { ComponentPreview, DocsPage, Section } from "@/widgets/docs-layout";
 import SelectDemo from "../examples/select-demo";
 import selectDemoSource from "../examples/select-demo?raw";
@@ -48,14 +47,19 @@ import { Select } from "@omni/core/react";
       </Section>
 
       <Section id="api-reference" title="API Reference">
-        <PropsTable
+        <FrameworkPropsTable
           component="Select"
           rows={[
             { prop: "label", type: "ReactNode", description: "Visible label; names the select." },
             { prop: "options", type: "{ value, label, disabled? }[]", description: "The choices." },
             { prop: "placeholder", type: "string", description: "First option, with an empty value." },
             { prop: "description / error", type: "ReactNode", description: "Help text and error message." },
-            { prop: "value / defaultValue", type: "string", description: "Controlled or initial value (React); use value in Svelte." },
+            {
+              prop: "value / defaultValue",
+              type: "string",
+              description: "Controlled or initial value.",
+              svelte: { prop: "value", description: "Value of the native select; read changes from onchange." },
+            },
             { prop: "aria-* / data-* / native attributes", type: "\u2014", description: "Forwarded to the <select>." },
           ]}
         />

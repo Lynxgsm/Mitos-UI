@@ -1,6 +1,5 @@
-import { FrameworkCode } from "@/features/select-framework";
+import { FrameworkCode, FrameworkPropsTable } from "@/features/select-framework";
 import { InstallCommand } from "@/shared/ui/install-command";
-import { PropsTable } from "@/shared/ui/props-table";
 import { ComponentPreview, DocsPage, Section } from "@/widgets/docs-layout";
 import ToastDemo from "../examples/toast-demo";
 import toastDemoSource from "../examples/toast-demo?raw";
@@ -87,7 +86,7 @@ toast({ title: "Changes saved", description: "Your profile is up to date." });`}
 
       <Section id="api-reference" title="API Reference">
         <h3>toast(options)</h3>
-        <PropsTable
+        <FrameworkPropsTable
           component="toast options"
           rows={[
             { prop: "title", type: "string", description: "Main message." },
@@ -102,7 +101,7 @@ toast({ title: "Changes saved", description: "Your profile is up to date." });`}
           queue.
         </p>
         <h3>Toaster</h3>
-        <PropsTable
+        <FrameworkPropsTable
           component="Toaster"
           rows={[
             { prop: "label", type: "string", default: '"Notifications"', description: "Name of the region." },

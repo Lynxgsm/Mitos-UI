@@ -1,6 +1,5 @@
-import { FrameworkCode } from "@/features/select-framework";
+import { FrameworkCode, FrameworkPropsTable } from "@/features/select-framework";
 import { InstallCommand } from "@/shared/ui/install-command";
-import { PropsTable } from "@/shared/ui/props-table";
 import { ComponentPreview, DocsPage, Section } from "@/widgets/docs-layout";
 import CardDemo from "../examples/card-demo";
 import cardDemoSource from "../examples/card-demo?raw";
@@ -62,7 +61,7 @@ import { Button, Card } from "@omni/core/react";
       </Section>
 
       <Section id="api-reference" title="API Reference">
-        <PropsTable
+        <FrameworkPropsTable
           component="Card"
           rows={[
             { prop: "title", type: "ReactNode", description: "Heading of the card." },

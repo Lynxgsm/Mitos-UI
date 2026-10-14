@@ -1,6 +1,5 @@
-import { FrameworkCode } from "@/features/select-framework";
+import { FrameworkCode, FrameworkPropsTable } from "@/features/select-framework";
 import { InstallCommand } from "@/shared/ui/install-command";
-import { PropsTable } from "@/shared/ui/props-table";
 import { ComponentPreview, DocsPage, Section } from "@/widgets/docs-layout";
 import TextareaDemo from "../examples/textarea-demo";
 import textareaDemoSource from "../examples/textarea-demo?raw";
@@ -48,7 +47,7 @@ import { Textarea } from "@omni/core/react";
       </Section>
 
       <Section id="api-reference" title="API Reference">
-        <PropsTable
+        <FrameworkPropsTable
           component="Textarea"
           rows={[
             { prop: "label", type: "ReactNode", description: "Visible label; names the field." },

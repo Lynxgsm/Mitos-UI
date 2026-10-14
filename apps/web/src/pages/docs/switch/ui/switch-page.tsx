@@ -1,6 +1,5 @@
-import { FrameworkCode } from "@/features/select-framework";
+import { FrameworkCode, FrameworkPropsTable } from "@/features/select-framework";
 import { InstallCommand } from "@/shared/ui/install-command";
-import { PropsTable } from "@/shared/ui/props-table";
 import { ComponentPreview, DocsPage, Section } from "@/widgets/docs-layout";
 import SwitchDemo from "../examples/switch-demo";
 import switchDemoSource from "../examples/switch-demo?raw";
@@ -49,12 +48,17 @@ import { Switch } from "@omni/core/react";
       </Section>
 
       <Section id="api-reference" title="API Reference">
-        <PropsTable
+        <FrameworkPropsTable
           component="Switch"
           rows={[
             { prop: "label", type: "ReactNode", description: "Visible label; names the setting." },
             { prop: "description", type: "ReactNode", description: "Help text (aria-describedby)." },
-            { prop: "checked / defaultChecked", type: "boolean", description: "Controlled or initial state (React); use checked in Svelte." },
+            {
+              prop: "checked / defaultChecked",
+              type: "boolean",
+              description: "Controlled or initial state.",
+              svelte: { prop: "checked", description: "State of the native input; read changes from onchange." },
+            },
             { prop: "aria-* / data-* / native attributes", type: "\u2014", description: "Forwarded to the <input>." },
           ]}
         />

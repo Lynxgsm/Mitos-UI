@@ -1,6 +1,5 @@
-import { FrameworkCode } from "@/features/select-framework";
+import { FrameworkCode, FrameworkPropsTable } from "@/features/select-framework";
 import { InstallCommand } from "@/shared/ui/install-command";
-import { PropsTable } from "@/shared/ui/props-table";
 import { ComponentPreview, DocsPage, Section } from "@/widgets/docs-layout";
 import RadioGroupDemo from "../examples/radio-group-demo";
 import radioGroupDemoSource from "../examples/radio-group-demo?raw";
@@ -67,13 +66,18 @@ import { RadioGroup } from "@omni/core/react";
       </Section>
 
       <Section id="api-reference" title="API Reference">
-        <PropsTable
+        <FrameworkPropsTable
           component="RadioGroup"
           rows={[
             { prop: "legend", type: "ReactNode", description: "Names the group." },
             { prop: "options", type: "{ value, label, disabled? }[]", description: "The choices." },
             { prop: "name", type: "string", description: "Shared by the radios. Required." },
-            { prop: "value", type: "string", description: "Controlled selection: update it from onChange." },
+            {
+              prop: "value",
+              type: "string",
+              description: "Controlled selection: update it from onChange.",
+              svelte: { description: "Controlled selection: update it from onchange." },
+            },
             { prop: "defaultValue", type: "string", description: "Initially selected value, when not controlled." },
             { prop: "description / error", type: "ReactNode", description: "Help text and error message of the group." },
             { prop: "required / disabled", type: "boolean", default: "false", description: "Applied to every radio." },

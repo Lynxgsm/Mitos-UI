@@ -1,6 +1,5 @@
-import { FrameworkCode } from "@/features/select-framework";
+import { FrameworkCode, FrameworkPropsTable } from "@/features/select-framework";
 import { InstallCommand } from "@/shared/ui/install-command";
-import { PropsTable } from "@/shared/ui/props-table";
 import { ComponentPreview, DocsPage, Section } from "@/widgets/docs-layout";
 import ButtonGroupDemo from "../examples/button-group-demo";
 import buttonGroupDemoSource from "../examples/button-group-demo?raw";
@@ -68,7 +67,7 @@ import { Button, ButtonGroup } from "@omni/core/react";
       </Section>
 
       <Section id="api-reference" title="API Reference">
-        <PropsTable
+        <FrameworkPropsTable
           component="ButtonGroup"
           rows={[
             { prop: "aria-label / aria-labelledby", type: "string", description: "Name of the group. Required." },
@@ -78,7 +77,12 @@ import { Button, ButtonGroup } from "@omni/core/react";
               default: '"horizontal"',
               description: "Direction in which the buttons are joined.",
             },
-            { prop: "children", type: "Button[]", description: "The buttons, directly inside the group." },
+            {
+              prop: "children",
+              type: "Button[]",
+              description: "The buttons, directly inside the group.",
+              svelte: { type: "Snippet", description: "The buttons, directly inside the group, between the tags." },
+            },
             { prop: "class", type: "string", description: "Extra classes, merged after the component's styles." },
             { prop: "data-* / native attributes", type: "—", description: "Forwarded to the <div>." },
           ]}

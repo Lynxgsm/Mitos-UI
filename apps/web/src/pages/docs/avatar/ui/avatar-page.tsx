@@ -1,6 +1,5 @@
-import { FrameworkCode } from "@/features/select-framework";
+import { FrameworkCode, FrameworkPropsTable } from "@/features/select-framework";
 import { InstallCommand } from "@/shared/ui/install-command";
-import { PropsTable } from "@/shared/ui/props-table";
 import { ComponentPreview, DocsPage, Section } from "@/widgets/docs-layout";
 import AvatarDemo from "../examples/avatar-demo";
 import avatarDemoSource from "../examples/avatar-demo?raw";
@@ -78,7 +77,7 @@ import { Avatar } from "@omni/core/react";
       </Section>
 
       <Section id="api-reference" title="API Reference">
-        <PropsTable
+        <FrameworkPropsTable
           component="Avatar"
           rows={[
             { prop: "alt", type: "string", description: 'Accessible name, usually the person\'s name; "" when it is decorative.' },

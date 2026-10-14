@@ -1,6 +1,5 @@
-import { FrameworkCode } from "@/features/select-framework";
+import { FrameworkCode, FrameworkPropsTable } from "@/features/select-framework";
 import { InstallCommand } from "@/shared/ui/install-command";
-import { PropsTable } from "@/shared/ui/props-table";
 import { ComponentPreview, DocsPage, Section } from "@/widgets/docs-layout";
 import DialogDemo from "../examples/dialog-demo";
 import dialogDemoSource from "../examples/dialog-demo?raw";
@@ -85,7 +84,7 @@ const [open, setOpen] = useState(false);
       </Section>
 
       <Section id="api-reference" title="API Reference">
-        <PropsTable
+        <FrameworkPropsTable
           component="Dialog"
           rows={[
             { prop: "open", type: "boolean", description: "Whether the dialog is shown (controlled)." },

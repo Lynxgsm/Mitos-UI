@@ -1,6 +1,5 @@
-import { FrameworkCode } from "@/features/select-framework";
+import { FrameworkCode, FrameworkPropsTable } from "@/features/select-framework";
 import { InstallCommand } from "@/shared/ui/install-command";
-import { PropsTable } from "@/shared/ui/props-table";
 import { ComponentPreview, DocsPage, Section } from "@/widgets/docs-layout";
 import MenuDemo from "../examples/menu-demo";
 import menuDemoSource from "../examples/menu-demo?raw";
@@ -64,7 +63,7 @@ import { Menu } from "@omni/core/react";
       </Section>
 
       <Section id="api-reference" title="API Reference">
-        <PropsTable
+        <FrameworkPropsTable
           component="Menu"
           rows={[
             { prop: "label", type: "ReactNode", description: "Text of the button; also names the menu." },
