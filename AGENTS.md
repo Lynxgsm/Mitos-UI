@@ -90,7 +90,7 @@ Keep documentation responsibilities separate:
 - `AGENTS.md` → agent rules and constraints.
 - `ARCHITECTURE.md` → architecture and design decisions.
 - `apps/web` (the docs site) → user-facing documentation of the library: installation, theming, one page per component.
-- `README.md` → repository entry point: what Omni UI is, how to run and contribute (to create).
+- `README.md` → repository entry point: what Omni UI is, how to run and contribute.
 - `SECURITY.md` → vulnerability handling and reporting (to create before the first public release).
 - `CHANGELOG.md` → user-visible history of `@lynxgsm/omni-ui`.
 
