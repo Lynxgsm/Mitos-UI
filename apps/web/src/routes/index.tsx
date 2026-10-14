@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Button } from "@omni/core/react";
+import { Accordion, Button } from "@omni/core/react";
 import { useState } from "react";
 
 export const Route = createFileRoute("/")({
@@ -18,6 +18,15 @@ function Home() {
       <Button variant="secondary" class="custom-button">
         Custom class
       </Button>
+      <h2>FAQ</h2>
+      <Accordion
+        aria-label="FAQ"
+        items={[
+          { title: "Is it accessible?", content: "Native buttons with aria-expanded; collapsed panels are inert." },
+          { title: "Is it animated?", content: "Panels open to their natural height, unless reduced motion is on." },
+          { title: "Keyboard?", content: "Enter/Space toggles, arrows, Home and End move between headers." },
+        ]}
+      />
     </main>
   );
 }

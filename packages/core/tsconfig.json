@@ -4,6 +4,6 @@
     "jsxImportSource": "@builder.io/mitosis",
     "paths": { "@/*": ["./src/*"] }
   },
-  "include": ["src"],
+  "include": ["src", "mitosis-env.d.ts"],
   "exclude": ["src/**/*.test.*", "src/**/*.stories.*"]
 }

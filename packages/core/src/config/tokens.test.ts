@@ -57,7 +57,10 @@ describe.each([
     expect(contrast(fg!, bg!)).toBeGreaterThanOrEqual(TEXT);
   });
 
-  it("focus ring contrast against the page ≥ 3:1", () => {
-    expect(contrast(t.ring!, t.background!)).toBeGreaterThanOrEqual(NON_TEXT);
+  it.each([
+    ["focus ring", t.ring, t.background],
+    ["accordion chevron icon", t["muted-foreground"], t.background],
+  ])("%s contrast against the page ≥ 3:1", (_, fg, bg) => {
+    expect(contrast(fg!, bg!)).toBeGreaterThanOrEqual(NON_TEXT);
   });
 });
