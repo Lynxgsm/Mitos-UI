@@ -1,0 +1,8 @@
+{
+  "extends": "../../tsconfig.base.json",
+  // tests and stories run against the compiled React output
+  "compilerOptions": {
+    "paths": { "@/*": ["./output/react/src/*"] }
+  },
+  "include": ["src/**/*.test.*", "src/**/*.stories.*", ".storybook"]
+}

@@ -1,0 +1,285 @@
+/* Site-wide pieces shared by the landing page and the docs. Plain CSS on the --omni-* tokens. */
+
+:root {
+  /* brand color, used as-is for decoration; text and buttons use its AA shades (Ember accent) */
+  --site-brand: #c45c26;
+  --site-header-height: 3.5rem;
+  /* fixed on purpose: the header must look identical on every page, whatever the page's own width */
+  --site-header-width: 88rem;
+  --site-header-gutter: 1.5rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.site-skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 20;
+  padding: 0.5rem 1rem;
+  border-radius: var(--omni-radius-md);
+  background: var(--omni-primary);
+  color: var(--omni-primary-foreground);
+  transform: translateY(-200%);
+}
+
+.site-skip-link:focus {
+  transform: none;
+}
+
+/* Header: aligned to the page content via --site-width / --site-gutter (set by each layout) */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: var(--site-header-height);
+  padding-inline: max(var(--site-header-gutter), calc((100% - var(--site-header-width)) / 2));
+  border-bottom: 1px solid var(--omni-border);
+  background: color-mix(in oklab, var(--omni-background) 88%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.site-header a:focus-visible {
+  outline: 2px solid var(--omni-ring);
+  outline-offset: 2px;
+}
+
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-logo::before {
+  content: "";
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: var(--omni-radius-sm);
+  background: var(--site-brand);
+  box-shadow: 0.3rem 0.3rem 0 color-mix(in oklab, var(--site-brand) 35%, transparent);
+}
+
+.site-header ul {
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-header nav a {
+  display: inline-block;
+  padding-block: 0.35rem;
+  border-bottom: 2px solid transparent;
+  font-size: 0.875rem;
+  color: var(--omni-muted-foreground);
+  text-decoration: none;
+}
+
+.site-header nav a:hover,
+.site-header nav a[data-active] {
+  color: var(--omni-foreground);
+}
+
+.site-header nav a[data-active] {
+  font-weight: 500;
+  border-bottom-color: var(--site-brand);
+}
+
+.site-header nav {
+  min-width: 0;
+}
+
+.site-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+/* icon-only Buttons: square hit area (≥ 32px, WCAG 2.5.8) */
+.site-icon-button {
+  width: 2rem;
+  padding-inline: 0;
+}
+
+/* Button has no pressed styling of its own: show the toggle state */
+.site-theme-toggle[aria-pressed="true"] {
+  background: var(--omni-accent);
+  color: var(--omni-accent-foreground);
+}
+
+/* Links styled as buttons (same tokens and sizes as the Button component) */
+
+.site-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  padding-inline: 1.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--omni-radius-md);
+  background: var(--omni-primary);
+  color: var(--omni-primary-foreground);
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 150ms, transform 150ms;
+}
+
+.site-button:hover {
+  background: color-mix(in oklab, var(--omni-primary) 90%, transparent);
+}
+
+.site-button:active {
+  transform: translateY(1px);
+}
+
+.site-button-outline {
+  border-color: var(--omni-border);
+  background: var(--omni-background);
+  color: var(--omni-foreground);
+}
+
+.site-button-outline:hover {
+  background: var(--omni-accent);
+  color: var(--omni-accent-foreground);
+}
+
+.site-button-small {
+  height: 2rem;
+  padding-inline: 0.875rem;
+  font-size: 0.875rem;
+}
+
+/* Option groups (radio chips) */
+
+.option-group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.option-group legend {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.option-group-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.option-group-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2rem;
+  padding-inline: 0.75rem;
+  border: 1px solid var(--omni-border);
+  border-radius: var(--omni-radius-md);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color 150ms, background-color 150ms;
+}
+
+.option-group-option:hover {
+  background: var(--omni-accent);
+}
+
+.option-group-option:has(:checked) {
+  border-color: var(--omni-foreground);
+  font-weight: 600;
+}
+
+.option-group-option:has(:focus-visible) {
+  outline: 2px solid var(--omni-ring);
+  outline-offset: 2px;
+}
+
+.option-group-swatch {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--omni-foreground) 20%, transparent);
+}
+
+@media (max-width: 639px) {
+  /* two rows on small screens: logo + actions, then the section links (same on every page) */
+  :root {
+    --site-header-height: 5.25rem;
+  }
+
+  .site-header {
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 0.25rem 1.25rem;
+  }
+
+  .site-header nav {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .site-logo::before {
+  content: "";
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: var(--omni-radius-sm);
+  background: var(--site-brand);
+  box-shadow: 0.3rem 0.3rem 0 color-mix(in oklab, var(--site-brand) 35%, transparent);
+}
+
+.site-header ul {
+    gap: 1rem;
+  }
+
+  /* links scroll sideways rather than overflowing the viewport */
+  .site-header nav {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .site-header nav a {
+    white-space: nowrap;
+  }
+
+  /* Get started stays reachable from the hero and the docs nav; the header keeps the section links */
+  .site-header-cta {
+    display: none;
+  }
+}
+
+/* Framework logos: decorative, always next to the framework's name */
+.framework-logo {
+  width: 1em;
+  height: 1em;
+  flex: none;
+}
+
+.framework-logo-react {
+  fill: #149eca;
+}
+
+.framework-logo-svelte {
+  fill: #ff3e00;
+}

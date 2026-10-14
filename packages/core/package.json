@@ -4,12 +4,65 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.js"
+    },
+    "./react/styles.css": "./dist/react/assets/stylex.css",
+    "./svelte": {
+      "types": "./dist/svelte/index.d.ts",
+      "svelte": "./dist/svelte/index.js",
+      "import": "./dist/svelte/index.js"
+    },
+    "./svelte/styles.css": "./dist/react/assets/stylex.css"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "build": "mitosis build && vite build -c vite.lib.config.ts && tsc -p tsconfig.build.json && bun scripts/build-svelte.ts && tsc -p tsconfig.svelte.json",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.test.json",
+    "test": "bun run build && vitest run",
+    "storybook": "mitosis build && storybook dev -p 6006",
+    "build-storybook": "mitosis build && storybook build"
+  },
+  "peerDependencies": {
+    "react": "^19.3.0",
+    "svelte": "^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "svelte": {
+      "optional": true
+    }
   },
   "devDependencies": {
-    "typescript": "^7.0.2"
-  }
+    "@babel/core": "^7.26.8",
+    "@babel/plugin-syntax-typescript": "^7.25.9",
+    "@builder.io/mitosis": "^0.14.1",
+    "@builder.io/mitosis-cli": "^0.14.1",
+    "@storybook/react-vite": "^10.6.2",
+    "@stylexjs/babel-plugin": "0.19.1",
+    "@stylexjs/unplugin": "^0.19.1",
+    "@testing-library/react": "^16.3.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "axe-core": "^4.14.0",
+    "jsdom": "^30.1.2",
+    "react-dom": "^19.3.0",
+    "storybook": "^10.6.2",
+    "svelte": "^5",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.4"
+  },
+  "dependencies": {
+    "@stylexjs/stylex": "^0.19.1",
+    "clsx": "^2.1.1"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ]
 }
