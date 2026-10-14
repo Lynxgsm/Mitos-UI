@@ -1,5 +1,7 @@
+@import "@fontsource-variable/outfit";
+
 body {
-  font-family: system-ui, sans-serif;
+  font-family: "Outfit Variable", system-ui, sans-serif;
 }
 
 .custom-button {
