@@ -3,6 +3,9 @@ import { Outlet, useLocation, useNavigate } from "@tanstack/react-router";
 import { SideNav } from "mitos-ui/react";
 import { DOCS_NAV, type DocsHref } from "../model/nav";
 
+// the SideNav links are plain <a>: they need the base path the router adds to its own links
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 // the library SideNav, wired to the router: plain clicks navigate client-side, new-tab clicks stay links
 function SidebarNav() {
   const { pathname } = useLocation();
@@ -10,12 +13,12 @@ function SidebarNav() {
   return (
     <SideNav
       label="Docs"
-      currentHref={pathname.replace(/\/$/, "") || "/docs"}
+      currentHref={BASE + (pathname.replace(/\/$/, "") || "/docs")}
       groups={DOCS_NAV.map((group) => ({
         title: group.title,
-        items: group.items.map((item) => ({ label: item.title, href: item.href })),
+        items: group.items.map((item) => ({ label: item.title, href: BASE + item.href })),
       }))}
-      onNavigate={(href) => navigate({ to: href as DocsHref })}
+      onNavigate={(href) => navigate({ to: href.slice(BASE.length) as DocsHref })}
     />
   );
 }
