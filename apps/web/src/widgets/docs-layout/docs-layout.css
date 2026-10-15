@@ -43,10 +43,6 @@
   padding-block: 2rem;
 }
 
-.docs-mobile-nav {
-  display: none;
-}
-
 /* the sidebar is the library SideNav: it brings its own styles */
 
 .docs-toc ul {
@@ -202,20 +198,6 @@
 
   .docs-sidebar {
     display: none;
-  }
-
-  .docs-mobile-nav {
-    display: block;
-    padding-block: 1rem;
-    border-bottom: 1px solid var(--mitos-border);
-  }
-
-  .docs-mobile-nav summary {
-    min-height: 2.75rem;
-    display: flex;
-    align-items: center;
-    font-weight: 500;
-    cursor: pointer;
   }
 
   .docs-main {

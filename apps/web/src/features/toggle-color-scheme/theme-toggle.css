@@ -3,3 +3,49 @@
   background: var(--mitos-accent);
   color: var(--mitos-accent-foreground);
 }
+
+/* Icon: a moon whose cutout slides away while the disc shrinks and the rays come in, giving a sun */
+.theme-icon-body,
+.theme-icon-cutout,
+.theme-icon-rays {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.theme-icon-rays {
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  opacity: 0;
+  transform: rotate(-45deg) scale(0.5);
+}
+
+[aria-pressed="true"] > .theme-icon .theme-icon-body {
+  transform: scale(0.6);
+}
+
+[aria-pressed="true"] > .theme-icon .theme-icon-cutout {
+  transform: translate(6px, -6px);
+}
+
+[aria-pressed="true"] > .theme-icon .theme-icon-rays {
+  opacity: 1;
+  transform: none;
+}
+
+/* only after a click: the state synced on load appears without motion */
+.theme-toggle[data-animate] .theme-icon-body,
+.theme-toggle[data-animate] .theme-icon-cutout,
+.theme-toggle[data-animate] .theme-icon-rays {
+  transition:
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle[data-animate] .theme-icon-body,
+  .theme-toggle[data-animate] .theme-icon-cutout,
+  .theme-toggle[data-animate] .theme-icon-rays {
+    transition: none;
+  }
+}
