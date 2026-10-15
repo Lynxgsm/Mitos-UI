@@ -6,8 +6,9 @@ import { DOCS_NAV, type DocsHref } from "../model/nav";
 // the SideNav links are plain <a>: they need the base path the router adds to its own links
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
-// the library SideNav, wired to the router: plain clicks navigate client-side, new-tab clicks stay links
-function SidebarNav() {
+// the library SideNav, wired to the router: plain clicks navigate client-side, new-tab clicks stay links.
+// Also the docs part of the mobile menu: the docs route hands it to the header.
+export function DocsNav() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   return (
@@ -30,12 +31,8 @@ export function DocsLayout(props: { header: ReactNode }) {
       {props.header}
       <div className="docs-shell">
         <aside className="docs-sidebar">
-          <SidebarNav />
+          <DocsNav />
         </aside>
-        <details className="docs-mobile-nav">
-          <summary>Menu</summary>
-          <SidebarNav />
-        </details>
         <main id="content" className="docs-main">
           <Outlet />
         </main>
