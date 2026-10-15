@@ -1,0 +1,42 @@
+# Keeps a "Release x.y.z" PR to develop in sync with the [Unreleased] CHANGELOG section (see AGENTS.md, Releasing).
+name: Release PR
+
+on:
+  push:
+    branches: [develop]
+
+concurrency:
+  group: release-pr
+  cancel-in-progress: true
+
+jobs:
+  release-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # push the release/next branch
+      pull-requests: write # open or update the release PR
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.0
+
+      - id: prepare
+        run: bun packages/core/scripts/prepare-release.ts
+
+      - if: steps.prepare.outputs.version
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.prepare.outputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -C release/next
+          git commit -am "Release $VERSION"
+          git push --force origin release/next
+          { echo "Merge this PR, then merge develop into main to publish mitos-ui@$VERSION."; echo; cat release-notes.md; } > pr-body.md
+          if [ "$(gh pr view release/next --json state -q .state 2>/dev/null)" = "OPEN" ]; then
+            gh pr edit release/next --title "Release $VERSION" --body-file pr-body.md
+          else
+            gh pr create --base develop --head release/next --title "Release $VERSION" --body-file pr-body.md
+          fi
