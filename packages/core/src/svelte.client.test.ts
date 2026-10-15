@@ -132,6 +132,32 @@ describe("Svelte build: client", () => {
     expect(button("Actions").getAttribute("aria-expanded")).toBe("false");
   });
 
+  it("filters the Combobox and chooses an option with the keyboard", async () => {
+    const spy = vi.fn();
+    await show(
+      `<Combobox id="fruit" label="Fruit" onValueChange={spy} options={[{ value: "apple", label: "Apple" }, { value: "pear", label: "Pear" }, { value: "plum", label: "Plum" }]} />`,
+      { spy },
+    );
+    const input = document.querySelector<HTMLInputElement>('input[role="combobox"]')!;
+    input.value = "p";
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    flushSync();
+    expect(input.getAttribute("aria-expanded")).toBe("true");
+    expect([...document.querySelectorAll('[role="option"]')].map((option) => option.textContent?.trim())).toEqual(["Apple", "Pear", "Plum"]);
+    input.value = "plu";
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    flushSync();
+    expect([...document.querySelectorAll('[role="option"]')].map((option) => option.textContent?.trim())).toEqual(["Plum"]);
+    input.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true }));
+    flushSync();
+    expect(input.getAttribute("aria-activedescendant")).toBe("fruit-option-2");
+    input.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+    flushSync();
+    expect(spy).toHaveBeenCalledWith("plum");
+    expect(input.value).toBe("Plum");
+    expect(input.getAttribute("aria-expanded")).toBe("false");
+  });
+
   it("hands SideNav clicks to onNavigate", async () => {
     const spy = vi.fn();
     await show(`<SideNav label="Docs" onNavigate={spy} groups={[{ items: [{ label: "Guide", href: "/guide" }] }]} />`, { spy });

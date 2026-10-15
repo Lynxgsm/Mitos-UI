@@ -8,6 +8,12 @@ This file covers the library only: changes to the documentation website (`apps/w
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-15
+
+### Added
+
+- `Combobox`: a text field that filters a list of options as you type (WAI-ARIA combobox with list autocomplete). Arrow keys move through the options, `Enter` chooses one and `Escape` closes the list, then clears the field. The number of results is announced, and the list opens above the field when there is no room below. Props: `label`, `options` (with `disabled`), `defaultValue`, `onValueChange`, `name` (submits the selected value), `placeholder`, `description`, `error` and `emptyText`.
+
 ## [0.1.0] - 2026-10-15
 
 ### Added

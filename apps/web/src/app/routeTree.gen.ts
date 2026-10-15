@@ -23,6 +23,7 @@ import { Route as DocsComponentsButtonRouteImport } from './routes/docs/componen
 import { Route as DocsComponentsButtonGroupRouteImport } from './routes/docs/components/button-group'
 import { Route as DocsComponentsCardRouteImport } from './routes/docs/components/card'
 import { Route as DocsComponentsCheckboxRouteImport } from './routes/docs/components/checkbox'
+import { Route as DocsComponentsComboboxRouteImport } from './routes/docs/components/combobox'
 import { Route as DocsComponentsDialogRouteImport } from './routes/docs/components/dialog'
 import { Route as DocsComponentsFieldsetRouteImport } from './routes/docs/components/fieldset'
 import { Route as DocsComponentsInputRouteImport } from './routes/docs/components/input'
@@ -107,6 +108,11 @@ const DocsComponentsCardRoute = DocsComponentsCardRouteImport.update({
 const DocsComponentsCheckboxRoute = DocsComponentsCheckboxRouteImport.update({
   id: '/components/checkbox',
   path: '/components/checkbox',
+  getParentRoute: () => DocsRouteRoute,
+} as any)
+const DocsComponentsComboboxRoute = DocsComponentsComboboxRouteImport.update({
+  id: '/components/combobox',
+  path: '/components/combobox',
   getParentRoute: () => DocsRouteRoute,
 } as any)
 const DocsComponentsDialogRoute = DocsComponentsDialogRouteImport.update({
@@ -196,6 +202,7 @@ export interface FileRoutesByFullPath {
   '/docs/components/button-group': typeof DocsComponentsButtonGroupRoute
   '/docs/components/card': typeof DocsComponentsCardRoute
   '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
+  '/docs/components/combobox': typeof DocsComponentsComboboxRoute
   '/docs/components/dialog': typeof DocsComponentsDialogRoute
   '/docs/components/fieldset': typeof DocsComponentsFieldsetRoute
   '/docs/components/input': typeof DocsComponentsInputRoute
@@ -225,6 +232,7 @@ export interface FileRoutesByTo {
   '/docs/components/button-group': typeof DocsComponentsButtonGroupRoute
   '/docs/components/card': typeof DocsComponentsCardRoute
   '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
+  '/docs/components/combobox': typeof DocsComponentsComboboxRoute
   '/docs/components/dialog': typeof DocsComponentsDialogRoute
   '/docs/components/fieldset': typeof DocsComponentsFieldsetRoute
   '/docs/components/input': typeof DocsComponentsInputRoute
@@ -256,6 +264,7 @@ export interface FileRoutesById {
   '/docs/components/button-group': typeof DocsComponentsButtonGroupRoute
   '/docs/components/card': typeof DocsComponentsCardRoute
   '/docs/components/checkbox': typeof DocsComponentsCheckboxRoute
+  '/docs/components/combobox': typeof DocsComponentsComboboxRoute
   '/docs/components/dialog': typeof DocsComponentsDialogRoute
   '/docs/components/fieldset': typeof DocsComponentsFieldsetRoute
   '/docs/components/input': typeof DocsComponentsInputRoute
@@ -288,6 +297,7 @@ export interface FileRouteTypes {
     | '/docs/components/button-group'
     | '/docs/components/card'
     | '/docs/components/checkbox'
+    | '/docs/components/combobox'
     | '/docs/components/dialog'
     | '/docs/components/fieldset'
     | '/docs/components/input'
@@ -317,6 +327,7 @@ export interface FileRouteTypes {
     | '/docs/components/button-group'
     | '/docs/components/card'
     | '/docs/components/checkbox'
+    | '/docs/components/combobox'
     | '/docs/components/dialog'
     | '/docs/components/fieldset'
     | '/docs/components/input'
@@ -347,6 +358,7 @@ export interface FileRouteTypes {
     | '/docs/components/button-group'
     | '/docs/components/card'
     | '/docs/components/checkbox'
+    | '/docs/components/combobox'
     | '/docs/components/dialog'
     | '/docs/components/fieldset'
     | '/docs/components/input'
@@ -470,6 +482,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentsCheckboxRouteImport
       parentRoute: typeof DocsRouteRoute
     }
+    '/docs/components/combobox': {
+      id: '/docs/components/combobox'
+      path: '/components/combobox'
+      fullPath: '/docs/components/combobox'
+      preLoaderRoute: typeof DocsComponentsComboboxRouteImport
+      parentRoute: typeof DocsRouteRoute
+    }
     '/docs/components/dialog': {
       id: '/docs/components/dialog'
       path: '/components/dialog'
@@ -582,6 +601,7 @@ interface DocsRouteRouteChildren {
   DocsComponentsButtonGroupRoute: typeof DocsComponentsButtonGroupRoute
   DocsComponentsCardRoute: typeof DocsComponentsCardRoute
   DocsComponentsCheckboxRoute: typeof DocsComponentsCheckboxRoute
+  DocsComponentsComboboxRoute: typeof DocsComponentsComboboxRoute
   DocsComponentsDialogRoute: typeof DocsComponentsDialogRoute
   DocsComponentsFieldsetRoute: typeof DocsComponentsFieldsetRoute
   DocsComponentsInputRoute: typeof DocsComponentsInputRoute
@@ -609,6 +629,7 @@ const DocsRouteRouteChildren: DocsRouteRouteChildren = {
   DocsComponentsButtonGroupRoute: DocsComponentsButtonGroupRoute,
   DocsComponentsCardRoute: DocsComponentsCardRoute,
   DocsComponentsCheckboxRoute: DocsComponentsCheckboxRoute,
+  DocsComponentsComboboxRoute: DocsComponentsComboboxRoute,
   DocsComponentsDialogRoute: DocsComponentsDialogRoute,
   DocsComponentsFieldsetRoute: DocsComponentsFieldsetRoute,
   DocsComponentsInputRoute: DocsComponentsInputRoute,

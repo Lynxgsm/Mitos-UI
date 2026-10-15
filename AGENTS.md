@@ -64,22 +64,29 @@ Examples:
 
 Do not update it for test-only changes, formatting, comments, internal refactoring, build tooling, or website-only changes (`apps/web`).
 
-Follow **Keep a Changelog** with date-based releases. Until the first release, entries go under `[Unreleased]`.
+Follow **Keep a Changelog** with date-based releases. New entries go under `[Unreleased]`, in one of its headings: `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`. Start a breaking entry with `**Breaking:**`. These headings decide the next version (see Releasing), so never write a version or a date by hand.
 
 ---
 
 ## Releasing
 
-CI (`.github/workflows/ci.yml`) runs the Definition of Done on every pull request and on `develop`.
-`.github/workflows/release.yml` runs on every push to `main` and publishes only when the version is new.
+Branches flow one way: work branches → `develop` → `main`. Merge `develop` into `main` with a merge commit, never squash or rebase, so `main` never has commits `develop` lacks.
 
-1. Open a release PR to `main`. It sets `version` in `packages/core/package.json` and renames `[Unreleased]` in `CHANGELOG.md` to `[x.y.z] - YYYY-MM-DD`, above a new empty `[Unreleased]`.
-2. On merge, the workflow publishes `mitos-ui@x.y.z` to npm with provenance. It then creates the `vx.y.z` tag and a GitHub release whose notes come from that CHANGELOG section.
-3. A prerelease version (`x.y.z-beta.1`) is published under the `next` dist-tag and marked as a prerelease.
+- `ci.yml` runs the Definition of Done on every pull request and on `develop`.
+- `release-pr.yml` runs on every push to `develop`. When `[Unreleased]` has entries, it keeps a `Release x.y.z` PR to `develop` up to date (branch `release/next`). The version comes from the CHANGELOG headings:
+  - `Fixed` or `Security` only → patch;
+  - `Added`, `Changed` or `Deprecated` → minor;
+  - `Removed` or a `**Breaking:**` entry → major, or minor while `0.x`.
+- `release.yml` runs on every push to `main` and publishes only when the version is new.
 
-The workflow fails if the new version has no CHANGELOG section. Pushes to `main` that keep an already published version publish nothing.
+To release:
 
-Publishing uses npm trusted publishing (OIDC): a trusted publisher on npmjs.com (package settings, GitHub Actions, repository `Lynxgsm/Mitos-UI`, workflow `release.yml`). A package must exist before it can have one, so the first version is published with an `NPM_TOKEN` repository secret. Once the trusted publisher is set up, delete that secret and revoke the token.
+1. Merge the `Release x.y.z` PR into `develop`. It sets the version in `packages/core/package.json` and moves the `[Unreleased]` entries under `[x.y.z] - YYYY-MM-DD`.
+2. Merge `develop` into `main`. The workflow publishes `mitos-ui@x.y.z` to npm with provenance. It then creates the `vx.y.z` tag and a GitHub release whose notes come from that CHANGELOG section.
+
+Merging `develop` into `main` without a release PR publishes nothing. A prerelease (`x.y.z-beta.1`) is still set by hand in a PR; it is published under the `next` dist-tag and marked as a prerelease.
+
+Publishing uses npm trusted publishing (OIDC) only: the trusted publisher of `mitos-ui` on npmjs.com is repository `Lynxgsm/Mitos-UI`, workflow `release.yml`, allowed action `npm publish`. The package requires 2FA and refuses tokens, so there is no npm token anywhere: never add one. Renaming the repository or the workflow file means updating the trusted publisher first.
 
 ---
 
