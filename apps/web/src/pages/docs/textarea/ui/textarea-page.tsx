@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { FrameworkCode, FrameworkPropsTable } from "@/features/select-framework";
 import { InstallCommand } from "@/shared/ui/install-command";
 import { ComponentPreview, DocsPage, Section } from "@/widgets/docs-layout";
@@ -40,7 +41,7 @@ import { Textarea } from "mitos-ui/react";
 
       <Section id="accessibility" title="Accessibility">
         <p>
-          Same guarantees as <a href="/docs/components/input">Input</a>: wrapping label, error and description linked
+          Same guarantees as <Link to="/docs/components/input">Input</Link>: wrapping label, error and description linked
           with <code>aria-describedby</code>, 3:1 border. The field resizes vertically only, so the layout never breaks
           sideways.
         </p>

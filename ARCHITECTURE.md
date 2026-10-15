@@ -540,6 +540,12 @@ The web app uses **plain CSS files** and the library's design tokens. StyleX is 
 
 TanStack Start renders every route on the server, then hydrates it. There are **no React Server Components** and no `"use client"` directive in the web app.
 
+The site is deployed as static files on GitHub Pages (`.github/workflows/pages.yml`, on every push to `main`). `bun run build` prerenders every page reachable by links from `/` into HTML, so:
+
+- a page must render without a request: no server functions, no loader that needs a live server;
+- a new page must be linked from another page, or it is not generated;
+- on Pages the site lives under `/Mitos-UI/`: the build sets it from `BASE_PATH` (Vite `base`, router `basepath`). Router links get it for free; a plain `<a href>` to a site page must use `Link`, or add `import.meta.env.BASE_URL` (the docs SideNav does).
+
 Rules:
 
 - Browser APIs (`window`, `localStorage`, `matchMedia`, `navigator.clipboard`) only run in effects, event handlers, or a `useSyncExternalStore` subscription.
