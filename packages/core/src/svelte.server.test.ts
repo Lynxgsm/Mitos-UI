@@ -26,6 +26,9 @@ describe("Svelte build: server", async () => {
       `<RadioGroup legend="Plan" name="plan" defaultValue="pro" options={[{ value: "free", label: "Free" }, { value: "pro", label: "Pro" }]} />`,
     ),
     Select: await html(`<Select label="Country" placeholder="Choose" options={[{ value: "fr", label: "France" }]} />`),
+    Combobox: await html(
+      `<Combobox id="fruit" label="Fruit" name="fruit" defaultValue="apple" options={[{ value: "apple", label: "Apple" }, { value: "pear", label: "Pear" }]} />`,
+    ),
     Slider: await html(`<Slider label="Volume" min={0} max={10} />`),
     Fieldset: await html(`<Fieldset legend="Address"><Input label="City" /></Fieldset>`),
     Tabs: await html(
@@ -98,6 +101,10 @@ describe("Svelte build: server", async () => {
     expect(renders.RadioGroup).toMatch(/<fieldset[^>]* role="radiogroup"/);
     expect(renders.RadioGroup).toMatch(/<input[^>]* value="pro"[^>]* checked/);
     expect(renders.Select).toMatch(/<select[^>]*>.*<option value="">.*Choose.*<option value="fr"/s);
+    expect(renders.Combobox).toMatch(/<input[^>]* role="combobox"[^>]* aria-expanded="false"[^>]* aria-controls="fruit-listbox"/);
+    expect(renders.Combobox).toMatch(/<input[^>]* value="Apple"/);
+    expect(renders.Combobox).toMatch(/<div[^>]* hidden[^>]*>\s*<ul[^>]* role="listbox" id="fruit-listbox"|<div[^>]* hidden[^>]*><ul[^>]* role="listbox"[^>]* id="fruit-listbox"/);
+    expect(renders.Combobox).toMatch(/<input type="hidden" name="fruit" value="apple"/);
     expect(renders.Slider).toContain("--mitos-slider-fill:50%");
     expect(renders.Slider).toMatch(/<input[^>]* type="range"[^>]* min="0"|<input[^>]* min="0"[^>]* type="range"/);
     expect(renders.Fieldset).toMatch(/<fieldset[^>]*>.*<legend[^>]*>.*Address.*<\/legend>.*<input/s);

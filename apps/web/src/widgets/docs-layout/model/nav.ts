@@ -21,6 +21,7 @@ export const DOCS_NAV = [
     title: "Forms",
     items: [
       { title: "Checkbox", href: "/docs/components/checkbox" },
+      { title: "Combobox", href: "/docs/components/combobox" },
       { title: "Fieldset", href: "/docs/components/fieldset" },
       { title: "Input", href: "/docs/components/input" },
       { title: "Radio Group", href: "/docs/components/radio-group" },
