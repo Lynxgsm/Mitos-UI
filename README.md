@@ -21,7 +21,7 @@ export default function App() {
 }
 ```
 
-Usage for Svelte, theming and one page per component are covered in the documentation site (`apps/web`).
+Usage for Svelte, theming and one page per component are covered in the [documentation site](https://lynxgsm.github.io/Mitos-UI/) (`apps/web`).
 
 ## Repository
 
