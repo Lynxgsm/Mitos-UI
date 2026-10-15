@@ -5,6 +5,7 @@
 import { readFileSync } from "node:fs";
 import { afterEach, describe, expect, it } from "vitest";
 import { cleanup, render } from "@testing-library/react";
+import Combobox from "@/combobox/combobox";
 import Menu from "@/menu/menu";
 import Tabs from "@/tabs/tabs";
 import Tooltip from "@/tooltip/tooltip";
@@ -30,6 +31,7 @@ describe("hidden elements", () => {
   });
 
   it.each([
+    ["a closed Combobox", <Combobox label="Fruit" options={[{ value: "apple", label: "Apple" }]} />],
     ["a closed Menu", <Menu label="Actions" items={[{ label: "Edit", onSelect: () => {} }]} />],
     [
       "the unselected Tabs panels",

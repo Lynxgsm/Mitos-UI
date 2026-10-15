@@ -30,6 +30,8 @@ export { default as RadioGroup } from "./radio-group/radio-group.lite";
 export type { RadioGroupProps, RadioOption } from "./radio-group/radio-group.lite";
 export { default as Select } from "./select/select.lite";
 export type { SelectProps, SelectOption } from "./select/select.lite";
+export { default as Combobox } from "./combobox/combobox.lite";
+export type { ComboboxProps, ComboboxOption } from "./combobox/combobox.lite";
 export { default as Slider } from "./slider/slider.lite";
 export type { SliderProps } from "./slider/slider.lite";
 export { default as Fieldset } from "./fieldset/fieldset.lite";

@@ -68,6 +68,7 @@ describe("public API", () => {
         "ButtonGroup",
         "Card",
         "Checkbox",
+        "Combobox",
         "Dialog",
         "Fieldset",
         "Input",
