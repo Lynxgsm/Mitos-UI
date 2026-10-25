@@ -8,11 +8,17 @@ const OWN_PROPS = [
   // Props the component consumes itself; everything else is forwarded to the <input>.
   // iterating props only compiles correctly for React: mitosis.config.cjs maps props to the
   // Svelte $props() object. shortcut: a Vue target will need the same with $attrs.
-  "label", "description", "error", "id", "class",
+  "label", "hideLabel", "startIcon", "endSlot", "description", "error", "id", "class",
 ];
 
 export type InputProps = {
   label: any;
+  // keeps the label as the accessible name but out of sight, for a field whose purpose is obvious from its icon
+  hideLabel?: boolean;
+  // decorative icon drawn inside the field, before the text
+  startIcon?: any;
+  // decorative hint drawn inside the field, after the text, such as a keyboard shortcut; never a control
+  endSlot?: any;
   description?: any;
   error?: any;
   type?: "text" | "email" | "password" | "search" | "tel" | "url" | "number" | "date" | "time" | "datetime-local" | "file" | "color";
@@ -106,7 +112,7 @@ export default function Input(props: InputProps) {
     <div class={clsx(stylex.props(field.stack).className, props.class)}>
       {/* wrapping label: the field is named from the server render on, no id needed */}
       <label class={stylex.props(field.labelBox).className}>
-        <span class={stylex.props(field.label, field.labelText).className}>
+        <span class={stylex.props(field.label, field.labelText, props.hideLabel && field.srOnly).className}>
           {props.label}
           {props.required && (
             <span aria-hidden="true" class={stylex.props(field.required).className}>
@@ -114,21 +120,35 @@ export default function Input(props: InputProps) {
             </span>
           )}
         </span>
-        <input
-          {...state.attributes}
-          id={props.id}
-          type={props.type ?? "text"}
-          aria-invalid={props.error ? true : undefined}
-          aria-describedby={state.describedBy}
-          class={stylex.props(
-            field.box,
-            field.focusRing,
-            styles.control,
-            props.type === "file" && styles.file,
-            props.type === "color" && styles.color,
-            props.error && field.invalid,
-          ).className}
-        />
+        <span class={stylex.props(field.adorned).className}>
+          {props.startIcon && (
+            <span aria-hidden="true" class={stylex.props(field.startIcon).className}>
+              {props.startIcon}
+            </span>
+          )}
+          <input
+            {...state.attributes}
+            id={props.id}
+            type={props.type ?? "text"}
+            aria-invalid={props.error ? true : undefined}
+            aria-describedby={state.describedBy}
+            class={stylex.props(
+              field.box,
+              field.focusRing,
+              styles.control,
+              props.type === "file" && styles.file,
+              props.type === "color" && styles.color,
+              props.error && field.invalid,
+              props.startIcon && field.withStartIcon,
+              props.endSlot && field.withEndSlot,
+            ).className}
+          />
+          {props.endSlot && (
+            <span aria-hidden="true" class={stylex.props(field.endSlot).className}>
+              {props.endSlot}
+            </span>
+          )}
+        </span>
       </label>
       {props.description && (
         <p id={state.partId("description")} class={stylex.props(field.description).className}>

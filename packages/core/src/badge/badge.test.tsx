@@ -7,7 +7,7 @@ import Badge from "@/badge/badge";
 
 afterEach(cleanup);
 
-const VARIANTS = ["default", "secondary", "outline", "destructive"] as const;
+const VARIANTS = ["default", "secondary", "outline", "destructive", "accent", "destructive-outline"] as const;
 
 describe("Badge", () => {
   it("has no axe violations", async () => {

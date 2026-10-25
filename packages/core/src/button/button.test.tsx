@@ -13,6 +13,8 @@ describe("Button", () => {
       <>
         <Button>Save</Button>
         <Button aria-label="Close">×</Button>
+        <Button icon variant="ghost" aria-label="More actions">⋯</Button>
+        <Button variant="destructive-ghost">Delete</Button>
         <Button disabled>Save</Button>
       </>,
     );
@@ -63,7 +65,7 @@ describe("Button", () => {
     expect(classes.length).toBeGreaterThan(1);
   });
 
-  const VARIANTS = ["default", "secondary", "outline", "ghost", "link", "destructive"] as const;
+  const VARIANTS = ["default", "secondary", "outline", "ghost", "link", "destructive", "destructive-ghost"] as const;
   const SIZES = ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"] as const;
 
   it("applies distinct styles to every variant", () => {
@@ -110,13 +112,28 @@ describe("Button", () => {
     expect(onKeyDown).toHaveBeenCalledTimes(1);
   });
 
+  it("makes an icon button square at every size, keeping its accessible name", () => {
+    render(
+      <>
+        <Button aria-label="Grid view">▦</Button>
+        <Button icon aria-label="List view">≡</Button>
+        <Button icon size="sm" aria-label="Copy">⧉</Button>
+      </>,
+    );
+    const plain = screen.getByRole("button", { name: "Grid view" }).className;
+    const icon = screen.getByRole("button", { name: "List view" }).className;
+    expect(icon).not.toBe(plain);
+    expect(screen.getByRole("button", { name: "Copy" }).className).not.toBe(icon);
+  });
+
   it("does not leak its own props as DOM attributes", () => {
     render(
-      <Button variant="outline" size="lg" class="custom">
+      <Button variant="outline" size="lg" icon class="custom">
         Save
       </Button>,
     );
     const button = screen.getByRole("button");
+    expect(button.hasAttribute("icon")).toBe(false);
     expect(button.hasAttribute("variant")).toBe(false);
     expect(button.hasAttribute("size")).toBe(false);
     expect(button.classList.contains("custom")).toBe(true);

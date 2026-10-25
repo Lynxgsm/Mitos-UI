@@ -12,7 +12,7 @@ const OWN_PROPS = [
 
 export type BadgeProps = {
   children?: any;
-  variant?: "default" | "secondary" | "outline" | "destructive";
+  variant?: "default" | "secondary" | "outline" | "destructive" | "accent" | "destructive-outline";
   class?: string;
   // native attributes below are forwarded as-is to the <span>
   id?: string;
@@ -58,6 +58,17 @@ const variants = stylex.create({
   destructive: {
     backgroundColor: colors["--mitos-destructive"],
     color: colors["--mitos-destructive-foreground"],
+  },
+  // a highlighted state that is not an error, such as Watching or New
+  accent: {
+    backgroundColor: colors["--mitos-accent"],
+    color: colors["--mitos-accent-foreground"],
+  },
+  // an error that should not shout, such as a failed background task next to other content
+  "destructive-outline": {
+    backgroundColor: "transparent",
+    color: colors["--mitos-destructive"],
+    borderColor: colors["--mitos-destructive"],
   },
 });
 

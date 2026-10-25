@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 import Button from "@/button/button";
 
-const VARIANTS = ["default", "secondary", "outline", "ghost", "link", "destructive"] as const;
+const VARIANTS = ["default", "secondary", "outline", "ghost", "link", "destructive", "destructive-ghost"] as const;
 const SIZES = ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"] as const;
 
 const meta = {
@@ -27,6 +27,8 @@ export const Outline: Story = { args: { variant: "outline" } };
 export const Ghost: Story = { args: { variant: "ghost" } };
 export const Link: Story = { args: { variant: "link" } };
 export const Destructive: Story = { args: { variant: "destructive" } };
+export const DestructiveGhost: Story = { args: { variant: "destructive-ghost", children: "Delete" } };
+export const Icon: Story = { args: { icon: true, variant: "outline", children: "⋯", "aria-label": "More actions" } };
 export const Disabled: Story = { args: { disabled: true } };
 
 const row = { display: "flex", gap: "1rem", alignItems: "center", flexWrap: "wrap" } as const;

@@ -26,6 +26,10 @@ describe("Svelte build: server", async () => {
       `<RadioGroup legend="Plan" name="plan" defaultValue="pro" options={[{ value: "free", label: "Free" }, { value: "pro", label: "Pro" }]} />`,
     ),
     Select: await html(`<Select label="Country" placeholder="Choose" options={[{ value: "fr", label: "France" }]} />`),
+    SegmentedControl: await html(
+      `<SegmentedControl legend="View" hideLegend name="view" defaultValue="list" options={[{ value: "grid", label: "Grid view", hideLabel: true }, { value: "list", label: "List" }]} />`,
+    ),
+    TagInput: await html(`<TagInput id="tags" label="Tags" name="tags" defaultValue={["forms", "to-try"]} />`),
     Combobox: await html(
       `<Combobox id="fruit" label="Fruit" name="fruit" defaultValue="apple" options={[{ value: "apple", label: "Apple" }, { value: "pear", label: "Pear" }]} />`,
     ),
@@ -100,6 +104,11 @@ describe("Svelte build: server", async () => {
     expect(renders.Switch).toMatch(/<input[^>]* type="checkbox"[^>]* role="switch"|<input[^>]* role="switch"[^>]* type="checkbox"/);
     expect(renders.RadioGroup).toMatch(/<fieldset[^>]* role="radiogroup"/);
     expect(renders.RadioGroup).toMatch(/<input[^>]* value="pro"[^>]* checked/);
+    expect(renders.SegmentedControl).toMatch(/<fieldset[^>]* role="radiogroup"/);
+    expect(renders.SegmentedControl).toMatch(/<input[^>]* value="list"[^>]* checked/);
+    expect(renders.SegmentedControl).toMatch(/<input[^>]* aria-label="Grid view"|<input[^>]* value="grid"[^>]* aria-label="Grid view"/);
+    expect(renders.TagInput).toMatch(/<button[^>]* aria-label="Remove forms"/);
+    expect(renders.TagInput).toMatch(/<input type="hidden" name="tags" value="forms,to-try"/);
     expect(renders.Select).toMatch(/<select[^>]*>.*<option value="">.*Choose.*<option value="fr"/s);
     expect(renders.Combobox).toMatch(/<input[^>]* role="combobox"[^>]* aria-expanded="false"[^>]* aria-controls="fruit-listbox"/);
     expect(renders.Combobox).toMatch(/<input[^>]* value="Apple"/);

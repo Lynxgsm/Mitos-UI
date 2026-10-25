@@ -63,4 +63,23 @@ describe("Select", () => {
     expect(select.hasAttribute("options")).toBe(false);
     expect((container.firstElementChild as HTMLElement).classList.contains("custom")).toBe(true);
   });
+
+  it("keeps a hidden label as its name and hides its start icon from assistive technology", async () => {
+    const { container } = render(
+      <Select
+        label="Language"
+        hideLabel
+        startIcon={<svg data-testid="globe" />}
+        options={[
+          { value: "en", label: "English" },
+          { value: "fr", label: "Français" },
+        ]}
+      />,
+    );
+    const select = screen.getByRole("combobox", { name: "Language" });
+    expect(screen.getByTestId("globe").closest("[aria-hidden=true]")).not.toBeNull();
+    for (const prop of ["hidelabel", "starticon"]) expect(select.hasAttribute(prop)).toBe(false);
+    const { violations } = await axe.run(container, { rules: { "color-contrast": { enabled: false } } });
+    expect(violations).toEqual([]);
+  });
 });

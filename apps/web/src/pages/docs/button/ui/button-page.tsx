@@ -79,15 +79,21 @@ import { Button } from "mitos-ui/react";
           rows={[
             {
               prop: "variant",
-              type: '"default" | "secondary" | "outline" | "ghost" | "link" | "destructive"',
+              type: '"default" | "secondary" | "outline" | "ghost" | "link" | "destructive" | "destructive-ghost"',
               default: '"default"',
-              description: "Visual style.",
+              description: "Visual style. destructive-ghost is a destructive action that does not draw the eye.",
             },
             {
               prop: "size",
               type: '"xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl"',
               default: '"md"',
               description: "Height, padding and font size.",
+            },
+            {
+              prop: "icon",
+              type: "boolean",
+              default: "false",
+              description: "Square button for a single icon, at any size. Name it with aria-label.",
             },
             { prop: "type", type: '"button" | "submit" | "reset"', default: '"button"', description: "Native button type." },
             { prop: "disabled", type: "boolean", default: "false", description: "Disables interaction." },

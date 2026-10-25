@@ -10,7 +10,18 @@ const OWN_PROPS = [
   "label", "groups", "currentHref", "onNavigate", "class",
 ];
 
-export type SideNavItem = { label: string; href: string };
+export type SideNavItem = {
+  label: string;
+  href: string;
+  // decorative icon before the label
+  icon?: any;
+  // number shown at the end of the link, such as the items in a collection
+  count?: number | string;
+  // words read after the count by screen readers, such as unread
+  countLabel?: string;
+  // draws the count as a filled pill, for something that needs attention
+  highlightCount?: boolean;
+};
 export type SideNavGroup = { title?: string; items: SideNavItem[] };
 
 export type SideNavProps = {
@@ -51,6 +62,22 @@ const styles = stylex.create({
     outlineOffset: -2,
     outlineColor: colors["--mitos-ring"],
   },
+  withIcon: { gap: "0.625rem" },
+  icon: { display: "flex", flexShrink: 0 },
+  label: { flexGrow: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" },
+  count: { marginInlineStart: "auto", paddingInlineStart: "0.5rem", fontSize: "0.75rem", fontVariantNumeric: "tabular-nums" },
+  highlight: {
+    minWidth: "1.25rem",
+    height: "1.25rem",
+    paddingInline: "0.375rem",
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 999,
+    fontWeight: 600,
+    color: colors["--mitos-primary-foreground"],
+    backgroundColor: colors["--mitos-primary"],
+  },
   // the current page is marked by a bar and a weight as well as by its colors (WCAG 1.4.1)
   current: {
     color: { default: colors["--mitos-accent-foreground"], ":hover": colors["--mitos-accent-foreground"] },
@@ -64,6 +91,12 @@ export default function SideNav(props: SideNavProps) {
   const state = useStore({
     get attributes() {
       return Object.fromEntries(Object.entries(props).filter(([key]) => !OWN_PROPS.includes(key)));
+    },
+    // with a count, the link is named explicitly: the label, the count and its words, in the visible order
+    // (WCAG 2.5.3); text pieces of a flex row are not reliably separated by spaces in computed names
+    linkName(item: SideNavItem) {
+      if (item.count === undefined) return undefined;
+      return [item.label, item.count, item.countLabel].filter((part) => part !== undefined && part !== "").join(" ");
     },
     // new tab, new window and download clicks keep the browser behavior
     follow(href: string, event: any) {
@@ -92,10 +125,25 @@ export default function SideNav(props: SideNavProps) {
                     <a
                       href={item.href}
                       aria-current={item.href === props.currentHref ? "page" : undefined}
-                      class={stylex.props(styles.link, item.href === props.currentHref && styles.current).className}
+                      aria-label={state.linkName(item)}
+                      class={stylex.props(
+                        styles.link,
+                        item.icon && styles.withIcon,
+                        item.href === props.currentHref && styles.current,
+                      ).className}
                       onClick={(event) => state.follow(item.href, event)}
                     >
-                      {item.label}
+                      {item.icon && (
+                        <span aria-hidden="true" class={stylex.props(styles.icon).className}>
+                          {item.icon}
+                        </span>
+                      )}
+                      <span class={stylex.props(styles.label).className}>{item.label}</span>
+                      {item.count !== undefined && (
+                        <span class={stylex.props(styles.count, item.highlightCount && styles.highlight).className}>
+                          {item.count}
+                        </span>
+                      )}
                     </a>
                   </li>
                 )}

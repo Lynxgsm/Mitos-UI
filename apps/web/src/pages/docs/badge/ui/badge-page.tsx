@@ -69,9 +69,9 @@ import { Badge } from "mitos-ui/react";
           rows={[
             {
               prop: "variant",
-              type: '"default" | "secondary" | "outline" | "destructive"',
+              type: '"default" | "secondary" | "outline" | "destructive" | "accent" | "destructive-outline"',
               default: '"default"',
-              description: "Visual style.",
+              description: "Visual style. accent highlights a state that is not an error (Watching, New); destructive-outline marks an error without a filled color.",
             },
             { prop: "class", type: "string", description: "Extra classes, merged after the component's styles." },
             { prop: "aria-* / data-* / native attributes", type: "—", description: "Forwarded to the <span>." },

@@ -7,6 +7,8 @@ export default function BadgeVariants() {
       <Badge variant="secondary">Secondary</Badge>
       <Badge variant="outline">Outline</Badge>
       <Badge variant="destructive">Destructive</Badge>
+      <Badge variant="accent">Accent</Badge>
+      <Badge variant="destructive-outline">Destructive outline</Badge>
     </div>
   );
 }

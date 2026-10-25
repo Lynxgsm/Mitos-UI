@@ -26,3 +26,17 @@ export const Default: Story = {};
 export const WithoutTitles: Story = {
   args: { groups: [{ items: [{ label: "Inbox", href: "#inbox" }, { label: "Archive", href: "#archive" }] }], currentHref: "#inbox" },
 };
+export const WithIconsAndCounts: Story = {
+  args: {
+    groups: [
+      {
+        title: "Library",
+        items: [
+          { label: "Knowledge base", href: "#kb", icon: "▤", count: 9 },
+          { label: "Alerts", href: "#alerts", icon: "◔", count: 2, countLabel: "unread", highlightCount: true },
+        ],
+      },
+    ],
+    currentHref: "#kb",
+  },
+};
