@@ -100,6 +100,30 @@ describe("Svelte build: client", () => {
     expect([free!.checked, pro!.checked]).toEqual([true, false]);
   });
 
+  it("reports the chosen SegmentedControl option", async () => {
+    const spy = vi.fn();
+    await show(`<SegmentedControl legend="Show" name="kind" defaultValue="all" onValueChange={spy} options={[{ value: "all", label: "All" }, { value: "tool", label: "Tools" }]} />`, { spy });
+    const [, tools] = Array.from(document.querySelectorAll<HTMLInputElement>('input[type="radio"]'));
+    tools!.click();
+    flushSync();
+    expect(spy).toHaveBeenCalledWith("tool");
+    expect(tools!.checked).toBe(true);
+  });
+
+  it("adds a TagInput tag on Enter and removes one with its button", async () => {
+    const spy = vi.fn();
+    await show(`<TagInput id="tags" label="Tags" defaultValue={["forms"]} onValueChange={spy} />`, { spy });
+    const input = document.querySelector<HTMLInputElement>('input[type="text"]')!;
+    input.value = "to-try";
+    input.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+    flushSync();
+    expect(spy).toHaveBeenLastCalledWith(["forms", "to-try"]);
+    document.querySelector<HTMLButtonElement>('button[aria-label="Remove forms"]')!.click();
+    flushSync();
+    expect(spy).toHaveBeenLastCalledWith(["to-try"]);
+    expect(Array.from(document.querySelectorAll("li")).map((li) => li.textContent?.trim())).toEqual(["to-try"]);
+  });
+
   it("moves between Tabs with the arrows", async () => {
     await show(`<Tabs id="t" label="Settings" items={[{ value: "a", label: "Account", content: "A" }, { value: "b", label: "Billing", content: "B" }]} />`);
     const [account, billing] = Array.from(document.querySelectorAll<HTMLButtonElement>('[role="tab"]'));

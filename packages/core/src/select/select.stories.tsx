@@ -25,4 +25,5 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 export const WithDescription: Story = { args: { description: "Used to compute taxes." } };
 export const WithError: Story = { args: { required: true, error: "Choose a country." } };
+export const WithIcon: Story = { args: { hideLabel: true, startIcon: "◍" } };
 export const Disabled: Story = { args: { disabled: true } };

@@ -8,13 +8,17 @@ const OWN_PROPS = [
   // Props the component consumes itself; everything else is forwarded to the <select>.
   // iterating props only compiles correctly for React: mitosis.config.cjs maps props to the
   // Svelte $props() object. shortcut: a Vue target will need the same with $attrs.
-  "label", "options", "placeholder", "description", "error", "id", "class",
+  "label", "hideLabel", "startIcon", "options", "placeholder", "description", "error", "id", "class",
 ];
 
 export type SelectOption = { value: string; label: string; disabled?: boolean };
 
 export type SelectProps = {
   label: any;
+  // keeps the label as the accessible name but out of sight, for a field whose purpose is obvious from its icon
+  hideLabel?: boolean;
+  // decorative icon drawn inside the field, before the selected option
+  startIcon?: any;
   options: SelectOption[];
   // first option with an empty value; with required, the form refuses it
   placeholder?: string;
@@ -75,7 +79,7 @@ export default function Select(props: SelectProps) {
   return (
     <div class={clsx(stylex.props(field.stack).className, props.class)}>
       <label class={stylex.props(field.labelBox).className}>
-        <span class={stylex.props(field.label, field.labelText).className}>
+        <span class={stylex.props(field.label, field.labelText, props.hideLabel && field.srOnly).className}>
           {props.label}
           {props.required && (
             <span aria-hidden="true" class={stylex.props(field.required).className}>
@@ -83,22 +87,35 @@ export default function Select(props: SelectProps) {
             </span>
           )}
         </span>
-        <select
-          {...state.attributes}
-          id={props.id}
-          aria-invalid={props.error ? true : undefined}
-          aria-describedby={state.describedBy}
-          class={stylex.props(field.box, field.focusRing, styles.select, props.error && field.invalid).className}
-        >
-          {props.placeholder && <option value="">{props.placeholder}</option>}
-          <For each={props.options}>
-            {(option) => (
-              <option key={option.value} value={option.value} disabled={option.disabled}>
-                {option.label}
-              </option>
-            )}
-          </For>
-        </select>
+        <span class={stylex.props(field.adorned).className}>
+          {props.startIcon && (
+            <span aria-hidden="true" class={stylex.props(field.startIcon).className}>
+              {props.startIcon}
+            </span>
+          )}
+          <select
+            {...state.attributes}
+            id={props.id}
+            aria-invalid={props.error ? true : undefined}
+            aria-describedby={state.describedBy}
+            class={stylex.props(
+              field.box,
+              field.focusRing,
+              styles.select,
+              props.error && field.invalid,
+              props.startIcon && field.withStartIcon,
+            ).className}
+          >
+            {props.placeholder && <option value="">{props.placeholder}</option>}
+            <For each={props.options}>
+              {(option) => (
+                <option key={option.value} value={option.value} disabled={option.disabled}>
+                  {option.label}
+                </option>
+              )}
+            </For>
+          </select>
+        </span>
       </label>
       {props.description && (
         <p id={state.partId("description")} class={stylex.props(field.description).className}>

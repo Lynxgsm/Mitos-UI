@@ -7,13 +7,15 @@ const OWN_PROPS = [
   // Props the component consumes itself; everything else is forwarded to the <button>.
   // iterating props only compiles correctly for React: mitosis.config.cjs maps props to the
   // Svelte $props() object. shortcut: a Vue target will need the same with $attrs.
-  "children", "variant", "size", "type", "disabled", "class", "onClick",
+  "children", "variant", "size", "icon", "type", "disabled", "class", "onClick",
 ];
 
 export type ButtonProps = {
   children?: any;
-  variant?: "default" | "secondary" | "outline" | "ghost" | "link" | "destructive";
+  variant?: "default" | "secondary" | "outline" | "ghost" | "link" | "destructive" | "destructive-ghost";
   size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl";
+  // square button holding only an icon: give it a name with aria-label
+  icon?: boolean;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   class?: string;
@@ -105,6 +107,14 @@ const variants = stylex.create({
     },
     color: colors["--mitos-destructive-foreground"],
   },
+  // a destructive action that is available without drawing the eye, such as Delete in a page header.
+  // hover underlines instead of tinting: any red tint behind red text drops below 4.5:1
+  "destructive-ghost": {
+    backgroundColor: "transparent",
+    color: colors["--mitos-destructive"],
+    textDecorationLine: { default: "none", ":hover": "underline" },
+    textUnderlineOffset: 4,
+  },
 });
 
 const sizes = stylex.create({
@@ -129,6 +139,11 @@ const sizes = stylex.create({
   },
 });
 
+// as wide as tall, whatever the size: the height of the size and no side padding
+const shapes = stylex.create({
+  icon: { aspectRatio: "1", paddingInline: 0 },
+});
+
 export default function Button(props: ButtonProps) {
   const state = useStore({
     get attributes() {
@@ -140,7 +155,12 @@ export default function Button(props: ButtonProps) {
     <button
       {...state.attributes}
       class={clsx(
-        stylex.props(styles.base, variants[props.variant ?? "default"], sizes[props.size ?? "md"]).className,
+        stylex.props(
+          styles.base,
+          variants[props.variant ?? "default"],
+          sizes[props.size ?? "md"],
+          props.icon && shapes.icon,
+        ).className,
         props.class,
       )}
       type={props.type ?? "button"}

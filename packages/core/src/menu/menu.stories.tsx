@@ -28,3 +28,16 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 export const AlignEnd: Story = { args: { align: "end" } };
 export const Disabled: Story = { args: { disabled: true } };
+export const GroupedWithIconTrigger: Story = {
+  args: {
+    icon: true,
+    variant: "ghost",
+    label: "⋯",
+    "aria-label": "Actions for Zod",
+    items: [
+      { label: "Watch major versions", icon: "◉", onSelect: fn() },
+      { title: "Collections", items: [{ label: "Add to Reading list", onSelect: fn() }] },
+      { label: "Remove", destructive: true, onSelect: fn() },
+    ],
+  },
+};

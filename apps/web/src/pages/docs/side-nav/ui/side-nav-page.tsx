@@ -2,6 +2,8 @@ import { FrameworkCode, FrameworkPropsTable } from "@/features/select-framework"
 import { InstallCommand } from "@/shared/ui/install-command";
 import { ComponentPreview, DocsPage, Section } from "@/widgets/docs-layout";
 import SideNavDemo from "../examples/side-nav-demo";
+import SideNavCounts from "../examples/side-nav-counts";
+import sideNavCountsSource from "../examples/side-nav-counts?raw";
 import sideNavDemoSource from "../examples/side-nav-demo?raw";
 
 export function SideNavPage() {
@@ -13,6 +15,7 @@ export function SideNavPage() {
         { id: "installation", title: "Installation" },
         { id: "usage", title: "Usage" },
         { id: "routing", title: "Client-side routing" },
+        { id: "examples", title: "Examples" },
         { id: "accessibility", title: "Accessibility" },
         { id: "api-reference", title: "API Reference" },
       ]}
@@ -79,6 +82,11 @@ const navigate = useNavigate();
         <p>This documentation uses it: the sidebar of this page is a SideNav.</p>
       </Section>
 
+      <Section id="examples" title="Examples">
+        <h3>Icons and counts</h3>
+        <ComponentPreview example={SideNavCounts} source={sideNavCountsSource} label="Side navigation with icons and counts" />
+      </Section>
+
       <Section id="accessibility" title="Accessibility">
         <ul>
           <li>
@@ -86,6 +94,11 @@ const navigate = useNavigate();
             name. Give each navigation of a page a different name.
           </li>
           <li>Each group is a list named by its title, announced with its number of links.</li>
+          <li>
+            A link with a <code>count</code> is named in the visible order, label then count, with{" "}
+            <code>countLabel</code> giving the number its meaning (<code>Alerts 2 unread</code>). Icons are hidden from
+            assistive technologies.
+          </li>
           <li>
             The link of the current page gets <code>aria-current="page"</code>, and is marked by a bar and a heavier
             weight as well as by its colors.
@@ -99,7 +112,11 @@ const navigate = useNavigate();
           component="SideNav"
           rows={[
             { prop: "label", type: "string", description: "Names the navigation landmark." },
-            { prop: "groups", type: "{ title?, items: { label, href }[] }[]", description: "Groups of links, in order." },
+            {
+              prop: "groups",
+              type: "{ title?, items: { label, href, icon?, count?, countLabel?, highlightCount? }[] }[]",
+              description: "Groups of links, in order. icon is decorative; count shows at the end of the link and joins its name with countLabel (e.g. 2 unread); highlightCount draws it as a filled pill.",
+            },
             { prop: "currentHref", type: "string", description: "Href of the current page; its link gets aria-current." },
             {
               prop: "onNavigate",
