@@ -8,6 +8,8 @@ This file covers the library only: changes to the documentation website (`apps/w
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-10-25
+
 ### Added
 
 - `SegmentedControl`: a compact single choice drawn as segments, such as a filter or a view switch. Native radios in a `fieldset` with `role="radiogroup"`, so arrow keys, forms and states come from the platform. Props: `legend` (with `hideLegend`), `options` (`label`, `icon`, `hideLabel` for icon-only segments named by their label, `disabled`), `name`, `value`, `defaultValue`, `onValueChange`, `disabled`.
