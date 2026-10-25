@@ -3,7 +3,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import Badge from "@/badge/badge";
 
-const VARIANTS = ["default", "secondary", "outline", "destructive"] as const;
+const VARIANTS = ["default", "secondary", "outline", "destructive", "accent", "destructive-outline"] as const;
 
 const meta = {
   title: "Components/Badge",
@@ -21,6 +21,8 @@ export const Default: Story = {};
 export const Secondary: Story = { args: { variant: "secondary" } };
 export const Outline: Story = { args: { variant: "outline" } };
 export const Destructive: Story = { args: { variant: "destructive" } };
+export const Accent: Story = { args: { variant: "accent", children: "Watching" } };
+export const DestructiveOutline: Story = { args: { variant: "destructive-outline", children: "Failed" } };
 
 export const AllVariants: Story = {
   render: (args) => (

@@ -147,4 +147,26 @@ describe("Input", () => {
     expect(field("Brand color").className).not.toBe(field("Name").className);
     expect(field("Birthday").className).toBe(field("Name").className);
   });
+
+  it("keeps a hidden label as its name, and hides its icon and end hint from assistive technology", async () => {
+    const { container } = render(
+      <Input
+        label="Search"
+        hideLabel
+        type="search"
+        placeholder="Name or tag"
+        startIcon={<svg data-testid="icon" />}
+        endSlot={<kbd>/</kbd>}
+      />,
+    );
+    const field = screen.getByRole("searchbox", { name: "Search" });
+    expect(screen.getByText("Search").className).not.toBe(screen.getByText("/").className);
+    expect(screen.getByTestId("icon").closest("[aria-hidden=true]")).not.toBeNull();
+    expect(screen.getByText("/").closest("[aria-hidden=true]")).not.toBeNull();
+    // the text starts after the icon and stops before the hint
+    expect(field.className).not.toBe(render(<Input label="Plain" />).getByRole("textbox").className);
+    for (const prop of ["hidelabel", "starticon", "endslot"]) expect(field.hasAttribute(prop)).toBe(false);
+    const { violations } = await axe.run(container, { rules: { "color-contrast": { enabled: false } } });
+    expect(violations).toEqual([]);
+  });
 });

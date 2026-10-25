@@ -1,6 +1,8 @@
 import { FrameworkCode, FrameworkPropsTable } from "@/features/select-framework";
 import { InstallCommand } from "@/shared/ui/install-command";
 import { ComponentPreview, DocsPage, Section } from "@/widgets/docs-layout";
+import InputAdornments from "../examples/input-adornments";
+import inputAdornmentsSource from "../examples/input-adornments?raw";
 import InputDemo from "../examples/input-demo";
 import inputDemoSource from "../examples/input-demo?raw";
 import InputStates from "../examples/input-states";
@@ -51,6 +53,8 @@ import { Input } from "mitos-ui/react";
       <Section id="examples" title="Examples">
         <h3>Description, required, error and disabled</h3>
         <ComponentPreview example={InputStates} source={inputStatesSource} label="Input states" />
+        <h3>Icon, hint and hidden label</h3>
+        <ComponentPreview example={InputAdornments} source={inputAdornmentsSource} label="Input with icon and hint" />
         <h3>Date, file and color</h3>
         <ComponentPreview example={InputTypes} source={inputTypesSource} label="Input types" />
       </Section>
@@ -76,6 +80,9 @@ import { Input } from "mitos-ui/react";
           component="Input"
           rows={[
             { prop: "label", type: "ReactNode", description: "Visible label; names the field." },
+            { prop: "hideLabel", type: "boolean", description: "Hides the label from sight; it still names the field." },
+            { prop: "startIcon", type: "ReactNode", description: "Decorative icon inside the field, before the text." },
+            { prop: "endSlot", type: "ReactNode", description: "Decorative hint inside the field, after the text (a shortcut key); never a control." },
             { prop: "description", type: "ReactNode", description: "Help text below the field (aria-describedby)." },
             { prop: "error", type: "ReactNode", description: "Error message; sets aria-invalid and is read first." },
             { prop: "required / disabled / readOnly", type: "boolean", description: "Native states; required adds a visual asterisk." },

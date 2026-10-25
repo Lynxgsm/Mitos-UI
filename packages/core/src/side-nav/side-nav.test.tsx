@@ -62,4 +62,28 @@ describe("SideNav", () => {
     expect(nav.classList.contains("custom")).toBe(true);
     expect(nav.hasAttribute("groups")).toBe(false);
   });
+
+  it("shows icons and counts, names links with their count and hides the icons", async () => {
+    const { container } = render(
+      <SideNav
+        label="Main"
+        currentHref="/"
+        groups={[
+          {
+            title: "Library",
+            items: [
+              { label: "Knowledge base", href: "/", icon: <svg data-testid="library" />, count: 9 },
+              { label: "Alerts", href: "/alerts", count: 2, countLabel: "unread", highlightCount: true },
+            ],
+          },
+        ]}
+      />,
+    );
+    expect(screen.getByRole("link", { name: "Knowledge base 9" }).getAttribute("aria-current")).toBe("page");
+    expect(screen.getByRole("link", { name: "Alerts 2 unread" })).toBeTruthy();
+    expect(screen.getByTestId("library").closest("[aria-hidden=true]")).not.toBeNull();
+    expect(screen.getByText("2").className).not.toBe(screen.getByText("9").className);
+    const { violations } = await axe.run(container, { rules: { "color-contrast": { enabled: false } } });
+    expect(violations).toEqual([]);
+  });
 });

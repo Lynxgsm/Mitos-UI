@@ -3,6 +3,8 @@ import { InstallCommand } from "@/shared/ui/install-command";
 import { ComponentPreview, DocsPage, Section } from "@/widgets/docs-layout";
 import SelectDemo from "../examples/select-demo";
 import selectDemoSource from "../examples/select-demo?raw";
+import SelectIcon from "../examples/select-icon";
+import selectIconSource from "../examples/select-icon?raw";
 
 export function SelectPage() {
   return (
@@ -12,6 +14,7 @@ export function SelectPage() {
       toc={[
         { id: "installation", title: "Installation" },
         { id: "usage", title: "Usage" },
+        { id: "examples", title: "Examples" },
         { id: "accessibility", title: "Accessibility" },
         { id: "api-reference", title: "API Reference" },
       ]}
@@ -38,6 +41,11 @@ import { Select } from "mitos-ui/react";
         />
       </Section>
 
+      <Section id="examples" title="Examples">
+        <h3>Icon and hidden label</h3>
+        <ComponentPreview example={SelectIcon} source={selectIconSource} label="Select with icon" />
+      </Section>
+
       <Section id="accessibility" title="Accessibility">
         <ul>
           <li>A native <code>&lt;select&gt;</code>: keyboard, typeahead and the mobile picker come from the platform.</li>
@@ -51,6 +59,8 @@ import { Select } from "mitos-ui/react";
           component="Select"
           rows={[
             { prop: "label", type: "ReactNode", description: "Visible label; names the select." },
+            { prop: "hideLabel", type: "boolean", description: "Hides the label from sight; it still names the select." },
+            { prop: "startIcon", type: "ReactNode", description: "Decorative icon inside the field, before the selected option." },
             { prop: "options", type: "{ value, label, disabled? }[]", description: "The choices." },
             { prop: "placeholder", type: "string", description: "First option, with an empty value." },
             { prop: "description / error", type: "ReactNode", description: "Help text and error message." },

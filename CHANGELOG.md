@@ -8,6 +8,17 @@ This file covers the library only: changes to the documentation website (`apps/w
 
 ## [Unreleased]
 
+### Added
+
+- `SegmentedControl`: a compact single choice drawn as segments, such as a filter or a view switch. Native radios in a `fieldset` with `role="radiogroup"`, so arrow keys, forms and states come from the platform. Props: `legend` (with `hideLegend`), `options` (`label`, `icon`, `hideLabel` for icon-only segments named by their label, `disabled`), `name`, `value`, `defaultValue`, `onValueChange`, `disabled`.
+- `TagInput`: a text field that collects a list of tags. `Enter` or a comma adds the trimmed text once, `Backspace` in an empty field removes the last tag, every tag has a named remove button (`removeLabel` to translate it), and text left in the field becomes a tag on blur. Props: `label` (with `hideLabel`), `value`, `defaultValue`, `onValueChange`, `name` (submits the tags joined by commas), `description`, `error`, `disabled`.
+- `Button`: `destructive-ghost` variant for a destructive action that does not draw the eye, and `icon` prop for a square, icon-only button at any size.
+- `Input`: `hideLabel` (the label still names the field), `startIcon` (decorative icon before the text) and `endSlot` (decorative hint after the text, such as a shortcut key).
+- `Select`: `hideLabel` and `startIcon`.
+- `Menu`: items take an `icon` and a `destructive` flag; a `{ title, items }` entry renders a named group (`role="group"`) set apart by separators; the trigger takes `variant` (`outline`, `ghost`) and `icon` for a square, icon-only button without the chevron. New exported type `MenuGroup`.
+- `SideNav`: links take a decorative `icon`, a `count` shown at their end (with `countLabel` for screen readers, e.g. `2 unread`, and `highlightCount` for a filled pill). A link with a count is named `label count countLabel`.
+- `Badge`: `accent` variant for a highlighted state that is not an error, and `destructive-outline` variant for an error shown without a filled color.
+
 ## [0.2.0] - 2026-10-15
 
 ### Added

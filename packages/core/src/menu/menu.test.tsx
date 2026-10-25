@@ -166,4 +166,89 @@ describe("Menu", () => {
       restore();
     }
   });
+
+  describe("with icons, groups and a destructive item", () => {
+    const grouped = (onSelect = vi.fn()) => [
+      { label: "Watch", icon: <svg data-testid="eye" />, onSelect: () => onSelect("watch") },
+      {
+        title: "Collections",
+        items: [
+          { label: "Add to Reading list", onSelect: () => onSelect("add") },
+          { label: "Remove from API toolkit", onSelect: () => onSelect("remove-from") },
+        ],
+      },
+      { label: "Remove", destructive: true, onSelect: () => onSelect("remove") },
+    ];
+
+    it("has no axe violations when open", async () => {
+      const { container } = render(<Menu id="actions" label="Actions" items={grouped()} />);
+      fireEvent.click(trigger());
+      await screen.findByRole("menu", { name: "Actions" });
+      const { violations } = await axe.run(container, { rules: { "color-contrast": { enabled: false } } });
+      expect(violations).toEqual([]);
+    });
+
+    it("names each group by its title and separates it from the items around it", async () => {
+      render(<Menu id="actions" label="Actions" items={grouped()} />);
+      fireEvent.click(trigger());
+      const group = await screen.findByRole("group", { name: "Collections" });
+      expect(group.querySelectorAll("[role=menuitem]")).toHaveLength(2);
+      expect(screen.getAllByRole("separator", { hidden: true })).toHaveLength(2);
+    });
+
+    it("moves through the groups with the arrows and selects a grouped item", async () => {
+      const onSelect = vi.fn();
+      render(<Menu id="actions" label="Actions" items={grouped(onSelect)} />);
+      fireEvent.keyDown(trigger(), { key: "ArrowDown" });
+      await waitFor(() => expect(document.activeElement).toBe(item("Watch")));
+      fireEvent.keyDown(item("Watch"), { key: "ArrowDown" });
+      expect(document.activeElement).toBe(item("Add to Reading list"));
+      fireEvent.keyDown(item("Add to Reading list"), { key: "End" });
+      expect(document.activeElement).toBe(item("Remove"));
+      fireEvent.click(item("Remove from API toolkit"));
+      expect(onSelect).toHaveBeenCalledWith("remove-from");
+    });
+
+    it("hides item icons from assistive technology and styles destructive items apart", async () => {
+      render(<Menu id="actions" label="Actions" items={grouped()} />);
+      fireEvent.click(trigger());
+      await screen.findByRole("menu");
+      expect(item("Watch").textContent).toBe("Watch");
+      expect(screen.getByTestId("eye").closest("[aria-hidden=true]")).not.toBeNull();
+      expect(item("Remove").className).not.toBe(item("Add to Reading list").className);
+    });
+  });
+
+  it("can be an icon-only ghost trigger, named by aria-label and without the chevron", () => {
+    render(
+      <>
+        <Menu id="plain" label="Actions" items={items()} />
+        <Menu id="more" icon variant="ghost" aria-label="Actions for Zod" label="⋯" items={items()} />
+      </>,
+    );
+    const icon = screen.getByRole("button", { name: "Actions for Zod" });
+    expect(icon.querySelector("svg")).toBeNull();
+    expect(icon.className).not.toBe(trigger().className);
+    expect(icon.hasAttribute("variant")).toBe(false);
+    expect(icon.hasAttribute("icon")).toBe(false);
+  });
+
+  it("renders mixed items and groups without React key warnings", () => {
+    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
+    render(
+      <Menu
+        id="mixed"
+        label="Actions"
+        items={[
+          { label: "Watch", onSelect: () => {} },
+          { title: "Collections", items: [{ label: "Add", onSelect: () => {} }] },
+          { label: "Remove", onSelect: () => {} },
+        ]}
+      />,
+    );
+    fireEvent.click(trigger());
+    const warnings = spy.mock.calls.filter((call) => String(call[0]).includes("key"));
+    spy.mockRestore();
+    expect(warnings).toEqual([]);
+  });
 });

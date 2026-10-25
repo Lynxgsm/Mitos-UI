@@ -7,17 +7,31 @@ const OWN_PROPS = [
   // Props the component consumes itself; everything else is forwarded to the trigger <button>.
   // iterating props only compiles correctly for React: mitosis.config.cjs maps props to the
   // Svelte $props() object. shortcut: a Vue target will need the same with $attrs.
-  "label", "items", "align", "id", "class",
+  "label", "items", "align", "variant", "icon", "id", "class",
 ];
 
-export type MenuItem = { label: string; onSelect: () => void; disabled?: boolean };
+export type MenuItem = {
+  label: string;
+  onSelect: () => void;
+  disabled?: boolean;
+  // decorative icon before the label
+  icon?: any;
+  // an action that deletes or cannot be undone: drawn in the destructive color
+  destructive?: boolean;
+};
+// items under a visible title, separated from the entries before them
+export type MenuGroup = { title: string; items: MenuItem[] };
 
 export type MenuProps = {
   // text of the trigger button, also the name of the menu
   label: any;
   // actions only: for navigation, use a list of links
-  items: MenuItem[];
+  items: (MenuItem | MenuGroup)[];
   align?: "start" | "end";
+  // look of the trigger: bordered, or transparent until hovered
+  variant?: "outline" | "ghost";
+  // square trigger showing only its label, an icon, without the chevron: name it with aria-label
+  icon?: boolean;
   id?: string;
   class?: string;
   // native attributes below are forwarded as-is to the trigger <button>
@@ -53,6 +67,8 @@ const styles = stylex.create({
     outlineOffset: 2,
     outlineColor: colors["--mitos-ring"],
   },
+  ghostTrigger: { borderColor: "transparent", backgroundColor: { default: "transparent", ":hover": colors["--mitos-accent"] } },
+  iconTrigger: { aspectRatio: "1", paddingInline: 0, justifyContent: "center", color: colors["--mitos-muted-foreground"] },
   chevron: { width: "1rem", height: "1rem", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round" },
   menu: {
     position: "absolute",
@@ -95,6 +111,21 @@ const styles = stylex.create({
     outlineColor: colors["--mitos-ring"],
   },
   disabled: { opacity: 0.5, cursor: "not-allowed" },
+  withIcon: { gap: "0.5rem" },
+  itemIcon: { display: "flex", flexShrink: 0 },
+  // highlighted in reverse: red text over any tint of the background would drop below 4.5:1
+  destructive: {
+    color: { default: colors["--mitos-destructive"], ":focus": colors["--mitos-destructive-foreground"] },
+    backgroundColor: { default: "transparent", ":focus": colors["--mitos-destructive"] },
+  },
+  separator: { height: 1, marginBlock: "0.25rem", marginInline: "-0.25rem", backgroundColor: colors["--mitos-border"] },
+  groupTitle: {
+    paddingBlock: "0.375rem 0.125rem",
+    paddingInline: "0.5rem",
+    fontSize: "0.75rem",
+    fontWeight: 500,
+    color: colors["--mitos-muted-foreground"],
+  },
 });
 
 export default function Menu(props: MenuProps) {
@@ -117,6 +148,21 @@ export default function Menu(props: MenuProps) {
     partId(part: string) {
       const base = props.id ?? state.generatedId;
       return base ? `${base}-${part}` : undefined;
+    },
+    // groups and items mixed: Mitosis drops type guards, so the entries are read untyped and told apart by isGroup
+    get entries() {
+      return props.items as any[];
+    },
+    groupItems(entry: any) {
+      return entry.items as MenuItem[];
+    },
+    isGroup(entry: any) {
+      return Array.isArray(entry.items);
+    },
+    // a group is set apart from a plain item after it; the next group draws its own separator
+    separatesNext(index: number) {
+      const next = props.items[index + 1];
+      return next !== undefined && !state.isGroup(next);
     },
     get menuItems() {
       return (rootRef ? Array.from(rootRef.querySelectorAll("[role=menuitem]")) : []) as HTMLElement[];
@@ -227,14 +273,20 @@ export default function Menu(props: MenuProps) {
         aria-haspopup="menu"
         aria-expanded={state.open}
         aria-controls={state.partId("menu")}
-        class={stylex.props(styles.trigger).className}
+        class={stylex.props(
+          styles.trigger,
+          props.variant === "ghost" && styles.ghostTrigger,
+          props.icon && styles.iconTrigger,
+        ).className}
         onClick={() => (state.open ? state.close(false) : state.openAt("first"))}
         onKeyDown={(event) => state.onTriggerKeyDown(event)}
       >
         {props.label}
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" class={stylex.props(styles.chevron).className}>
-          <path d="m6 9 6 6 6-6" />
-        </svg>
+        {!props.icon && (
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" class={stylex.props(styles.chevron).className}>
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        )}
       </button>
       <div
         ref={menuRef}
@@ -254,21 +306,69 @@ export default function Menu(props: MenuProps) {
         ).className}
         onKeyDown={(event) => state.onMenuKeyDown(event)}
       >
-        <For each={props.items}>
-          {(item) => (
-            <button
-              key={item.label}
-              type="button"
-              role="menuitem"
-              tabIndex={-1}
-              aria-disabled={item.disabled ? true : undefined}
-              class={stylex.props(styles.item, item.disabled && styles.disabled).className}
-              onClick={() => state.choose(item)}
-              onMouseEnter={(event) => state.hover(item, event)}
-            >
-              {item.label}
-            </button>
-          )}
+        <For each={state.entries}>
+          {(entry, index) =>
+            state.isGroup(entry) ? (
+              <div key={entry.title} role="group" aria-labelledby={state.partId(`group-${index}`)}>
+                {index > 0 && <div role="separator" class={stylex.props(styles.separator).className} />}
+                <div id={state.partId(`group-${index}`)} class={stylex.props(styles.groupTitle).className}>
+                  {entry.title}
+                </div>
+                <For each={state.groupItems(entry)}>
+                  {(item) => (
+                    <button
+                      key={item.label}
+                      type="button"
+                      role="menuitem"
+                      tabIndex={-1}
+                      aria-disabled={item.disabled ? true : undefined}
+                      class={stylex.props(
+                        styles.item,
+                        item.icon && styles.withIcon,
+                        item.destructive && styles.destructive,
+                        item.disabled && styles.disabled,
+                      ).className}
+                      onClick={() => state.choose(item)}
+                      onMouseEnter={(event) => state.hover(item, event)}
+                    >
+                      {item.icon && (
+                        <span aria-hidden="true" class={stylex.props(styles.itemIcon).className}>
+                          {item.icon}
+                        </span>
+                      )}
+                      {item.label}
+                    </button>
+                  )}
+                </For>
+                {state.separatesNext(index) && <div role="separator" class={stylex.props(styles.separator).className} />}
+              </div>
+            ) : (
+              // role none: a transparent wrapper that carries the React key (Mitosis wraps this branch in a fragment)
+              <div key={entry.label} role="none">
+                <button
+                  type="button"
+                  role="menuitem"
+                  tabIndex={-1}
+                  aria-disabled={entry.disabled ? true : undefined}
+                  class={stylex.props(
+                    styles.item,
+                    entry.icon && styles.withIcon,
+                    entry.destructive && styles.destructive,
+                    entry.disabled && styles.disabled,
+                  ).className}
+                  onClick={() => state.choose(entry)}
+                  onMouseEnter={(event) => state.hover(entry, event)}
+                >
+                  {entry.icon && (
+                    <span aria-hidden="true" class={stylex.props(styles.itemIcon).className}>
+                      {entry.icon}
+                    </span>
+                  )}
+                  {entry.label}
+                </button>
+              </div>
+            )
+          }
         </For>
       </div>
     </div>
