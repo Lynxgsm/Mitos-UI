@@ -15,6 +15,10 @@ This file covers the library only: changes to the documentation website (`apps/w
 ### Fixed
 
 - `Menu`: the highlight of an item spans the whole menu again instead of only its text, and the menu grows with its longest label (up to 20rem) instead of wrapping every label when the trigger is small, as with an icon-only trigger.
+- `Menu`: clicking the trigger of an open menu closes it in Safari too (it opened again), and gives the focus back to the trigger.
+- `Toaster`: toasts no longer stop dismissing themselves after a focused toast is dismissed with the keyboard (Firefox), or after a `Toaster` is unmounted while hovered or focused.
+- `Tooltip`: adds its id to the trigger's own `aria-describedby` instead of replacing it, so a description set by the consumer is still read.
+- `TagInput`: pasted text with commas becomes one tag per part, as the value submitted under `name` already did; a single tag containing a comma was submitted as several values.
 
 ## [0.3.0] - 2026-10-25
 

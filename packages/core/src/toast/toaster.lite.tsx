@@ -1,7 +1,8 @@
-import { For, onMount, onUnMount, useRef, useStore } from "@builder.io/mitosis";
+import { For, onMount, onUnMount, onUpdate, useRef, useStore } from "@builder.io/mitosis";
 import * as stylex from "@stylexjs/stylex";
 import clsx from "clsx";
 import { colors, radii } from "@/config/tokens.stylex";
+import { field } from "@/config/field";
 import { dismissToast, pauseToasts, resumeToasts, subscribeToasts } from "@/toast/toast-store";
 import type { Toast } from "@/toast/toast-store";
 
@@ -109,18 +110,13 @@ const styles = stylex.create({
     outlineColor: colors["--mitos-ring"],
   },
   icon: { width: "1rem", height: "1rem", strokeWidth: 2, strokeLinecap: "round" },
-  visuallyHidden: {
-    position: "absolute",
-    width: 1,
-    height: 1,
-    overflow: "hidden",
-    clipPath: "inset(50%)",
-    whiteSpace: "nowrap",
-  },
 });
 
 export default function Toaster(props: ToasterProps) {
+  const sectionRef = useRef<HTMLElement>(null);
   let unsubscribeRef = useRef<() => void>(null);
+  // the pause is shared by every Toaster: only the one that paused it resumes it
+  let pausedRef = useRef<boolean>(false);
   // refs, not state: the subscription is created once, so it must read current values
   let lastAnnouncedRef = useRef<number>(0);
   let politeRef = useRef<string>("");
@@ -154,6 +150,15 @@ export default function Toaster(props: ToasterProps) {
       toast.action?.onClick();
       dismissToast(toast.id);
     },
+    pause() {
+      pausedRef = true;
+      pauseToasts();
+    },
+    resume() {
+      if (!pausedRef) return;
+      pausedRef = false;
+      resumeToasts();
+    },
   });
 
   onMount(() => {
@@ -164,18 +169,25 @@ export default function Toaster(props: ToasterProps) {
     });
   });
 
+  // a toast removed under the focus or the pointer takes it away without a focusout (Firefox) or a mouseleave
+  onUpdate(() => {
+    if (sectionRef && !sectionRef.matches(":hover, :focus-within")) state.resume();
+  }, [state.toasts]);
+
   onUnMount(() => {
     unsubscribeRef?.();
+    state.resume();
   });
 
   return (
     <section
       {...state.attributes}
+      ref={sectionRef}
       aria-label={props.label ?? "Notifications"}
-      onMouseEnter={() => pauseToasts()}
-      onMouseLeave={() => resumeToasts()}
-      onFocus={() => pauseToasts()}
-      onBlur={() => resumeToasts()}
+      onMouseEnter={() => state.pause()}
+      onMouseLeave={() => state.resume()}
+      onFocus={() => state.pause()}
+      onBlur={() => state.resume()}
       class={clsx(stylex.props(styles.region).className, props.class)}
     >
       <ol class={stylex.props(styles.list).className}>
@@ -208,10 +220,10 @@ export default function Toaster(props: ToasterProps) {
           )}
         </For>
       </ol>
-      <div role="status" class={stylex.props(styles.visuallyHidden).className}>
+      <div role="status" class={stylex.props(field.srOnly).className}>
         {state.politeMessage}
       </div>
-      <div role="alert" class={stylex.props(styles.visuallyHidden).className}>
+      <div role="alert" class={stylex.props(field.srOnly).className}>
         {state.assertiveMessage}
       </div>
     </section>

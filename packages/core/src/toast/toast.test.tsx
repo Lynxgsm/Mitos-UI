@@ -106,6 +106,28 @@ describe("Toaster", () => {
     expect(visible()).toContain("Focused");
   });
 
+  it("resumes when the focused toast is dismissed, without a focusout", () => {
+    render(<Toaster />);
+    show({ title: "Offline", duration: Infinity });
+    const dismiss = screen.getByRole("button", { name: "Dismiss notification" });
+    dismiss.focus();
+    // the focused button is removed: Firefox (and jsdom) send no focusout for it
+    fireEvent.click(dismiss);
+    show({ title: "Saved" });
+    wait(DEFAULT_TOAST_DURATION);
+    expect(visible()).not.toContain("Saved");
+  });
+
+  it("resumes when it is unmounted while hovered", () => {
+    const { unmount } = render(<Toaster />);
+    fireEvent.mouseEnter(region());
+    unmount();
+    render(<Toaster />);
+    show({ title: "Saved" });
+    wait(DEFAULT_TOAST_DURATION);
+    expect(visible()).not.toContain("Saved");
+  });
+
   it("never auto-dismisses a toast that has an action", () => {
     const onClick = vi.fn();
     render(<Toaster />);

@@ -87,17 +87,6 @@ const styles = stylex.create({
   disabled: { opacity: 0.5, cursor: "not-allowed" },
   check: { width: "1rem", height: "1rem", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round" },
   empty: { margin: 0, paddingBlock: "0.375rem", paddingInline: "0.5rem", fontSize: "0.875rem", color: colors["--mitos-muted-foreground"] },
-  visuallyHidden: {
-    position: "absolute",
-    width: 1,
-    height: 1,
-    margin: -1,
-    padding: 0,
-    overflow: "hidden",
-    clipPath: "inset(50%)",
-    whiteSpace: "nowrap",
-    borderWidth: 0,
-  },
 });
 
 export default function Combobox(props: ComboboxProps) {
@@ -309,7 +298,7 @@ export default function Combobox(props: ComboboxProps) {
           {state.visible.length === 0 ? <p class={stylex.props(styles.empty).className}>{props.emptyText ?? "No results"}</p> : null}
         </div>
       </div>
-      <div aria-live="polite" class={stylex.props(styles.visuallyHidden).className}>
+      <div aria-live="polite" class={stylex.props(field.srOnly).className}>
         {state.status}
       </div>
       {props.name ? <input type="hidden" name={props.name} value={state.selected} /> : null}

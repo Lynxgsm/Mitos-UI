@@ -114,8 +114,9 @@ export default function Tooltip(props: TooltipProps) {
     // computed here: the state update is not visible yet within this hook
     const describedId = props.id ?? `mitos-tooltip-${Math.random().toString(36).slice(2, 10)}`;
     if (!props.id) state.generatedId = describedId;
-    // the trigger is a child given by the consumer: describe it once the tooltip id exists
-    rootRef?.querySelector(FOCUSABLE)?.setAttribute("aria-describedby", describedId);
+    // the trigger is a child given by the consumer: describe it once the tooltip id exists, after its own description
+    const trigger = rootRef?.querySelector(FOCUSABLE);
+    trigger?.setAttribute("aria-describedby", [trigger.getAttribute("aria-describedby"), describedId].filter(Boolean).join(" "));
     // Escape closes the tooltip wherever the focus is, without moving it (WCAG 1.4.13)
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") state.hide(0);

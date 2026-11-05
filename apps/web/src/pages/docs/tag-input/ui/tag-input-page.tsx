@@ -43,8 +43,8 @@ import { TagInput } from "mitos-ui/react";
         <ul>
           <li>A native text field named by its label; the tags are a list named by the same label.</li>
           <li>
-            <kbd>Enter</kbd> or a comma adds the text as a tag, <kbd>Backspace</kbd> in an empty field removes the last
-            one, and text left in the field is added when the focus leaves it.
+            <kbd>Enter</kbd> or a comma adds the text as a tag (pasted text is split on its commas), <kbd>Backspace</kbd>{" "}
+            in an empty field removes the last one, and text left in the field is added when the focus leaves it.
           </li>
           <li>
             Every tag has its own remove button, named <code>Remove tag</code> (translate it with{" "}

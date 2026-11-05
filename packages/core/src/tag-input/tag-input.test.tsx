@@ -81,6 +81,13 @@ describe("TagInput", () => {
     expect((container.querySelector('input[type="hidden"][name="tags"]') as HTMLInputElement).value).toBe("forms,to-try");
   });
 
+  it("splits pasted text on commas, like the submitted value", () => {
+    const { container } = render(<TagInput id="tags" label="Personal tags" name="tags" defaultValue={["forms"]} />);
+    typeAndPress("Paris, France,forms, ,France", "Enter");
+    expect(screen.getAllByRole("listitem").map((item) => item.textContent)).toEqual(["forms", "Paris", "France"]);
+    expect((container.querySelector('input[type="hidden"][name="tags"]') as HTMLInputElement).value).toBe("forms,Paris,France");
+  });
+
   it("translates the remove buttons and keeps a hidden label as the name", () => {
     render(<TagInput id="tags" label="Personal tags" hideLabel removeLabel={(tag) => `Retirer ${tag}`} defaultValue={["forms"]} />);
     expect(field()).toBeTruthy();

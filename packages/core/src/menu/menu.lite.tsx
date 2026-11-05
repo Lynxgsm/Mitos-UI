@@ -203,6 +203,11 @@ export default function Menu(props: MenuProps) {
       state.open = false;
       if (restoreFocus) (rootRef?.querySelector("[aria-haspopup=menu]") as HTMLElement | null)?.focus();
     },
+    // Safari does not focus a clicked button: the item would lose the focus to nothing, closing the menu
+    // on mousedown, and the click would open it again. Keeping the focus lets the click close it.
+    onTriggerMouseDown(event: any) {
+      if (state.open) event.preventDefault();
+    },
     onTriggerKeyDown(event: any) {
       if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
         event.preventDefault();
@@ -284,7 +289,8 @@ export default function Menu(props: MenuProps) {
           props.variant === "ghost" && styles.ghostTrigger,
           props.icon && styles.iconTrigger,
         ).className}
-        onClick={() => (state.open ? state.close(false) : state.openAt("first"))}
+        onMouseDown={(event) => state.onTriggerMouseDown(event)}
+        onClick={() => (state.open ? state.close(true) : state.openAt("first"))}
         onKeyDown={(event) => state.onTriggerKeyDown(event)}
       >
         {props.label}

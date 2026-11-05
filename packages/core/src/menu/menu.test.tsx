@@ -37,6 +37,16 @@ function stubLayout(anchor: { top: number; left: number; width: number; height: 
 
 
 describe("Menu", () => {
+  it("closes from its trigger in browsers that do not focus a clicked button (Safari)", () => {
+    render(<Menu id="actions" label="Actions" items={items()} />);
+    fireEvent.click(trigger());
+    // the mousedown keeps the focus in the menu: no focusout closes it before the click toggles it
+    expect(fireEvent.mouseDown(trigger())).toBe(false);
+    fireEvent.click(trigger());
+    expect(trigger().getAttribute("aria-expanded")).toBe("false");
+    expect(document.activeElement).toBe(trigger());
+  });
+
   it("has no axe violations, closed and open", async () => {
     const { container } = render(<Menu id="actions" label="Actions" items={items()} />);
     // jsdom has no layout: color-contrast is covered by tokens.test.ts instead

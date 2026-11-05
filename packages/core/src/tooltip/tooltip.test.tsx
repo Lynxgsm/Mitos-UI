@@ -57,6 +57,15 @@ describe("Tooltip", () => {
     expect(tooltip().textContent).toBe("Copy to clipboard");
   });
 
+  it("adds its id to the trigger's own description instead of replacing it", () => {
+    render(
+      <Tooltip content="Deletes the file for good" id="delete-tip">
+        <Button aria-describedby="delete-warning">Delete</Button>
+      </Tooltip>,
+    );
+    expect(screen.getByRole("button", { name: "Delete" }).getAttribute("aria-describedby")).toBe("delete-warning delete-tip");
+  });
+
   it("shows on focus right away and hides on blur", () => {
     renderTooltip();
     const trigger = screen.getByRole("button", { name: "Copy" });

@@ -126,12 +126,12 @@ export default function TagInput(props: TagInputProps) {
       if (props.value === undefined) state.own = tags;
       props.onValueChange?.(tags);
     },
-    // adds the typed text as a tag: trimmed, once, never empty
+    // adds the typed text as tags: split on commas like the submitted value (pasted text), trimmed, once, never empty
     add(input: any) {
-      const tag = String(input.value).trim();
+      const parts = String(input.value).split(",").map((part) => part.trim());
       input.value = "";
-      if (!tag || state.tags.includes(tag)) return;
-      state.commit([...state.tags, tag]);
+      const fresh = [...new Set(parts)].filter((tag) => tag && !state.tags.includes(tag));
+      if (fresh.length) state.commit([...state.tags, ...fresh]);
     },
     remove(tag: string, event: any) {
       state.commit(state.tags.filter((other) => other !== tag));
