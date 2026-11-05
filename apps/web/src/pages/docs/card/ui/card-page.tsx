@@ -3,6 +3,8 @@ import { InstallCommand } from "@/shared/ui/install-command";
 import { ComponentPreview, DocsPage, Section } from "@/widgets/docs-layout";
 import CardDemo from "../examples/card-demo";
 import cardDemoSource from "../examples/card-demo?raw";
+import CardSelectable from "../examples/card-selectable";
+import cardSelectableSource from "../examples/card-selectable?raw";
 
 export function CardPage() {
   return (
@@ -12,6 +14,7 @@ export function CardPage() {
       toc={[
         { id: "installation", title: "Installation" },
         { id: "usage", title: "Usage" },
+        { id: "examples", title: "Examples" },
         { id: "accessibility", title: "Accessibility" },
         { id: "api-reference", title: "API Reference" },
       ]}
@@ -43,6 +46,15 @@ import { Button, Card } from "mitos-ui/react";
         <p>
           In Svelte, <code>footer</code> takes text: put buttons in the content instead.
         </p>
+      </Section>
+
+      <Section id="examples" title="Examples">
+        <h3>Selectable on hover</h3>
+        <p>
+          A checkbox in the corner appears on hover, for picking several cards. It also appears on keyboard focus and
+          once checked, and stays visible on touch screens.
+        </p>
+        <ComponentPreview example={CardSelectable} source={cardSelectableSource} label="Selectable card" />
       </Section>
 
       <Section id="accessibility" title="Accessibility">

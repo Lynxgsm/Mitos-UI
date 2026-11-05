@@ -60,6 +60,7 @@ import { Checkbox } from "mitos-ui/react";
           component="Checkbox"
           rows={[
             { prop: "label", type: "ReactNode", description: "Visible label; names the checkbox." },
+            { prop: "hideLabel", type: "boolean", description: "Hides the label from sight, without the gap after the box; it still names the checkbox." },
             { prop: "description", type: "ReactNode", description: "Help text (aria-describedby)." },
             { prop: "error", type: "ReactNode", description: "Error message; sets aria-invalid." },
             { prop: "indeterminate", type: "boolean", default: "false", description: "Mixed state, e.g. a select-all box." },

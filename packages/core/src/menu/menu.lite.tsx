@@ -74,6 +74,9 @@ const styles = stylex.create({
     position: "absolute",
     zIndex: 50,
     minWidth: "max(100%, 10rem)",
+    // as wide as its longest label: positioned from a small trigger, it would otherwise wrap every label
+    width: "max-content",
+    maxWidth: "min(20rem, calc(100vw - 1rem))",
     padding: "0.25rem",
     boxSizing: "border-box",
     borderWidth: 1,
@@ -118,6 +121,9 @@ const styles = stylex.create({
     color: { default: colors["--mitos-destructive"], ":focus": colors["--mitos-destructive-foreground"] },
     backgroundColor: { default: "transparent", ":focus": colors["--mitos-destructive"] },
   },
+  // the wrapper of an item or a group: a grid stretches its buttons to the width of the menu, like the menu
+  // itself; a button alone only takes the width of its text
+  wrapper: { display: "grid" },
   separator: { height: 1, marginBlock: "0.25rem", marginInline: "-0.25rem", backgroundColor: colors["--mitos-border"] },
   groupTitle: {
     paddingBlock: "0.375rem 0.125rem",
@@ -309,7 +315,7 @@ export default function Menu(props: MenuProps) {
         <For each={state.entries}>
           {(entry, index) =>
             state.isGroup(entry) ? (
-              <div key={entry.title} role="group" aria-labelledby={state.partId(`group-${index}`)}>
+              <div key={entry.title} role="group" aria-labelledby={state.partId(`group-${index}`)} class={stylex.props(styles.wrapper).className}>
                 {index > 0 && <div role="separator" class={stylex.props(styles.separator).className} />}
                 <div id={state.partId(`group-${index}`)} class={stylex.props(styles.groupTitle).className}>
                   {entry.title}
@@ -344,7 +350,7 @@ export default function Menu(props: MenuProps) {
               </div>
             ) : (
               // role none: a transparent wrapper that carries the React key (Mitosis wraps this branch in a fragment)
-              <div key={entry.label} role="none">
+              <div key={entry.label} role="none" class={stylex.props(styles.wrapper).className}>
                 <button
                   type="button"
                   role="menuitem"
