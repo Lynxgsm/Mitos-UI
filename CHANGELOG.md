@@ -8,6 +8,8 @@ This file covers the library only: changes to the documentation website (`apps/w
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-05
+
 ### Added
 
 - `Checkbox`: `hideLabel` hides the label from sight (it still names the checkbox), without leaving a gap after the box, for a checkbox alone in a table row or on a card.
