@@ -3,7 +3,7 @@ import { routeTree } from "./routeTree.gen";
 
 export function getRouter() {
   // BASE_URL is the vite base: /Mitos-UI/ on GitHub Pages, / everywhere else
-  return createRouter({ routeTree, basepath: import.meta.env.BASE_URL, scrollRestoration: true, defaultViewTransition: true });
+  return createRouter({ routeTree, basepath: import.meta.env.BASE_URL, scrollRestoration: true });
 }
 
 declare module "@tanstack/react-router" {

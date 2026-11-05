@@ -33,6 +33,16 @@ describe("Checkbox", () => {
     expect(onChange).toHaveBeenCalledTimes(1);
   });
 
+  it("hides its label from sight but keeps it as the name", () => {
+    const { rerender } = render(<Checkbox label="Select row" />);
+    const visibleClass = screen.getByText("Select row").className;
+    rerender(<Checkbox label="Select row" hideLabel />);
+    const checkbox = screen.getByRole("checkbox", { name: "Select row" });
+    // out of the layout (no gap after the box), not removed from the accessibility tree
+    expect(screen.getByText("Select row").className).not.toBe(visibleClass);
+    expect(checkbox.hasAttribute("hideLabel")).toBe(false);
+  });
+
   it("sets the mixed state as a DOM property and follows the prop", () => {
     const { rerender } = render(<Checkbox label="Select all" indeterminate />);
     const checkbox = screen.getByRole("checkbox", { name: "Select all" }) as HTMLInputElement;

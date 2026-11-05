@@ -19,3 +19,4 @@ export const Indeterminate: Story = { args: { label: "Select all", indeterminate
 export const WithDescription: Story = { args: { description: "We only email about your account." } };
 export const WithError: Story = { args: { required: true, error: "Accept the terms to continue." } };
 export const Disabled: Story = { args: { disabled: true } };
+export const HiddenLabel: Story = { args: { label: "Select row", hideLabel: true } };

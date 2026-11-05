@@ -8,11 +8,13 @@ const OWN_PROPS = [
   // Props the component consumes itself; everything else is forwarded to the <input>.
   // iterating props only compiles correctly for React: mitosis.config.cjs maps props to the
   // Svelte $props() object. shortcut: a Vue target will need the same with $attrs.
-  "label", "description", "error", "indeterminate", "id", "class",
+  "label", "hideLabel", "description", "error", "indeterminate", "id", "class",
 ];
 
 export type CheckboxProps = {
   label: any;
+  // hides the label from sight, without the gap after the box; it still names the checkbox
+  hideLabel?: boolean;
   description?: any;
   error?: any;
   // mixed state, e.g. a select-all box when only some items are checked
@@ -134,7 +136,7 @@ export default function Checkbox(props: CheckboxProps) {
             <path d="M4 8h8" />
           </svg>
         </span>
-        <span>
+        <span class={stylex.props(props.hideLabel && field.srOnly).className}>
           {props.label}
           {props.required && (
             <span aria-hidden="true" class={stylex.props(field.required).className}>

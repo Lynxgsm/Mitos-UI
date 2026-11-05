@@ -8,6 +8,14 @@ This file covers the library only: changes to the documentation website (`apps/w
 
 ## [Unreleased]
 
+### Added
+
+- `Checkbox`: `hideLabel` hides the label from sight (it still names the checkbox), without leaving a gap after the box, for a checkbox alone in a table row or on a card.
+
+### Fixed
+
+- `Menu`: the highlight of an item spans the whole menu again instead of only its text, and the menu grows with its longest label (up to 20rem) instead of wrapping every label when the trigger is small, as with an icon-only trigger.
+
 ## [0.3.0] - 2026-10-25
 
 ### Added
